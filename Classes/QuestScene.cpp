@@ -64,10 +64,10 @@ bool QuestScene::init()
     });
     addCommonBtn({0.9,0.7}, "combo on", [this](){
         _beatField.op_showComboCore();
+    });*/
+    addCommonBtn({0.9,0.6}, "gold number", [this](){
+        _topIcons.op_configGold(random(0, 99999));
     });
-    addCommonBtn({0.9,0.6}, "combo off", [this](){
-        _beatField.op_dismissComboCore();
-    }); */
 
 
     auto layer = Layer::create();
@@ -90,6 +90,7 @@ bool QuestScene::init()
     _bloodBar.init(_mainLayer, _mainCamera);
     _beatField.init(_mainLayer, _mainCamera);
     initPauseShadowThings();
+    _topIcons.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
@@ -118,7 +119,9 @@ bool QuestScene::init()
 //        this->battleBegin();
 //        BattleState::s()->heroSetBloodBar();
 //    }, QuestDef::HERO_RUN_IN_TIME + QuestDef::HERO_RUN_IN_TIME2 + QuestDef::CAMERA_MOVE_TIME, "after hero run in3");
-//    scheduleUpdate();
+
+    
+    scheduleUpdate();
     return true;
 }
 
@@ -169,6 +172,7 @@ void QuestScene::battleBegin()
 
 void QuestScene::update(float dt)
 {
-    _battleRoad.update(dt);
-    _beatField.update(dt);
+//    _battleRoad.update(dt);
+//    _beatField.update(dt);
+    _topIcons.update(dt);
 }

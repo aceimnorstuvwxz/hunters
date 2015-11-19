@@ -189,10 +189,19 @@ public:
 };
 
 
+
 class QUestSceneProtocal
-    {
-    public:
-        virtual void op_showPauseShadow() = 0;
-    };
+{
+public:
+    virtual void op_showPauseShadow() = 0;
+};
+
+
+class TopIconsProtocal
+{
+public:
+    virtual void op_configGold(int number) = 0; //设置金币数量
+};
+
 
 #endif /* QuestProtocals_hpp */

@@ -71,6 +71,8 @@
 		B5594DC11BEBCBE7007BDD87 /* PixelTextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */; };
 		B57D70A51BE89A7A00A3036F /* QuestCameraManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */; };
 		B58066DD1BF8C5FF002A1DC1 /* hunting in Resources */ = {isa = PBXBuildFile; fileRef = B58066DC1BF8C5FF002A1DC1 /* hunting */; };
+		B581F9D01BFE3A6900F9BDDB /* TopIcons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B581F9CE1BFE3A6900F9BDDB /* TopIcons.cpp */; };
+		B581F9D21BFE46A600F9BDDB /* hunters in Resources */ = {isa = PBXBuildFile; fileRef = B581F9D11BFE46A600F9BDDB /* hunters */; };
 		B58DDCAB1BE8D70600B54804 /* HeroGraphicNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */; };
 		B58DDCAE1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */; };
 		B58DDCB11BE91B1500B54804 /* BattleRoles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAF1BE91B1500B54804 /* BattleRoles.cpp */; };
@@ -222,6 +224,9 @@
 		B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuestCameraManage.cpp; sourceTree = "<group>"; };
 		B57D70A41BE89A7A00A3036F /* QuestCameraManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuestCameraManage.hpp; sourceTree = "<group>"; };
 		B58066DC1BF8C5FF002A1DC1 /* hunting */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hunting; sourceTree = "<group>"; };
+		B581F9CE1BFE3A6900F9BDDB /* TopIcons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TopIcons.cpp; sourceTree = "<group>"; };
+		B581F9CF1BFE3A6900F9BDDB /* TopIcons.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TopIcons.hpp; sourceTree = "<group>"; };
+		B581F9D11BFE46A600F9BDDB /* hunters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hunters; sourceTree = "<group>"; };
 		B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicNode.cpp; sourceTree = "<group>"; };
 		B58DDCAA1BE8D70600B54804 /* HeroGraphicNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeroGraphicNode.hpp; sourceTree = "<group>"; };
 		B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicUnitAnimationDef.cpp; sourceTree = "<group>"; };
@@ -415,6 +420,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B581F9D11BFE46A600F9BDDB /* hunters */,
 				B58066DC1BF8C5FF002A1DC1 /* hunting */,
 				B58DDCB21BE91F7D00B54804 /* sopx */,
 				B50A36FA1BE7C5480007B7CA /* beats */,
@@ -537,6 +543,15 @@
 			name = "other-scene";
 			sourceTree = "<group>";
 		};
+		B581F9CD1BFE3A4A00F9BDDB /* top-icons */ = {
+			isa = PBXGroup;
+			children = (
+				B581F9CE1BFE3A6900F9BDDB /* TopIcons.cpp */,
+				B581F9CF1BFE3A6900F9BDDB /* TopIcons.hpp */,
+			);
+			name = "top-icons";
+			sourceTree = "<group>";
+		};
 		B58DDCA51BE8D2DA00B54804 /* RoleNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +637,7 @@
 				B58DDCA51BE8D2DA00B54804 /* RoleNode */,
 				B5BD19781BE65B570052ACDD /* battle-road */,
 				B58DDCBB1BEB330100B54804 /* blood-bar */,
+				B581F9CD1BFE3A4A00F9BDDB /* top-icons */,
 				B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */,
 				B57D70A41BE89A7A00A3036F /* QuestCameraManage.hpp */,
 				B5BD196F1BE652910052ACDD /* QuestDef.cpp */,
@@ -794,6 +810,7 @@
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				B581F9D21BFE46A600F9BDDB /* hunters in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
@@ -836,6 +853,7 @@
 				B58DDCB61BE9361100B54804 /* RivalGraphicNode.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				B5BD195A1BE645990052ACDD /* TripleQuestScene.cpp in Sources */,
+				B581F9D01BFE3A6900F9BDDB /* TopIcons.cpp in Sources */,
 				B5BD19501BE645990052ACDD /* format.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				B58DDCBE1BEB331C00B54804 /* BloodBar.cpp in Sources */,

@@ -16,7 +16,7 @@ bool PixelTextNode::init()
 
 void PixelTextNode::configText(const std::string& text, float splitWidth)
 {
-    const float char_width = 3;
+    const float char_width = 5;
     if (text.size() == 0) {
         this->setVisible(false);
     } else {

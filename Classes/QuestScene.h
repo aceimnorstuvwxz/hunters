@@ -16,6 +16,7 @@
 #include "BloodBar.hpp"
 #include "SingleBeat.hpp"
 #include "BeatField.hpp"
+#include "TopIcons.hpp"
 // Beat Quest Game Scene
 
 
@@ -34,7 +35,11 @@ protected:
 
     QuestCameraManage _cameraManage;
 
+
     BattleRoad _battleRoad;
+
+
+    TopIcons _topIcons;
 
     BattleRoles _battleRoles;
 
