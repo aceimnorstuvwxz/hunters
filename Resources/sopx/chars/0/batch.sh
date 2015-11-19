@@ -1,0 +1,49 @@
+#!/bin/sh
+
+scatPixelGen 0.png
+scatPixelGen 1.png
+scatPixelGen 2.png
+scatPixelGen 3.png
+scatPixelGen 4.png
+scatPixelGen 5.png
+scatPixelGen 6.png
+scatPixelGen 7.png
+scatPixelGen 8.png
+scatPixelGen 9.png
+
+scatPixelGen a.png
+scatPixelGen b.png
+scatPixelGen c.png
+scatPixelGen d.png
+scatPixelGen e.png
+scatPixelGen f.png
+scatPixelGen g.png
+scatPixelGen h.png
+scatPixelGen i.png
+scatPixelGen j.png
+scatPixelGen k.png
+scatPixelGen l.png
+scatPixelGen m.png
+scatPixelGen n.png
+scatPixelGen o.png
+scatPixelGen p.png
+scatPixelGen q.png
+scatPixelGen r.png
+scatPixelGen s.png
+scatPixelGen t.png
+scatPixelGen u.png
+scatPixelGen v.png
+scatPixelGen w.png
+scatPixelGen x.png
+scatPixelGen y.png
+scatPixelGen z.png
+
+scatPixelGen sp_space.png
+scatPixelGen sp_add.png
+scatPixelGen sp_dollar.png
+scatPixelGen sp_equal.png
+scatPixelGen sp_excla.png
+scatPixelGen sp_minus.png
+scatPixelGen sp_perscent.png
+scatPixelGen sp_slash.png
+scatPixelGen sp_why.png

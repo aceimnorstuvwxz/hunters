@@ -7,7 +7,6 @@
 #include "StealthTestScene.h"
 #include "QuestScene.h"
 #include "WelcoScene.h"
-#include "WildHuntingScene.hpp"
 
 USING_NS_CC;
 
@@ -15,10 +14,6 @@ bool TestGuideScene::init()
 {
     assert(TRBaseScene::init());
 
-
-    addCommonBtn({0.25,0.5}, "hunting", [](){
-        Director::getInstance()->pushScene(WildHuntingTestScene::create());
-    });
 
 
     addCommonBtn({0.5,0.9}, "Triple Quest", [](){
@@ -51,7 +46,7 @@ bool TestGuideScene::init()
     });
 
     scheduleOnce([](float dt){
-        Director::getInstance()->pushScene(WildHuntingTestScene::create());
+        Director::getInstance()->pushScene(WelcoScene::create());
 
     }, 0.5, "sdgf");
 

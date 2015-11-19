@@ -100,25 +100,25 @@ bool QuestScene::init()
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
 
-    // hero 穿好衣服
-    _battleRoles.op_heroConfig();
-    // 新关卡开始 hero 跑进来
-    _battleRoles.op_heroRunIn();
-    // 然后 hero 原地跑，背景往后移
-    scheduleOnce([this](float dt) {
-        _battleRoad.op_moveForword(QuestDef::HERO_RUN_IN_TIME2 + QuestDef::CAMERA_MOVE_TIME);
-    }, QuestDef::HERO_RUN_IN_TIME, "after hero run in");
-
-    scheduleOnce([this](float dt) {
-        _cameraManage.op_switchToPosition(QuestCameraPosition::BATTLE, false);
-        _battleRoles.op_switchToBattle();
-    }, QuestDef::HERO_RUN_IN_TIME + QuestDef::HERO_RUN_IN_TIME2, "after hero run in2");
-
-    scheduleOnce([this](float dt) {
-        this->battleBegin();
-        BattleState::s()->heroSetBloodBar();
-    }, QuestDef::HERO_RUN_IN_TIME + QuestDef::HERO_RUN_IN_TIME2 + QuestDef::CAMERA_MOVE_TIME, "after hero run in3");
-    scheduleUpdate();
+//    // hero 穿好衣服
+//    _battleRoles.op_heroConfig();
+//    // 新关卡开始 hero 跑进来
+//    _battleRoles.op_heroRunIn();
+//    // 然后 hero 原地跑，背景往后移
+//    scheduleOnce([this](float dt) {
+//        _battleRoad.op_moveForword(QuestDef::HERO_RUN_IN_TIME2 + QuestDef::CAMERA_MOVE_TIME);
+//    }, QuestDef::HERO_RUN_IN_TIME, "after hero run in");
+//
+//    scheduleOnce([this](float dt) {
+//        _cameraManage.op_switchToPosition(QuestCameraPosition::BATTLE, false);
+//        _battleRoles.op_switchToBattle();
+//    }, QuestDef::HERO_RUN_IN_TIME + QuestDef::HERO_RUN_IN_TIME2, "after hero run in2");
+//
+//    scheduleOnce([this](float dt) {
+//        this->battleBegin();
+//        BattleState::s()->heroSetBloodBar();
+//    }, QuestDef::HERO_RUN_IN_TIME + QuestDef::HERO_RUN_IN_TIME2 + QuestDef::CAMERA_MOVE_TIME, "after hero run in3");
+//    scheduleUpdate();
     return true;
 }
 

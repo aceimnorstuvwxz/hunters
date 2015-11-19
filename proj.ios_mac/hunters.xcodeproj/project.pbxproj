@@ -70,7 +70,6 @@
 		B53B8CB81BF09DF8006F5432 /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */; };
 		B5594DC11BEBCBE7007BDD87 /* PixelTextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */; };
 		B57D70A51BE89A7A00A3036F /* QuestCameraManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */; };
-		B58066DB1BF8BFEE002A1DC1 /* WildHuntingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58066D91BF8BFEE002A1DC1 /* WildHuntingScene.cpp */; };
 		B58066DD1BF8C5FF002A1DC1 /* hunting in Resources */ = {isa = PBXBuildFile; fileRef = B58066DC1BF8C5FF002A1DC1 /* hunting */; };
 		B58DDCAB1BE8D70600B54804 /* HeroGraphicNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */; };
 		B58DDCAE1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */; };
@@ -153,7 +152,7 @@
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* WildingHunting iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WildingHunting iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* hunters iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hunters iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
@@ -174,7 +173,7 @@
 		503AE10417EB98FF00D1A890 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = mac/Prefix.pch; sourceTree = "<group>"; };
 		503AE11117EB99EE00D1A890 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		503AE11A17EB9C5A00D1A890 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		5087E76F17EB910900C73F5D /* WildingHunting iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WildingHunting iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5087E76F17EB910900C73F5D /* hunters iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hunters iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5087E77217EB970100C73F5D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5087E77317EB970100C73F5D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5087E77417EB970100C73F5D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -222,8 +221,6 @@
 		B5594DC01BEBCBE7007BDD87 /* PixelTextNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PixelTextNode.hpp; sourceTree = "<group>"; };
 		B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuestCameraManage.cpp; sourceTree = "<group>"; };
 		B57D70A41BE89A7A00A3036F /* QuestCameraManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuestCameraManage.hpp; sourceTree = "<group>"; };
-		B58066D91BF8BFEE002A1DC1 /* WildHuntingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WildHuntingScene.cpp; sourceTree = "<group>"; };
-		B58066DA1BF8BFEE002A1DC1 /* WildHuntingScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WildHuntingScene.hpp; sourceTree = "<group>"; };
 		B58066DC1BF8C5FF002A1DC1 /* hunting */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hunting; sourceTree = "<group>"; };
 		B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicNode.cpp; sourceTree = "<group>"; };
 		B58DDCAA1BE8D70600B54804 /* HeroGraphicNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeroGraphicNode.hpp; sourceTree = "<group>"; };
@@ -362,8 +359,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* WildingHunting iOS.app */,
-				5087E76F17EB910900C73F5D /* WildingHunting iOS.app */,
+				1D6058910D05DD3D006BFB54 /* hunters iOS.app */,
+				5087E76F17EB910900C73F5D /* hunters iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -438,7 +435,6 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B58066D81BF8BFCD002A1DC1 /* wildhunting */,
 				B5BD195D1BE645AC0052ACDD /* fromold */,
 				B53B8CB01BEFA19E006F5432 /* other-scene */,
 				B5BD196B1BE64EDE0052ACDD /* game-scene */,
@@ -539,15 +535,6 @@
 				B53B8CB71BF09DF8006F5432 /* LoadingScene.hpp */,
 			);
 			name = "other-scene";
-			sourceTree = "<group>";
-		};
-		B58066D81BF8BFCD002A1DC1 /* wildhunting */ = {
-			isa = PBXGroup;
-			children = (
-				B58066D91BF8BFEE002A1DC1 /* WildHuntingScene.cpp */,
-				B58066DA1BF8BFEE002A1DC1 /* WildHuntingScene.hpp */,
-			);
-			name = wildhunting;
 			sourceTree = "<group>";
 		};
 		B58DDCA51BE8D2DA00B54804 /* RoleNode */ = {
@@ -687,9 +674,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* WildingHunting iOS */ = {
+		1D6058900D05DD3D006BFB54 /* hunters iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "WildingHunting iOS" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "hunters iOS" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -700,14 +687,14 @@
 			dependencies = (
 				1AC6FB25180E99E1004C840B /* PBXTargetDependency */,
 			);
-			name = "WildingHunting iOS";
+			name = "hunters iOS";
 			productName = iphone;
-			productReference = 1D6058910D05DD3D006BFB54 /* WildingHunting iOS.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* hunters iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5087E73D17EB910900C73F5D /* WildingHunting Mac */ = {
+		5087E73D17EB910900C73F5D /* hunters Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "WildingHunting Mac" */;
+			buildConfigurationList = 5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "hunters Mac" */;
 			buildPhases = (
 				5087E74817EB910900C73F5D /* Resources */,
 				5087E75617EB910900C73F5D /* Sources */,
@@ -718,9 +705,9 @@
 			dependencies = (
 				1AC6FB16180E9959004C840B /* PBXTargetDependency */,
 			);
-			name = "WildingHunting Mac";
+			name = "hunters Mac";
 			productName = iphone;
-			productReference = 5087E76F17EB910900C73F5D /* WildingHunting iOS.app */;
+			productReference = 5087E76F17EB910900C73F5D /* hunters iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -736,7 +723,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WildingHunting" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "hunters" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -756,8 +743,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* WildingHunting iOS */,
-				5087E73D17EB910900C73F5D /* WildingHunting Mac */,
+				1D6058900D05DD3D006BFB54 /* hunters iOS */,
+				5087E73D17EB910900C73F5D /* hunters Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -837,7 +824,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B58066DB1BF8BFEE002A1DC1 /* WildHuntingScene.cpp in Sources */,
 				B5BD19741BE6540E0052ACDD /* QuestProtocals.cpp in Sources */,
 				B5944E9E1BF1101C00028078 /* HealthBeat.cpp in Sources */,
 				B53B8CB31BEFA1BC006F5432 /* WelcoScene.cpp in Sources */,
@@ -943,8 +929,8 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arisecbf.wildhunting;
-				PRODUCT_NAME = "WildingHunting iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arisecbf.hunters;
+				PRODUCT_NAME = "hunters iOS";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
@@ -980,8 +966,8 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arisecbf.wildhunting;
-				PRODUCT_NAME = "WildingHunting iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arisecbf.hunters;
+				PRODUCT_NAME = "hunters iOS";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
@@ -1018,7 +1004,7 @@
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
 				);
-				PRODUCT_NAME = "WildingHunting iOS";
+				PRODUCT_NAME = "hunters iOS";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
 			name = Debug;
@@ -1050,7 +1036,7 @@
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
 				);
-				PRODUCT_NAME = "WildingHunting iOS";
+				PRODUCT_NAME = "hunters iOS";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
 			name = Release;
@@ -1119,7 +1105,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "WildingHunting iOS" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "hunters iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -1128,7 +1114,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "WildingHunting Mac" */ = {
+		5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "hunters Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5087E76D17EB910900C73F5D /* Debug */,
@@ -1137,7 +1123,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WildingHunting" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "hunters" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

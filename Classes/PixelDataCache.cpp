@@ -129,27 +129,27 @@ void PixelDataCache::preloadChars() //预加载字形文件（字母，数字，
     //数字
     for (char c = '0'; c <= '9'; c++) {
         CCLOG("load char %c", c);
-        auto pixels = loadScatPixelFile(fmt::sprintf("sopx/chars/%c.png.sopx", c));
+        auto pixels = loadScatPixelFile(fmt::sprintf("sopx/chars/0/%c.png.sopx", c));
         _charMap[c] = pixels;
     }
 
     //小写字母
     for (char c = 'a'; c <= 'z'; c++) {
         CCLOG("load char %c", c);
-        auto pixels = loadScatPixelFile(fmt::sprintf("sopx/chars/%c.png.sopx", c));
+        auto pixels = loadScatPixelFile(fmt::sprintf("sopx/chars/0/%c.png.sopx", c));
         _charMap[c] = pixels;
     }
 
     //特殊符号
-    _charMap[' '] = loadScatPixelFile("sopx/chars/sp_space.png.sopx");
-    _charMap['+'] = loadScatPixelFile("sopx/chars/sp_add.png.sopx");
-    _charMap['$'] = loadScatPixelFile("sopx/chars/sp_dollar.png.sopx");
-    _charMap['='] = loadScatPixelFile("sopx/chars/sp_equal.png.sopx");
-    _charMap['!'] = loadScatPixelFile("sopx/chars/sp_excla.png.sopx");
-    _charMap['-'] = loadScatPixelFile("sopx/chars/sp_minus.png.sopx");
-    _charMap['%'] = loadScatPixelFile("sopx/chars/sp_perscent.png.sopx");
-    _charMap['/'] = loadScatPixelFile("sopx/chars/sp_slash.png.sopx");
-    _charMap['?'] = loadScatPixelFile("sopx/chars/sp_why.png.sopx");
+    _charMap[' '] = loadScatPixelFile("sopx/chars/0/sp_space.png.sopx");
+    _charMap['+'] = loadScatPixelFile("sopx/chars/0/sp_add.png.sopx");
+    _charMap['$'] = loadScatPixelFile("sopx/chars/0/sp_dollar.png.sopx");
+    _charMap['='] = loadScatPixelFile("sopx/chars/0/sp_equal.png.sopx");
+    _charMap['!'] = loadScatPixelFile("sopx/chars/0/sp_excla.png.sopx");
+    _charMap['-'] = loadScatPixelFile("sopx/chars/0/sp_minus.png.sopx");
+    _charMap['%'] = loadScatPixelFile("sopx/chars/0/sp_perscent.png.sopx");
+    _charMap['/'] = loadScatPixelFile("sopx/chars/0/sp_slash.png.sopx");
+    _charMap['?'] = loadScatPixelFile("sopx/chars/0/sp_why.png.sopx");
 
 }
 
