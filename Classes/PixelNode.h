@@ -38,11 +38,15 @@ public:
     void configMixColor(const cocos2d::Vec4& mixColor); //设置叠色，将用alpha与原色混合。默认alpha为0，显示原色。
     void configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOutTime, int repeat = 1); //混色动画，用来实现，rival受攻击 repeat -1时 无止尽
     void configBlend(bool enable) {_blend = enable;}
+    void configOpacityAni(bool alpha, bool posExpand, float posexpandLength=1) {//设置 opacity 动作的表现，默认是仅 alpha
+        _opacityAsAlpha = alpha;
+        _opacityAsPosExpand = posExpand;
+        _posexpand = posexpandLength;
+    }
     void update(float dt) override;
 protected:
     virtual ~PixelNode();
     bool _batched = false; //如果是batch，那么vao/vbo是自有的，需要管理好。
-
     bool _stencil = false;
     bool _stenciled = false;
     void prepareVertexData();
@@ -52,7 +56,11 @@ protected:
     cocos2d::GLProgramState* _programState = nullptr;
     cocos2d::CustomCommand _command;
     int _count = 0;
+
+    bool _opacityAsAlpha = true;
+    bool _opacityAsPosExpand = false;
     float _posexpand = 0; //散开聚合度，0的时候不散开，1的时候散开1倍，递增
+
 
     cocos2d::Vec4 _mixColor = {0,0,0,0};
     bool _blend = false;

@@ -101,6 +101,12 @@ void EnergyBar::initEnergyThings()
         _pxSkillC = node;
     }
 
+    _pxSkillA->setOpacity(0);
+    _pxSkillB->setOpacity(0);
+
+    _pxSkillA->configOpacityAni(true, true, 1);
+    _pxSkillB->configOpacityAni(true, true, 1);
+
     updateEnegyContent(0,0);
 }
 
@@ -129,7 +135,7 @@ void EnergyBar::updateEnegyContent(float last, float curr)
 
     if (last < 1.f/3.f && curr >= 1.f/3.f) {
         //显示小技能
-        auto ac = Sequence::create(Show::create(), NULL);
+        auto ac = Sequence::create(Show::create(), FadeIn::create(in_time), NULL);
         _pxSkillA->runAction(ac->clone());
         _pxSkillB->runAction(ac);
     }

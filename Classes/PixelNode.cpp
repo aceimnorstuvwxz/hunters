@@ -91,9 +91,9 @@ void PixelNode::onDraw(const cocos2d::Mat4 &transform, uint32_t flags)
 
 
     auto loc = glProgram->getUniformLocation("u_cbf_opacity");
-    glProgram->setUniformLocationWith1f(loc, getOpacity()/255.f);
+    glProgram->setUniformLocationWith1f(loc, _opacityAsAlpha ? getOpacity()/255.f : 1.f);
     loc = glProgram->getUniformLocation("u_posexpand");
-    glProgram->setUniformLocationWith1f(loc, _posexpand);
+    glProgram->setUniformLocationWith1f(loc, _opacityAsPosExpand ? _posexpand*(1.f - getOpacity()/255.f) : 0.f);
     loc = glProgram->getUniformLocation("u_mixcolor");
     glProgram->setUniformLocationWith4fv(loc, &(_mixColor.x), 1);
 
