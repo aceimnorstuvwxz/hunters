@@ -9,6 +9,7 @@
 #include "EnergyBar.hpp"
 
 #include "format.h"
+#include "intersection.h"
 
 USING_NS_CC;
 
@@ -19,6 +20,7 @@ void EnergyBar::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
 
     initHubThings();
     initEnergyThings();
+    initInteractiveThings();
 }
 
 void EnergyBar::op_addEnergy(float howmuch)
@@ -113,15 +115,14 @@ void EnergyBar::initEnergyThings()
 void EnergyBar::update(float dt)
 {
     float last = _currentEnergy;
-    const float speed = 0.5f;
+    const float speed = 1.f;
     if (_targetEnergy == _currentEnergy) {
         return;
     }
     if (_targetEnergy > _currentEnergy) {
-        //这里有个 bug，导致会很好看的抖动，所以不改
-        _currentEnergy = std::min(1.f, _currentEnergy + speed*dt);
+        _currentEnergy = std::min(_targetEnergy, _currentEnergy + speed*dt);
     } else {
-        _currentEnergy = std::max(0.f, _currentEnergy - speed*dt);
+        _currentEnergy = std::max(_targetEnergy, _currentEnergy - speed*dt*2);
     }
     updateEnegyContent(last, _currentEnergy);
 
@@ -135,6 +136,9 @@ void EnergyBar::updateEnegyContent(float last, float curr)
 
     if (last < 1.f/3.f && curr >= 1.f/3.f) {
         //显示小技能
+        _pxSkillA->stopAllActions();
+        _pxSkillB->stopAllActions();
+
         auto ac = Sequence::create(Show::create(), FadeIn::create(in_time), NULL);
         _pxSkillA->runAction(ac->clone());
         _pxSkillB->runAction(ac);
@@ -142,7 +146,72 @@ void EnergyBar::updateEnegyContent(float last, float curr)
 
     if (last < 1.f && curr == 1.f) {
         //显示大技能
-//        _pxSkillC->runAction(Sequence::create(Show::create(), NULL));
         _pxContent->configMixColorAni({1,1,1,1}, 1, -1);
+    }
+
+    if (last >= 1.f/3.f && curr <= 1.f/3.f) {
+
+        _pxSkillA->stopAllActions();
+        _pxSkillB->stopAllActions();
+        auto ac = Sequence::create(FadeOut::create(in_time), Hide::create(), NULL);
+
+        _pxSkillA->runAction(ac->clone());
+        _pxSkillB->runAction(ac);
+    }
+
+    if (last >= 1.f && curr <= 1.f) {
+        _pxContent->configMixColorAni({1,1,1,1}, 1, 0);
+    }
+}
+
+void EnergyBar::initInteractiveThings()
+{
+    auto listener = EventListenerTouchOneByOne::create();
+
+    listener->onTouchBegan = [this](Touch* touch, Event* event){
+
+
+        return true;
+    };
+
+    listener->onTouchMoved = [this](Touch* touch, Event* event){
+
+    };
+
+    listener->onTouchEnded = [this](Touch* touch, Event* event){
+        auto p = touch->getLocation();
+        if (_pxSkillA->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
+            CCLOG("skill a");
+            tryReleaseSkill(EnergySkillType::SHIELD);
+        } else if (_pxSkillB->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
+            CCLOG("skill b");
+            tryReleaseSkill(EnergySkillType::CRITICAL);
+        } else if (_pxScope->fetchScreenRect(0, _mainCamera).containsPoint(p) || _pxSkillC->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
+            CCLOG("skill c");
+            tryReleaseSkill(EnergySkillType::TIMESTOP);
+        }
+    };
+
+    listener->onTouchCancelled = [this](Touch* touch, Event* event){
+    };
+
+    _mainLayer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, _mainLayer);
+}
+
+void EnergyBar::tryReleaseSkill(EnergySkillType st)
+{
+    if (st == EnergySkillType::SHIELD &&
+        _targetEnergy >= 1.f/3.f) {
+        //API 释放护盾
+
+        _targetEnergy -= 1.f/3.f;
+    } else if (st == EnergySkillType::CRITICAL &&
+               _targetEnergy >= 1.f/3.f) {
+        //API 释放暴击加成
+
+        _targetEnergy -= 1.f/3.f;
+    } else if (st == EnergySkillType::TIMESTOP && _targetEnergy >= 1.f) {
+        //API 释放时光停止
+        _targetEnergy = 0;
     }
 }

@@ -203,6 +203,13 @@ public:
     virtual void op_configGold(int number) = 0; //设置金币数量
 };
 
+enum class EnergySkillType:int
+{
+    SHIELD, //护盾
+    CRITICAL, //暴击加成
+    TIMESTOP, //时光暂停
+};
+
 class EnergyBarProtocal
 {
 public:

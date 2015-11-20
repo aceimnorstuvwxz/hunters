@@ -45,6 +45,8 @@ protected:
     PixelNode* _pxSkillC;
     void initEnergyThings();
     void updateEnegyContent(float last, float curr);
+    void initInteractiveThings();
+    void tryReleaseSkill(EnergySkillType st);
 };
 
 #endif /* EnergyBar_hpp */

@@ -76,6 +76,19 @@ void PixelDataCache::preload(const std::string& sopxfile)
         genface(6,7,3,2,pix.color, relativePos, {0,-1,0}, seed);
     }
 
+    int xMin = std::numeric_limits<int>::max();
+    int xMax = std::numeric_limits<int>::min();
+    int yMin = std::numeric_limits<int>::max();
+    int yMax = std::numeric_limits<int>::min();
+    for (auto pix : pixels) {
+        //Rect 计算
+        xMin = std::min(xMin, pix.pos.x);
+        yMin = std::min(yMin, pix.pos.y);
+        xMax = std::max(xMax, pix.pos.x);
+        yMax = std::max(yMax, pix.pos.y);
+    }
+
+
     GLuint VAO,VBO;
     glGenVertexArrays(1, &VAO);
     cocos2d::GL::bindVAO(VAO);
@@ -99,7 +112,7 @@ void PixelDataCache::preload(const std::string& sopxfile)
 
     free(vertexData);
     CCLOG("pixel data preload %s VAO=%d VBo=%d cnt=%d", sopxfile.c_str(), VAO, VBO, count);
-    _abmap[sopxfile] = {VAO,VBO,count};
+    _abmap[sopxfile] = {VAO,VBO,count,xMin,xMax,yMin,yMax};
 }
 
 PixelDataConfig PixelDataCache::get(const std::string& sopxfile)

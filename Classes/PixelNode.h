@@ -43,6 +43,7 @@ public:
         _opacityAsPosExpand = posExpand;
         _posexpand = posexpandLength;
     }
+    cocos2d::Rect fetchScreenRect(float offset, cocos2d::Camera* camera); //获取映射到屏幕空间的区域，用于 touch 的事件判定，offset 用来扩展区域，更容易点中
     void update(float dt) override;
 protected:
     virtual ~PixelNode();
@@ -68,6 +69,11 @@ protected:
     int _aniMixColorTime = 0;
     float _aniMixColorAlphaStep;
     cocos2d::Vec4 _aniMixColorTarget;
+
+    float _xMin;
+    float _xMax;
+    float _yMin;
+    float _yMax;
 
 };
 

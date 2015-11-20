@@ -308,6 +308,10 @@ void PixelNode::configSopx(const std::string& file)
     _vao = ab.vao;
     _vbo = ab.vbo;
     _count = ab.count;
+    _xMin = ab.xMin;
+    _xMax = ab.xMax;
+    _yMin = ab.yMin;
+    _yMax = ab.yMax;
 }
 
 PixelNode::~PixelNode(){
@@ -348,4 +352,28 @@ void PixelNode::update(float dt)
             _aniMixColorAlphaStep = - _aniMixColorAlphaStep;
         }
     }
+}
+
+cocos2d::Rect PixelNode::fetchScreenRect(float offset, cocos2d::Camera* camera) //获取映射到屏幕空间的区域，用于 touch 的事件判定，offset 用来扩展区域，更容易点中
+{
+    auto size = Director::getInstance()->getWinSize();
+    Vec3 originPoints[4] = {Vec3{_xMin, _yMin, 0}, Vec3{_xMax, _yMin, 0}, Vec3{_xMin, _yMax, 0}, Vec3{_xMax, _yMax, 0}};
+    Vec2 screenPoints[4];
+    for (int i = 0; i < 4; i++) {
+        Vec3 point = originPoints[i]; //local
+        this->getNodeToWorldTransform().transformPoint(&point);//world
+        Vec2 scp = camera->project(point);//screen
+        scp.y = size.height-scp.y;
+        screenPoints[i] = scp;
+    }
+    float xmin,xmax,ymin,ymax;
+    xmin = ymin = std::numeric_limits<float>::max();
+    xmax = ymax = std::numeric_limits<float>::min();
+    for (auto p : screenPoints) {
+        xmin = std::min(xmin, p.x);
+        xmax = std::max(xmax, p.x);
+        ymin = std::min(ymin, p.y);
+        ymax = std::max(ymax, p.y);
+    }
+    return {xmin-offset, ymin-offset, xmax-xmin+2*offset, ymax-ymin+2*offset};
 }

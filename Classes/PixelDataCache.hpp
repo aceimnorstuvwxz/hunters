@@ -18,6 +18,10 @@ struct PixelDataConfig
     GLuint vao;
     GLuint vbo;
     int count;
+    int xMin;
+    int xMax;
+    int yMin;
+    int yMax;
 };
 
 class PixelDataCache
