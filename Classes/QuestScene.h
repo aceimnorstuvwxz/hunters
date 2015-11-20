@@ -17,6 +17,7 @@
 #include "SingleBeat.hpp"
 #include "BeatField.hpp"
 #include "TopIcons.hpp"
+#include "EnergyBar.hpp"
 // Beat Quest Game Scene
 
 
@@ -26,7 +27,7 @@ public:
     CREATE_FUNC(QuestScene);
     virtual bool init() override;
 
-    virtual void op_showPauseShadow();
+    virtual void op_showPauseShadow() override;
 
 protected:
     cocos2d::Layer* _mainLayer;
@@ -40,6 +41,8 @@ protected:
 
 
     TopIcons _topIcons;
+    EnergyBar _energyBar;
+
 
     BattleRoles _battleRoles;
 

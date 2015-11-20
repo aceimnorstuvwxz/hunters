@@ -36,7 +36,7 @@ public:
     // 批量组合数据 有需要再支持，因为会造成有2个地方配置vbo
     void configBatch(const std::vector<PixelBatchTuple>& data);
     void configMixColor(const cocos2d::Vec4& mixColor); //设置叠色，将用alpha与原色混合。默认alpha为0，显示原色。
-    void configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOutTime, int repeat = 1); //混色动画，用来实现，rival受攻击
+    void configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOutTime, int repeat = 1); //混色动画，用来实现，rival受攻击 repeat -1时 无止尽
     void configBlend(bool enable) {_blend = enable;}
     void update(float dt) override;
 protected:

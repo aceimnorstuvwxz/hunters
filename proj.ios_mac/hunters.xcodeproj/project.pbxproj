@@ -73,6 +73,7 @@
 		B58066DD1BF8C5FF002A1DC1 /* hunting in Resources */ = {isa = PBXBuildFile; fileRef = B58066DC1BF8C5FF002A1DC1 /* hunting */; };
 		B581F9D01BFE3A6900F9BDDB /* TopIcons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B581F9CE1BFE3A6900F9BDDB /* TopIcons.cpp */; };
 		B581F9D21BFE46A600F9BDDB /* hunters in Resources */ = {isa = PBXBuildFile; fileRef = B581F9D11BFE46A600F9BDDB /* hunters */; };
+		B581F9D61BFF0D4700F9BDDB /* EnergyBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B581F9D41BFF0D4700F9BDDB /* EnergyBar.cpp */; };
 		B58DDCAB1BE8D70600B54804 /* HeroGraphicNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */; };
 		B58DDCAE1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */; };
 		B58DDCB11BE91B1500B54804 /* BattleRoles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAF1BE91B1500B54804 /* BattleRoles.cpp */; };
@@ -227,6 +228,8 @@
 		B581F9CE1BFE3A6900F9BDDB /* TopIcons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TopIcons.cpp; sourceTree = "<group>"; };
 		B581F9CF1BFE3A6900F9BDDB /* TopIcons.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TopIcons.hpp; sourceTree = "<group>"; };
 		B581F9D11BFE46A600F9BDDB /* hunters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hunters; sourceTree = "<group>"; };
+		B581F9D41BFF0D4700F9BDDB /* EnergyBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyBar.cpp; sourceTree = "<group>"; };
+		B581F9D51BFF0D4700F9BDDB /* EnergyBar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EnergyBar.hpp; sourceTree = "<group>"; };
 		B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicNode.cpp; sourceTree = "<group>"; };
 		B58DDCAA1BE8D70600B54804 /* HeroGraphicNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeroGraphicNode.hpp; sourceTree = "<group>"; };
 		B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicUnitAnimationDef.cpp; sourceTree = "<group>"; };
@@ -552,6 +555,15 @@
 			name = "top-icons";
 			sourceTree = "<group>";
 		};
+		B581F9D31BFF0D3200F9BDDB /* energy-bar */ = {
+			isa = PBXGroup;
+			children = (
+				B581F9D41BFF0D4700F9BDDB /* EnergyBar.cpp */,
+				B581F9D51BFF0D4700F9BDDB /* EnergyBar.hpp */,
+			);
+			name = "energy-bar";
+			sourceTree = "<group>";
+		};
 		B58DDCA51BE8D2DA00B54804 /* RoleNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +650,7 @@
 				B5BD19781BE65B570052ACDD /* battle-road */,
 				B58DDCBB1BEB330100B54804 /* blood-bar */,
 				B581F9CD1BFE3A4A00F9BDDB /* top-icons */,
+				B581F9D31BFF0D3200F9BDDB /* energy-bar */,
 				B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */,
 				B57D70A41BE89A7A00A3036F /* QuestCameraManage.hpp */,
 				B5BD196F1BE652910052ACDD /* QuestDef.cpp */,
@@ -864,6 +877,7 @@
 				B5BD19531BE645990052ACDD /* ScatPixelDef.cpp in Sources */,
 				B506AEBC1BEF742600021FC7 /* ProgressInfo.cpp in Sources */,
 				B58DDCB91BE9368700B54804 /* RivalGraphicAnimationDef.cpp in Sources */,
+				B581F9D61BFF0D4700F9BDDB /* EnergyBar.cpp in Sources */,
 				B506AEB21BEF5EC500021FC7 /* ShieldBeat.cpp in Sources */,
 				B50A36FF1BE7DB870007B7CA /* PlanePixelNode.cpp in Sources */,
 				B5BD19551BE645990052ACDD /* SOCommon.cpp in Sources */,

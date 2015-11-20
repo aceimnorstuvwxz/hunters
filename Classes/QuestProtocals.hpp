@@ -203,5 +203,11 @@ public:
     virtual void op_configGold(int number) = 0; //设置金币数量
 };
 
+class EnergyBarProtocal
+{
+public:
+    virtual void op_addEnergy(float howmuch) = 0; //通知怪物死亡，加气
+};
+
 
 #endif /* QuestProtocals_hpp */

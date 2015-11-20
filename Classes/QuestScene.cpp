@@ -61,10 +61,10 @@ bool QuestScene::init()
 
     addCommonBtn({0.9,0.8}, "combo attack", [this](){
         _beatField.op_toastComboAttack(12);
-    });
-    addCommonBtn({0.9,0.7}, "combo on", [this](){
-        _beatField.op_showComboCore();
     });*/
+    addCommonBtn({0.9,0.7}, "enegy test", [this](){
+        _energyBar.op_addEnergy(0.1);
+    });
     addCommonBtn({0.9,0.6}, "gold number", [this](){
         _topIcons.op_configGold(random(0, 99999));
     });
@@ -87,6 +87,7 @@ bool QuestScene::init()
     _cameraManage.init(_mainCamera);
     _battleRoad.init(_mainLayer, _mainCamera);
     _battleRoles.init(_mainLayer, _mainCamera);
+    _energyBar.init(_mainLayer, _mainCamera);
     _bloodBar.init(_mainLayer, _mainCamera);
     _beatField.init(_mainLayer, _mainCamera);
     initPauseShadowThings();
@@ -175,4 +176,5 @@ void QuestScene::update(float dt)
 //    _battleRoad.update(dt);
 //    _beatField.update(dt);
     _topIcons.update(dt);
+    _energyBar.update(dt);
 }

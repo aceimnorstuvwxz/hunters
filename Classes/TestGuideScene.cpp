@@ -46,7 +46,7 @@ bool TestGuideScene::init()
     });
 
     scheduleOnce([](float dt){
-        Director::getInstance()->pushScene(WelcoScene::create());
+        Director::getInstance()->pushScene(QuestScene::create());
 
     }, 0.5, "sdgf");
 

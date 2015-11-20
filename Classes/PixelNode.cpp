@@ -338,7 +338,7 @@ void PixelNode::configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOut
 
 void PixelNode::update(float dt)
 {
-    if (_aniMixColorTime > 0) {
+    if (_aniMixColorTime > 0 || _aniMixColorTime < 0) {
         _mixColor.w += _aniMixColorAlphaStep*dt;
         if (_aniMixColorAlphaStep > 0 && _mixColor.w > _aniMixColorTarget.w) {
             _aniMixColorAlphaStep = - _aniMixColorAlphaStep;
