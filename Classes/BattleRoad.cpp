@@ -306,6 +306,6 @@ void BattleRoad::op_configWind(float windDirection) //设置风的方向，表�
     _leftTrees->configXDiffAni(0, 0, 0);
     if (windDirection != 0) {
         _skyPlane->runAction(RepeatForever::create(MoveBy::create(1.f, Vec3{0, windDirection,0})));
-        _leftTrees->configXDiffAni(windDirection*0.001, windDirection*0.0003 + 0.0003, std::min(3.f,std::max(5.f/std::abs(windDirection), 1.f)));
+        _leftTrees->configXDiffAni(windDirection*0.001, windDirection*0.0003 + 0.0003, std::min(3.f,std::max(5.f/std::abs(windDirection), 1.5f)));
     }
 }

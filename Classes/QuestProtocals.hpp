@@ -218,5 +218,10 @@ public:
     virtual void op_addEnergy(float howmuch) = 0; //通知怪物死亡，加气
 };
 
+class WindBarProtocal
+{
+public:
+    virtual void op_configWind(int wind) = 0; //设置风力数值，正表示往右（顺），负的表示往左（逆风）0无风
+};
 
 #endif /* QuestProtocals_hpp */

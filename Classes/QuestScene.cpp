@@ -94,6 +94,7 @@ bool QuestScene::init()
     _battleRoad.init(_mainLayer, _mainCamera);
     _battleRoles.init(_mainLayer, _mainCamera);
     _energyBar.init(_mainLayer, _mainCamera);
+    _windBar.init(_mainLayer, _mainCamera);
     _bloodBar.init(_mainLayer, _mainCamera);
     _beatField.init(_mainLayer, _mainCamera);
     initPauseShadowThings();
@@ -183,4 +184,5 @@ void QuestScene::update(float dt)
 //    _beatField.update(dt);
     _topIcons.update(dt);
     _energyBar.update(dt);
+    _windBar.update(dt);
 }

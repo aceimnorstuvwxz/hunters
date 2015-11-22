@@ -31,6 +31,7 @@ public:
     void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transform, uint32_t flags)override;
     // 批量组合数据
     void configBatch(const std::vector<PlanePixelBatchTuple>& data, bool cutBack = true);
+    void configBatch(PlanePixelBatchTuple data, bool CutBack);
 
 
     // 为场景移动特别设计的功能

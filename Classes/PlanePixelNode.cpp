@@ -174,6 +174,12 @@ void PixelNode::config(const std::vector<PixelUnit>& data)
     free(_vertexData);
 }*/
 
+void PlanePixelNode::configBatch(PlanePixelBatchTuple data, bool CutBack)
+{
+    std::vector<PlanePixelBatchTuple> v;
+    v.push_back(data);
+    configBatch(v, CutBack);
+}
 
 void PlanePixelNode::configBatch(const std::vector<PlanePixelBatchTuple>& data, bool cutBack)
 {
