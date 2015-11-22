@@ -58,10 +58,10 @@ bool QuestScene::init()
     addCommonBtn({0.15,0.9}, "start beating", [this](){
         _beatField.op_startBeating();
     });
-
-    addCommonBtn({0.9,0.8}, "combo attack", [this](){
-        _beatField.op_toastComboAttack(12);
-    });*/
+*/
+    addCommonBtn({0.9,0.8}, "road shadow", [this](){
+        _battleRoad.op_toastDarkShadow(1.0, 2);
+    });
     addCommonBtn({0.9,0.7}, "enegy test", [this](){
         _energyBar.op_addEnergy(0.1);
     });

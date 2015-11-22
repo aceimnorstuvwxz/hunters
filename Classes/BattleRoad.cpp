@@ -31,7 +31,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto sp = RoadPlane::create();
         sp->setCameraMask(_mainCamera->getCameraMask());
-        sp->setPosition3D({-50,0,0});
+        sp->setPosition3D({-29,0,0});
         sp->setScale(1000.f);
         sp->setRotation3D({90,0,-90});
         _mainLayer->addChild(sp);
@@ -45,7 +45,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto sp = RoadPlane::create();
         sp->setCameraMask(_mainCamera->getCameraMask());
-        sp->setPosition3D({50,0,0});
+        sp->setPosition3D({29,0,0});
         sp->setScale(1000.f);
         sp->setRotation3D({90,0,90});
         _mainLayer->addChild(sp);
@@ -77,7 +77,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-50, scene_things_start_pos, 0});
+        node->setPosition3D({-30, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/glass.png.sopx");
@@ -95,7 +95,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({50, scene_things_start_pos, 0});
+        node->setPosition3D({30, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,90});
         //    glassNode->setScale(j+1);
@@ -117,7 +117,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-50, scene_things_start_pos, 0});
+        node->setPosition3D({-30, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/tree.png.sopx");
@@ -136,7 +136,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({50, scene_things_start_pos, 0});
+        node->setPosition3D({30, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/tree.png.sopx");
@@ -158,7 +158,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-80, scene_things_start_pos, 0});
+        node->setPosition3D({-60, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/moutain.png.sopx");
@@ -181,7 +181,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-110, scene_things_start_pos, 0});
+        node->setPosition3D({-90, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/hill.png.sopx");
@@ -296,5 +296,5 @@ void BattleRoad::op_toastDarkShadow(float howdark, float time) //toast 形式的
     auto ac = Sequence::create(Show::create(), FadeTo::create(0.3, howdark*255), DelayTime::create(time), FadeOut::create(1.0), NULL);
     _leftShadow->runAction(ac->clone());
     _middleShadow->runAction(ac->clone());
-    _rightShadow->runAction(ac);
+//    _rightShadow->runAction(ac);
 }
