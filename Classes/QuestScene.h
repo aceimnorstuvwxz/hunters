@@ -19,6 +19,7 @@
 #include "TopIcons.hpp"
 #include "EnergyBar.hpp"
 #include "WindBar.hpp"
+#include "PowerBar.hpp"
 // Beat Quest Game Scene
 
 
@@ -51,6 +52,7 @@ protected:
 
     BeatField _beatField;
     WindBar _windBar;
+    PowerBar _powerBar;
 
     cocos2d::Sprite* _pauseShadow;
     void initPauseShadowThings();

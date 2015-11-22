@@ -20,6 +20,7 @@ uniform float u_posexpand;
 uniform vec4 u_mixcolor;
 
 uniform float u_cbf_opacity;
+uniform float u_y_cut;
 
 
 
@@ -27,7 +28,7 @@ const vec3 light_dir = vec3(1.0,0.0,1.0); //与光射向反向
 
 void main()
 {
-
+    
     if (a_seed > u_cbf_opacity) {
         gl_Position = vec4(0,0,100,0);
     } else {
@@ -39,5 +40,9 @@ void main()
         float lambertian = max(dot(lightDir, normal), 0.0);
         vec3 mixedColor = mix(a_color.rgb, u_mixcolor.rgb, u_mixcolor.a);
         v_color = vec4(mixedColor + 0.2*mixedColor*lambertian, a_color.a);
+
+        if (a_positioin.y > u_y_cut) {
+            v_color.a = 0.0;
+        }
     }
 }

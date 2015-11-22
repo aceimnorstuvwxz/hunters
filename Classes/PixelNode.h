@@ -44,6 +44,7 @@ public:
         _posexpand = posexpandLength;
     }
     cocos2d::Rect fetchScreenRect(float offset, cocos2d::Camera* camera); //获取映射到屏幕空间的区域，用于 touch 的事件判定，offset 用来扩展区域，更容易点中
+    void configYCut(float cutLine); //用于实现 strenth bar
     void update(float dt) override;
 protected:
     virtual ~PixelNode();
@@ -74,6 +75,8 @@ protected:
     float _xMax;
     float _yMin;
     float _yMax;
+
+    float _yCut = std::numeric_limits<float>::max();
 
 };
 

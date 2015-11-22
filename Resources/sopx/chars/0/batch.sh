@@ -47,3 +47,4 @@ scatPixelGen sp_minus.png
 scatPixelGen sp_perscent.png
 scatPixelGen sp_slash.png
 scatPixelGen sp_why.png
+scatPixelGen sp_degree.png

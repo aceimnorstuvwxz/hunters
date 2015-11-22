@@ -45,11 +45,11 @@ bool QuestScene::init()
     addCommonBtn({0.6,0.9}, "battle begin", [this](){
         battleBegin();
     });
-
-    addCommonBtn({0.45,0.9}, "scene forword", [this](){
-        _battleRoad.op_moveForword();
-    });
 */
+    addCommonBtn({0.9,0.2}, "power test", [this](){
+        _powerBar.op_configPower(random(0.f, 1.f), random(0, 180));
+    });
+
 
     static float wind = 0;
     addCommonBtn({0.9,0.1}, "road wind", [this](){
@@ -85,6 +85,7 @@ bool QuestScene::init()
 
     _mainLayer = layer;
     _mainCamera = camera;
+    _mainCamera->setZOrder(10);
 
     // init
     _cameraManage.init(_mainCamera);
@@ -96,6 +97,7 @@ bool QuestScene::init()
     _beatField.init(_mainLayer, _mainCamera);
     initPauseShadowThings();
     _topIcons.init(_mainLayer, _mainCamera);
+    _powerBar.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);

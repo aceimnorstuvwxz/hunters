@@ -97,6 +97,9 @@ void PixelNode::onDraw(const cocos2d::Mat4 &transform, uint32_t flags)
     loc = glProgram->getUniformLocation("u_mixcolor");
     glProgram->setUniformLocationWith4fv(loc, &(_mixColor.x), 1);
 
+    loc = glProgram->getUniformLocation("u_y_cut");
+    glProgram->setUniformLocationWith1f(loc, _yCut);
+
     glProgram->setUniformsForBuiltins(transform);
 
     glBindBuffer(GL_ARRAY_BUFFER, _vbo);
@@ -376,4 +379,9 @@ cocos2d::Rect PixelNode::fetchScreenRect(float offset, cocos2d::Camera* camera) 
         ymax = std::max(ymax, p.y);
     }
     return {xmin-offset, ymin-offset, xmax-xmin+2*offset, ymax-ymin+2*offset};
+}
+
+void PixelNode::configYCut(float cutLine) //用于实现 strenth bar
+{
+    _yCut = cutLine;
 }
