@@ -22,7 +22,7 @@ class WindBar:public WindBarProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    virtual void op_configWind(int wind); //设置风力数值，正表示往右（顺），负的表示往左（逆风）0无风
+    virtual void op_configWind(float wind); //设置风力数值，正表示往右（顺），负的表示往左（逆风）0无风
 
     void update(float dt);
 
@@ -35,8 +35,8 @@ protected:
     cocos2d::Node* _hubNode;
     void initHubThings();
 
-    int _currentWind = 0;
-    int _targetWind = 0;
+    float _currentWind = 0;
+    float _targetWind = 0;
 
     PlanePixelNode* _pxBg;
     PlanePixelNode* _pxStrenth;

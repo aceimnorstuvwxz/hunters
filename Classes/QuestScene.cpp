@@ -49,20 +49,17 @@ bool QuestScene::init()
     addCommonBtn({0.45,0.9}, "scene forword", [this](){
         _battleRoad.op_moveForword();
     });
-
-    addCommonBtn({0.3,0.9}, "test bloodline", [this](){
-        _bloodBar.op_hero_configBlood(1000, random(0, 1000));
-        _bloodBar.op_rival_configBlood(1000, random(0,1000), 4);
-    });
 */
+
     static float wind = 0;
     addCommonBtn({0.9,0.1}, "road wind", [this](){
         wind += 1;
-        if (wind > 10) {
-            wind = -10;
+        if (wind > 5) {
+            wind = -5;
         }
         CCLOG("wind = %f", wind);
         _battleRoad.op_configWind(wind);
+        _windBar.op_configWind(wind);
     });
 
     addCommonBtn({0.9,0.8}, "road shadow", [this](){
