@@ -130,6 +130,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
         node->configBatch(pixelBatchData);
         node->configMoveLine(0);
         node->configMoveWidth(scene_things_width);
+        node->configXDiffAni(0.0, 0.0005, 2.f);
         _leftTrees = node;
     }
 
@@ -297,4 +298,14 @@ void BattleRoad::op_toastDarkShadow(float howdark, float time) //toast 形式的
     _leftShadow->runAction(ac->clone());
     _middleShadow->runAction(ac->clone());
 //    _rightShadow->runAction(ac);
+}
+
+void BattleRoad::op_configWind(float windDirection) //设置风的方向，表现为树的移动、云的飘动，正-向右，负-向左，大小表示风的强度
+{
+    _skyPlane->stopAllActions();
+    _leftTrees->configXDiffAni(0, 0, 0);
+    if (windDirection != 0) {
+        _skyPlane->runAction(RepeatForever::create(MoveBy::create(1.f, Vec3{0, windDirection,0})));
+        _leftTrees->configXDiffAni(windDirection*0.001, windDirection*0.0003 + 0.0003, std::min(3.f,std::max(5.f/std::abs(windDirection), 1.f)));
+    }
 }

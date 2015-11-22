@@ -54,11 +54,17 @@ bool QuestScene::init()
         _bloodBar.op_hero_configBlood(1000, random(0, 1000));
         _bloodBar.op_rival_configBlood(1000, random(0,1000), 4);
     });
-
-    addCommonBtn({0.15,0.9}, "start beating", [this](){
-        _beatField.op_startBeating();
-    });
 */
+    static float wind = 0;
+    addCommonBtn({0.9,0.1}, "road wind", [this](){
+        wind += 1;
+        if (wind > 10) {
+            wind = -10;
+        }
+        CCLOG("wind = %f", wind);
+        _battleRoad.op_configWind(wind);
+    });
+
     addCommonBtn({0.9,0.8}, "road shadow", [this](){
         _battleRoad.op_toastDarkShadow(1.0, 2);
     });

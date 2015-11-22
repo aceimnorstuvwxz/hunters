@@ -29,6 +29,8 @@ public:
     virtual void op_dismissDarkShadow() override; //取消场景变暗
     virtual void op_toastDarkShadow(float howdark, float time) override; //toast 形式的接口
 
+    virtual void op_configWind(float windDirection); //设置风的方向，表现为树的移动、云的飘动，正-向右，负-向左，大小表示风的强度
+
 
 protected:
 

@@ -36,6 +36,12 @@ public:
     // 为场景移动特别设计的功能
     void configMoveLine(float x) {_moveLine = x;};
     void configMoveWidth(float xwidth) {_moveWidth = xwidth;}
+
+    // 为了树木摇晃而设计的，功能
+    void configXDiff(float diffRadio); //在 x 方向上，偏移的距离=diffRadio*Y
+    void configXDiffAni(float baseDiffRadio, float varyDiffRadio, float interval); //对应的动画，先由当前偏转移动到baseDiff，然后在 base 的地方在一定范围内摇曳， interval 摆动一回合的时间, speed <= 0时取消
+
+    void update(float dt);
 protected:
     virtual ~PlanePixelNode();
 
@@ -52,6 +58,9 @@ protected:
     float _moveLine = -100;
     float _moveWidth = 700;
 
+    float _baseXDiff_target = 0;
+    float _baseXDiff_current = 0;
+    float _varyXDiff = 0;
 };
 
 #endif /* PlanePixelNode_hpp */

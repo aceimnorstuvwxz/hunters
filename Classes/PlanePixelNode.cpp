@@ -63,6 +63,9 @@ void PlanePixelNode::onDraw(const cocos2d::Mat4 &transform, uint32_t flags)
     loc = glProgram->getUniformLocation("u_move_width");
     glProgram->setUniformLocationWith1f(loc, _moveWidth);
 
+    loc = glProgram->getUniformLocation("u_x_diff");
+    glProgram->setUniformLocationWith1f(loc, _baseXDiff_current + _varyXDiff* (getOpacity()/255.f-0.5f));
+
     glProgram->setUniformsForBuiltins(transform);
 
     glBindBuffer(GL_ARRAY_BUFFER, _vbo);
@@ -258,4 +261,43 @@ PlanePixelNode::~PlanePixelNode(){
     glDeleteVertexArrays(1, &_vao);
     cocos2d::GL::bindVAO(0);
     _vao = 0;
+}
+
+
+// 为了树木摇晃而设计的，功能
+void PlanePixelNode::configXDiff(float diffRadio) //在 x 方向上，偏移的距离=diffRadio*Y
+{
+    _baseXDiff_target = diffRadio;
+    _varyXDiff = 0;
+}
+
+
+void PlanePixelNode::configXDiffAni(float baseDiffRadio, float varyDiffRadio, float interval) //对应的动画，先由当前偏转移动到baseDiff，然后在 base 的地方在一定范围内摇曳， speed 每秒偏多少速度
+{
+    _baseXDiff_target = baseDiffRadio;
+    _varyXDiff = varyDiffRadio;
+    this->stopAllActions();
+
+    if (interval > 0) {
+        this->runAction(RepeatForever::create(Sequence::create(FadeOut::create(interval*0.5f), FadeIn::create(interval*0.5f), NULL)));
+    }
+    scheduleUpdate();
+}
+
+void PlanePixelNode::update(float dt)
+{
+    const float speed = 0.05;
+    if (_baseXDiff_current < _baseXDiff_target) {
+        _baseXDiff_current += dt*speed;
+        if (_baseXDiff_current > _baseXDiff_target) {
+            _baseXDiff_current = _baseXDiff_target;
+            unscheduleUpdate();
+        }
+    } else if (_baseXDiff_current > _baseXDiff_target) {
+        _baseXDiff_current -= dt*speed;
+        if (_baseXDiff_current < _baseXDiff_target) {
+            _baseXDiff_current = _baseXDiff_target;
+            unscheduleUpdate();
+        }
+    }
 }

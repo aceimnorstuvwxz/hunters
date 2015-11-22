@@ -19,6 +19,8 @@ public:
     virtual void op_applyDarkShadow(float howdark) = 0; //场景变暗，用来处理 rival 的死亡，及 combo 大招
     virtual void op_dismissDarkShadow() = 0; //取消场景变暗
     virtual void op_toastDarkShadow(float howdark, float time) = 0; //toast 形式的接口
+
+    virtual void op_configWind(float windDirection) = 0; //设置风的方向，表现为树的移动、云的飘动，正-向右，负-向左，大小表示风的强度
 };
 
 enum class QuestCameraPosition
