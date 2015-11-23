@@ -519,18 +519,11 @@
 			name = "battle-state";
 			sourceTree = "<group>";
 		};
-		B50A36FC1BE7DA9C0007B7CA /* plane-pixel-node */ = {
+		B539D28C1BE761DD0096FF04 /* pixel-node */ = {
 			isa = PBXGroup;
 			children = (
 				B50A36FD1BE7DB870007B7CA /* PlanePixelNode.cpp */,
 				B50A36FE1BE7DB870007B7CA /* PlanePixelNode.h */,
-			);
-			name = "plane-pixel-node";
-			sourceTree = "<group>";
-		};
-		B539D28C1BE761DD0096FF04 /* pixel-node */ = {
-			isa = PBXGroup;
-			children = (
 				B539D28D1BE7620E0096FF04 /* PixelNode.cpp */,
 				B539D28E1BE7620E0096FF04 /* PixelNode.h */,
 				B50A36F71BE7C0030007B7CA /* PixelDataCache.cpp */,
@@ -668,7 +661,6 @@
 				B506AEB31BEF66EB00021FC7 /* battle-state */,
 				B5FFA66E1BED164500511FBD /* beat-field */,
 				B5FFA6671BECED9B00511FBD /* beats */,
-				B50A36FC1BE7DA9C0007B7CA /* plane-pixel-node */,
 				B539D28C1BE761DD0096FF04 /* pixel-node */,
 				B58DDCA51BE8D2DA00B54804 /* RoleNode */,
 				B5BD19781BE65B570052ACDD /* battle-road */,

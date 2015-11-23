@@ -61,9 +61,9 @@ void PowerBar::initPowerThings()
     {
         auto node = PixelTextNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setScale(1.5f,2.f);
+        node->setScale(1.1f,2.f);
         node->setPosition3D({-12,8,0});
-        node->configText("00#",0.5);
+        node->configText("00#",2.0);
         node->configMixColor({0.f/255.f, 183.f/255.f, 233.f/255.f,1.f});
         _hubNode->addChild(node);
         _ptAngle = node;
@@ -89,5 +89,5 @@ void PowerBar::update(float dt)
 void PowerBar::op_configPower(float power, int angle) //power [0-1]
 {
     _pxContent->configYCut(power*45);
-    _ptAngle->configText(fmt::sprintf("%02d#", angle));
+    _ptAngle->configText(fmt::sprintf("%2d#", angle));
 }
