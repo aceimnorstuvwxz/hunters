@@ -24,6 +24,7 @@ struct PixelDataConfig
     int yMax;
 };
 
+
 class PixelDataCache
 {
 public:
@@ -40,6 +41,12 @@ public:
     void preloadChars(); //预加载字形文件（字母，数字，符号）
     std::vector<PixelUnit>* getChar(char c);
 
+
+    // RAW pixel Data cache
+    void loadRawPixels(const std::string& sopxfile);
+    void clearRawCache();
+    std::vector<PixelUnit>* getRawPixels(const std::string& sopxfile);
+
 protected:
     virtual ~PixelDataCache();
     static PixelDataCache _instance;
@@ -47,6 +54,8 @@ protected:
 
     std::unordered_map<std::string, PixelDataConfig> _abmap;
     std::unordered_map<char, std::vector<PixelUnit>> _charMap;
+
+    std::unordered_map<std::string, std::vector<PixelUnit>> _rawPixelData;
 };
 
 #endif /* PixelDataCache_hpp */

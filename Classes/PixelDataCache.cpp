@@ -176,3 +176,26 @@ std::vector<PixelUnit>* PixelDataCache::getChar(char c)
         assert(false);
     }
 }
+
+
+
+// RAW pixel Data cache
+void PixelDataCache::loadRawPixels(const std::string& sopxfile)
+{
+    _rawPixelData[sopxfile] = loadScatPixelFile(sopxfile);
+
+}
+
+void PixelDataCache::clearRawCache()
+{
+    _rawPixelData.clear();
+}
+
+std::vector<PixelUnit>* PixelDataCache::getRawPixels(const std::string& sopxfile)
+{
+    if (_rawPixelData.count(sopxfile) == 0) {
+        loadRawPixels(sopxfile);
+    }
+
+    return &(_rawPixelData[sopxfile]);
+}

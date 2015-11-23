@@ -23,7 +23,6 @@ struct PixelVertexPormat
     float seed;
 };
 
-
 class PixelNode:public cocos2d::Node
 {
 public:

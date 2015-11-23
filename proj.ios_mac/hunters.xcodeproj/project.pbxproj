@@ -74,6 +74,7 @@
 		B581F9D01BFE3A6900F9BDDB /* TopIcons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B581F9CE1BFE3A6900F9BDDB /* TopIcons.cpp */; };
 		B581F9D21BFE46A600F9BDDB /* hunters in Resources */ = {isa = PBXBuildFile; fileRef = B581F9D11BFE46A600F9BDDB /* hunters */; };
 		B581F9D61BFF0D4700F9BDDB /* EnergyBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B581F9D41BFF0D4700F9BDDB /* EnergyBar.cpp */; };
+		B58AE4301C030FD6005F9E85 /* DynamicPixelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58AE42E1C030FD6005F9E85 /* DynamicPixelNode.cpp */; };
 		B58DDCAB1BE8D70600B54804 /* HeroGraphicNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */; };
 		B58DDCAE1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */; };
 		B58DDCB11BE91B1500B54804 /* BattleRoles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAF1BE91B1500B54804 /* BattleRoles.cpp */; };
@@ -232,6 +233,8 @@
 		B581F9D11BFE46A600F9BDDB /* hunters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hunters; sourceTree = "<group>"; };
 		B581F9D41BFF0D4700F9BDDB /* EnergyBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyBar.cpp; sourceTree = "<group>"; };
 		B581F9D51BFF0D4700F9BDDB /* EnergyBar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EnergyBar.hpp; sourceTree = "<group>"; };
+		B58AE42E1C030FD6005F9E85 /* DynamicPixelNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DynamicPixelNode.cpp; sourceTree = "<group>"; };
+		B58AE42F1C030FD6005F9E85 /* DynamicPixelNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DynamicPixelNode.hpp; sourceTree = "<group>"; };
 		B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicNode.cpp; sourceTree = "<group>"; };
 		B58DDCAA1BE8D70600B54804 /* HeroGraphicNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeroGraphicNode.hpp; sourceTree = "<group>"; };
 		B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicUnitAnimationDef.cpp; sourceTree = "<group>"; };
@@ -522,8 +525,8 @@
 		B539D28C1BE761DD0096FF04 /* pixel-node */ = {
 			isa = PBXGroup;
 			children = (
-				B50A36FD1BE7DB870007B7CA /* PlanePixelNode.cpp */,
-				B50A36FE1BE7DB870007B7CA /* PlanePixelNode.h */,
+				B58AE42A1C030F1D005F9E85 /* plane-pixel-node */,
+				B58AE4291C030F0C005F9E85 /* dynamic-pixel-node */,
 				B539D28D1BE7620E0096FF04 /* PixelNode.cpp */,
 				B539D28E1BE7620E0096FF04 /* PixelNode.h */,
 				B50A36F71BE7C0030007B7CA /* PixelDataCache.cpp */,
@@ -561,6 +564,24 @@
 				B581F9D51BFF0D4700F9BDDB /* EnergyBar.hpp */,
 			);
 			name = "energy-bar";
+			sourceTree = "<group>";
+		};
+		B58AE4291C030F0C005F9E85 /* dynamic-pixel-node */ = {
+			isa = PBXGroup;
+			children = (
+				B58AE42E1C030FD6005F9E85 /* DynamicPixelNode.cpp */,
+				B58AE42F1C030FD6005F9E85 /* DynamicPixelNode.hpp */,
+			);
+			name = "dynamic-pixel-node";
+			sourceTree = "<group>";
+		};
+		B58AE42A1C030F1D005F9E85 /* plane-pixel-node */ = {
+			isa = PBXGroup;
+			children = (
+				B50A36FD1BE7DB870007B7CA /* PlanePixelNode.cpp */,
+				B50A36FE1BE7DB870007B7CA /* PlanePixelNode.h */,
+			);
+			name = "plane-pixel-node";
 			sourceTree = "<group>";
 		};
 		B58DDCA51BE8D2DA00B54804 /* RoleNode */ = {
@@ -898,6 +919,7 @@
 				B581F9D61BFF0D4700F9BDDB /* EnergyBar.cpp in Sources */,
 				B506AEB21BEF5EC500021FC7 /* ShieldBeat.cpp in Sources */,
 				B50A36FF1BE7DB870007B7CA /* PlanePixelNode.cpp in Sources */,
+				B58AE4301C030FD6005F9E85 /* DynamicPixelNode.cpp in Sources */,
 				B5BD19551BE645990052ACDD /* SOCommon.cpp in Sources */,
 				B5BD196E1BE64F5A0052ACDD /* QuestScene.cpp in Sources */,
 				B5FFA66D1BECFB7000511FBD /* SingleBeat.cpp in Sources */,
