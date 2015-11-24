@@ -21,11 +21,11 @@ function cutout()
   scatPixelGen $1.8.png
 }
 
-cutout "g0.png"
-cutout "g1.png"
-cutout "g2.png"
-cutout "g3.png"
-cutout "t0.png"
-cutout "t1.png"
-cutout "t2.png"
-cutout "t3.png"
+cutout "0.png"
+cutout "1.png"
+cutout "2.png"
+cutout "3.png"
+cutout "4.png"
+cutout "5.png"
+cutout "6.png"
+cutout "7.png"
