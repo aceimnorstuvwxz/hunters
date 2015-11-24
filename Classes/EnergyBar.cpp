@@ -21,6 +21,7 @@ void EnergyBar::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
     initHubThings();
     initEnergyThings();
     initInteractiveThings();
+    initDynamicTest();
 }
 
 void EnergyBar::op_addEnergy(float howmuch)
@@ -214,4 +215,19 @@ void EnergyBar::tryReleaseSkill(EnergySkillType st)
         //API 释放时光停止
         _targetEnergy = 0;
     }
+}
+
+void EnergyBar::initDynamicTest()
+{
+    _dpxTest = DynamicPixelNode::create();
+    _dpxTest->setPosition3D({0,0,0});
+    _hubNode->addChild(_dpxTest);
+    _dpxTest->setCameraMask(_mainCamera->getCameraMask(), true);
+
+    _dpxTest->configAddSopx("sopx/rival/0-SWORD.png.sopx", 0, {0,0,0});
+    _dpxTest->configAction(0, {0,0,0}, RepeatForever::create(RotateBy::create(1, {0,0,90})));
+
+
+    _dpxTest->configAddSopx("sopx/rival/0-SHIELD.png.sopx", 1, {0,0,0});
+    _dpxTest->configAction(1, {-20,20,0}, RepeatForever::create(Sequence::create(RotateBy::create(1, {0,0,90}), ScaleTo::create(1, 2), ScaleTo::create(1, 1), NULL)));
 }

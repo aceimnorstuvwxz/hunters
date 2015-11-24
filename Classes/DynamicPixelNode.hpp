@@ -19,7 +19,7 @@ struct DynamicPixelVertexPormat
     cocos2d::Vec3 position;
     cocos2d::Vec4 color;
     cocos2d::Vec3 normal;
-    int boneIndex;
+    float boneIndex; //实际上是 int，而 vertex attribute不支持 int
 };
 
 
@@ -34,12 +34,17 @@ public:
     void onDraw(const cocos2d::Mat4 &transform, uint32_t flags);
     void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transform, uint32_t flags)override;
 
-    void configAddSopx(const std::string& file, int boneIndex, cocos2d::Vec3 relativePosition); //加入某个 sopx 内的 vertex，并且设它的 Bone 为某个值
+    void configAddSopx(const std::string& file, int boneIndex, cocos2d::Vec3 relativePosition, bool cutInnerFace = true, bool cutBackFace = true); //加入某个 sopx 内的 vertex，并且设它的 Bone 为某个值 这个 relativePosition 是此 vertex 序列相对 bone 的偏移
 
     /*
      绝妙的方法，用空的 Node 以及 c2dx 的 action 体系来为我们计算骨骼的 matrix
      */
-    void configAction(int boneIndex, cocos2d::Action* action); //为某个骨骼配置动作，将取消该骨骼之前配置的动作
+    void configAction(int boneIndex, cocos2d::Vec3 position, cocos2d::Action* action); //为某个骨骼配置动作，将取消该骨骼之前配置的动作，position 是该 bone 对整个 DynamicPixelNode 的相对位置
+
+
+    void configMixColor(const cocos2d::Vec4& mixColor); //设置叠色，将用alpha与原色混合。默认alpha为0，显示原色。
+    void configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOutTime, int repeat = 1); //混色动画，用来实现，rival受攻击 repeat -1时 无止尽
+
 
     void update(float dt) override;
 
@@ -54,7 +59,15 @@ protected:
     cocos2d::CustomCommand _command;
     int _count = 0;
     bool _blend = false;
+    int _bufferStoreSize = 50000;
+    static constexpr const int BONE_NUM_MAX = 5;
+    cocos2d::Node* _bones[BONE_NUM_MAX];
+    cocos2d::Mat4 _boneMatrixs[BONE_NUM_MAX];
 
+    cocos2d::Vec4 _mixColor = {0,0,0,0};
+    int _aniMixColorTime = 0;
+    float _aniMixColorAlphaStep;
+    cocos2d::Vec4 _aniMixColorTarget;
 };
 
 

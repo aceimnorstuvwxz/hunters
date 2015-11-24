@@ -15,7 +15,7 @@
 #include "PixelNode.h"
 #include "PixelTextNode.hpp"
 #include "PlanePixelNode.h"
-
+#include "DynamicPixelNode.hpp"
 
 // 气的聚集 3个气技能
 class EnergyBar:public EnergyBarProtocal
@@ -47,6 +47,11 @@ protected:
     void updateEnegyContent(float last, float curr);
     void initInteractiveThings();
     void tryReleaseSkill(EnergySkillType st);
+
+
+    // dynamic test
+    DynamicPixelNode* _dpxTest;
+    void initDynamicTest();
 };
 
 #endif /* EnergyBar_hpp */
