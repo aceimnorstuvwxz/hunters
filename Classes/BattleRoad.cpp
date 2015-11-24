@@ -91,7 +91,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
         node->configMoveLine(0);
         node->configMoveWidth(scene_things_width);
         _leftGlass = node;
-    }
+    }/*
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
@@ -111,7 +111,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
         node->configMoveLine(-scene_things_width);
         node->configMoveWidth(scene_things_width);
         _rightGlass = node;
-    }
+    }*/
 
     //树
     {
@@ -134,26 +134,26 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
         _leftTrees = node;
     }
 
-    {
-        auto node = PlanePixelNode::create();
-        node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({30, scene_things_start_pos, 0});
-        _mainLayer->addChild(node);
-        node->setRotation3D({90,0,90});
-        auto pixelData = loadScatPixelFile("battle_road/tmp/tree.png.sopx");
-        std::vector<PlanePixelBatchTuple> pixelBatchData;
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < scene_things_width/tree_width_step; i++) {
-                pixelBatchData.push_back({{-scene_things_width + tree_width_step*i+random(-10.f, 10.f), 0.f, -10.f*j+random(-10.f, 0.f)},1.f + j, &pixelData});
-            }
-        }
-        node->configBatch(pixelBatchData);
-
-        node->configMoveLine(-scene_things_width);
-        node->configMoveWidth(scene_things_width);
-        _rightTrees = node;
-        _rightTrees->setVisible(false); //初始不显示
-    }
+//    {
+//        auto node = PlanePixelNode::create();
+//        node->setCameraMask(_mainCamera->getCameraMask());
+//        node->setPosition3D({30, scene_things_start_pos, 0});
+//        _mainLayer->addChild(node);
+//        node->setRotation3D({90,0,90});
+//        auto pixelData = loadScatPixelFile("battle_road/tmp/tree.png.sopx");
+//        std::vector<PlanePixelBatchTuple> pixelBatchData;
+//        for (int j = 0; j < 3; j++) {
+//            for (int i = 0; i < scene_things_width/tree_width_step; i++) {
+//                pixelBatchData.push_back({{-scene_things_width + tree_width_step*i+random(-10.f, 10.f), 0.f, -10.f*j+random(-10.f, 0.f)},1.f + j, &pixelData});
+//            }
+//        }
+//        node->configBatch(pixelBatchData);
+//
+//        node->configMoveLine(-scene_things_width);
+//        node->configMoveWidth(scene_things_width);
+//        _rightTrees = node;
+//        _rightTrees->setVisible(false); //初始不显示
+//    }
 
     // 山
     {
@@ -243,9 +243,9 @@ void BattleRoad::op_moveForword(float moveTime)
     float move_time = moveTime;
     float move_length = -moveTime* QuestDef::SCENE_MOVE_SPEED;
     _leftTrees->runAction(MoveBy::create(move_time, {0, move_length,0}));
-    _rightTrees->runAction(MoveBy::create(move_time, {0, move_length,0}));
+//    _rightTrees->runAction(MoveBy::create(move_time, {0, move_length,0}));
     _leftGlass->runAction(MoveBy::create(move_time, {0, move_length,0}));
-    _rightGlass->runAction(MoveBy::create(move_time, {0, move_length,0}));
+//    _rightGlass->runAction(MoveBy::create(move_time, {0, move_length,0}));
     _moutains->runAction(MoveBy::create(move_time, {0, move_length,0}));
     _hills->runAction(MoveBy::create(move_time, {0, move_length,0}));
     _roadPlane->runAction(MoveBy::create(move_time, {0, move_length,0}));
@@ -254,7 +254,7 @@ void BattleRoad::op_moveForword(float moveTime)
 
 void BattleRoad::op_setRightTreesVisible(bool enable)
 {
-    _rightTrees->setVisible(enable);
+//    _rightTrees->setVisible(enable);
 }
 
 void BattleRoad::op_setLeftHillsVisible(bool enable) //左侧山，减少 vertex 量
@@ -266,10 +266,10 @@ void BattleRoad::op_setLeftHillsVisible(bool enable) //左侧山，减少 vertex
 void BattleRoad::update(float dt)
 {
     _leftTrees->configMoveLine(scene_things_start_pos - _leftTrees->getPosition3D().y);
-    _rightTrees->configMoveLine(-scene_things_width+(_rightTrees->getPosition3D().y - scene_things_start_pos));
+//    _rightTrees->configMoveLine(-scene_things_width+(_rightTrees->getPosition3D().y - scene_things_start_pos));
 
     _leftGlass->configMoveLine(scene_things_start_pos - _leftGlass->getPosition3D().y);
-    _rightGlass->configMoveLine(-scene_things_width+(_rightTrees->getPosition3D().y - scene_things_start_pos));
+//    _rightGlass->configMoveLine(-scene_things_width+(_rightTrees->getPosition3D().y - scene_things_start_pos));
 
     _moutains->configMoveLine(scene_things_start_pos - _moutains->getPosition3D().y);
     _hills->configMoveLine(scene_things_start_pos - _hills->getPosition3D().y);

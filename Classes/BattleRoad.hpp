@@ -44,9 +44,9 @@ protected:
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
     PlanePixelNode* _leftGlass;
-    PlanePixelNode* _rightGlass;
+//    PlanePixelNode* _rightGlass;
     PlanePixelNode* _leftTrees;
-    PlanePixelNode* _rightTrees;
+//    PlanePixelNode* _rightTrees;
     PlanePixelNode* _moutains;
     PlanePixelNode* _hills;
     RoadPlane* _roadPlane;
