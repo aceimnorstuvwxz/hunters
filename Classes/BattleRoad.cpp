@@ -309,3 +309,5 @@ void BattleRoad::op_configWind(float windDirection) //设置风的方向，表�
         _leftTrees->configXDiffAni(windDirection*0.001, windDirection*0.0003 + 0.0003, std::min(3.f,std::max(5.f/std::abs(windDirection), 1.5f)));
     }
 }
+
+

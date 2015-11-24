@@ -87,6 +87,7 @@
 		B5944EA41BF12A1600028078 /* CopyBeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5944EA21BF12A1600028078 /* CopyBeat.cpp */; };
 		B599C0F21C01C88A0012205A /* WindBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B599C0F01C01C88A0012205A /* WindBar.cpp */; };
 		B599C0F71C020C840012205A /* PowerBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B599C0F51C020C840012205A /* PowerBar.cpp */; };
+		B59E7ECC1C04A7AE005FA50D /* HuntingHero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ECA1C04A7AE005FA50D /* HuntingHero.cpp */; };
 		B5BD194E1BE645990052ACDD /* BeatDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19311BE645990052ACDD /* BeatDef.cpp */; };
 		B5BD194F1BE645990052ACDD /* BeatQuestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */; };
 		B5BD19501BE645990052ACDD /* format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19351BE645990052ACDD /* format.cpp */; };
@@ -258,6 +259,8 @@
 		B599C0F11C01C88A0012205A /* WindBar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WindBar.hpp; sourceTree = "<group>"; };
 		B599C0F51C020C840012205A /* PowerBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PowerBar.cpp; sourceTree = "<group>"; };
 		B599C0F61C020C840012205A /* PowerBar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PowerBar.hpp; sourceTree = "<group>"; };
+		B59E7ECA1C04A7AE005FA50D /* HuntingHero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingHero.cpp; sourceTree = "<group>"; };
+		B59E7ECB1C04A7AE005FA50D /* HuntingHero.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingHero.hpp; sourceTree = "<group>"; };
 		B5BD19311BE645990052ACDD /* BeatDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatDef.cpp; sourceTree = "<group>"; };
 		B5BD19321BE645990052ACDD /* BeatDef.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BeatDef.hpp; sourceTree = "<group>"; };
 		B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatQuestScene.cpp; sourceTree = "<group>"; };
@@ -628,6 +631,15 @@
 			name = "power-angel";
 			sourceTree = "<group>";
 		};
+		B59E7EC91C04A790005FA50D /* hunter-hero */ = {
+			isa = PBXGroup;
+			children = (
+				B59E7ECA1C04A7AE005FA50D /* HuntingHero.cpp */,
+				B59E7ECB1C04A7AE005FA50D /* HuntingHero.hpp */,
+			);
+			name = "hunter-hero";
+			sourceTree = "<group>";
+		};
 		B5BD195C1BE645A10052ACDD /* devops */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,6 +702,7 @@
 				B581F9D31BFF0D3200F9BDDB /* energy-bar */,
 				B599C0EF1C01C8750012205A /* wind */,
 				B599C0F41C020C710012205A /* power-angel */,
+				B59E7EC91C04A790005FA50D /* hunter-hero */,
 				B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */,
 				B57D70A41BE89A7A00A3036F /* QuestCameraManage.hpp */,
 				B5BD196F1BE652910052ACDD /* QuestDef.cpp */,
@@ -941,6 +954,7 @@
 				B5BD194F1BE645990052ACDD /* BeatQuestScene.cpp in Sources */,
 				B5FFA6711BED166200511FBD /* BeatField.cpp in Sources */,
 				B5BD19581BE645990052ACDD /* TRBaseScene.cpp in Sources */,
+				B59E7ECC1C04A7AE005FA50D /* HuntingHero.cpp in Sources */,
 				B5BD19711BE652910052ACDD /* QuestDef.cpp in Sources */,
 				B53B8CB81BF09DF8006F5432 /* LoadingScene.cpp in Sources */,
 				B5BD19571BE645990052ACDD /* TestGuideScene.cpp in Sources */,
