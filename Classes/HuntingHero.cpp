@@ -137,11 +137,12 @@ void HuntingHero::op_configRelativeAngle(float angle) //逆时针变大，设置
 }
 void HuntingHero::op_startAiming() //开始瞄准，会举起弓到水平位置
 {
-
+    ani_idle();
+    op_configAiming(35, 0);
 }
 void HuntingHero::op_stopAiming() //取消瞄准，会放下弓
 {
-
+    ani_idle();
 }
 void HuntingHero::op_toastShoot() //瞄准完毕后的发射动作，发射后会放下弓
 {
@@ -149,7 +150,22 @@ void HuntingHero::op_toastShoot() //瞄准完毕后的发射动作，发射后�
 }
 void HuntingHero::op_configAiming(float angle, float strenth)
 {
+    float head_pos = 70;
+    auto emptyac = DelayTime::create(0);
+    _dpxNode->configAction(BT_HEAD, {0,head_pos,0}, {0,0,0}, 1.f, emptyac->clone());
 
+    _dpxNode->configAction(BT_HAIR, {-20,head_pos-15,0}, {0,0,0}, 0.9f, emptyac->clone());
+
+    _dpxNode->configAction(BT_BODY, {-10,head_pos-47,0}, {0,0,10}, 1.f, emptyac->clone());
+
+
+    _dpxNode->configAction(BT_LEG_L, {-13-2,head_pos-48,0}, {0,0,0}, 1.f, emptyac->clone());
+
+    _dpxNode->configAction(BT_LEG_R, {-3-2,head_pos-48,0}, {0,0,0}, 1.f, emptyac->clone());
+
+    _dpxNode->configAction(BT_HAND_L, {-10,head_pos-40,2.0}, {0,0,-angle}, 1.0f, emptyac->clone());
+
+    _dpxNode->configAction(BT_BOW_MAX, {-10,head_pos-20,1}, {0,0,45-angle}, 3.f, emptyac->clone());
 }
 void HuntingHero::op_toastUnderAttack() //播放被攻击动画
 {
@@ -171,7 +187,6 @@ void HuntingHero::op_toastUpgrade() //播放升级动画
 {
 
 }
-
 
 void HuntingHero::op_show()
 {
