@@ -26,7 +26,17 @@ bool QuestScene::init()
     addCommonBtn({0.9,0.5}, "reset", [](){Director::getInstance()->replaceScene(QuestScene::create());});
 
 
-    addCommonBtn({0.9,0.4}, "upg", [this](){_beatField.op_showUpgrade();});
+    addCommonBtn({0.9,0.4}, "ac run", [this](){
+        for (auto& p : _huntingHero){
+            p.ani_run();
+        }
+    });
+
+    addCommonBtn({0.9,0.3}, "ac idle", [this](){
+        for (auto& p : _huntingHero){
+            p.ani_idle();
+        }
+    });
 /*
     addCommonBtn({0.35,0.95}, "battle cam", [this](){
         _cameraManage.op_switchToPosition(QuestCameraPosition::BATTLE);

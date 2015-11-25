@@ -25,7 +25,7 @@ public:
         BT_HAIR,
         BT_BODY,
         BT_HAND_L,
-        BT_HAND_R,
+//        BT_HAND_R,
         BT_LEG_L,
         BT_LEG_R,
         BT_BOW_MAX
@@ -68,6 +68,9 @@ public:
     void op_hide();
     void op_move(int desPositionType, bool direct = false);
 
+    //动作配置 以下动作，一旦执行，就会一直做下去，直到设置成其它动作。
+    void ani_idle(); //空闲动作
+    void ani_run(); //跑步动作
 protected:
     int _heroType = HT_META;
     int _heroGrade = 0;
@@ -82,9 +85,6 @@ protected:
     DynamicPixelNode* _dpxNode; //本体
     void initHeroThings();
 
-    //动作配置 以下动作，一旦执行，就会一直做下去，直到设置成其它动作。
-    void ani_idle(); //空闲动作
-    void ani_run(); //跑步动作
 
 };
 
