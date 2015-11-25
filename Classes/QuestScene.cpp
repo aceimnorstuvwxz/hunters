@@ -8,6 +8,7 @@
 #include "RivalGraphicAnimationDef.hpp"
 #include "StoryInfo.hpp"
 #include "BattleState.hpp"
+#include "MoneyManager.hpp"
 USING_NS_CC;
 
 
@@ -120,6 +121,9 @@ bool QuestScene::init()
         _huntingHero[i].op_show();
         _huntingHero[i].op_move(i, true);
     }
+
+    MoneyManager::s()->configProtocals(&_topIcons);
+    
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
 

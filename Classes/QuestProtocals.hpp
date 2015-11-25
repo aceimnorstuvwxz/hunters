@@ -233,4 +233,14 @@ public:
     virtual void op_configPower(float power, int angle) = 0; //power [0-1]
 };
 
+class HuntingHerosManageProtocal
+{
+public:
+    virtual void op_aimingStart() = 0; //power bar 通知开始瞄准
+    virtual void op_aimingCancel() = 0; //power bar 通知瞄准取消
+    virtual void op_configAiming(float angle, float strenth) = 0; //设置瞄准的参数
+    virtual void op_toastBow(float angle, float strenth) = 0; //以这个角度开始放箭
+
+};
+
 #endif /* QuestProtocals_hpp */

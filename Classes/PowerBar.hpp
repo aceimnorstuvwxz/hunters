@@ -9,7 +9,6 @@
 #ifndef PowerBar_hpp
 #define PowerBar_hpp
 
-#include <stdio.h>
 #include "cocos2d.h"
 #include "QuestProtocals.hpp"
 #include "PixelNode.h"

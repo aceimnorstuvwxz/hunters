@@ -89,6 +89,8 @@
 		B599C0F71C020C840012205A /* PowerBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B599C0F51C020C840012205A /* PowerBar.cpp */; };
 		B59E7ECC1C04A7AE005FA50D /* HuntingHero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ECA1C04A7AE005FA50D /* HuntingHero.cpp */; };
 		B59E7ECF1C05AB06005FA50D /* HuntingHeroMetaSuitManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ECD1C05AB06005FA50D /* HuntingHeroMetaSuitManage.cpp */; };
+		B59E7ED31C064B72005FA50D /* HuntingHerosManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ED11C064B72005FA50D /* HuntingHerosManage.cpp */; };
+		B59E7ED61C064D6A005FA50D /* MoneyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ED41C064D6A005FA50D /* MoneyManager.cpp */; };
 		B5BD194E1BE645990052ACDD /* BeatDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19311BE645990052ACDD /* BeatDef.cpp */; };
 		B5BD194F1BE645990052ACDD /* BeatQuestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */; };
 		B5BD19501BE645990052ACDD /* format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19351BE645990052ACDD /* format.cpp */; };
@@ -264,6 +266,10 @@
 		B59E7ECB1C04A7AE005FA50D /* HuntingHero.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingHero.hpp; sourceTree = "<group>"; };
 		B59E7ECD1C05AB06005FA50D /* HuntingHeroMetaSuitManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingHeroMetaSuitManage.cpp; sourceTree = "<group>"; };
 		B59E7ECE1C05AB06005FA50D /* HuntingHeroMetaSuitManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingHeroMetaSuitManage.hpp; sourceTree = "<group>"; };
+		B59E7ED11C064B72005FA50D /* HuntingHerosManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingHerosManage.cpp; sourceTree = "<group>"; };
+		B59E7ED21C064B72005FA50D /* HuntingHerosManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingHerosManage.hpp; sourceTree = "<group>"; };
+		B59E7ED41C064D6A005FA50D /* MoneyManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoneyManager.cpp; sourceTree = "<group>"; };
+		B59E7ED51C064D6A005FA50D /* MoneyManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoneyManager.hpp; sourceTree = "<group>"; };
 		B5BD19311BE645990052ACDD /* BeatDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatDef.cpp; sourceTree = "<group>"; };
 		B5BD19321BE645990052ACDD /* BeatDef.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BeatDef.hpp; sourceTree = "<group>"; };
 		B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatQuestScene.cpp; sourceTree = "<group>"; };
@@ -637,10 +643,14 @@
 		B59E7EC91C04A790005FA50D /* hunter-hero */ = {
 			isa = PBXGroup;
 			children = (
+				B59E7ED41C064D6A005FA50D /* MoneyManager.cpp */,
+				B59E7ED51C064D6A005FA50D /* MoneyManager.hpp */,
 				B59E7ECD1C05AB06005FA50D /* HuntingHeroMetaSuitManage.cpp */,
 				B59E7ECE1C05AB06005FA50D /* HuntingHeroMetaSuitManage.hpp */,
 				B59E7ECA1C04A7AE005FA50D /* HuntingHero.cpp */,
 				B59E7ECB1C04A7AE005FA50D /* HuntingHero.hpp */,
+				B59E7ED11C064B72005FA50D /* HuntingHerosManage.cpp */,
+				B59E7ED21C064B72005FA50D /* HuntingHerosManage.hpp */,
 			);
 			name = "hunter-hero";
 			sourceTree = "<group>";
@@ -951,9 +961,11 @@
 				B539D28F1BE7620E0096FF04 /* PixelNode.cpp in Sources */,
 				B5BD196A1BE6468F0052ACDD /* SImplePixelNode.cpp in Sources */,
 				B599C0F21C01C88A0012205A /* WindBar.cpp in Sources */,
+				B59E7ED31C064B72005FA50D /* HuntingHerosManage.cpp in Sources */,
 				B5BD195B1BE645990052ACDD /* TRLocale.cpp in Sources */,
 				B5BD19811BE65C640052ACDD /* RoadPlane.cpp in Sources */,
 				B599C0F71C020C840012205A /* PowerBar.cpp in Sources */,
+				B59E7ED61C064D6A005FA50D /* MoneyManager.cpp in Sources */,
 				B5944EA41BF12A1600028078 /* CopyBeat.cpp in Sources */,
 				B5BD19541BE645990052ACDD /* ScatPixelScene.cpp in Sources */,
 				B506AEB61BEF686A00021FC7 /* BattleState.cpp in Sources */,
