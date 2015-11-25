@@ -227,6 +227,7 @@ public:
 class PowerBarProtocal
 {
 public:
+    virtual void op_configEnable(bool enable) = 0; //放箭触摸瞄准的开关
     virtual void op_show() = 0;
     virtual void op_dismiss() = 0;
     virtual void op_configPower(float power, int angle) = 0; //power [0-1]

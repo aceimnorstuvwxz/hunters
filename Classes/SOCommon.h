@@ -29,7 +29,7 @@ inline cocos2d::Color3B color4b2color3b(cocos2d::Color4B c){
     return {c.r, c.g, c.b};
 }
 
-inline float vector2angel(cocos2d::Vec2 v)
+inline float vector2angel(cocos2d::Vec2 v) //从 x轴开始，顺时针为正，与正常的笛卡尔坐标系相同
 {
     if (v.length() == 0) {
         return 0;
@@ -39,7 +39,7 @@ inline float vector2angel(cocos2d::Vec2 v)
     if (v.y < 0) {
         pir = 2*3.1415926 - pir;
     }
-    return  360-pir*(180.f/3.1415926);
+    return  pir*(180.f/3.1415926);
 }
 
 

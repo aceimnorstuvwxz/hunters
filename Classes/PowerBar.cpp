@@ -9,6 +9,7 @@
 #include "PowerBar.hpp"
 #include "format.h"
 #include "intersection.h"
+#include "SOCommon.h"
 
 USING_NS_CC;
 
@@ -19,6 +20,7 @@ void PowerBar::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
 
     initHubThings();
     initPowerThings();
+    initTouchThings();
 }
 
 
@@ -90,4 +92,55 @@ void PowerBar::op_configPower(float power, int angle) //power [0-1]
 {
     _pxContent->configYCut(power*45);
     _ptAngle->configText(fmt::sprintf("%2d#", angle));
+}
+
+void PowerBar::initTouchThings()
+{
+    auto listener = EventListenerTouchOneByOne::create();
+    static bool moved = false;
+    static Vec2 startPos;
+    listener->onTouchBegan = [this](Touch* touch, Event* event){
+        moved = false;
+        startPos = touch->getLocation();
+        if (_enable) {
+            auto size = Director::getInstance()->getWinSize();
+            float yr = touch->getLocation().y / size.height;
+            float xr = touch->getLocation().x / size.width;
+            CCLOG("power touch radio %f %f", xr, yr);
+            // ban 掉一些区域
+            if (xr > 0.9 && yr >0.85) { //暂停
+            } else if (yr < 0.19) { //机能区域
+            } else if (yr > 0.85 && xr > 0.17 && xr < 0.65) { //头像区域
+            } else {
+                // TODO 告诉 heros 开始 aiming
+                op_show();
+                return true;
+            }
+        }
+        return false;
+    };
+
+    listener->onTouchMoved = [this](Touch* touch, Event* event){
+        moved = true;
+        auto diff = touch->getStartLocation() - touch->getLocation();
+        CCLOG("%f %f",diff.x,diff.y);
+        float angle = vector2angel(diff);
+        if (angle>180) {
+            angle = angle-360;
+        }
+        auto size = Director::getInstance()->getWinSize();
+        float strenth =  diff.length() / (size.height*0.45);
+        //TODO 告诉 heros
+        this->op_configPower(strenth, angle);
+    };
+
+    listener->onTouchEnded = [this](Touch* touch, Event* event){
+        op_dismiss();
+    };
+
+    listener->onTouchCancelled = [this](Touch* touch, Event* event){
+    };
+
+    _mainLayer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, _mainLayer);
+
 }
