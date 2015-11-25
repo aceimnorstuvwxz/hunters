@@ -28,8 +28,9 @@ public:
         BT_HAND_R,
         BT_LEG_L,
         BT_LEG_R,
-        BT_BOW
+        BT_BOW_MAX
     };
+    static int boneIndexType2sopxId(int boneIndexType);
     enum HeroPositionType
     {
         HPT_0, //最前排
@@ -38,11 +39,20 @@ public:
         HPT_3, //最后
         HPT_OUT //视野外
     };
+    static float heroPositionType2floatYposition(int positionType);
+    enum HeroType
+    {
+        HT_META, //基本
+        HT_SLOW_DOWN, //减速
+        HT_HIGH_ATTACK, //高功
+        HT_MULTI_ATTACK, //群攻
+        HT_BOMB_ATTACK //炸弹
+    };
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
 
 
-    void op_configSuitBow(int suitId, int bowId); //指定穿着套装和弓
+    void op_configHeroTypeAndDegree(int heroType, int grade); // 由英雄类型和等级 来指定穿着套装和弓
     void op_configRelativeAngle(float angle); //逆时针变大，设置单个英雄的相对设计角度
     void op_startAiming(); //开始瞄准，会举起弓到水平位置
     void op_stopAiming(); //取消瞄准，会放下弓
@@ -54,10 +64,13 @@ public:
     void op_toastBoost(float interval); //播放一段时间的暴击增益
     void op_toastUpgrade(); //播放升级动画
     void op_show();
-    void op_dismiss();
-    void op_move(int desPosition, bool direct = false);
+    void op_hide();
+    void op_move(int desPositionType, bool direct = false);
 
 protected:
+    int _heroType = HT_META;
+    int _heroGrade = 0;
+    int _heroPositionType = HPT_OUT;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;

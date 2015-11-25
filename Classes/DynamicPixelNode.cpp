@@ -257,7 +257,10 @@ void DynamicPixelNode::configMixColorAni(const cocos2d::Vec4& mixColor, float fa
     _aniMixColorAlphaStep = mixColor.w*2.f/fadeInOutTime;
     scheduleUpdate();
 }
-
+void DynamicPixelNode::configClear() //清空 VBO
+{
+    _count = 0;
+}
 
 void DynamicPixelNode::update(float dt)
 {
