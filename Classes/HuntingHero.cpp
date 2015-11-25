@@ -25,11 +25,12 @@ void HuntingHero::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
 void HuntingHero::initHubThings()
 {
     _hubNode = Node::create();
-    _hubNode->setPosition3D({0,0,-10});
+    _hubNode->setPosition3D({0,0,0});
     _hubNode->setScale(0.15);
     _hubNode->setCameraMask(_mainCamera->getCameraMask());
     _hubNode->setZOrder(9);
-    _mainCamera->addChild(_hubNode);
+    _hubNode->setRotation3D({90,0,-90});
+    _mainLayer->addChild(_hubNode);
     //    _hubNode->setVisible(false);
 }
 
@@ -120,12 +121,14 @@ void HuntingHero::op_configHeroTypeAndDegree(int heroType, int grade) // 由英�
 
     // 穿衣服
     for (int i = 0; i < BT_BOW_MAX; i++) {
-        _dpxNode->configAddSopx(fmt::sprintf("hunters/heros/%d.png.%d.png.sopx", suitId, boneIndexType2sopxId(i)), i, {0,0,0});
-
-
-        _dpxNode->configAction(i, {0,0,0}, RepeatForever::create(RotateBy::create(1, {0,0,90})));
+        _dpxNode->configAddSopx(fmt::sprintf("hunters/heros/%d.png.%d.png.sopx", suitId, boneIndexType2sopxId(i)), i, boneIndex2relativePosition(i));
     }
 
+    // 穿上弓
+    _dpxNode->configAddSopx(fmt::sprintf("hunters/bows/%c%d.png.sopx", bowType, grade), BT_BOW_MAX, boneIndex2relativePosition(BT_BOW_MAX));
+
+    _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
+    ani_idle();
 
 }
 void HuntingHero::op_configRelativeAngle(float angle) //逆时针变大，设置单个英雄的相对设计角度
@@ -221,4 +224,47 @@ void HuntingHero::op_move(int desPositionType, bool direct)
         _hubNode->stopAllActions();
         _hubNode->runAction(MoveTo::create(std::abs(_hubNode->getPositionY() - ypos) / move_speed, Vec3{0, ypos, 0}));
     }
+}
+
+cocos2d::Vec3 HuntingHero::boneIndex2relativePosition(int boneIndexType)
+{
+    Vec3 r = {0,0,0};
+    switch (boneIndexType) {
+        case BT_HAIR:
+            r = {0,-20,0};
+            break;
+
+        case BT_BOW_MAX:
+            r = {20,20,0};
+            break;
+
+        default:
+            break;
+    }
+    return r;
+}
+
+void HuntingHero::ani_idle() //空闲动作
+{
+    //设置各 bone 的动作
+    float head_pos = 70;
+    _dpxNode->configAction(BT_HEAD, {0,head_pos,0}, {0,0,0}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
+
+    _dpxNode->configAction(BT_HAIR, {-20,head_pos-15,0}, {0,0,0}, 0.9f, RepeatForever::create(Sequence::create( RotateBy::create(0.5, Vec3{0,0,-15}),RotateBy::create(0.5, Vec3{0,0,15}), NULL)));
+
+    _dpxNode->configAction(BT_BODY, {-10,head_pos-47,0}, {0,0,10}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,-1,0}), MoveBy::create(0.5, {0,1,0}), NULL)));
+
+    _dpxNode->configAction(BT_HAND_L, {0,head_pos-40,1.5}, {0,0,0}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
+
+    _dpxNode->configAction(BT_LEG_L, {-13,head_pos-55,0}, {0,0,0}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,0,0}), MoveBy::create(0.5, {0,0,0}), NULL)));
+
+    _dpxNode->configAction(BT_LEG_R, {-3,head_pos-55,0}, {0,0,0}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,0,0}), MoveBy::create(0.5, {0,0,0}), NULL)));
+
+    _dpxNode->configAction(BT_BOW_MAX, {-30,head_pos-0,1}, {0,0,100}, 2.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
+
+}
+
+void HuntingHero::ani_run() //跑步动作
+{
+
 }

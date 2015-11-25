@@ -31,6 +31,7 @@ public:
         BT_BOW_MAX
     };
     static int boneIndexType2sopxId(int boneIndexType);
+    static cocos2d::Vec3 boneIndex2relativePosition(int boneIndexType);
     enum HeroPositionType
     {
         HPT_0, //最前排
@@ -81,6 +82,9 @@ protected:
     DynamicPixelNode* _dpxNode; //本体
     void initHeroThings();
 
+    //动作配置 以下动作，一旦执行，就会一直做下去，直到设置成其它动作。
+    void ani_idle(); //空闲动作
+    void ani_run(); //跑步动作
 
 };
 

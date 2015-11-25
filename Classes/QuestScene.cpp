@@ -104,7 +104,12 @@ bool QuestScene::init()
     _beatField.configProtocals(&_battleRoles, &_battleRoad);
     BattleState::s()->configProtocals(&_bloodBar, &_beatField,
                                       &_battleRoles, &_battleRoad, &_cameraManage, _mainCamera, this);
-
+    for (int i = 0; i < 4; i++ ){
+        _huntingHero[i].init(_mainLayer, _mainCamera);
+        _huntingHero[i].op_configHeroTypeAndDegree(HuntingHero::HT_META, 0);
+        _huntingHero[i].op_show();
+        _huntingHero[i].op_move(i, true);
+    }
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
 

@@ -10,7 +10,7 @@ attribute float a_bone_index;
 varying mediump vec4 v_color;
 
 uniform vec4 u_mixcolor;
-uniform mat4 u_bone_matrixs[5]; //与 DynamicPixelNode.h 内定义一致
+uniform mat4 u_bone_matrixs[10]; //与 DynamicPixelNode.h 内定义一致
 
 const vec3 light_dir = vec3(1.0,0.0,1.0); //与光射向反向
 
