@@ -202,7 +202,7 @@ void HuntingHero::op_hide()
 float HuntingHero::heroPositionType2floatYposition(HeroPositionType positionType)
 {
     const float start_pos = 0;
-    const float pos_step = 20;
+    const float pos_step = 15;
     const float out_pos_n = 5;
     float r;
     switch (positionType) {

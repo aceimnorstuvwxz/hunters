@@ -95,6 +95,7 @@ void HeroHeadAndUpgrade::initTouchThings()
             if (_heroHeadState == HeroHeadState::EMPTY && MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) {
                 if (_pxBuyConfirm->isVisible()) {
                     //确认购买
+                    MoneyManager::s()->cost(MoneyCostDef::C_ADD_HERO);
                     _heroHeadState = HeroHeadState::ALIVE;
                     _huntingHero.op_show();
                     _huntingHero.op_move(_heroPositionType, false);
@@ -128,13 +129,14 @@ void HeroHeadAndUpgrade::op_configPosition(HeroPositionType position, bool direc
     const float x_start = -5;
     const float x_step = 2.2;
     float y = 4.7;
-    float x = x_start + static_cast<int>(position) * x_step;
+    float x = x_start + (3-static_cast<int>(position)) * x_step;
     if (direct) {
         _hubNode->setPosition3D({x,y,-10});
     } else {
         _hubNode->runAction(MoveTo::create(0.3, {x,y,-10}));
 
     }
+    _heroPositionType = position;
 
 }
 
