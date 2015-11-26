@@ -21,6 +21,7 @@
 #include "WindBar.hpp"
 #include "PowerBar.hpp"
 #include "HuntingHero.hpp"
+#include "HuntingHerosManage.hpp"
 // Beat Quest Game Scene
 
 
@@ -55,6 +56,7 @@ protected:
     WindBar _windBar;
     PowerBar _powerBar;
     HuntingHero _huntingHero[4];
+    HuntingHerosManage _huntingHerosManage;
 
     cocos2d::Sprite* _pauseShadow;
     void initPauseShadowThings();

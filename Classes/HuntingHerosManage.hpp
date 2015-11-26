@@ -11,12 +11,23 @@
 
 #include "cocos2d.h"
 #include "QuestProtocals.hpp"
+#include "PixelNode.h"
+#include "PixelTextNode.hpp"
+#include "PlanePixelNode.h"
 
 //这里包括我方英雄的头像和英雄本体
 class HuntingHerosManage:public HuntingHerosManageProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+
+
+
+    virtual void op_aimingStart(); //power bar 通知开始瞄准
+    virtual void op_aimingCancel(); //power bar 通知瞄准取消
+    virtual void op_configAiming(float angle, float strenth); //设置瞄准的参数
+    virtual void op_toastBow(float angle, float strenth); //以这个角度开始放箭
+
 
     void update(float dt);
 
@@ -26,6 +37,9 @@ protected:
     cocos2d::Camera* _mainCamera;
 
     //头像区域
+
+    cocos2d::Node* _headsHubNode;
+    PixelNode* _pxHeads[4];
     void initHeadsThings();
 
 };

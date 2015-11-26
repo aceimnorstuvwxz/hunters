@@ -109,6 +109,7 @@ bool QuestScene::init()
     initPauseShadowThings();
     _topIcons.init(_mainLayer, _mainCamera);
     _powerBar.init(_mainLayer, _mainCamera);
+    _huntingHerosManage.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
