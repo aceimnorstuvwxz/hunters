@@ -121,11 +121,11 @@ void HuntingHero::op_configHeroTypeAndDegree(int heroType, int grade) // 由英�
 
     // 穿衣服
     for (int i = 0; i < BT_BOW_MAX; i++) {
-        _dpxNode->configAddSopx(fmt::sprintf("hunters/heros/%d.png.%d.png.sopx", suitId, boneIndexType2sopxId(i)), i, boneIndex2relativePosition(i));
+        _dpxNode->configAddSopx(fmt::sprintf("hunters/heros/%d.png.%d.so.png.sopx", suitId, boneIndexType2sopxId(i)), i, boneIndex2relativePosition(i));
     }
 
     // 穿上弓
-    _dpxNode->configAddSopx(fmt::sprintf("hunters/bows/%c%d.png.sopx", bowType, grade), BT_BOW_MAX, boneIndex2relativePosition(BT_BOW_MAX));
+    _dpxNode->configAddSopx(fmt::sprintf("hunters/bows/%c%d.png.so.png.sopx", bowType, grade), BT_BOW_MAX, boneIndex2relativePosition(BT_BOW_MAX));
 
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_run();

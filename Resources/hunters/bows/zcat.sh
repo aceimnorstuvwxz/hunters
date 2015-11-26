@@ -2,5 +2,6 @@
 
 for img in *.png
 do
-  scatPixelGen $img
+  klsdTgaScale $img $img.so.png
+  scatPixelGen $img.so.png
 done
