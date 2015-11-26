@@ -92,6 +92,7 @@
 		B59E7ED31C064B72005FA50D /* HuntingHerosManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ED11C064B72005FA50D /* HuntingHerosManage.cpp */; };
 		B59E7ED61C064D6A005FA50D /* MoneyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ED41C064D6A005FA50D /* MoneyManager.cpp */; };
 		B59E7EDA1C074944005FA50D /* HeroHeadAndUpgrade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ED81C074944005FA50D /* HeroHeadAndUpgrade.cpp */; };
+		B59E7EDE1C0768C9005FA50D /* MoneyCostDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7EDC1C0768C9005FA50D /* MoneyCostDef.cpp */; };
 		B5BD194E1BE645990052ACDD /* BeatDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19311BE645990052ACDD /* BeatDef.cpp */; };
 		B5BD194F1BE645990052ACDD /* BeatQuestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */; };
 		B5BD19501BE645990052ACDD /* format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19351BE645990052ACDD /* format.cpp */; };
@@ -273,6 +274,8 @@
 		B59E7ED51C064D6A005FA50D /* MoneyManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoneyManager.hpp; sourceTree = "<group>"; };
 		B59E7ED81C074944005FA50D /* HeroHeadAndUpgrade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroHeadAndUpgrade.cpp; sourceTree = "<group>"; };
 		B59E7ED91C074944005FA50D /* HeroHeadAndUpgrade.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeroHeadAndUpgrade.hpp; sourceTree = "<group>"; };
+		B59E7EDC1C0768C9005FA50D /* MoneyCostDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoneyCostDef.cpp; sourceTree = "<group>"; };
+		B59E7EDD1C0768C9005FA50D /* MoneyCostDef.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoneyCostDef.hpp; sourceTree = "<group>"; };
 		B5BD19311BE645990052ACDD /* BeatDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatDef.cpp; sourceTree = "<group>"; };
 		B5BD19321BE645990052ACDD /* BeatDef.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BeatDef.hpp; sourceTree = "<group>"; };
 		B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatQuestScene.cpp; sourceTree = "<group>"; };
@@ -646,6 +649,8 @@
 		B59E7EC91C04A790005FA50D /* hunter-hero */ = {
 			isa = PBXGroup;
 			children = (
+				B59E7EDC1C0768C9005FA50D /* MoneyCostDef.cpp */,
+				B59E7EDD1C0768C9005FA50D /* MoneyCostDef.hpp */,
 				B59E7ED41C064D6A005FA50D /* MoneyManager.cpp */,
 				B59E7ED51C064D6A005FA50D /* MoneyManager.hpp */,
 				B59E7ECD1C05AB06005FA50D /* HuntingHeroMetaSuitManage.cpp */,
@@ -931,6 +936,7 @@
 				B53B8CB31BEFA1BC006F5432 /* WelcoScene.cpp in Sources */,
 				B5BD19771BE658230052ACDD /* BattleRoad.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				B59E7EDE1C0768C9005FA50D /* MoneyCostDef.cpp in Sources */,
 				B50A36F91BE7C0030007B7CA /* PixelDataCache.cpp in Sources */,
 				B5BD194E1BE645990052ACDD /* BeatDef.cpp in Sources */,
 				B5BD19591BE645990052ACDD /* TripleDef.cpp in Sources */,

@@ -11,6 +11,8 @@
 #include "format.h"
 #include "intersection.h"
 #include "SOCommon.h"
+#include "MoneyCostDef.hpp"
+#include "MoneyManager.hpp"
 
 USING_NS_CC;
 
@@ -46,6 +48,16 @@ void HeroHeadAndUpgrade::initHeadThings()
         _hubNode->addChild(node);
         _pxHeadIcon = node;
     }
+    {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1,1);
+        node->setPosition3D({0,0,1});
+        node->configSopx("hunters/heros/head_confirm.png.sopx");
+        _hubNode->addChild(node);
+        _pxBuyConfirm = node;
+        _pxBuyConfirm->setVisible(false);
+    }
 }
 
 void HeroHeadAndUpgrade::initTouchThings()
@@ -68,6 +80,22 @@ void HeroHeadAndUpgrade::initTouchThings()
     };
 
     listener->onTouchEnded = [this](Touch* touch, Event* event){
+        if (!moved) {
+            //没有移动，则是普通点击
+            if (_heroHeadState == HeroHeadState::EMPTY && MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) {
+                if (_pxBuyConfirm->isVisible()) {
+                    //确认购买
+                    _heroHeadState = HeroHeadState::ALIVE;
+
+                } else {
+                    //显示确认购买
+                    const float delay_time = 2.5;
+                    _pxHeadIcon->runAction(Sequence::create(Hide::create(), DelayTime::create(delay_time), Show::create(), NULL));
+                    _pxBuyConfirm->runAction(Sequence::create(Show::create(), DelayTime::create(delay_time), Hide::create(), NULL));
+                }
+            }
+
+        }
     };
 
     listener->onTouchCancelled = [this](Touch* touch, Event* event){
@@ -90,6 +118,17 @@ void HeroHeadAndUpgrade::op_configPosition(HeroPositionType position, bool direc
 
     }
 
+}
+
+void HeroHeadAndUpgrade::op_tellGoldChange() //被通知金币改变
+{
+    if (_heroHeadState == HeroHeadState::EMPTY) {
+        if (MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) {
+            _pxHeadIcon->configMixColor({0.5,0.5,0.5,1.0});
+        } else {
+            _pxHeadIcon->configMixColor({0,0,0,0});
+        }
+    }
 }
 
 HeroPositionType HeroHeadAndUpgrade::op_fetchPosition() //获取位置
