@@ -16,7 +16,7 @@
 // 一个战斗英雄
 // 地面单位都有一个 X 坐标
 
-class HuntingHero
+class HuntingHero:HuntingHeroProtocal
 {
 public:
     enum BoneIndexType
@@ -37,27 +37,26 @@ public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
 
 
-    void op_configHeroTypeAndDegree(HeroType heroType, int grade); // 由英雄类型和等级 来指定穿着套装和弓
-    void op_configRelativeAngle(float angle); //逆时针变大，设置单个英雄的相对设计角度
-    void op_startAiming(); //开始瞄准，会举起弓到水平位置
-    void op_stopAiming(); //取消瞄准，会放下弓
-    void op_toastShoot(); //瞄准完毕后的发射动作，发射后会放下弓
-    void op_configAiming(float angle, float strenth);
-    void op_toastUnderAttack(); //播放被攻击动画
-    void op_toastDead(); //播放死亡
-    void op_toastShield(float interval); //播放一段时间护盾
-    void op_toastBoost(float interval); //播放一段时间的暴击增益
-    void op_toastUpgrade(); //播放升级动画
-    void op_show();
-    void op_hide();
-    void op_move(HeroPositionType desPositionType, bool direct = false);
+    virtual void op_configHeroTypeAndDegree(HeroType heroType, int grade); // 由英雄类型和等级 来指定穿着套装和弓
+    virtual void op_configRelativeAngle(float angle); //逆时针变大，设置单个英雄的相对设计角度
+    virtual void op_startAiming(); //开始瞄准，会举起弓到水平位置
+    virtual void op_stopAiming(); //取消瞄准，会放下弓
+    virtual void op_toastShoot(); //瞄准完毕后的发射动作，发射后会放下弓
+    virtual void op_configAiming(float angle, float strenth);
+    virtual void op_toastUnderAttack(); //播放被攻击动画
+    virtual void op_toastDead(); //播放死亡
+    virtual void op_toastShield(float interval); //播放一段时间护盾
+    virtual void op_toastBoost(float interval); //播放一段时间的暴击增益
+    virtual void op_toastUpgrade(); //播放升级动画
+    virtual void op_show();
+    virtual void op_hide();
+    virtual void op_move(HeroPositionType desPositionType, bool direct = false);
+    int op_fetchSuitId() { return _suidId; }
 
-    //动作配置 以下动作，一旦执行，就会一直做下去，直到设置成其它动作。
-    void ani_idle(); //空闲动作
-    void ani_run(); //跑步动作
 protected:
     HeroType _heroType = HeroType::HT_META;
     int _heroGrade = 0;
+    int _suidId;
     HeroPositionType _heroPositionType = HeroPositionType::HPT_OUT;
 
     cocos2d::Layer* _mainLayer;
@@ -69,6 +68,9 @@ protected:
     DynamicPixelNode* _dpxNode; //本体
     void initHeroThings();
 
+    //动作配置 以下动作，一旦执行，就会一直做下去，直到设置成其它动作。
+    void ani_idle(); //空闲动作
+    void ani_run(); //跑步动作
 
 };
 

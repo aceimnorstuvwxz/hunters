@@ -90,6 +90,7 @@ void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // ç”
     char bowType = 'm';
     if (heroType == HeroType::HT_META) {
         suitId = HuntingHeroMetaSuitManage::s()->borrow();
+        _suidId = suitId;
         bowType = 'm';
     } else {
         switch (heroType) {

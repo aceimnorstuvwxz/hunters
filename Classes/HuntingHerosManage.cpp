@@ -41,6 +41,7 @@ void HuntingHerosManage::op_toastBow(float angle, float strenth) //以这个角�
 
 }
 
+
 void HuntingHerosManage::update(float dt)
 {
 
@@ -51,6 +52,7 @@ void HuntingHerosManage::initHeadsThings()
     for (int i = 0; i < 4; i++) {
         _headIcons[i].init(_mainLayer, _mainCamera);
         _headIcons[i].op_configPosition(static_cast<HeroPositionType>(i), true);
+        _headIcons[i].configProtocals(this);
         _positionMap[i] = &_headIcons[i];
     }
 

@@ -23,6 +23,7 @@ void HeroHeadAndUpgrade::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCa
 
     initHubThings();
     initHeadThings();
+    initHeroThings();
     initTouchThings();
 }
 
@@ -60,6 +61,15 @@ void HeroHeadAndUpgrade::initHeadThings()
     }
 }
 
+void HeroHeadAndUpgrade::initHeroThings()
+{
+    _huntingHero.init(_mainLayer, _mainCamera);
+    _huntingHero.op_configHeroTypeAndDegree(HeroType::HT_META, 0);
+    _huntingHero.op_hide();
+    _huntingHero.op_move(HeroPositionType::HPT_OUT, true);
+}
+
+
 void HeroHeadAndUpgrade::initTouchThings()
 {
     auto listener = EventListenerTouchOneByOne::create();
@@ -86,6 +96,14 @@ void HeroHeadAndUpgrade::initTouchThings()
                 if (_pxBuyConfirm->isVisible()) {
                     //确认购买
                     _heroHeadState = HeroHeadState::ALIVE;
+                    _huntingHero.op_show();
+                    _huntingHero.op_move(_heroPositionType, false);
+                    int suitId = _huntingHero.op_fetchSuitId();
+                    _pxHeadIcon->stopAllActions();
+                    _pxBuyConfirm->stopAllActions();
+                    _pxBuyConfirm->setVisible(false);
+                    _pxHeadIcon->setVisible(true);
+                    _pxHeadIcon->configSopx(fmt::sprintf("hunters/heros/%d.png.head.png.sopx", suitId));
 
                 } else {
                     //显示确认购买

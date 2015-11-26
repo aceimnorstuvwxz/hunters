@@ -26,18 +26,6 @@ bool QuestScene::init()
     PixelDataCache::s()->preloadChars();
     addCommonBtn({0.9,0.5}, "reset", [](){Director::getInstance()->replaceScene(QuestScene::create());});
 
-
-    addCommonBtn({0.9,0.4}, "ac run", [this](){
-        for (auto& p : _huntingHero){
-            p.ani_run();
-        }
-    });
-
-    addCommonBtn({0.9,0.3}, "ac idle", [this](){
-        for (auto& p : _huntingHero){
-            p.ani_idle();
-        }
-    });
 /*
     addCommonBtn({0.35,0.95}, "battle cam", [this](){
         _cameraManage.op_switchToPosition(QuestCameraPosition::BATTLE);
@@ -116,12 +104,6 @@ bool QuestScene::init()
     _beatField.configProtocals(&_battleRoles, &_battleRoad);
     BattleState::s()->configProtocals(&_bloodBar, &_beatField,
                                       &_battleRoles, &_battleRoad, &_cameraManage, _mainCamera, this);
-    for (int i = 0; i < 4; i++ ){
-        _huntingHero[i].init(_mainLayer, _mainCamera);
-        _huntingHero[i].op_configHeroTypeAndDegree(HeroType::HT_META, 0);
-        _huntingHero[i].op_show();
-        _huntingHero[i].op_move(static_cast<HeroPositionType>(i), true);
-    }
 
     MoneyManager::s()->configProtocals(&_topIcons);
 

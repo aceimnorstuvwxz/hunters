@@ -15,6 +15,7 @@
 #include "PixelNode.h"
 #include "PixelTextNode.hpp"
 #include "PlanePixelNode.h"
+#include "HuntingHero.hpp"
 
 
 class HeroHeadAndUpgrade:public HeroHeadAndUpgradeProtocal
@@ -22,7 +23,7 @@ class HeroHeadAndUpgrade:public HeroHeadAndUpgradeProtocal
 
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-
+    virtual void configProtocals(HuntingHerosManageProtocal* huntingHerosManageProtocal) { _huntingHerosManageProtocal = huntingHerosManageProtocal;}
     virtual void op_configPosition(HeroPositionType position, bool direct); //设置位置
     virtual HeroPositionType op_fetchPosition(); //获取位置
     virtual void op_tellGoldChange(); //被通知金币改变
@@ -30,6 +31,7 @@ public:
     void update(float dt);
 
 protected:
+    HuntingHerosManageProtocal* _huntingHerosManageProtocal;
     HeroPositionType _heroPositionType;
     HeroHeadState _heroHeadState = HeroHeadState::EMPTY;
     HeroType _heroType = HeroType::HT_META;
@@ -46,5 +48,8 @@ protected:
     PixelNode* _pxBuyConfirm;
     void initHeadThings();
     void initTouchThings();
+
+    HuntingHero _huntingHero;
+    void initHeroThings();
 };
 #endif /* HeroHeadAndUpgrade_hpp */

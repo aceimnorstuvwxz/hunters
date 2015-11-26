@@ -234,6 +234,7 @@ public:
 };
 
 
+
 enum class HeroPositionType:int
 {
         HPT_0 = 0, //最前排
@@ -267,6 +268,25 @@ enum class HeroType:int
     HT_MULTI_ATTACK = 3, //群攻
     HT_BOMB_ATTACK = 4 //炸弹
 };
+
+class HuntingHeroProtocal
+{
+public:
+    virtual void op_configHeroTypeAndDegree(HeroType heroType, int grade) = 0; // 由英雄类型和等级 来指定穿着套装和弓
+    virtual void op_configRelativeAngle(float angle) = 0; //逆时针变大，设置单个英雄的相对设计角度
+    virtual void op_startAiming() = 0; //开始瞄准，会举起弓到水平位置
+    virtual void op_stopAiming() = 0; //取消瞄准，会放下弓
+    virtual void op_toastShoot() = 0; //瞄准完毕后的发射动作，发射后会放下弓
+    virtual void op_configAiming(float angle, float strenth) = 0;
+    virtual void op_toastUnderAttack() = 0; //播放被攻击动画
+    virtual void op_toastDead() = 0; //播放死亡
+    virtual void op_toastShield(float interval) = 0; //播放一段时间护盾
+    virtual void op_toastBoost(float interval) = 0; //播放一段时间的暴击增益
+    virtual void op_toastUpgrade() = 0; //播放升级动画
+    virtual void op_show() = 0;
+    virtual void op_hide() = 0;
+    virtual void op_move(HeroPositionType desPositionType, bool direct = false) = 0;
+ };
 
 class HeroHeadAndUpgradeProtocal
 {

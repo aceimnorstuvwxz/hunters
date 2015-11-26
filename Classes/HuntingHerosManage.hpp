@@ -29,7 +29,6 @@ public:
     virtual void op_configAiming(float angle, float strenth); //设置瞄准的参数
     virtual void op_toastBow(float angle, float strenth); //以这个角度开始放箭
 
-
     void update(float dt);
 
 protected:
