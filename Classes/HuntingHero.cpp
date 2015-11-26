@@ -236,9 +236,15 @@ void HuntingHero::op_move(HeroPositionType desPositionType, bool direct)
     const float move_speed = 10;
     if (direct) {
         _hubNode->setPosition3D({0, ypos, 0});
+        ani_idle();
     } else {
         _hubNode->stopAllActions();
-        _hubNode->runAction(MoveTo::create(std::abs(_hubNode->getPositionY() - ypos) / move_speed, Vec3{0, ypos, 0}));
+        ani_run();
+        float time = std::abs(_hubNode->getPositionY() - ypos) / move_speed;
+        _hubNode->runAction(MoveTo::create(time, Vec3{0, ypos, 0}));
+        _hubNode->scheduleOnce([this](float dt) {
+            this->ani_idle();
+        }, time, "move over to idle");
     }
 }
 
