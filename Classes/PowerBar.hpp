@@ -20,7 +20,7 @@ class PowerBar:public PowerBarProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-
+    void configProtocals(HuntingHerosManageProtocal* huntingHerosManageProtocal) {_huntingHerosManageProtocal = huntingHerosManageProtocal;}
     virtual void op_configEnable(bool enable){_enable = enable;} //放箭触摸瞄准的开关
     virtual void op_show();
     virtual void op_dismiss();
@@ -29,7 +29,7 @@ public:
     void update(float dt);
 
 protected:
-
+    HuntingHerosManageProtocal* _huntingHerosManageProtocal;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
@@ -40,6 +40,7 @@ protected:
 
     PixelNode* _pxRect;
     PixelNode* _pxContent;
+    PixelNode* _pxArrow;
     PixelTextNode* _ptAngle;
     void initPowerThings();
     void initTouchThings();

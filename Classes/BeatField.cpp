@@ -220,7 +220,7 @@ void BeatField::initTouchThings()
                 int which = xp / 0.2;
                 BeatFieldLineType lt = static_cast<BeatFieldLineType>(which-2);
                 this->tellAllBeatTapIn(lt);
-                CCLOG("tap begin @%d", which-2);
+//                CCLOG("tap begin @%d", which-2);
             } else {
                 // 尝试发 combo
                 BattleState::s()->comboTry2Toast();
@@ -244,7 +244,7 @@ void BeatField::initTouchThings()
                 int which = xp / 0.2;
                 BeatFieldLineType lt = static_cast<BeatFieldLineType>(which-2);
                 this->tellAllBeatTapOut(lt);
-                CCLOG("tap end @%d", which-2);
+//                CCLOG("tap end @%d", which-2);
             }
             // try hit at touch began
         }

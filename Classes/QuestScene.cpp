@@ -77,7 +77,7 @@ bool QuestScene::init()
 
     auto size = Director::getInstance()->getVisibleSize();
 
-    auto camera = Camera::createPerspective(60, size.width/size.height, 0.1, 1000000);
+    auto camera = Camera::createPerspective(60, size.width/size.height, 1, 1000000);
     camera->setCameraFlag(CameraFlag::USER1);
     layer->addChild(camera);
     camera->setCameraMask((unsigned short)CameraFlag::USER1);
@@ -106,6 +106,7 @@ bool QuestScene::init()
                                       &_battleRoles, &_battleRoad, &_cameraManage, _mainCamera, this);
 
     MoneyManager::s()->configProtocals(&_topIcons);
+    _powerBar.configProtocals(&_huntingHerosManage);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
