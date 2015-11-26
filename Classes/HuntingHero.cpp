@@ -126,7 +126,7 @@ void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // �
     }
 
     // 穿上弓
-    _dpxNode->configAddSopx(fmt::sprintf("hunters/bows/%c%d.png.so.png.sopx", bowType, grade), BT_BOW_MAX, boneIndex2relativePosition(BT_BOW_MAX));
+    _dpxNode->configAddSopx(fmt::sprintf("hunters/bows/%c%d.png.sopx", bowType, grade), BT_BOW_MAX, boneIndex2relativePosition(BT_BOW_MAX));
 
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_run();
@@ -247,16 +247,16 @@ cocos2d::Vec3 HuntingHero::boneIndex2relativePosition(int boneIndexType)
     Vec3 r = {0,0,0};
     switch (boneIndexType) {
         case BT_HAIR:
-            r = {0,-20,0};
+            r = {0,-20.f/3,0};
             break;
 
         case BT_BOW_MAX:
-            r = {5,5,0};
+            r = {5.f,5.f,0};
             break;
 
         case BT_LEG_L:
         case BT_LEG_R:
-            r = {2,-7,0};
+            r = {2.f/3,-7.f/3,0};
             break;
         default:
             break;
@@ -268,18 +268,18 @@ void HuntingHero::ani_idle() //空闲动作
 {
     //设置各 bone 的动作
     float head_pos = 70;
-    _dpxNode->configAction(BT_HEAD, {0,head_pos,0}, {0,0,0}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
+    _dpxNode->configAction(BT_HEAD, {0,head_pos,0}, {0,0,0}, 1.f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
 
-    _dpxNode->configAction(BT_HAIR, {-20,head_pos-15,0}, {0,0,0}, 0.9f, RepeatForever::create(Sequence::create( RotateBy::create(0.5, Vec3{0,0,-15}),RotateBy::create(0.5, Vec3{0,0,15}), NULL)));
+    _dpxNode->configAction(BT_HAIR, {-20,head_pos-15,0}, {0,0,0}, 0.9f*3, RepeatForever::create(Sequence::create( RotateBy::create(0.5, Vec3{0,0,-15}),RotateBy::create(0.5, Vec3{0,0,15}), NULL)));
 
-    _dpxNode->configAction(BT_BODY, {-10,head_pos-47,0}, {0,0,10}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,-1,0}), MoveBy::create(0.5, {0,1,0}), NULL)));
+    _dpxNode->configAction(BT_BODY, {-10,head_pos-47,0}, {0,0,10}, 1.f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,-1,0}), MoveBy::create(0.5, {0,1,0}), NULL)));
 
 
-    _dpxNode->configAction(BT_LEG_L, {-13-2,head_pos-48,0}, {0,0,0}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,0,0}), MoveBy::create(0.5, {0,0,0}), NULL)));
+    _dpxNode->configAction(BT_LEG_L, {-13-2,head_pos-48,0}, {0,0,0}, 1.f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,0,0}), MoveBy::create(0.5, {0,0,0}), NULL)));
 
-    _dpxNode->configAction(BT_LEG_R, {-3-2,head_pos-48,0}, {0,0,0}, 1.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,0,0}), MoveBy::create(0.5, {0,0,0}), NULL)));
+    _dpxNode->configAction(BT_LEG_R, {-3-2,head_pos-48,0}, {0,0,0}, 1.f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,0,0}), MoveBy::create(0.5, {0,0,0}), NULL)));
 
-    _dpxNode->configAction(BT_HAND_L, {-10,head_pos-40,2.0}, {0,0,0}, 1.0f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
+    _dpxNode->configAction(BT_HAND_L, {-10,head_pos-40,2.0}, {0,0,0}, 1.0f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
 
     _dpxNode->configAction(BT_BOW_MAX, {-10,head_pos-20,1}, {0,0,100}, 3.f, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
 
@@ -296,24 +296,24 @@ void HuntingHero::ani_run() //跑步动作
     const float angle_back = 105;
     auto bodyMove =Sequence::create(MoveBy::create(run_time*0.5, {0,5,0}), MoveBy::create(run_time*0.5, {0,-5,0}), NULL);
 
-    _dpxNode->configAction(BT_HEAD, {2,head_pos,0}, {0,0,0}, 1.f, RepeatForever::create(Sequence::create(MoveBy::create(run_time*0.5, {-2,6,0}), MoveBy::create(run_time*0.5, {2,-6,0}), NULL)));
+    _dpxNode->configAction(BT_HEAD, {2,head_pos,0}, {0,0,0}, 1.f*3, RepeatForever::create(Sequence::create(MoveBy::create(run_time*0.5, {-2,6,0}), MoveBy::create(run_time*0.5, {2,-6,0}), NULL)));
 
-    _dpxNode->configAction(BT_HAIR, {-20,head_pos-15,0}, {0,0,15}, 0.9f, RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,15}),RotateBy::create(run_time*0.5, Vec3{0,0,-15}), NULL), NULL)));
+    _dpxNode->configAction(BT_HAIR, {-20,head_pos-15,0}, {0,0,15}, 0.9f*3, RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,15}),RotateBy::create(run_time*0.5, Vec3{0,0,-15}), NULL), NULL)));
 
-    _dpxNode->configAction(BT_BODY, {-10,head_pos-47,0}, {0,0,10}, 1.f, RepeatForever::create(bodyMove->clone()));
+    _dpxNode->configAction(BT_BODY, {-10,head_pos-47,0}, {0,0,10}, 1.f*3, RepeatForever::create(bodyMove->clone()));
 
 
-    _dpxNode->configAction(BT_LEG_L, {-8,head_pos-48,0}, {0,0,-angle_forward}, 1.f, RepeatForever::create(Spawn::create(
+    _dpxNode->configAction(BT_LEG_L, {-8,head_pos-48,0}, {0,0,-angle_forward}, 1.f*3, RepeatForever::create(Spawn::create(
                                                                                                             Sequence::create(                                                                                                                             MoveBy::create(run_time, {-run_length,0,0}), MoveBy::create(run_time, {run_length,0,0}), NULL),
                                                                                                             Sequence::create(                                                                                                                             RotateBy::create(run_time, {0,0,(angle_back+angle_forward)}), RotateBy::create(run_time, {0,0,-(angle_back+angle_forward)}), NULL)
                                                                                                             ,NULL)));
 
-    _dpxNode->configAction(BT_LEG_R, {-8,head_pos-48,0}, {0,0,angle_back}, 1.f, RepeatForever::create(Spawn::create(
+    _dpxNode->configAction(BT_LEG_R, {-8,head_pos-48,0}, {0,0,angle_back}, 1.f*3, RepeatForever::create(Spawn::create(
                                                                                                              Sequence::create(  MoveBy::create(run_time, {run_length,0,0}),                                                                                                                            MoveBy::create(run_time, {-run_length,0,0}), NULL),
                                                                                                              Sequence::create(   RotateBy::create(run_time, {0,0,-(angle_back+angle_forward)}),                                                                                                                           RotateBy::create(run_time, {0,0,(angle_back+angle_forward)}), NULL)
                                                                                                              ,NULL)));
 
-    _dpxNode->configAction(BT_HAND_L, {-10,head_pos-40,2.0}, {0,0,0}, 1.0f, RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-35}),RotateBy::create(run_time*0.5, Vec3{0,0,35}), NULL), NULL)));
+    _dpxNode->configAction(BT_HAND_L, {-10,head_pos-40,2.0}, {0,0,0}, 1.0f*3, RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-35}),RotateBy::create(run_time*0.5, Vec3{0,0,35}), NULL), NULL)));
 
     _dpxNode->configAction(BT_BOW_MAX, {-10,head_pos-20,1}, {0,0,100}, 3.f, RepeatForever::create(RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-15}),RotateBy::create(run_time*0.5, Vec3{0,0,15}), NULL), NULL))));
 }
