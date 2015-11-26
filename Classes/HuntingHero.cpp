@@ -80,7 +80,7 @@ int HuntingHero::boneIndexType2sopxId(int boneIndexType)
     return r;
 }
 
-void HuntingHero::op_configHeroTypeAndDegree(int heroType, int grade) // 由英雄类型和等级 来指定穿着套装和弓
+void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // 由英雄类型和等级 来指定穿着套装和弓
 {
     //会清空 VBO 后，重新写数据
     _dpxNode->configClear();
@@ -88,27 +88,27 @@ void HuntingHero::op_configHeroTypeAndDegree(int heroType, int grade) // 由英�
 
     int suitId = 0;
     char bowType = 'm';
-    if (heroType == HT_META) {
+    if (heroType == HeroType::HT_META) {
         suitId = HuntingHeroMetaSuitManage::s()->borrow();
         bowType = 'm';
     } else {
         switch (heroType) {
-            case HT_SLOW_DOWN:
+            case HeroType::HT_SLOW_DOWN:
                 suitId = 4;
                 bowType = 'b';
                 break;
 
-            case HT_HIGH_ATTACK:
+            case HeroType::HT_HIGH_ATTACK:
                 suitId = 5;
                 bowType = 'e';
                 break;
 
-            case HT_MULTI_ATTACK:
+            case HeroType::HT_MULTI_ATTACK:
                 suitId = 6;
                 bowType = 'a';
                 break;
 
-            case HT_BOMB_ATTACK:
+            case HeroType::HT_BOMB_ATTACK:
                 suitId = 7;
                 bowType = 'f';
                 break;
@@ -198,26 +198,26 @@ void HuntingHero::op_hide()
     _hubNode->setVisible(false);
 }
 
-float HuntingHero::heroPositionType2floatYposition(int positionType)
+float HuntingHero::heroPositionType2floatYposition(HeroPositionType positionType)
 {
     const float start_pos = 0;
     const float pos_step = 20;
     const float out_pos_n = 5;
     float r;
     switch (positionType) {
-        case HPT_3:
+        case HeroPositionType::HPT_3:
             r = start_pos;
             break;
-        case HPT_2:
+        case HeroPositionType::HPT_2:
             r = start_pos + pos_step;
             break;
-        case HPT_1:
+        case HeroPositionType::HPT_1:
             r = start_pos + 2*pos_step;
             break;
-        case HPT_0:
+        case HeroPositionType::HPT_0:
             r = start_pos + 3*pos_step;
             break;
-        case HPT_OUT:
+        case HeroPositionType::HPT_OUT:
             r = start_pos - out_pos_n*pos_step;
             break;
 
@@ -229,7 +229,7 @@ float HuntingHero::heroPositionType2floatYposition(int positionType)
 
 }
 
-void HuntingHero::op_move(int desPositionType, bool direct)
+void HuntingHero::op_move(HeroPositionType desPositionType, bool direct)
 {
     float ypos = heroPositionType2floatYposition(desPositionType);
     const float move_speed = 10;

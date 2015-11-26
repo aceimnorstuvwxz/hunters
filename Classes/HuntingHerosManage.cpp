@@ -48,25 +48,10 @@ void HuntingHerosManage::update(float dt)
 
 void HuntingHerosManage::initHeadsThings()
 {
-    // hubnode
-    _headsHubNode = Node::create();
-    _headsHubNode->setPosition3D({-4,4.75,-10});
-    _headsHubNode->setScale(0.08);
-    _headsHubNode->setCameraMask(_mainCamera->getCameraMask());
-    _headsHubNode->setZOrder(10);
-    _mainCamera->addChild(_headsHubNode);
-    //    _hubNode->setVisible(false);
-
-    // enpty heads
     for (int i = 0; i < 4; i++) {
-        auto node = PixelNode::create();
-        node->setCameraMask(_mainCamera->getCameraMask());
-        node->setScale(1,1);
-        node->setPosition3D({26.f*i,0,0});
-        node->configSopx("hunters/heros/head_add.png.sopx");
-        node->configBlend(true);
-        _headsHubNode->addChild(node);
-        _pxHeads[i] = node;
+        _headIcons[i].init(_mainLayer, _mainCamera);
+        _headIcons[i].op_configPosition(static_cast<HeroPositionType>(i), true);
+        _positionMap[i] = &_headIcons[i];
     }
 
 }

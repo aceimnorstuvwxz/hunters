@@ -14,6 +14,7 @@
 #include "PixelNode.h"
 #include "PixelTextNode.hpp"
 #include "PlanePixelNode.h"
+#include "HeroHeadAndUpgrade.hpp"
 
 //这里包括我方英雄的头像和英雄本体
 class HuntingHerosManage:public HuntingHerosManageProtocal
@@ -36,10 +37,9 @@ protected:
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 
-    //头像区域
-
-    cocos2d::Node* _headsHubNode;
-    PixelNode* _pxHeads[4];
+    // 头像部分
+    HeroHeadAndUpgrade _headIcons[4];
+    std::unordered_map<int, HeroHeadAndUpgrade*> _positionMap;
     void initHeadsThings();
 
 };

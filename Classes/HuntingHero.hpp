@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "DynamicPixelNode.hpp"
-
+#include "QuestProtocals.hpp"
 // 一个战斗英雄
 // 地面单位都有一个 X 坐标
 
@@ -32,28 +32,12 @@ public:
     };
     static int boneIndexType2sopxId(int boneIndexType);
     static cocos2d::Vec3 boneIndex2relativePosition(int boneIndexType);
-    enum HeroPositionType
-    {
-        HPT_0, //最前排
-        HPT_1,
-        HPT_2,
-        HPT_3, //最后
-        HPT_OUT //视野外
-    };
-    static float heroPositionType2floatYposition(int positionType);
-    enum HeroType
-    {
-        HT_META, //基本
-        HT_SLOW_DOWN, //减速
-        HT_HIGH_ATTACK, //高功
-        HT_MULTI_ATTACK, //群攻
-        HT_BOMB_ATTACK //炸弹
-    };
+    static float heroPositionType2floatYposition(HeroPositionType positionType);
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
 
 
-    void op_configHeroTypeAndDegree(int heroType, int grade); // 由英雄类型和等级 来指定穿着套装和弓
+    void op_configHeroTypeAndDegree(HeroType heroType, int grade); // 由英雄类型和等级 来指定穿着套装和弓
     void op_configRelativeAngle(float angle); //逆时针变大，设置单个英雄的相对设计角度
     void op_startAiming(); //开始瞄准，会举起弓到水平位置
     void op_stopAiming(); //取消瞄准，会放下弓
@@ -66,15 +50,15 @@ public:
     void op_toastUpgrade(); //播放升级动画
     void op_show();
     void op_hide();
-    void op_move(int desPositionType, bool direct = false);
+    void op_move(HeroPositionType desPositionType, bool direct = false);
 
     //动作配置 以下动作，一旦执行，就会一直做下去，直到设置成其它动作。
     void ani_idle(); //空闲动作
     void ani_run(); //跑步动作
 protected:
-    int _heroType = HT_META;
+    HeroType _heroType = HeroType::HT_META;
     int _heroGrade = 0;
-    int _heroPositionType = HPT_OUT;
+    HeroPositionType _heroPositionType = HeroPositionType::HPT_OUT;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;

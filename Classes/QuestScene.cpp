@@ -118,9 +118,9 @@ bool QuestScene::init()
                                       &_battleRoles, &_battleRoad, &_cameraManage, _mainCamera, this);
     for (int i = 0; i < 4; i++ ){
         _huntingHero[i].init(_mainLayer, _mainCamera);
-        _huntingHero[i].op_configHeroTypeAndDegree(HuntingHero::HT_META, 0);
+        _huntingHero[i].op_configHeroTypeAndDegree(HeroType::HT_META, 0);
         _huntingHero[i].op_show();
-        _huntingHero[i].op_move(i, true);
+        _huntingHero[i].op_move(static_cast<HeroPositionType>(i), true);
     }
 
     MoneyManager::s()->configProtocals(&_topIcons);

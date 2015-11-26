@@ -233,6 +233,16 @@ public:
     virtual void op_configPower(float power, int angle) = 0; //power [0-1]
 };
 
+
+enum class HeroPositionType:int
+{
+        HPT_0 = 0, //最前排
+        HPT_1 = 1,
+        HPT_2 = 2,
+        HPT_3 = 3, //最后
+        HPT_OUT = 4 //视野外
+};
+
 class HuntingHerosManageProtocal
 {
 public:
@@ -240,6 +250,29 @@ public:
     virtual void op_aimingCancel() = 0; //power bar 通知瞄准取消
     virtual void op_configAiming(float angle, float strenth) = 0; //设置瞄准的参数
     virtual void op_toastBow(float angle, float strenth) = 0; //以这个角度开始放箭
+
+};
+
+enum class HeroHeadState:int
+{
+    EMPTY = 0, //空的，可购买英雄到此单位
+    ALIVE = 1, //满的，已经有英雄到此单位了
+};
+
+enum class HeroType:int
+{
+    HT_META = 0, //基本
+    HT_SLOW_DOWN = 1, //减速
+    HT_HIGH_ATTACK = 2, //高功
+    HT_MULTI_ATTACK = 3, //群攻
+    HT_BOMB_ATTACK = 4 //炸弹
+};
+
+class HeroHeadAndUpgradeProtocal
+{
+public:
+    virtual void op_configPosition(HeroPositionType position, bool direct) = 0; //设置位置
+    virtual HeroPositionType op_fetchPosition() = 0; //获取位置
 
 };
 
