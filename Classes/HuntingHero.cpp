@@ -128,6 +128,8 @@ void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // �
     // 穿上弓
     _dpxNode->configAddSopx(fmt::sprintf("hunters/bows/%c%d.png.sopx", bowType, grade), BT_BOW_MAX, boneIndex2relativePosition(BT_BOW_MAX));
 
+    _dpxNode->configSpecialDoubleBoneRotateFirst(BT_BOW_MAX, {0,0,45});
+
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_run();
 
@@ -273,7 +275,7 @@ void HuntingHero::op_configAiming(float angle, float strenth)
 
     _dpxNode->configAction(BT_HAND_L, {-10,head_pos-40,2.0}, {0,0,-angle}, 1.0f*3,1.0f*3, emptyac->clone());
 
-    _dpxNode->configAction(BT_BOW_MAX, {-10+4*3,head_pos-20-4*3,1}, {0,0,45-angle}, 3.f,3.f, emptyac->clone());
+    _dpxNode->configAction(BT_BOW_MAX, {-10+4*3,head_pos-20-4*3,1}, {0,0,45-angle-45}, 3.f*(1+strenth*0.8),3.f-strenth, emptyac->clone());
 }
 
 void HuntingHero::ani_idle() //空闲动作
@@ -293,7 +295,7 @@ void HuntingHero::ani_idle() //空闲动作
 
     _dpxNode->configAction(BT_HAND_L, {-10,head_pos-40,2.0}, {0,0,0}, 1.0f*3,1.0f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
 
-    _dpxNode->configAction(BT_BOW_MAX, {-10+4*3,head_pos-20-4*3,1}, {0,0,100}, 3.f,  3.f,RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
+    _dpxNode->configAction(BT_BOW_MAX, {-10+4*3,head_pos-20-4*3,1}, {0,0,100-45}, 3.f,  3.f,RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,2,0}), MoveBy::create(0.5, {0,-2,0}), NULL)));
 
 }
 
@@ -327,5 +329,5 @@ void HuntingHero::ani_run() //跑步动作
 
     _dpxNode->configAction(BT_HAND_L, {-10,head_pos-40,2.0}, {0,0,0}, 1.0f*3,1.0f*3, RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-35}),RotateBy::create(run_time*0.5, Vec3{0,0,35}), NULL), NULL)));
 
-    _dpxNode->configAction(BT_BOW_MAX, {-10+4*3,head_pos-20-4*3,1}, {0,0,100}, 3.f,3.f, RepeatForever::create(RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-15}),RotateBy::create(run_time*0.5, Vec3{0,0,15}), NULL), NULL))));
+    _dpxNode->configAction(BT_BOW_MAX, {-10+4*3,head_pos-20-4*3,1}, {0,0,100-45}, 3.f,3.f, RepeatForever::create(RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-15}),RotateBy::create(run_time*0.5, Vec3{0,0,15}), NULL), NULL))));
 }

@@ -46,6 +46,8 @@ public:
     void configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOutTime, int repeat = 1); //混色动画，用来实现，rival受攻击 repeat -1时 无止尽
     void configClear(); //清空 VBO
 
+    void configSpecialDoubleBoneRotateFirst(int boneIndex, cocos2d::Vec3 rotateion); //弓的特殊要求!!
+    //TODO 提供普遍双层 BONE，来应对更高级的 archor 等效果，使得 Bone 控制更灵活
 
     void update(float dt) override;
 
@@ -64,6 +66,8 @@ protected:
     static constexpr const int BONE_NUM_MAX = 10; //与 VSH 同步
     cocos2d::Node* _bones[BONE_NUM_MAX];
     cocos2d::Mat4 _boneMatrixs[BONE_NUM_MAX];
+    int _specialBoneIndex = -1;
+    cocos2d::Node* _specialBonePreNode;
 
     cocos2d::Vec4 _mixColor = {0,0,0,0};
     int _aniMixColorTime = 0;

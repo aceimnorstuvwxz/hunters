@@ -29,6 +29,9 @@ bool DynamicPixelNode::init()
         _bones[i] = n;
     }
 
+    _specialBonePreNode= Node::create();
+    _specialBonePreNode->retain();
+
     return true;
 }
 
@@ -112,6 +115,9 @@ void DynamicPixelNode::onDraw(const cocos2d::Mat4 &transform, uint32_t flags)
 
     for (int i = 0; i < BONE_NUM_MAX; i++) {
         _boneMatrixs[i] = _bones[i]->getNodeToParentTransform();
+    }
+    if (_specialBoneIndex != -1) {
+        _boneMatrixs[_specialBoneIndex] = _boneMatrixs[_specialBoneIndex]*_specialBonePreNode->getNodeToParentTransform();
     }
     loc = glProgram->getUniformLocation("u_bone_matrixs");
     glProgram->setUniformLocationWithMatrix4fv(loc, reinterpret_cast<float*>(_boneMatrixs), BONE_NUM_MAX);
@@ -276,4 +282,12 @@ void DynamicPixelNode::update(float dt)
             _aniMixColorAlphaStep = - _aniMixColorAlphaStep;
         }
     }
+}
+
+void DynamicPixelNode::configSpecialDoubleBoneRotateFirst(int boneIndex, cocos2d::Vec3 rotateion) //弓的特殊要求!!
+{
+    _specialBonePreNode->removeFromParent();
+    _bones[boneIndex]->addChild(_specialBonePreNode);
+    _specialBonePreNode->setRotation3D(rotateion);
+    _specialBoneIndex = boneIndex;
 }
