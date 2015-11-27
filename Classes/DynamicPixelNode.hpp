@@ -39,7 +39,7 @@ public:
     /*
      绝妙的方法，用空的 Node 以及 c2dx 的 action 体系来为我们计算骨骼的 matrix
      */
-    void configAction(int boneIndex, cocos2d::Vec3 position, cocos2d::Vec3 rotation, float scale, cocos2d::Action* action); //为某个骨骼配置动作，将取消该骨骼之前配置的动作，position 是该 bone 对整个 DynamicPixelNode 的相对位置
+    void configAction(int boneIndex, cocos2d::Vec3 position, cocos2d::Vec3 rotation, float scaleX, float scaleY, cocos2d::Action* action); //为某个骨骼配置动作，将取消该骨骼之前配置的动作，position 是该 bone 对整个 DynamicPixelNode 的相对位置
 
 
     void configMixColor(const cocos2d::Vec4& mixColor); //设置叠色，将用alpha与原色混合。默认alpha为0，显示原色。

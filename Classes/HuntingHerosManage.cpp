@@ -23,22 +23,34 @@ void HuntingHerosManage::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCa
 
 void HuntingHerosManage::op_aimingStart() //power bar 通知开始瞄准
 {
+    for (auto& head : _headIcons) {
+        head.op_fetchHero()->op_startAiming();
+    }
 
 }
 
 void HuntingHerosManage::op_aimingCancel() //power bar 通知瞄准取消
 {
 
+    for (auto& head : _headIcons) {
+        head.op_fetchHero()->op_stopAiming();
+    }
+
 }
 
 void HuntingHerosManage::op_configAiming(float angle, float strenth) //设置瞄准的参数
 {
 
+    for (auto& head : _headIcons) {
+        head.op_fetchHero()->op_configAiming(angle, strenth);
+    }
 }
 
 void HuntingHerosManage::op_toastBow(float angle, float strenth) //以这个角度开始放箭
 {
-
+    for (auto& head : _headIcons) {
+        head.op_fetchHero()->op_toastShoot();
+    }
 }
 
 

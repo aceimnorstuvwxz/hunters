@@ -233,13 +233,13 @@ void DynamicPixelNode::configAddSopx(const std::string& file, int boneIndex, coc
 
 }
 
-void DynamicPixelNode::configAction(int boneIndex, cocos2d::Vec3 position, cocos2d::Vec3 rotation, float scale, cocos2d::Action* action) //为某个骨骼配置动作，将取消该骨骼之前配置的动作
+void DynamicPixelNode::configAction(int boneIndex, cocos2d::Vec3 position, cocos2d::Vec3 rotation, float scaleX, float scaleY, cocos2d::Action* action) //为某个骨骼配置动作，将取消该骨骼之前配置的动作
 {
     assert(boneIndex >=0 && boneIndex < BONE_NUM_MAX);
     auto node = _bones[boneIndex];
     node->setPosition3D(position);
     node->setRotation3D(rotation);
-    node->setScale(scale);
+    node->setScale(scaleX, scaleY);
     node->stopAllActions();
     node->runAction(action);
 }

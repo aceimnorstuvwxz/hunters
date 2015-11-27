@@ -295,6 +295,7 @@ public:
     virtual HeroPositionType op_fetchPosition() = 0; //获取位置
     virtual void op_tellGoldChange() = 0; //被通知金币改变
 
+
 };
 
 #endif /* QuestProtocals_hpp */

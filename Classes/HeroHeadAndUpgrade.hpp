@@ -28,6 +28,8 @@ public:
     virtual HeroPositionType op_fetchPosition(); //获取位置
     virtual void op_tellGoldChange(); //被通知金币改变
 
+    HuntingHero* op_fetchHero() { return &_huntingHero; }
+
     void update(float dt);
 
 protected:
