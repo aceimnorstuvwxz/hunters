@@ -41,10 +41,13 @@ bool QuestScene::init()
         _battleRoles.op_battleIn();
     });
 
-    addCommonBtn({0.6,0.9}, "battle begin", [this](){
-        battleBegin();
-    });
+
 */
+    static int iid = 0;
+
+    addCommonBtn({0.9,0.4}, "next monster", [this](){
+        _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid++);
+    });
     addCommonBtn({0.9,0.2}, "power test", [this](){
         _powerBar.op_configPower(random(0.f, 1.f), random(0, 180));
     });
@@ -111,7 +114,7 @@ bool QuestScene::init()
 
     // testing
     _huntingMonster.init(_mainLayer, _mainCamera);
-    _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, 0);
+    _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, 4);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
