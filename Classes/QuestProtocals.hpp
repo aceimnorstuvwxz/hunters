@@ -288,6 +288,35 @@ public:
     virtual void op_move(HeroPositionType desPositionType, bool direct = false) = 0;
  };
 
+enum class HuntingMonsterGeneralType
+    //在图形上有大小区分，普通，大，极大，同时在攻击力、移动速度、血量上有不同配置
+{
+    NORMAL,
+    BIG,
+    GIANT
+};
+
+enum class HuntingMonsterSpecialType
+    //特效类别，特效表示这个怪有特技，同时图形上有粒子效果
+{
+    METAL, //速度慢，血量高，有紫色粒子效果
+    WOOD, //
+    WATER, //能够自愈
+    FIRE, //攻击力加强
+    EARTH, //移动速度快
+    NONE,
+};
+
+class HuntingMonsterProtocal
+{
+public:
+    virtual void op_configType(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level) = 0; //level 决定了其基础的等级，决定了套装样子和基础血量和攻击力
+    virtual void op_toastAttack() = 0; //攻击
+    virtual void op_toastUnderAttack() = 0; //播放被攻击动画，变白
+    virtual void op_toastDead() = 0; //播放死亡，散架了，坠落到地上，过一会儿后消失
+};
+
+
 class HeroHeadAndUpgradeProtocal
 {
 public:

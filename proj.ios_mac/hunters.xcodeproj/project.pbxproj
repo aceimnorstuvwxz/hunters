@@ -68,6 +68,7 @@
 		B539D28F1BE7620E0096FF04 /* PixelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B539D28D1BE7620E0096FF04 /* PixelNode.cpp */; };
 		B53B8CB31BEFA1BC006F5432 /* WelcoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB11BEFA1BC006F5432 /* WelcoScene.cpp */; };
 		B53B8CB81BF09DF8006F5432 /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */; };
+		B54186171C0C43350049A3FF /* HuntingMonster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54186151C0C43350049A3FF /* HuntingMonster.cpp */; };
 		B5594DC11BEBCBE7007BDD87 /* PixelTextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */; };
 		B57D70A51BE89A7A00A3036F /* QuestCameraManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */; };
 		B58066DD1BF8C5FF002A1DC1 /* hunting in Resources */ = {isa = PBXBuildFile; fileRef = B58066DC1BF8C5FF002A1DC1 /* hunting */; };
@@ -229,6 +230,8 @@
 		B53B8CB21BEFA1BC006F5432 /* WelcoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcoScene.h; sourceTree = "<group>"; };
 		B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
 		B53B8CB71BF09DF8006F5432 /* LoadingScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoadingScene.hpp; sourceTree = "<group>"; };
+		B54186151C0C43350049A3FF /* HuntingMonster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingMonster.cpp; sourceTree = "<group>"; };
+		B54186161C0C43350049A3FF /* HuntingMonster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingMonster.hpp; sourceTree = "<group>"; };
 		B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelTextNode.cpp; sourceTree = "<group>"; };
 		B5594DC01BEBCBE7007BDD87 /* PixelTextNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PixelTextNode.hpp; sourceTree = "<group>"; };
 		B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuestCameraManage.cpp; sourceTree = "<group>"; };
@@ -649,6 +652,8 @@
 		B59E7EC91C04A790005FA50D /* hunter-hero */ = {
 			isa = PBXGroup;
 			children = (
+				B54186151C0C43350049A3FF /* HuntingMonster.cpp */,
+				B54186161C0C43350049A3FF /* HuntingMonster.hpp */,
 				B59E7EDC1C0768C9005FA50D /* MoneyCostDef.cpp */,
 				B59E7EDD1C0768C9005FA50D /* MoneyCostDef.hpp */,
 				B59E7ED41C064D6A005FA50D /* MoneyManager.cpp */,
@@ -965,6 +970,7 @@
 				B5FFA66D1BECFB7000511FBD /* SingleBeat.cpp in Sources */,
 				B58DDCAB1BE8D70600B54804 /* HeroGraphicNode.cpp in Sources */,
 				B5BD19561BE645990052ACDD /* StealthTestScene.cpp in Sources */,
+				B54186171C0C43350049A3FF /* HuntingMonster.cpp in Sources */,
 				B5BD19521BE645990052ACDD /* McdLayer.cpp in Sources */,
 				B5944EA11BF11EB700028078 /* LongBeat.cpp in Sources */,
 				B5594DC11BEBCBE7007BDD87 /* PixelTextNode.cpp in Sources */,

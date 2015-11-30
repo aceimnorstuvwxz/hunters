@@ -7,6 +7,13 @@
 #include "cocos2d.h"
 // cocos2d-x 相关的加强辅助，项目间通用，常用。
 
+struct ACPositionScaleRotation //基础位置定义结构
+{
+    cocos2d::Vec3 position;
+    float scaleX;
+    float scaleY;
+    cocos2d::Vec3 rotation;
+};
 
 
 inline cocos2d::Vec2 soGenPos(const cocos2d::Vec2& pos)
