@@ -313,7 +313,7 @@ public:
     virtual void op_configType(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level) = 0; //level 决定了其基础的等级，决定了套装样子和基础血量和攻击力
     virtual void op_toastAttack() = 0; //攻击
     virtual void op_toastUnderAttack() = 0; //播放被攻击动画，变白
-    virtual void op_toastDead() = 0; //播放死亡，散架了，坠落到地上，过一会儿后消失
+    virtual void op_toastDead(cocos2d::Vec2 direction) = 0; //播放死亡，散架了，坠落到地上。从哪个方向的箭杀死的，头会按那个方向飞走，然后其它的散开落地
 };
 
 

@@ -26,27 +26,26 @@ bool QuestScene::init()
     PixelDataCache::s()->preloadChars();
     addCommonBtn({0.9,0.5}, "reset", [](){Director::getInstance()->replaceScene(QuestScene::create());});
 
-/*
-    addCommonBtn({0.35,0.95}, "battle cam", [this](){
-        _cameraManage.op_switchToPosition(QuestCameraPosition::BATTLE);
+
+    addCommonBtn({0.1,0.1}, "monster dead", [this](){
+        _huntingMonster.op_toastDead({1,-1});
     });
-    addCommonBtn({0.2,0.95}, "forward cam", [this](){
-        _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD);
+    addCommonBtn({0.1,0.2}, "monster underat", [this](){
+        _huntingMonster.op_toastUnderAttack();
     });
 
-    addCommonBtn({0.9,0.9}, "roles newbatt", [this](){
-        _battleRoles.op_newBattleConfig();
-    });
-    addCommonBtn({0.75,0.9}, "roles battleIn", [this](){
-        _battleRoles.op_battleIn();
+    addCommonBtn({0.1,0.3}, "monster attack", [this](){
+        _huntingMonster.op_toastAttack();
     });
 
-
-*/
     static int iid = 0;
 
-    addCommonBtn({0.9,0.4}, "next monster", [this](){
+    addCommonBtn({0.1,0.4}, "next monster", [this](){
         _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid++);
+    });
+
+    addCommonBtn({0.1,0.5}, "next monster", [this](){
+        _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid--);
     });
     addCommonBtn({0.9,0.2}, "power test", [this](){
         _powerBar.op_configPower(random(0.f, 1.f), random(0, 180));
