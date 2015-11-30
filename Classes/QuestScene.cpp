@@ -99,6 +99,7 @@ bool QuestScene::init()
     _powerBar.init(_mainLayer, _mainCamera);
     _huntingHerosManage.init(_mainLayer, _mainCamera);
 
+
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
     _beatField.configProtocals(&_battleRoles, &_battleRoad);
@@ -107,6 +108,10 @@ bool QuestScene::init()
 
     MoneyManager::s()->configProtocals(&_topIcons);
     _powerBar.configProtocals(&_huntingHerosManage);
+
+    // testing
+    _huntingMonster.init(_mainLayer, _mainCamera);
+    _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, 0);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);

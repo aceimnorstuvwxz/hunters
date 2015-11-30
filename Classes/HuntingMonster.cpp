@@ -208,3 +208,17 @@ void HuntingMonster::ani_moving(float radio)
 
     _dpxNode->configAction(BT_SWORD_MAX, help_calcBonePosition(BT_SWORD_MAX).position, {0,0,100-45}, 3.f,3.f, RepeatForever::create(RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-15}),RotateBy::create(run_time*0.5, Vec3{0,0,15}), NULL), NULL))));
 }
+
+
+void HuntingMonster::op_toastAttack() //攻击
+{
+
+}
+void HuntingMonster::op_toastUnderAttack() //播放被攻击动画，变白
+{
+
+}
+void HuntingMonster::op_toastDead() //播放死亡，散架了，坠落到地上，过一会儿后消失
+{
+    
+}
