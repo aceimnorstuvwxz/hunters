@@ -33,6 +33,7 @@ public:
     static int boneIndexType2sopxId(int boneIndexType);
     static cocos2d::Vec3 boneIndex2relativePosition(int boneIndexType);
     static float heroPositionType2floatYposition(HeroPositionType positionType);
+    cocos2d::Vec3 help_calcBonePosition(int boneIndexType);
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
 
