@@ -27,33 +27,31 @@ bool QuestScene::init()
     addCommonBtn({0.9,0.5}, "reset", [](){Director::getInstance()->replaceScene(QuestScene::create());});
 
 
-    addCommonBtn({0.1,0.1}, "monster dead", [this](){
-        _huntingMonster.op_toastDead({1,-1});
-    });
-    addCommonBtn({0.1,0.2}, "monster underat", [this](){
-        _huntingMonster.op_toastUnderAttack();
-    });
-
-    addCommonBtn({0.1,0.3}, "monster attack", [this](){
-        _huntingMonster.op_toastAttack();
-    });
+//    addCommonBtn({0.1,0.1}, "monster dead", [this](){
+//        _huntingMonster.op_toastDead({1,-1});
+//    });
+//    addCommonBtn({0.1,0.2}, "monster underat", [this](){
+//        _huntingMonster.op_toastUnderAttack();
+//    });
+//
+//    addCommonBtn({0.1,0.3}, "monster attack", [this](){
+//        _huntingMonster.op_toastAttack();
+//    });
 
     addCommonBtn({0.1,0.9}, "monster attack", [this](){
         _huntingArrowManage.op_shootArrow(HuntingArrowType::META_0, HeroPositionType::HPT_0, random(0, 180), 0.5);
     });
 
-    static int iid = 0;
-
-    addCommonBtn({0.1,0.4}, "next monster", [this](){
-        _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid++);
-    });
-
-    addCommonBtn({0.1,0.5}, "next monster", [this](){
-        _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid--);
-    });
-    addCommonBtn({0.9,0.2}, "power test", [this](){
-        _powerBar.op_configPower(random(0.f, 1.f), random(0, 180));
-    });
+//    static int iid = 0;
+//
+//    addCommonBtn({0.1,0.4}, "next monster", [this](){
+//        _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid++);
+//    });
+//
+//    addCommonBtn({0.1,0.5}, "next monster", [this](){
+//        _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid--);
+//    });
+  
 
 
     static float wind = 0;
@@ -105,7 +103,7 @@ bool QuestScene::init()
     _powerBar.init(_mainLayer, _mainCamera);
     _huntingHerosManage.init(_mainLayer, _mainCamera);
     _huntingArrowManage.init(_mainLayer, _mainCamera);
-
+    _huntingMonsterManage.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
@@ -116,10 +114,6 @@ bool QuestScene::init()
     MoneyManager::s()->configProtocals(&_topIcons);
     _powerBar.configProtocals(&_huntingHerosManage);
     _huntingArrowManage.configProtocals(&_windBar);
-
-    // testing
-    _huntingMonster.init(_mainLayer, _mainCamera);
-    _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, 4);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
@@ -181,4 +175,5 @@ void QuestScene::update(float dt)
     _energyBar.update(dt);
     _windBar.update(dt);
     _huntingArrowManage.update(dt);
+    _huntingMonsterManage.update(dt);
 }

@@ -354,4 +354,9 @@ public:
     virtual void op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) = 0; //放箭
 };
 
+class HuntingMonsterManageProtocal
+{
+public:
+};
+
 #endif /* QuestProtocals_hpp */

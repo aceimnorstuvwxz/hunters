@@ -71,6 +71,7 @@
 		B54186171C0C43350049A3FF /* HuntingMonster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54186151C0C43350049A3FF /* HuntingMonster.cpp */; };
 		B5594DC11BEBCBE7007BDD87 /* PixelTextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */; };
 		B56EF9BD1C0DE8AA00FD7BBE /* Box2dTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56EF9BB1C0DE8AA00FD7BBE /* Box2dTestScene.cpp */; };
+		B56EF9C01C0E0D7F00FD7BBE /* HuntingMonsterManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56EF9BE1C0E0D7F00FD7BBE /* HuntingMonsterManage.cpp */; };
 		B57D70A51BE89A7A00A3036F /* QuestCameraManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */; };
 		B58066DD1BF8C5FF002A1DC1 /* hunting in Resources */ = {isa = PBXBuildFile; fileRef = B58066DC1BF8C5FF002A1DC1 /* hunting */; };
 		B581F9D01BFE3A6900F9BDDB /* TopIcons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B581F9CE1BFE3A6900F9BDDB /* TopIcons.cpp */; };
@@ -238,6 +239,8 @@
 		B5594DC01BEBCBE7007BDD87 /* PixelTextNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PixelTextNode.hpp; sourceTree = "<group>"; };
 		B56EF9BB1C0DE8AA00FD7BBE /* Box2dTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Box2dTestScene.cpp; sourceTree = "<group>"; };
 		B56EF9BC1C0DE8AA00FD7BBE /* Box2dTestScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Box2dTestScene.hpp; sourceTree = "<group>"; };
+		B56EF9BE1C0E0D7F00FD7BBE /* HuntingMonsterManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingMonsterManage.cpp; sourceTree = "<group>"; };
+		B56EF9BF1C0E0D7F00FD7BBE /* HuntingMonsterManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingMonsterManage.hpp; sourceTree = "<group>"; };
 		B57D70A31BE89A7A00A3036F /* QuestCameraManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuestCameraManage.cpp; sourceTree = "<group>"; };
 		B57D70A41BE89A7A00A3036F /* QuestCameraManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuestCameraManage.hpp; sourceTree = "<group>"; };
 		B58066DC1BF8C5FF002A1DC1 /* hunting */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hunting; sourceTree = "<group>"; };
@@ -684,6 +687,8 @@
 				B59E7ED91C074944005FA50D /* HeroHeadAndUpgrade.hpp */,
 				B5AE97301C0D950900C497FB /* HuntingArrowManage.cpp */,
 				B5AE97311C0D950900C497FB /* HuntingArrowManage.hpp */,
+				B56EF9BE1C0E0D7F00FD7BBE /* HuntingMonsterManage.cpp */,
+				B56EF9BF1C0E0D7F00FD7BBE /* HuntingMonsterManage.hpp */,
 			);
 			name = "hunter-hero";
 			sourceTree = "<group>";
@@ -955,6 +960,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5BD19741BE6540E0052ACDD /* QuestProtocals.cpp in Sources */,
+				B56EF9C01C0E0D7F00FD7BBE /* HuntingMonsterManage.cpp in Sources */,
 				B5944E9E1BF1101C00028078 /* HealthBeat.cpp in Sources */,
 				B53B8CB31BEFA1BC006F5432 /* WelcoScene.cpp in Sources */,
 				B5BD19771BE658230052ACDD /* BattleRoad.cpp in Sources */,

@@ -21,8 +21,8 @@
 #include "WindBar.hpp"
 #include "PowerBar.hpp"
 #include "HuntingHerosManage.hpp"
-#include "HuntingMonster.hpp"
 #include "HuntingArrowManage.hpp"
+#include "HuntingMonsterManage.hpp"
 // Beat Quest Game Scene
 
 
@@ -58,7 +58,7 @@ protected:
     PowerBar _powerBar;
     HuntingHerosManage _huntingHerosManage;
 
-    HuntingMonster _huntingMonster;
+    HuntingMonsterManage _huntingMonsterManage;
     HuntingArrowManage _huntingArrowManage;
 
 

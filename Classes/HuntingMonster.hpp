@@ -20,6 +20,11 @@
 class HuntingMonster:HuntingMonsterProtocal
 {
 public:
+
+    static std::shared_ptr<HuntingMonster> create(){
+        return std::make_shared<HuntingMonster>();
+    }
+
     enum BoneIndexType
     {
         BT_STEADY,
@@ -40,6 +45,7 @@ public:
     ACPositionScaleRotation help_boneDeadGesture(int boneIndex);
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+
 
 
 
