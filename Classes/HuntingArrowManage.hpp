@@ -28,11 +28,15 @@ class HuntingArrowManage:public HuntingArrowManageProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+    void configProtocals(WindBarProtocal* windBarProtocal) {
+        _windBarProtocal = windBarProtocal;
+    }
     virtual void op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) ; //放箭
 
     void update(float dt);
 
 protected:
+    WindBarProtocal* _windBarProtocal;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;

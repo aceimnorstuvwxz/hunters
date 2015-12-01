@@ -39,7 +39,7 @@ bool QuestScene::init()
     });
 
     addCommonBtn({0.1,0.9}, "monster attack", [this](){
-        _huntingArrowManage.op_shootArrow(HuntingArrowType::META_0, HeroPositionType::HPT_0, 45, 0.5);
+        _huntingArrowManage.op_shootArrow(HuntingArrowType::META_0, HeroPositionType::HPT_0, random(0, 180), 0.5);
     });
 
     static int iid = 0;
@@ -115,6 +115,7 @@ bool QuestScene::init()
 
     MoneyManager::s()->configProtocals(&_topIcons);
     _powerBar.configProtocals(&_huntingHerosManage);
+    _huntingArrowManage.configProtocals(&_windBar);
 
     // testing
     _huntingMonster.init(_mainLayer, _mainCamera);

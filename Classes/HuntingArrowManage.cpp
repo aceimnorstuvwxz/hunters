@@ -7,6 +7,7 @@
 //
 
 #include "HuntingArrowManage.hpp"
+#include "SOCommon.h"
 
 
 USING_NS_CC;
@@ -43,7 +44,7 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
 
     float spx = strenth * std::cos(angle/180*3.1415926);
     float spy = strenth * std::sin(angle/180*3.1415926);
-    const float speed_scale = 10;
+    const float speed_scale = 100;
     cocos2d::Vec2 speed = speed_scale*Vec2{spx,spy};
 
     _arrowUnits.push_back({px,speed});
@@ -51,8 +52,19 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
 
 bool HuntingArrowManage::dealWithUnit(ArrowUnit& unit, float dt)
 {
+    const float gravity = 10;
+    const float windpower = 2;
+
+    cocos2d::Vec2 acce = {windpower*_windBarProtocal->op_fetchWind(), -gravity};
+
     unit._pxNode->setPositionY(unit._speed.x * dt + unit._pxNode->getPositionY()); //x
 
     unit._pxNode->setPositionZ(unit._speed.y * dt + unit._pxNode->getPositionZ()); //y
+
+    unit._pxNode->setRotation3D({90, 45-vector2angel(unit._speed), -90});
+
+
+    unit._speed += acce*dt;
+    
     return false;
 }

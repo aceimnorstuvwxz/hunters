@@ -222,6 +222,8 @@ class WindBarProtocal
 {
 public:
     virtual void op_configWind(float wind) = 0; //设置风力数值，正表示往右（顺），负的表示往左（逆风）0无风
+
+    virtual float op_fetchWind() = 0;
 };
 
 class PowerBarProtocal
