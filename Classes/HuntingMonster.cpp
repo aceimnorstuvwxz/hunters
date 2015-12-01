@@ -339,3 +339,9 @@ void HuntingMonster::op_toastDead(cocos2d::Vec2 direction) //播放死亡，散�
         _dpxNode->configAction(i, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, EaseIn::create( Spawn::create(MoveTo::create(0.5, {dfg.position.x + cfg.position.x+xradio*(cfg.position.y-ground_y), dfg.position.y, dfg.position.z}), RotateTo::create(0.5, dfg.rotation), NULL), 1.f));
     }
 }
+
+void HuntingMonster::update(float dt)
+{
+    const float move_speed = 2;
+    _hubNode->setPositionY(_hubNode->getPositionY() - move_speed*dt);
+}

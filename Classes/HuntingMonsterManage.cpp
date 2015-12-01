@@ -30,6 +30,10 @@ void HuntingMonsterManage::update(float dt)
             _timeLeft = 2;
         }
     }
+
+    for (auto sp : _monsters) {
+        sp->update(dt);
+    }
 }
 
 void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level)

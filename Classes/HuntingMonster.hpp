@@ -54,6 +54,8 @@ public:
     virtual void op_toastUnderAttack(); //播放被攻击动画，变白
     virtual void op_toastDead(cocos2d::Vec2 direction); //播放死亡，散架了，坠落到地上，过一会儿后消失
 
+    void update(float dt);
+
 protected:
     HuntingMonsterGeneralType _generalType;
     HuntingMonsterSpecialType _specialType;
