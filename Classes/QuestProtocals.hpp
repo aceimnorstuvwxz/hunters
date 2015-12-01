@@ -327,4 +327,29 @@ public:
 
 };
 
+ enum class HuntingArrowType:int
+{
+    META_0,
+    META_1,
+    META_2,
+    SLOW_0,
+    SLOW_1,
+    SLOW_2,
+    HIGH_0,
+    HIGH_1,
+    HIGH_2,
+    MULTI_0,
+    MULTI_1,
+    MULTI_2,
+    BOMB_0,
+    BOMB_1,
+    BOMB_2
+};
+
+class HuntingArrowManageProtocal
+{
+public:
+    virtual void op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) = 0; //放箭
+};
+
 #endif /* QuestProtocals_hpp */

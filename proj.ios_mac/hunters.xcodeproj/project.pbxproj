@@ -94,6 +94,7 @@
 		B59E7ED61C064D6A005FA50D /* MoneyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ED41C064D6A005FA50D /* MoneyManager.cpp */; };
 		B59E7EDA1C074944005FA50D /* HeroHeadAndUpgrade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ED81C074944005FA50D /* HeroHeadAndUpgrade.cpp */; };
 		B59E7EDE1C0768C9005FA50D /* MoneyCostDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7EDC1C0768C9005FA50D /* MoneyCostDef.cpp */; };
+		B5AE97321C0D950900C497FB /* HuntingArrowManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5AE97301C0D950900C497FB /* HuntingArrowManage.cpp */; };
 		B5BD194E1BE645990052ACDD /* BeatDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19311BE645990052ACDD /* BeatDef.cpp */; };
 		B5BD194F1BE645990052ACDD /* BeatQuestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */; };
 		B5BD19501BE645990052ACDD /* format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19351BE645990052ACDD /* format.cpp */; };
@@ -279,6 +280,8 @@
 		B59E7ED91C074944005FA50D /* HeroHeadAndUpgrade.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeroHeadAndUpgrade.hpp; sourceTree = "<group>"; };
 		B59E7EDC1C0768C9005FA50D /* MoneyCostDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoneyCostDef.cpp; sourceTree = "<group>"; };
 		B59E7EDD1C0768C9005FA50D /* MoneyCostDef.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoneyCostDef.hpp; sourceTree = "<group>"; };
+		B5AE97301C0D950900C497FB /* HuntingArrowManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingArrowManage.cpp; sourceTree = "<group>"; };
+		B5AE97311C0D950900C497FB /* HuntingArrowManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingArrowManage.hpp; sourceTree = "<group>"; };
 		B5BD19311BE645990052ACDD /* BeatDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatDef.cpp; sourceTree = "<group>"; };
 		B5BD19321BE645990052ACDD /* BeatDef.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BeatDef.hpp; sourceTree = "<group>"; };
 		B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatQuestScene.cpp; sourceTree = "<group>"; };
@@ -666,6 +669,8 @@
 				B59E7ED21C064B72005FA50D /* HuntingHerosManage.hpp */,
 				B59E7ED81C074944005FA50D /* HeroHeadAndUpgrade.cpp */,
 				B59E7ED91C074944005FA50D /* HeroHeadAndUpgrade.hpp */,
+				B5AE97301C0D950900C497FB /* HuntingArrowManage.cpp */,
+				B5AE97311C0D950900C497FB /* HuntingArrowManage.hpp */,
 			);
 			name = "hunter-hero";
 			sourceTree = "<group>";
@@ -960,6 +965,7 @@
 				B58DDCB11BE91B1500B54804 /* BattleRoles.cpp in Sources */,
 				B5BD19531BE645990052ACDD /* ScatPixelDef.cpp in Sources */,
 				B506AEBC1BEF742600021FC7 /* ProgressInfo.cpp in Sources */,
+				B5AE97321C0D950900C497FB /* HuntingArrowManage.cpp in Sources */,
 				B58DDCB91BE9368700B54804 /* RivalGraphicAnimationDef.cpp in Sources */,
 				B581F9D61BFF0D4700F9BDDB /* EnergyBar.cpp in Sources */,
 				B506AEB21BEF5EC500021FC7 /* ShieldBeat.cpp in Sources */,
