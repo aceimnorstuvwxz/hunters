@@ -20,7 +20,8 @@
 struct ArrowUnit
 {
     PixelNode* _pxNode; //图形本体
-    //BOX2D的本体？？？
+    cocos2d::Vec2 _speed; //速度
+
 };
 
 class HuntingArrowManage:public HuntingArrowManageProtocal
@@ -35,6 +36,9 @@ protected:
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
+    std::list<ArrowUnit> _arrowUnits;
+
+    bool dealWithUnit(ArrowUnit& unit, float dt);
     
 };
 #endif /* HuntingArrowManage_hpp */

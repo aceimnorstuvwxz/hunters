@@ -8,6 +8,7 @@
 #include "QuestScene.h"
 #include "WelcoScene.h"
 
+
 USING_NS_CC;
 
 bool TestGuideScene::init()

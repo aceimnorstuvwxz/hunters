@@ -38,6 +38,10 @@ bool QuestScene::init()
         _huntingMonster.op_toastAttack();
     });
 
+    addCommonBtn({0.1,0.9}, "monster attack", [this](){
+        _huntingArrowManage.op_shootArrow(HuntingArrowType::META_0, HeroPositionType::HPT_0, 45, 0.5);
+    });
+
     static int iid = 0;
 
     addCommonBtn({0.1,0.4}, "next monster", [this](){
@@ -100,6 +104,7 @@ bool QuestScene::init()
     _topIcons.init(_mainLayer, _mainCamera);
     _powerBar.init(_mainLayer, _mainCamera);
     _huntingHerosManage.init(_mainLayer, _mainCamera);
+    _huntingArrowManage.init(_mainLayer, _mainCamera);
 
 
     // config
@@ -174,4 +179,5 @@ void QuestScene::update(float dt)
     _topIcons.update(dt);
     _energyBar.update(dt);
     _windBar.update(dt);
+    _huntingArrowManage.update(dt);
 }
