@@ -24,7 +24,7 @@ float heroPositionType2floatYposition(HeroPositionType positionType)
             r = start_pos + 3*pos_step;
             break;
         case HeroPositionType::HPT_OUT:
-            r = start_pos - out_pos_n*pos_step;
+            r = QuestDef::CASTLE_POS;
             break;
 
         default:

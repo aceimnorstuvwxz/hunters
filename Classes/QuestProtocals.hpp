@@ -391,7 +391,7 @@ public:
 inline cocos2d::Vec2 huntingCalcSpeed(float angle, float strenth){
     float spx = strenth * std::cos(angle/180*3.1415926);
     float spy = strenth * std::sin(angle/180*3.1415926);
-    const float speed_scale = 100;
+    const float speed_scale = 100*1.5;
     cocos2d::Vec2 speed = speed_scale*cocos2d::Vec2{spx,spy};
     return speed;
 }
@@ -400,7 +400,7 @@ inline cocos2d::Vec2 huntingCalcAcce(float wind){
     const float gravity = 50;
     const float windpower = 4;
 
-    cocos2d::Vec2 acce = {windpower*wind, -gravity};
+    cocos2d::Vec2 acce = 1.5f*cocos2d::Vec2{windpower*wind, -gravity};
     return acce;
 }
 

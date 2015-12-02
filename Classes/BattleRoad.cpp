@@ -230,8 +230,36 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
         }, 0.5, 100, 0.5, "dsfd");
 //        node->runAction(RepeatForever::create(Sequence::create(FadeOut::create(2.f), FadeIn::create(2.f), NULL)));
     }*/
+    initCastleThings();
 
+}
 
+void BattleRoad::initCastleThings()
+{
+    const float scale = 1.6;
+    {
+        auto px = PixelNode::create();
+        px->setCameraMask(_mainCamera->getCameraMask());
+        px->configSopx("hunters/sopx/castle.png.sopx");
+        px->setPosition3D({-2,QuestDef::CASTLE_POS,0});
+        px->setRotation3D({90,0,-90});
+        px->setScale(QuestDef::ARROW_SCALE);
+        _mainLayer->addChild(px);
+        _pxCastle = px;
+        _pxCastle->setScale(scale);
+    }
+
+    {
+        auto px = PixelNode::create();
+        px->setCameraMask(_mainCamera->getCameraMask());
+        px->configSopx("hunters/sopx/castle_bg.png.sopx");
+        px->setPosition3D({-3,QuestDef::CASTLE_POS,0});
+        px->setRotation3D({90,0,-90});
+        px->setScale(QuestDef::ARROW_SCALE);
+        _mainLayer->addChild(px);
+        _pxCantleBg = px;
+        _pxCantleBg->setScale(scale);
+    }
 }
 
 void BattleRoad::op_config(int which)

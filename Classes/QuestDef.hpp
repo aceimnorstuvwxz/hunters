@@ -58,6 +58,7 @@ public:
     constexpr static const float ARROW_SHOOT_Y = 5;
     constexpr static const float ARROW_SCALE = 0.5;
     constexpr static const float BOW_TOAST_STEP = 0.5;
+    constexpr static const float CASTLE_POS = -140;
     
 
 

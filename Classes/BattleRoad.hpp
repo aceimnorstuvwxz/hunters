@@ -10,6 +10,7 @@
 #include "QuestProtocals.hpp"
 #include "RoadPlane.h"
 #include "PlanePixelNode.h"
+#include "PixelNode.h"
 
 // 战斗场景
 // 有多套战斗场景
@@ -55,6 +56,10 @@ protected:
     RoadPlane* _leftShadow;
     RoadPlane* _rightShadow;
     RoadPlane* _middleShadow;
+
+    PixelNode* _pxCastle;
+    PixelNode* _pxCantleBg;
+    void initCastleThings();
 
 };
 
