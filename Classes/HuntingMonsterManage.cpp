@@ -20,14 +20,27 @@ void HuntingMonsterManage::update(float dt)
 {
     _timeLeft -= dt;
     if (_timeLeft <= 0) {
-        addMonster(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, false, _currentWave);
+
+        HuntingMonsterGeneralType gt;
+        float ran = rand_0_1();
+        if (ran < (0.05 + _currentWave/50.f*0.3f)) {
+            gt = HuntingMonsterGeneralType::GIANT;
+        } else if (ran < (0.05 + _currentWave/50.f*0.3f + 0.1f)) {
+            gt = HuntingMonsterGeneralType::BIG;
+        } else {
+            gt = HuntingMonsterGeneralType::NORMAL;
+        }
+
+
+        addMonster(gt, HuntingMonsterSpecialType::NONE, false, _currentWave);
         _currentWaveMonsterCnt--;
         if (_currentWaveMonsterCnt == 0) {
             _currentWave++;
             _currentWaveMonsterCnt = 10;
-            _timeLeft = 10;
+            _timeLeft = random(20, 50);
         } else {
-            _timeLeft = 2;
+            _timeLeft = gt == HuntingMonsterGeneralType::GIANT ? random(10, 15) :
+            gt == HuntingMonsterGeneralType::BIG? random(8, 10): random(5,8);
         }
     }
 

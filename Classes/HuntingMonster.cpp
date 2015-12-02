@@ -91,6 +91,11 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     //会清空 VBO 后，重新写数据
     _dpxNode->configClear();
 
+
+    _dpxNode->setScale(generalType ==  HuntingMonsterGeneralType::NORMAL ? 1.f :
+                       generalType == HuntingMonsterGeneralType::BIG ? 2.f:
+                       3.f);
+
     // 穿衣服
     for (int i = 0; i < BT_SWORD_MAX; i++) {
         _dpxNode->configAddSopx(fmt::sprintf("hunters/monsters/%d.tga.png.%d.so.png.sopx", level, boneIndexType2sopxId(i)), i, boneIndex2relativePosition(i), true, false);

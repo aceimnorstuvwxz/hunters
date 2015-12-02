@@ -55,8 +55,8 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
 
 bool HuntingArrowManage::dealWithUnit(ArrowUnit& unit, float dt)
 {
-    const float gravity = 10;
-    const float windpower = 2;
+    const float gravity = 50;
+    const float windpower = 4;
 
     cocos2d::Vec2 acce = {windpower*_windBarProtocal->op_fetchWind(), -gravity};
 
