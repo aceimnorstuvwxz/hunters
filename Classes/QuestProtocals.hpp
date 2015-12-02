@@ -246,6 +246,9 @@ enum class HeroPositionType:int
         HPT_OUT = 4 //视野外
 };
 
+float heroPositionType2floatYposition(HeroPositionType positionType);
+
+
 class HuntingHerosManageProtocal
 {
 public:
