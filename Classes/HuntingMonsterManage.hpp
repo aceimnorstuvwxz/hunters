@@ -24,6 +24,7 @@ class HuntingMonsterManage:public HuntingMonsterManageProtocal
 public:
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+    virtual void op_dealCollision(ArrowUnit& arrow); 
 
     void update(float dt);
 
@@ -38,6 +39,8 @@ protected:
     float _timeLeft = 10; //初始的5秒休息
 
     void addMonster(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level);
+
+    bool dealWithPerMonster(std::shared_ptr<HuntingMonster> monster, ArrowUnit& arrow);
 };
 
 #endif /* HuntingMonsterManage_hpp */

@@ -17,19 +17,15 @@
 #include "HeroHeadAndUpgrade.hpp"
 
 
-struct ArrowUnit
-{
-    PixelNode* _pxNode; //图形本体
-    cocos2d::Vec2 _speed; //速度
 
-};
 
 class HuntingArrowManage:public HuntingArrowManageProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(WindBarProtocal* windBarProtocal) {
+    void configProtocals(WindBarProtocal* windBarProtocal, HuntingMonsterManageProtocal* huntingMonsterManageProtocal) {
         _windBarProtocal = windBarProtocal;
+        _huntingMonsterManageProtocal = huntingMonsterManageProtocal;
     }
     virtual void op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) ; //放箭
 
@@ -37,12 +33,13 @@ public:
 
 protected:
     WindBarProtocal* _windBarProtocal;
+    HuntingMonsterManageProtocal* _huntingMonsterManageProtocal;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
     std::list<ArrowUnit> _arrowUnits;
 
-    bool dealWithUnit(ArrowUnit& unit, float dt);
+    void dealWithUnit(ArrowUnit& unit, float dt);
     
 };
 #endif /* HuntingArrowManage_hpp */

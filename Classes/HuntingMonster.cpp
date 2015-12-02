@@ -14,6 +14,9 @@
 #include "QuestDef.hpp"
 
 USING_NS_CC;
+
+int HuntingMonster::_idGen = 0;
+
 void HuntingMonster::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
 {
     _mainLayer = mainLayer;
@@ -21,6 +24,7 @@ void HuntingMonster::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera
 
     initHubThings();
     initMonsterThings();
+    _id = _idGen++;
 }
 
 void HuntingMonster::initHubThings()
@@ -41,6 +45,12 @@ void HuntingMonster::initMonsterThings()
     _dpxNode->setPosition3D({0,0,0});
     _hubNode->addChild(_dpxNode);
     _dpxNode->setCameraMask(_mainCamera->getCameraMask(), true);
+
+    _pxRect = PixelNode::create();
+    _pxRect->setCameraMask(_mainCamera->getCameraMask());
+    _pxRect->setPosition3D({0,0,1});
+    _pxRect->configSopx("hunters/sopx/hit_rect.png.sopx");
+    _hubNode->addChild(_pxRect);
 }
 int HuntingMonster::boneIndexType2sopxId(int boneIndexType)
 {
@@ -92,9 +102,7 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     _dpxNode->configClear();
 
 
-    _dpxNode->setScale(generalType ==  HuntingMonsterGeneralType::NORMAL ? 1.f :
-                       generalType == HuntingMonsterGeneralType::BIG ? 2.f:
-                       3.f);
+    _dpxNode->setScale(huntingMonsterGeneralType2scale(generalType));
 
     // 穿衣服
     for (int i = 0; i < BT_SWORD_MAX; i++) {
@@ -344,6 +352,48 @@ void HuntingMonster::op_toastDead(cocos2d::Vec2 direction) //播放死亡，散�
         auto dfg = help_boneDeadGesture(i);
         _dpxNode->configAction(i, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, EaseIn::create( Spawn::create(MoveTo::create(0.5, {dfg.position.x + cfg.position.x+xradio*(cfg.position.y-ground_y), dfg.position.y, dfg.position.z}), RotateTo::create(0.5, dfg.rotation), NULL), 1.f));
     }
+}
+
+int HuntingMonster::op_getId()
+{
+    return _id;
+}
+
+void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
+{
+    Vec2 pos_arrow = {arrow._pxNode->getPositionY(), arrow._pxNode->getPositionZ()};
+    float pos_monster = _hubNode->getPositionY();
+
+    float x_expand = 0.5f*20*huntingMonsterGeneralType2scale(_generalType)*0.15;
+    float y_height = 20*4*huntingMonsterGeneralType2scale(_generalType)*0.15f;
+
+    if (pos_arrow.x > pos_monster-x_expand && pos_arrow.x < pos_monster+x_expand && pos_arrow.y > 0 &&
+        pos_arrow.y < y_height
+        ) {
+        //击中
+        //检查是否重复
+        bool duplicate = false;
+        for (auto id : arrow._hitedMonsterIds) {
+            if (id == this->_id) {
+                //重复击中
+                duplicate = true;break;
+            }
+        }
+
+        if (!duplicate) {
+            bool isThrough = arrow._leftHitTimes > 1;
+            //真的击中了
+            arrow._leftHitTimes--;
+            arrow._hitedMonsterIds.push_back(_id);
+
+            //附箭或穿透效果
+//            applyEffectArrow(arrow);
+
+            //通用效果（根据 arrow 速度和方向的击退效果，受伤闪白）
+
+        }
+    }
+
 }
 
 void HuntingMonster::update(float dt)

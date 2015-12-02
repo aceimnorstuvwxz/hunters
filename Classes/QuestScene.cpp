@@ -113,7 +113,7 @@ bool QuestScene::init()
 
     MoneyManager::s()->configProtocals(&_topIcons);
     _powerBar.configProtocals(&_huntingHerosManage);
-    _huntingArrowManage.configProtocals(&_windBar);
+    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage);
 
     // init actions

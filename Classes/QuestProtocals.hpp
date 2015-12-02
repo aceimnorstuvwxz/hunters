@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include "HeroGraphicUnitAnimationDef.hpp"
+#include "PixelNode.h"
 
 
 class BattleRoadProtocal
@@ -301,6 +302,12 @@ enum class HuntingMonsterGeneralType
     GIANT
 };
 
+inline float huntingMonsterGeneralType2scale(HuntingMonsterGeneralType generalType){
+    return  generalType ==  HuntingMonsterGeneralType::NORMAL ? 1.f :
+        generalType == HuntingMonsterGeneralType::BIG ? 2.f:
+    3.f;
+}
+
 enum class HuntingMonsterSpecialType
     //特效类别，特效表示这个怪有特技，同时图形上有粒子效果
 {
@@ -311,7 +318,7 @@ enum class HuntingMonsterSpecialType
     EARTH, //移动速度快
     NONE,
 };
-
+struct ArrowUnit;
 class HuntingMonsterProtocal
 {
 public:
@@ -319,6 +326,8 @@ public:
     virtual void op_toastAttack() = 0; //攻击
     virtual void op_toastUnderAttack() = 0; //播放被攻击动画，变白
     virtual void op_toastDead(cocos2d::Vec2 direction) = 0; //播放死亡，散架了，坠落到地上。从哪个方向的箭杀死的，头会按那个方向飞走，然后其它的散开落地
+    virtual int op_getId() = 0;
+    virtual void op_dealWithArrow(ArrowUnit& arrow) = 0;
 };
 
 
@@ -332,7 +341,7 @@ public:
 
 };
 
- enum class HuntingArrowType:int
+enum class HuntingArrowType:int
 {
     META_0 = 00,
     META_1 = 01,
@@ -351,6 +360,11 @@ public:
     BOMB_2 = 42
 };
 
+inline int hitTimesOfArrow(HuntingArrowType type)
+{
+    return type == HuntingArrowType::HIGH_1 ? 2: type == HuntingArrowType::HIGH_2 ? 3 : 1;
+}
+
 HuntingArrowType huntingHeroType2huntingArrowType(HeroType heroType, int grade);
 
 class HuntingArrowManageProtocal
@@ -359,9 +373,19 @@ public:
     virtual void op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) = 0; //放箭
 };
 
+struct ArrowUnit
+{
+    PixelNode* _pxNode; //图形本体
+    cocos2d::Vec2 _speed; //速度
+    HuntingArrowType _type; //弓箭类型
+    int _leftHitTimes; //剩余击中次数 一般的为1 能够穿透的>1
+    std::vector<int> _hitedMonsterIds; //已经击中的怪物
+};
+
 class HuntingMonsterManageProtocal
 {
 public:
+    virtual void op_dealCollision(ArrowUnit& arrow) = 0; 
 };
 
 #endif /* QuestProtocals_hpp */

@@ -53,6 +53,8 @@ public:
     virtual void op_toastAttack(); //攻击
     virtual void op_toastUnderAttack(); //播放被攻击动画，变白
     virtual void op_toastDead(cocos2d::Vec2 direction); //播放死亡，散架了，坠落到地上，过一会儿后消失
+    virtual int op_getId();
+    virtual void op_dealWithArrow(ArrowUnit& arrow);
 
     void update(float dt);
 
@@ -61,6 +63,8 @@ protected:
     HuntingMonsterSpecialType _specialType;
     bool _hasShield;
     int _level;
+    int _id;
+    static int _idGen;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
@@ -68,6 +72,7 @@ protected:
     cocos2d::Node* _hubNode;
     void initHubThings();
 
+    PixelNode* _pxRect;
     DynamicPixelNode* _dpxNode; //本体
     void initMonsterThings();
 

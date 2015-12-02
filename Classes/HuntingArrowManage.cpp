@@ -23,14 +23,18 @@ void HuntingArrowManage::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCa
 
 void HuntingArrowManage::update(float dt)
 {
-    for (auto iter =  _arrowUnits.begin(); iter != _arrowUnits.end(); ) {
-
-        if (dealWithUnit(*iter, dt)) {
+    for (auto& arrow : _arrowUnits) {
+        dealWithUnit(arrow, dt);
+    }
+    for (auto iter = _arrowUnits.begin(); iter != _arrowUnits.end();) {
+        if (iter->_leftHitTimes <= 0) {
+            iter->_pxNode->removeFromParent();
             iter = _arrowUnits.erase(iter);
         } else {
             iter++;
         }
     }
+
 }
 
 void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) //放箭
@@ -50,10 +54,10 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
     const float speed_scale = 100;
     cocos2d::Vec2 speed = speed_scale*Vec2{spx,spy};
 
-    _arrowUnits.push_back({px,speed});
+    _arrowUnits.push_back({px,speed,arrowType,hitTimesOfArrow(arrowType),{}});
 }
 
-bool HuntingArrowManage::dealWithUnit(ArrowUnit& unit, float dt)
+ void HuntingArrowManage::dealWithUnit(ArrowUnit& unit, float dt)
 {
     const float gravity = 50;
     const float windpower = 4;
@@ -68,6 +72,8 @@ bool HuntingArrowManage::dealWithUnit(ArrowUnit& unit, float dt)
 
 
     unit._speed += acce*dt;
-    
-    return false;
+
+
+    _huntingMonsterManageProtocal->op_dealCollision(unit);
+
 }
