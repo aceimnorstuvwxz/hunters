@@ -19,7 +19,7 @@ public:
     constexpr static const float ROLE_MOVE_TIME = 3.f; //hero跑入或者rival移入的时间
 
     constexpr static const float CAMERA_MOVE_TIME = 1.f; //镜头旋转的时间
-    constexpr static const float CAMERA_FORWARD_EXPAND = 50; //forward状态镜头在X方向离中间的距离
+    constexpr static const float CAMERA_FORWARD_EXPAND = 150; //forward状态镜头在X方向离中间的距离
 
     constexpr static const float BEAT_LINE_WIDTH = 20; //战区每条栈道的宽度
     constexpr static const float BEAT_RIVAL_START_LINE = 80; //新beat出现的位置
@@ -49,6 +49,12 @@ public:
     constexpr static const float HERO_RUN_HEIGHT = 5;
     constexpr static const float BEAT_BACK_RADIO = 2.0;
 
+    constexpr static const float HUNTING_X_START = -140;
+    constexpr static const float HUNTING_X_HEROPOS_BEGIN = -125;
+    constexpr static const float HUNTING_X_HEROPOS_STEP = 10;
+    constexpr static const float HUNTING_X_END = 140;
+    constexpr static const float MONSTER_APPEAR_POS = 145;
+    
 
 
 //    enum Z_ORDER

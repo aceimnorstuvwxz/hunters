@@ -72,12 +72,13 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
         _middleShadow = sp;
     }
 
+    const float relative_pos = -10;
 
     // 草
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-30, scene_things_start_pos, 0});
+        node->setPosition3D({relative_pos-5, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/glass.png.sopx");
@@ -117,7 +118,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-30, scene_things_start_pos, 0});
+        node->setPosition3D({relative_pos-5, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/tree.png.sopx");
@@ -155,11 +156,12 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
 //        _rightTrees->setVisible(false); //初始不显示
 //    }
 
+
     // 山
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-60, scene_things_start_pos, 0});
+        node->setPosition3D({relative_pos-25, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/moutain.png.sopx");
@@ -182,7 +184,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-90, scene_things_start_pos, 0});
+        node->setPosition3D({relative_pos-65, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/hill.png.sopx");

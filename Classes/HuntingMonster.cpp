@@ -11,6 +11,7 @@
 #include "format.h"
 #include "intersection.h"
 #include "HuntingHeroMetaSuitManage.hpp"
+#include "QuestDef.hpp"
 
 USING_NS_CC;
 void HuntingMonster::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
@@ -25,7 +26,7 @@ void HuntingMonster::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera
 void HuntingMonster::initHubThings()
 {
     _hubNode = Node::create();
-    _hubNode->setPosition3D({0,0,0});
+    _hubNode->setPosition3D({0,QuestDef::MONSTER_APPEAR_POS,0});
     _hubNode->setScale(0.15);
     _hubNode->setCameraMask(_mainCamera->getCameraMask());
     _hubNode->setZOrder(9);

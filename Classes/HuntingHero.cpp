@@ -11,6 +11,7 @@
 #include "format.h"
 #include "intersection.h"
 #include "HuntingHeroMetaSuitManage.hpp"
+#include "QuestDef.hpp"
 
 USING_NS_CC;
 void HuntingHero::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
@@ -184,8 +185,8 @@ void HuntingHero::op_hide()
 
 float HuntingHero::heroPositionType2floatYposition(HeroPositionType positionType)
 {
-    const float start_pos = 0;
-    const float pos_step = 15;
+    const float start_pos = QuestDef::HUNTING_X_HEROPOS_BEGIN;
+    const float pos_step = QuestDef::HUNTING_X_HEROPOS_STEP;
     const float out_pos_n = 5;
     float r;
     switch (positionType) {
