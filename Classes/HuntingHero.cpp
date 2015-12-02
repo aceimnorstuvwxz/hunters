@@ -153,10 +153,6 @@ void HuntingHero::op_stopAiming() //取消瞄准，会放下弓
 {
     ani_idle();
 }
-void HuntingHero::op_toastShoot() //瞄准完毕后的发射动作，发射后会放下弓
-{
-    ani_idle();
-}
 void HuntingHero::op_toastUnderAttack() //播放被攻击动画
 {
 
@@ -275,6 +271,30 @@ cocos2d::Vec3 HuntingHero::help_calcBonePosition(int boneIndexType)
     }
     return r;
 }
+
+
+void HuntingHero::op_toastShoot() //瞄准完毕后的发射动作，发射后会放下弓
+{
+    const float shoot_time = 0.1;
+    const float reset_time = 0.3;
+    _dpxNode->configAction(BT_HEAD, help_calcBonePosition(BT_HEAD), {0,0,0}, 1.f*3,1.f*3, Sequence::create(DelayTime::create(shoot_time), Spawn::create(RotateTo::create(reset_time, {0,0,0}), MoveTo::create(reset_time, help_calcBonePosition(BT_HEAD)), NULL), NULL), false);
+
+    _dpxNode->configAction(BT_HAIR, help_calcBonePosition(BT_HAIR), {0,0,0}, 0.9f*3,0.9f*3, Sequence::create(DelayTime::create(shoot_time), Spawn::create(RotateTo::create(reset_time, {0,0,0}), MoveTo::create(reset_time, help_calcBonePosition(BT_HAIR)), NULL), NULL), false);
+
+    _dpxNode->configAction(BT_BODY, help_calcBonePosition(BT_BODY), {0,0,10}, 1.f*3,1.f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,-1,0}), MoveBy::create(0.5, {0,1,0}), NULL)), false);
+
+    _dpxNode->configAction(BT_LEG_L, help_calcBonePosition(BT_LEG_L), {0,0,0}, 1.f*3,1.f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,0,0}), MoveBy::create(0.5, {0,0,0}), NULL)), false);
+
+    _dpxNode->configAction(BT_LEG_R, help_calcBonePosition(BT_LEG_R), {0,0,0}, 1.f*3,1.f*3, RepeatForever::create(Sequence::create( MoveBy::create(0.5, {0,0,0}), MoveBy::create(0.5, {0,0,0}), NULL)), false);
+
+    _dpxNode->configAction(BT_HAND_L, help_calcBonePosition(BT_HAND_L), {0,0,0}, 1.0f*3,1.0f*3,  Sequence::create(DelayTime::create(shoot_time), Spawn::create(RotateTo::create(reset_time, {0,0,0}), MoveTo::create(reset_time, help_calcBonePosition(BT_HAND_L)), NULL), NULL), false);
+
+    _dpxNode->configAction(BT_BOW_MAX, help_calcBonePosition(BT_BOW_MAX), {0,0,100-45}, 3.f,  3.f,Sequence::create(ScaleTo::create(shoot_time, 3.f,3.f), Spawn::create(RotateTo::create(reset_time, {0,0,100-45}), MoveTo::create(reset_time, help_calcBonePosition(BT_BOW_MAX)), NULL), NULL), false);
+    _dpxNode->configAction(BT_ARROW, help_calcBonePosition(BT_HEAD), {0,0,0}, 1.f*3,1.f*3, Sequence::create(DelayTime::create(shoot_time), Spawn::create(RotateTo::create(reset_time*0.01, {0,0,0}), MoveTo::create(reset_time*0.01, {0,0,-10000}), NULL), NULL), false);
+
+    _mainCamera->scheduleOnce([this](float dt){ani_idle();}, 0.5f, "shoot to idle") ;
+}
+
 
 void HuntingHero::op_configAiming(float angle, float strenth)
 {
