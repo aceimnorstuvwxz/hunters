@@ -114,6 +114,7 @@ bool QuestScene::init()
     MoneyManager::s()->configProtocals(&_topIcons);
     _powerBar.configProtocals(&_huntingHerosManage);
     _huntingArrowManage.configProtocals(&_windBar);
+    _huntingHerosManage.configProtocals(&_huntingArrowManage);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);

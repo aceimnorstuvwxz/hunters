@@ -51,8 +51,8 @@ void HuntingHerosManage::op_toastBow(float angle, float strenth) //以这个角�
 {
     const float time_step = QuestDef::BOW_TOAST_STEP;
     for (int i = 0; i < 4; i++) {
-        _mainCamera->scheduleOnce([this,i](float dt) {
-            _positionMap[i]->op_fetchHero()->op_toastShoot();
+        _mainCamera->scheduleOnce([this,i,angle, strenth](float dt) {
+            _positionMap[i]->op_fetchHero()->op_toastShoot(angle,strenth);
         }, i*time_step, fmt::sprintf("dfgfdg %d", i));
     }
 }

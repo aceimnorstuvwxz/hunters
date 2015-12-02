@@ -37,13 +37,16 @@ public:
     cocos2d::Vec3 help_calcBonePosition(int boneIndexType);
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+    void configProtocals(HuntingArrowManageProtocal* huntingArrowManageProtocal) {
+        _huntingArrowManageProtocal = huntingArrowManageProtocal;
+    }
 
 
     virtual void op_configHeroTypeAndDegree(HeroType heroType, int grade); // 由英雄类型和等级 来指定穿着套装和弓
     virtual void op_configRelativeAngle(float angle); //逆时针变大，设置单个英雄的相对设计角度
     virtual void op_startAiming(); //开始瞄准，会举起弓到水平位置
     virtual void op_stopAiming(); //取消瞄准，会放下弓
-    virtual void op_toastShoot(); //瞄准完毕后的发射动作，发射后会放下弓
+    virtual void op_toastShoot(float angle, float strenth); //瞄准完毕后的发射动作，发射后会放下弓
     virtual void op_configAiming(float angle, float strenth);
     virtual void op_toastUnderAttack(); //播放被攻击动画
     virtual void op_toastDead(); //播放死亡
@@ -56,6 +59,7 @@ public:
     int op_fetchSuitId() { return _suidId; }
 
 protected:
+    HuntingArrowManageProtocal* _huntingArrowManageProtocal;
     HeroType _heroType = HeroType::HT_META;
     int _heroGrade = 0;
     int _suidId;

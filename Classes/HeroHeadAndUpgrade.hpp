@@ -24,6 +24,7 @@ class HeroHeadAndUpgrade:public HeroHeadAndUpgradeProtocal
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
     virtual void configProtocals(HuntingHerosManageProtocal* huntingHerosManageProtocal) { _huntingHerosManageProtocal = huntingHerosManageProtocal;}
+
     virtual void op_configPosition(HeroPositionType position, bool direct); //设置位置
     virtual HeroPositionType op_fetchPosition(); //获取位置
     virtual void op_tellGoldChange(); //被通知金币改变

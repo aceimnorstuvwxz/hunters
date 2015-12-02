@@ -281,7 +281,7 @@ public:
     virtual void op_configRelativeAngle(float angle) = 0; //逆时针变大，设置单个英雄的相对设计角度
     virtual void op_startAiming() = 0; //开始瞄准，会举起弓到水平位置
     virtual void op_stopAiming() = 0; //取消瞄准，会放下弓
-    virtual void op_toastShoot() = 0; //瞄准完毕后的发射动作，发射后会放下弓
+    virtual void op_toastShoot(float angle, float strenth) = 0; //瞄准完毕后的发射动作，发射后会放下弓
     virtual void op_configAiming(float angle, float strenth) = 0;
     virtual void op_toastUnderAttack() = 0; //播放被攻击动画
     virtual void op_toastDead() = 0; //播放死亡

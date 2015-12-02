@@ -186,6 +186,7 @@ void HuntingHero::op_hide()
 
 void HuntingHero::op_move(HeroPositionType desPositionType, bool direct)
 {
+    _heroPositionType = desPositionType;
     float ypos = heroPositionType2floatYposition(desPositionType);
     const float move_speed = 10;
     if (direct) {
@@ -273,7 +274,7 @@ cocos2d::Vec3 HuntingHero::help_calcBonePosition(int boneIndexType)
 }
 
 
-void HuntingHero::op_toastShoot() //瞄准完毕后的发射动作，发射后会放下弓
+void HuntingHero::op_toastShoot(float angle, float strenth) //瞄准完毕后的发射动作，发射后会放下弓
 {
     const float shoot_time = 0.1;
     const float reset_time = 0.3;
@@ -293,6 +294,8 @@ void HuntingHero::op_toastShoot() //瞄准完毕后的发射动作，发射后�
     _dpxNode->configAction(BT_ARROW, help_calcBonePosition(BT_HEAD), {0,0,0}, 1.f*3,1.f*3, Sequence::create(DelayTime::create(shoot_time), Spawn::create(RotateTo::create(reset_time*0.01, {0,0,0}), MoveTo::create(reset_time*0.01, {0,0,-10000}), NULL), NULL), false);
 
     _mainCamera->scheduleOnce([this](float dt){ani_idle();}, 0.5f, "shoot to idle") ;
+
+    _huntingArrowManageProtocal->op_shootArrow(huntingHeroType2huntingArrowType(_heroType, _heroGrade), _heroPositionType, angle, strenth);
 }
 
 
