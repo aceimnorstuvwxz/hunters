@@ -117,6 +117,9 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
         _dpxNode->configAddSopx(fmt::sprintf("hunters/shields/%d.png.sopx", 0), BT_SHIELD, boneIndex2relativePosition(BT_SHIELD), true, false);
     }
 
+    _steadyScale = QuestDef::ARROW_SCALE/0.15f/huntingMonsterGeneralType2scale(generalType);
+    _dpxNode->configAction(BT_STEADY, {0,0,0}, {0,0,0}, _steadyScale, _steadyScale, DelayTime::create(0.5));
+
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_moving(1);
 
@@ -387,11 +390,31 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             arrow._hitedMonsterIds.push_back(_id);
 
             //附箭或穿透效果
-//            applyEffectArrow(arrow);
+            applyEffectArrow(arrow, isThrough);
 
             //通用效果（根据 arrow 速度和方向的击退效果，受伤闪白）
 
         }
+    }
+
+}
+
+void HuntingMonster::applyEffectArrow(ArrowUnit& arrow, bool isThrough)
+{
+    //算位置和方向
+    Vec2 pos_arrow = {arrow._pxNode->getPositionY(), arrow._pxNode->getPositionZ()};
+    float pos_monster = _hubNode->getPositionY();
+
+    float pxScale = huntingMonsterGeneralType2scale(_generalType);
+    float x_pos = (pos_arrow.x - pos_monster)/0.15f/pxScale/_steadyScale;
+    x_pos = -x_pos;
+    float y_pos = pos_arrow.y/0.15f/pxScale/_steadyScale;
+
+    _dpxNode->configAddSopx(fmt::sprintf("hunters/arrows/%02d.png.sopx", static_cast<int>(arrow._type)), BT_STEADY, {x_pos,y_pos,-5},true, false);
+
+    //附箭或穿透效果
+    if (!isThrough) {
+
     }
 
 }

@@ -9,6 +9,7 @@
 #include "HuntingArrowManage.hpp"
 #include "SOCommon.h"
 #include "QuestDef.hpp"
+#include "format.h"
 
 
 USING_NS_CC;
@@ -43,7 +44,7 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
     float y = heroPositionType2floatYposition(position) + QuestDef::ARROW_SHOOT_Y;
     auto px = PixelNode::create();
     px->setCameraMask(_mainCamera->getCameraMask());
-    px->configSopx("hunters/arrows/00.png.sopx");
+    px->configSopx(fmt::sprintf("hunters/arrows/%02d.png.sopx", static_cast<int>(arrowType)));
     px->setPosition3D({0,y,QuestDef::ARROW_SHOOT_Z});
     px->setRotation3D({90,0,-90});
     px->setScale(QuestDef::ARROW_SCALE);

@@ -65,6 +65,7 @@ protected:
     int _level;
     int _id;
     static int _idGen;
+    float _steadyScale;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
@@ -80,6 +81,8 @@ protected:
     void ani_moving(float radio); //正常的往前移动的动作，radio 来控制减速
     void ani_attacking();
     void ani_dizzy(); //晕了，会晃头，有一圈星星
+
+    void applyEffectArrow(ArrowUnit& arrow, bool isThrough);
 
 };
 
