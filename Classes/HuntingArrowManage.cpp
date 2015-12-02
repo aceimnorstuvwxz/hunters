@@ -50,20 +50,15 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
     px->setScale(QuestDef::ARROW_SCALE);
     _mainLayer->addChild(px);
 
-    float spx = strenth * std::cos(angle/180*3.1415926);
-    float spy = strenth * std::sin(angle/180*3.1415926);
-    const float speed_scale = 100;
-    cocos2d::Vec2 speed = speed_scale*Vec2{spx,spy};
+    cocos2d::Vec2 speed = huntingCalcSpeed(angle, strenth);
 
     _arrowUnits.push_back({px,speed,arrowType,hitTimesOfArrow(arrowType),{}});
 }
 
  void HuntingArrowManage::dealWithUnit(ArrowUnit& unit, float dt)
 {
-    const float gravity = 50;
-    const float windpower = 4;
 
-    cocos2d::Vec2 acce = {windpower*_windBarProtocal->op_fetchWind(), -gravity};
+    cocos2d::Vec2 acce = huntingCalcAcce(_windBarProtocal->op_fetchWind());
 
     unit._pxNode->setPositionY(unit._speed.x * dt + unit._pxNode->getPositionY()); //x
 

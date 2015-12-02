@@ -49,5 +49,10 @@ inline float vector2angel(cocos2d::Vec2 v) //从 x轴开始，逆时针为正，
     return  pir*(180.f/3.1415926);
 }
 
+inline cocos2d::Vec2 movePathCalc(cocos2d::Vec2 origin, cocos2d::Vec2 speed, cocos2d::Vec2 acce, float time){
+    float x = origin.x + speed.x * time + 0.5f*acce.x*time*time;
+    float y = origin.y + speed.y * time + 0.5f*acce.y*time*time;
+    return {x,y};
+}
 
 #endif /* SOCommon_hpp */

@@ -10,6 +10,7 @@
 #include "format.h"
 #include "intersection.h"
 #include "SOCommon.h"
+#include "QuestDef.hpp"
 
 USING_NS_CC;
 
@@ -21,6 +22,7 @@ void PowerBar::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
     initHubThings();
     initPowerThings();
     initTouchThings();
+    initPathThings();
 }
 
 
@@ -32,7 +34,7 @@ void PowerBar::initHubThings()
     _hubNode->setCameraMask(_mainCamera->getCameraMask());
     _hubNode->setZOrder(10);
     _mainCamera->addChild(_hubNode);
-//    _hubNode->setVisible(false);
+    _hubNode->setVisible(false);
 }
 
 void PowerBar::initPowerThings()
@@ -82,6 +84,7 @@ void PowerBar::initPowerThings()
         node->configBlend(true);
         _mainCamera->addChild(node);
         _pxArrow = node;
+        node->setVisible(false);
     }
 }
 
@@ -128,7 +131,7 @@ void PowerBar::initTouchThings()
             } else {
                 // TODO 告诉 heros 开始 aiming
                 _huntingHerosManageProtocal->op_aimingStart();
-                op_show();
+//                op_show();
                 auto p = touch->getLocation();
                 auto r = _mainCamera->unproject(Vec3{p.x,p.y,0});
                 r.x = 40;
@@ -145,7 +148,7 @@ void PowerBar::initTouchThings()
                 CCLOG("rr %f %f %f", rr.x, rr.y, rr.z);
                 _pxArrow->stopAllActions();
                 _pxArrow->setPosition3D(rr);
-                _pxArrow->setVisible(true);
+//                _pxArrow->setVisible(true);
                 _pxArrow->setScale(0);
                 return true;
             }
@@ -161,18 +164,21 @@ void PowerBar::initTouchThings()
             angle = angle-360;
         }
         auto size = Director::getInstance()->getWinSize();
-        strenth =  diff.length() / (size.height*0.45);
+        strenth =  diff.length() / (size.height*0.35);
         _pxArrow->setScale(strenth*0.1);
         _pxArrow->setRotation3D({0,0,-(angle-45)});
         //TODO 告诉 heros
+        strenth = std::min(1.f, strenth);
         _huntingHerosManageProtocal->op_configAiming(angle, strenth);
-        this->op_configPower(strenth, angle);
+//        this->op_configPower(strenth, angle);
+        showPath(angle, strenth);
     };
 
     listener->onTouchEnded = [this](Touch* touch, Event* event){
         op_dismiss();
         _pxArrow->runAction(Sequence::create(ScaleTo::create(0.2, 0), Hide::create(), NULL));
         _huntingHerosManageProtocal->op_toastBow(angle, strenth);
+        this->hidePath();
     };
 
     listener->onTouchCancelled = [this](Touch* touch, Event* event){
@@ -181,3 +187,46 @@ void PowerBar::initTouchThings()
     _mainLayer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, _mainLayer);
 
 }
+
+void PowerBar::initPathThings()
+{
+
+    _pathHubNode = Node::create();
+    float y = heroPositionType2floatYposition(HeroPositionType::HPT_0);
+    _pathHubNode->setPosition3D({0,y,QuestDef::ARROW_SHOOT_Z});
+    _pathHubNode->setRotation3D({90,0,-90});
+    _pathHubNode->setScale(1);
+    _pathHubNode->setCameraMask(_mainCamera->getCameraMask());
+    _pathHubNode->setZOrder(10);
+    _mainLayer->addChild(_pathHubNode);
+    _pathHubNode->setVisible(false);
+
+    for (int i = 0; i < N_PATH_POINTS; i++) {
+        auto n = PixelNode::create();
+        n->setCameraMask(_mainCamera->getCameraMask());
+        n->configSopx("hunters/sopx/path_point.png.sopx");
+        n->configBlend(true);
+        _pathHubNode->addChild(n);
+        _pxPathPoints[i] = n;
+    }
+}
+
+void PowerBar::showPath(float angle, float strenth)
+{
+    _pathHubNode->setVisible(true);
+    const float time_step = 0.25;
+    auto speed = huntingCalcSpeed(angle, strenth);
+    auto acce = huntingCalcAcce(_windBarProtocal->op_fetchWind());
+    for (int i = 0; i < N_PATH_POINTS; i++) {
+        auto pos = movePathCalc({0,0}, speed, acce, time_step*(i+0.5));
+        _pxPathPoints[i]->setPosition(pos.x,pos.y);
+        _pxPathPoints[i]->setScale(0.2f-0.1f*i/N_PATH_POINTS);
+    }
+
+}
+
+void PowerBar::hidePath()
+{
+    _pathHubNode->setVisible(false);
+}
+

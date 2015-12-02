@@ -112,7 +112,7 @@ bool QuestScene::init()
                                       &_battleRoles, &_battleRoad, &_cameraManage, _mainCamera, this);
 
     MoneyManager::s()->configProtocals(&_topIcons);
-    _powerBar.configProtocals(&_huntingHerosManage);
+    _powerBar.configProtocals(&_huntingHerosManage, &_windBar);
     _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage);
 

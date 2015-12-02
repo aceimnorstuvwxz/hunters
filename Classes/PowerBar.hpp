@@ -20,7 +20,7 @@ class PowerBar:public PowerBarProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(HuntingHerosManageProtocal* huntingHerosManageProtocal) {_huntingHerosManageProtocal = huntingHerosManageProtocal;}
+    void configProtocals(HuntingHerosManageProtocal* huntingHerosManageProtocal, WindBarProtocal* windParProtocal) {_huntingHerosManageProtocal = huntingHerosManageProtocal; _windBarProtocal = windParProtocal;}
     virtual void op_configEnable(bool enable){_enable = enable;} //放箭触摸瞄准的开关
     virtual void op_show();
     virtual void op_dismiss();
@@ -30,6 +30,7 @@ public:
 
 protected:
     HuntingHerosManageProtocal* _huntingHerosManageProtocal;
+    WindBarProtocal* _windBarProtocal;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
@@ -37,6 +38,14 @@ protected:
     cocos2d::Node* _hubNode;
     void initHubThings();
     bool _enable = true;
+
+    static constexpr int N_PATH_POINTS = 10;
+    cocos2d::Node* _pathHubNode;
+    PixelNode* _pxPathPoints[N_PATH_POINTS];
+    void initPathThings();
+    void showPath(float angle, float strenth);
+    void hidePath();
+
 
     PixelNode* _pxRect;
     PixelNode* _pxContent;
