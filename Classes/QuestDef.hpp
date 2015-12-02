@@ -56,6 +56,7 @@ public:
     constexpr static const float MONSTER_APPEAR_POS = 145;
     constexpr static const float ARROW_SHOOT_Z = 10;
     constexpr static const float ARROW_SHOOT_Y = 5;
+    constexpr static const float ARROW_SCALE = 0.5;
     
 
 

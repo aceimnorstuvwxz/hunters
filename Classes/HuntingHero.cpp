@@ -126,6 +126,9 @@ void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // �
         _dpxNode->configAddSopx(fmt::sprintf("hunters/heros/%d.png.%d.so.png.sopx", suitId, boneIndexType2sopxId(i)), i, boneIndex2relativePosition(i));
     }
 
+    // 箭
+    _dpxNode->configAddSopx(fmt::sprintf("hunters/arrows/%02d.png.sopx", static_cast<int>(huntingHeroType2huntingArrowType(heroType, grade))), BT_ARROW, boneIndex2relativePosition(BT_ARROW));
+
     // 穿上弓
     _dpxNode->configAddSopx(fmt::sprintf("hunters/bows/%c%d.png.sopx", bowType, grade), BT_BOW_MAX, boneIndex2relativePosition(BT_BOW_MAX));
 
@@ -133,6 +136,8 @@ void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // �
 
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_run();
+
+
 
 }
 void HuntingHero::op_configRelativeAngle(float angle) //逆时针变大，设置单个英雄的相对设计角度
@@ -217,7 +222,9 @@ cocos2d::Vec3 HuntingHero::boneIndex2relativePosition(int boneIndexType)
         case BT_BOW_MAX:
             r = {1.f,1.f,0};
             break;
-
+        case BT_ARROW:
+            r = {5.f,5.f,0};
+            break;
         case BT_LEG_L:
         case BT_LEG_R:
             r = {2.f/3,-7.f/3,0};
@@ -258,6 +265,10 @@ cocos2d::Vec3 HuntingHero::help_calcBonePosition(int boneIndexType)
         case BT_BOW_MAX:
             r = {-10+4*3,head_pos-20-4*3,1};
             break;
+
+        case BT_ARROW:
+            r = {-10+4*3,head_pos-20-4*3,1};
+            break;
         default:
             assert(false);
             break;
@@ -282,6 +293,9 @@ void HuntingHero::op_configAiming(float angle, float strenth)
     _dpxNode->configAction(BT_HAND_L, help_calcBonePosition(BT_HAND_L), {0,0,-angle}, 1.0f*3,1.0f*3, emptyac->clone());
 
     _dpxNode->configAction(BT_BOW_MAX, help_calcBonePosition(BT_BOW_MAX), {0,0,45-angle-45}, 3.f*(1+strenth*0.8),3.f-strenth, emptyac->clone());
+    _dpxNode->configAction(BT_ARROW, help_calcBonePosition(BT_ARROW), {0,0,45-angle}, 3.f,3.f, emptyac->clone());
+
+
 }
 
 void HuntingHero::ani_idle() //空闲动作

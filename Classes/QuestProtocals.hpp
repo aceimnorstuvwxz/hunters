@@ -334,22 +334,24 @@ public:
 
  enum class HuntingArrowType:int
 {
-    META_0,
-    META_1,
-    META_2,
-    SLOW_0,
-    SLOW_1,
-    SLOW_2,
-    HIGH_0,
-    HIGH_1,
-    HIGH_2,
-    MULTI_0,
-    MULTI_1,
-    MULTI_2,
-    BOMB_0,
-    BOMB_1,
-    BOMB_2
+    META_0 = 00,
+    META_1 = 01,
+    META_2 = 02,
+    SLOW_0 = 10,
+    SLOW_1 = 11,
+    SLOW_2 = 12,
+    HIGH_0 = 20,
+    HIGH_1 = 21,
+    HIGH_2 = 22,
+    MULTI_0 = 30,
+    MULTI_1 = 31,
+    MULTI_2 = 32,
+    BOMB_0 = 40,
+    BOMB_1 = 41,
+    BOMB_2 = 42
 };
+
+HuntingArrowType huntingHeroType2huntingArrowType(HeroType heroType, int grade);
 
 class HuntingArrowManageProtocal
 {

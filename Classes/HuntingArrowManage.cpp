@@ -42,7 +42,7 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
     px->configSopx("hunters/arrows/00.png.sopx");
     px->setPosition3D({0,y,QuestDef::ARROW_SHOOT_Z});
     px->setRotation3D({90,0,-90});
-    px->setScale(0.5);
+    px->setScale(QuestDef::ARROW_SCALE);
     _mainLayer->addChild(px);
 
     float spx = strenth * std::cos(angle/180*3.1415926);

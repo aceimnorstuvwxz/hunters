@@ -13,6 +13,7 @@
 #include "cocos2d.h"
 #include "DynamicPixelNode.hpp"
 #include "QuestProtocals.hpp"
+#include "PixelNode.h"
 // 一个战斗英雄
 // 地面单位都有一个 X 坐标
 
@@ -28,7 +29,8 @@ public:
 //        BT_HAND_R,
         BT_LEG_L,
         BT_LEG_R,
-        BT_BOW_MAX
+        BT_BOW_MAX,
+        BT_ARROW
     };
     static int boneIndexType2sopxId(int boneIndexType);
     static cocos2d::Vec3 boneIndex2relativePosition(int boneIndexType);
@@ -71,6 +73,7 @@ protected:
     //动作配置 以下动作，一旦执行，就会一直做下去，直到设置成其它动作。
     void ani_idle(); //空闲动作
     void ani_run(); //跑步动作
+
 
 };
 
