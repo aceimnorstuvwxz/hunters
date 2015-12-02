@@ -10,6 +10,7 @@
 #include "format.h"
 #include "intersection.h"
 #include "SOCommon.h"
+#include "QuestDef.hpp"
 
 USING_NS_CC;
 
@@ -48,8 +49,11 @@ void HuntingHerosManage::op_configAiming(float angle, float strenth) //设置瞄
 
 void HuntingHerosManage::op_toastBow(float angle, float strenth) //以这个角度开始放箭
 {
-    for (auto& head : _headIcons) {
-        head.op_fetchHero()->op_toastShoot();
+    const float time_step = QuestDef::BOW_TOAST_STEP;
+    for (int i = 0; i < 4; i++) {
+        _mainCamera->scheduleOnce([this,i](float dt) {
+            _positionMap[i]->op_fetchHero()->op_toastShoot();
+        }, i*time_step, fmt::sprintf("dfgfdg %d", i));
     }
 }
 
