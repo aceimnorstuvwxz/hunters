@@ -260,6 +260,30 @@ void BattleRoad::initCastleThings()
         _pxCantleBg = px;
         _pxCantleBg->setScale(scale);
     }
+
+    const float heart_pos = 23;
+    const float heart_hei = 80;
+    {
+        auto px = PixelNode::create();
+        px->setCameraMask(_mainCamera->getCameraMask());
+        px->configSopx("hunters/sopx/castle_heart.png.sopx");
+        px->setPosition3D({1,QuestDef::CASTLE_POS+heart_pos,heart_hei});
+        px->setRotation3D({90,0,-90});
+        px->setScale(QuestDef::ARROW_SCALE);
+        px->setScale(scale);
+        _mainLayer->addChild(px);
+    }
+    {
+        auto node = PixelTextNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(0.8f,1.f);
+        node->setPosition3D({3,QuestDef::CASTLE_POS+heart_pos+2.6f,heart_hei+0.1f});
+        node->setRotation3D({90,0,-90});
+        node->configText(fmt::sprintf("%02d", _heart),1);
+        node->configMixColor({50.f/255.f, 50.f/255.f, 50.f/255.f,1.f});
+        _mainLayer->addChild(node);
+        _ptxHeart = node;
+    }
 }
 
 void BattleRoad::op_config(int which)
@@ -337,6 +361,17 @@ void BattleRoad::op_configWind(float windDirection) //设置风的方向，表�
     if (windDirection != 0) {
         _skyPlane->runAction(RepeatForever::create(MoveBy::create(1.f, Vec3{0, windDirection,0})));
         _leftTrees->configXDiffAni(windDirection*0.001, windDirection*0.0003 + 0.0003, std::min(3.f,std::max(5.f/std::abs(windDirection), 1.5f)));
+    }
+}
+
+void BattleRoad::op_minusHeart()
+{
+    _heart--;
+
+
+
+    if (_heart == 0) {
+        // game over
     }
 }
 

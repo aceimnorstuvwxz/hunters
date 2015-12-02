@@ -22,6 +22,8 @@ public:
     virtual void op_toastDarkShadow(float howdark, float time) = 0; //toast 形式的接口
 
     virtual void op_configWind(float windDirection) = 0; //设置风的方向，表现为树的移动、云的飘动，正-向右，负-向左，大小表示风的强度
+    virtual void op_minusHeart() = 0;
+
 };
 
 enum class QuestCameraPosition
