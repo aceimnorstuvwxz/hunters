@@ -118,7 +118,7 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     }
 
     _steadyScale = QuestDef::ARROW_SCALE/0.15f/huntingMonsterGeneralType2scale(generalType);
-    _dpxNode->configAction(BT_STEADY, {0,0,0}, {0,0,0}, _steadyScale, _steadyScale, DelayTime::create(0.5));
+    _dpxNode->configAction(BT_STEADY, {0,0,0}, {0,180,0}, _steadyScale, _steadyScale, DelayTime::create(0.5));
 
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_moving(1);
@@ -407,10 +407,9 @@ void HuntingMonster::applyEffectArrow(ArrowUnit& arrow, bool isThrough)
 
     float pxScale = huntingMonsterGeneralType2scale(_generalType);
     float x_pos = (pos_arrow.x - pos_monster)/0.15f/pxScale/_steadyScale;
-    x_pos = -x_pos;
     float y_pos = pos_arrow.y/0.15f/pxScale/_steadyScale;
 
-    _dpxNode->configAddSopx(fmt::sprintf("hunters/arrows/%02d.png.sopx", static_cast<int>(arrow._type)), BT_STEADY, {x_pos,y_pos,-5},true, false);
+    _dpxNode->configAddSopx(fmt::sprintf("hunters/arrows/%02d.png.sopx", static_cast<int>(arrow._type)), BT_STEADY, {x_pos,y_pos,5},true, false, {0,0,45-vector2angel(arrow._speed)});
 
     //附箭或穿透效果
     if (!isThrough) {

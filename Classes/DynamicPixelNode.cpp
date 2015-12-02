@@ -173,7 +173,7 @@ DynamicPixelNode::~DynamicPixelNode()
 
 
 
-void DynamicPixelNode::configAddSopx(const std::string& file, int boneIndex, cocos2d::Vec3 relativePosition, bool cutInnerFace , bool cutBackFace) //加入某个 sopx 内的 vertex，并且设它的 Bone 为某个值
+void DynamicPixelNode::configAddSopx(const std::string& file, int boneIndex, cocos2d::Vec3 relativePosition, bool cutInnerFace , bool cutBackFace, cocos2d::Vec3 baseRotation) //加入某个 sopx 内的 vertex，并且设它的 Bone 为某个值
 {
     assert(boneIndex >=0 && boneIndex < BONE_NUM_MAX);
     auto rawPixels = PixelDataCache::s()->getRawPixels(file);
@@ -185,34 +185,49 @@ void DynamicPixelNode::configAddSopx(const std::string& file, int boneIndex, coc
 
     cocos2d::Vec3 cornors[8] = {{1,1,1}, {-1,1,1}, {-1,-1,1}, {1,-1,1}, {1,1,-1}, {-1,1,-1}, {-1,-1,-1}, {1,-1,-1}};
     int localCount = 0;
+    Node* node = Node::create();
+    node->setRotation3D(baseRotation);
+    auto mat = node->getNodeToParentTransform();
 
-    auto genface = [this, &cornors, half_step, &vertexData, &localCount](int a, int b, int c, int d, const Color4B& color, const cocos2d::Vec3& relativePos, const Vec3& normal, int boneIndex){
-        vertexData[localCount].position = cornors[a] * half_step + relativePos;
+    auto genface = [this, &cornors, half_step, &vertexData, &localCount, &mat](int a, int b, int c, int d, const Color4B& color, const cocos2d::Vec3& cubeCenterPos, const cocos2d::Vec3& relativePos, const Vec3& normal, int boneIndex){
+        vertexData[localCount].position = cornors[a] * half_step + cubeCenterPos;
+        mat.transformVector(&vertexData[localCount].position);
+        vertexData[localCount].position += relativePos;
         vertexData[localCount].normal = normal;
         vertexData[localCount].boneIndex = boneIndex;
         vertexData[localCount++].color = {color.r/255.f, color.g/255.f, color.b/255.f, color.a/255.f};
 
-        vertexData[localCount].position = cornors[b] * half_step + relativePos;
+        vertexData[localCount].position = cornors[b] * half_step + cubeCenterPos;
+        mat.transformVector(&vertexData[localCount].position);
+        vertexData[localCount].position += relativePos;
         vertexData[localCount].normal = normal;
         vertexData[localCount].boneIndex = boneIndex;
         vertexData[localCount++].color = {color.r/255.f, color.g/255.f, color.b/255.f, color.a/255.f};
 
-        vertexData[localCount].position = cornors[c]  * half_step + relativePos;
+        vertexData[localCount].position = cornors[c] * half_step + cubeCenterPos;
+        mat.transformVector(&vertexData[localCount].position);
+        vertexData[localCount].position += relativePos;
         vertexData[localCount].normal = normal;
         vertexData[localCount].boneIndex = boneIndex;
         vertexData[localCount++].color = {color.r/255.f, color.g/255.f, color.b/255.f, color.a/255.f};
 
-        vertexData[localCount].position = cornors[a] * half_step + relativePos;
+        vertexData[localCount].position = cornors[a] * half_step + cubeCenterPos;
+        mat.transformVector(&vertexData[localCount].position);
+        vertexData[localCount].position += relativePos;
         vertexData[localCount].normal = normal;
         vertexData[localCount].boneIndex = boneIndex;
         vertexData[localCount++].color = {color.r/255.f, color.g/255.f, color.b/255.f, color.a/255.f};
 
-        vertexData[localCount].position = cornors[c] * half_step + relativePos;
+        vertexData[localCount].position = cornors[c] * half_step + cubeCenterPos;
+        mat.transformVector(&vertexData[localCount].position);
+        vertexData[localCount].position += relativePos;
         vertexData[localCount].normal = normal;
         vertexData[localCount].boneIndex = boneIndex;
         vertexData[localCount++].color = {color.r/255.f, color.g/255.f, color.b/255.f, color.a/255.f};
 
-        vertexData[localCount].position = cornors[d] * half_step + relativePos;
+        vertexData[localCount].position = cornors[d] * half_step + cubeCenterPos;
+        mat.transformVector(&vertexData[localCount].position);
+        vertexData[localCount].position += relativePos;
         vertexData[localCount].normal = normal;
         vertexData[localCount].boneIndex = boneIndex;
         vertexData[localCount++].color = {color.r/255.f, color.g/255.f, color.b/255.f, color.a/255.f};
@@ -220,14 +235,14 @@ void DynamicPixelNode::configAddSopx(const std::string& file, int boneIndex, coc
 
 
     for (auto& pix : *rawPixels) {
-        cocos2d::Vec3 relativePos = relativePosition + Vec3{static_cast<float>(pix.pos.x), static_cast<float>(pix.pos.y), 0.f};
-        genface(0,1,2,3,pix.color, relativePos, {0,0,1}, boneIndex);//forward
-        if (!cutBackFace) genface(5,4,7,6,pix.color, relativePos, {0,0,-1}, boneIndex);//back
+        cocos2d::Vec3 cubeCenterPos =  Vec3{static_cast<float>(pix.pos.x), static_cast<float>(pix.pos.y), 0.f};
+        genface(0,1,2,3,pix.color, cubeCenterPos, relativePosition, {0,0,1}, boneIndex);//forward
+        if (!cutBackFace) genface(5,4,7,6,pix.color, cubeCenterPos, relativePosition, {0,0,-1}, boneIndex);//back
 
-        if (!cutInnerFace && !pix.R) genface(4,0,3,7,pix.color, relativePos, {1,0,0}, boneIndex);
-        if (!cutInnerFace && !pix.L) genface(1,5,6,2,pix.color, relativePos, {-1,0,0}, boneIndex);
-        if (!cutInnerFace && !pix.T) genface(4,5,1,0,pix.color, relativePos, {0,1,0}, boneIndex);
-        if (!cutInnerFace && !pix.B) genface(6,7,3,2,pix.color, relativePos, {0,-1,0}, boneIndex);
+        if (!cutInnerFace && !pix.R) genface(4,0,3,7,pix.color, cubeCenterPos, relativePosition, {1,0,0}, boneIndex);
+        if (!cutInnerFace && !pix.L) genface(1,5,6,2,pix.color, cubeCenterPos, relativePosition, {-1,0,0}, boneIndex);
+        if (!cutInnerFace && !pix.T) genface(4,5,1,0,pix.color, cubeCenterPos, relativePosition, {0,1,0}, boneIndex);
+        if (!cutInnerFace && !pix.B) genface(6,7,3,2,pix.color, cubeCenterPos, relativePosition, {0,-1,0}, boneIndex);
     }
 
     glBindBuffer(GL_ARRAY_BUFFER, _vbo);
