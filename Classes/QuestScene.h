@@ -23,6 +23,7 @@
 #include "HuntingHerosManage.hpp"
 #include "HuntingArrowManage.hpp"
 #include "HuntingMonsterManage.hpp"
+#include "FloatingLaser.hpp"
 // Beat Quest Game Scene
 
 
@@ -69,7 +70,7 @@ protected:
     void battleBegin();
 
 
-
+    FloatingLaser _floatingLaser;
 
     void update(float dt) override;
 };

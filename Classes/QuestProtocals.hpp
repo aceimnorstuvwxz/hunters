@@ -487,4 +487,13 @@ inline cocos2d::Vec2 huntingCalcAcce(float wind){
     return acce;
 }
 
+class FloatingLaserProtocal
+{
+public:
+
+    virtual void op_appear(cocos2d::Vec2 pos, float time) = 0; //出现的位置 从上方降下来 time 有效时间，时间一到 自动消失
+    virtual void op_toastLaser(cocos2d::Vec2 target) = 0; //释放一个激光，转动角度，释放激光，有后坐力表现
+
+    virtual bool op_isEnable() = 0;
+};
 #endif /* QuestProtocals_hpp */
