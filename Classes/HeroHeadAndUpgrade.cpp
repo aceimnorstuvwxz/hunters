@@ -105,6 +105,7 @@ void HeroHeadAndUpgrade::initTouchThings()
                     _pxBuyConfirm->setVisible(false);
                     _pxHeadIcon->setVisible(true);
                     _pxHeadIcon->configSopx(fmt::sprintf("hunters/heros/%d.png.head.png.sopx", suitId));
+                    ACSoundManage::s()->play(ACSoundManage::SN_ADD_HERO);
 
                 } else {
                     //显示确认购买

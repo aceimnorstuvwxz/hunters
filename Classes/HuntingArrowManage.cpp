@@ -53,6 +53,8 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
     cocos2d::Vec2 speed = huntingCalcSpeed(angle, strenth);
 
     _arrowUnits.push_back({px,speed,arrowType,hitTimesOfArrow(arrowType),{}});
+
+    ACSoundManage::s()->play(ACSoundManage::SN_ARROW_SHOOT);
 }
 
  void HuntingArrowManage::dealWithUnit(ArrowUnit& unit, float dt)

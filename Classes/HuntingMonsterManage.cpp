@@ -31,16 +31,24 @@ void HuntingMonsterManage::update(float dt)
             gt = HuntingMonsterGeneralType::NORMAL;
         }
 
-
-        addMonster(gt, HuntingMonsterSpecialType::NONE, false, _currentWave);
+        int level = _currentWave;
+        float ran2 = rand_0_1();
+        if (ran2 < 0.1) {
+            level += 2;
+        } else if (ran2 < 0.3) {
+            level += 1;
+        }
+        level = std::min(40, level);
+        addMonster(gt, HuntingMonsterSpecialType::NONE, false, level);
         _currentWaveMonsterCnt--;
         if (_currentWaveMonsterCnt == 0) {
             _currentWave++;
-            _currentWaveMonsterCnt = 10;
-            _timeLeft = random(20, 50);
+            _currentWaveMonsterCnt = random(10, 20);
+            _timeLeft = random(15, 30);
         } else {
             _timeLeft = gt == HuntingMonsterGeneralType::GIANT ? random(10, 15) :
             gt == HuntingMonsterGeneralType::BIG? random(8, 10): random(5,8);
+            _timeLeft = _timeLeft*0.6;
         }
     }
 

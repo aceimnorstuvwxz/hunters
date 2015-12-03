@@ -34,7 +34,7 @@ protected:
     cocos2d::Camera* _mainCamera;
 
     std::list<std::shared_ptr<HuntingMonster>> _monsters;
-    int _currentWaveMonsterCnt = 5;
+    int _currentWaveMonsterCnt = 7;
     int _currentWave = 0;
     float _timeLeft = 10; //初始的5秒休息
 

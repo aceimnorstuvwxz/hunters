@@ -97,6 +97,8 @@
 		B59E7EDA1C074944005FA50D /* HeroHeadAndUpgrade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7ED81C074944005FA50D /* HeroHeadAndUpgrade.cpp */; };
 		B59E7EDE1C0768C9005FA50D /* MoneyCostDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B59E7EDC1C0768C9005FA50D /* MoneyCostDef.cpp */; };
 		B5AE97321C0D950900C497FB /* HuntingArrowManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5AE97301C0D950900C497FB /* HuntingArrowManage.cpp */; };
+		B5B7486C1C10A484009D546D /* ACSoundManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B7486A1C10A484009D546D /* ACSoundManage.cpp */; };
+		B5B7486F1C10AAA8009D546D /* Msg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B7486D1C10AAA8009D546D /* Msg.cpp */; };
 		B5BD194E1BE645990052ACDD /* BeatDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19311BE645990052ACDD /* BeatDef.cpp */; };
 		B5BD194F1BE645990052ACDD /* BeatQuestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */; };
 		B5BD19501BE645990052ACDD /* format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19351BE645990052ACDD /* format.cpp */; };
@@ -288,6 +290,10 @@
 		B59E7EDD1C0768C9005FA50D /* MoneyCostDef.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoneyCostDef.hpp; sourceTree = "<group>"; };
 		B5AE97301C0D950900C497FB /* HuntingArrowManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingArrowManage.cpp; sourceTree = "<group>"; };
 		B5AE97311C0D950900C497FB /* HuntingArrowManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingArrowManage.hpp; sourceTree = "<group>"; };
+		B5B7486A1C10A484009D546D /* ACSoundManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ACSoundManage.cpp; sourceTree = "<group>"; };
+		B5B7486B1C10A484009D546D /* ACSoundManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ACSoundManage.hpp; sourceTree = "<group>"; };
+		B5B7486D1C10AAA8009D546D /* Msg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Msg.cpp; sourceTree = "<group>"; };
+		B5B7486E1C10AAA8009D546D /* Msg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Msg.h; sourceTree = "<group>"; };
 		B5BD19311BE645990052ACDD /* BeatDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatDef.cpp; sourceTree = "<group>"; };
 		B5BD19321BE645990052ACDD /* BeatDef.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BeatDef.hpp; sourceTree = "<group>"; };
 		B5BD19331BE645990052ACDD /* BeatQuestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatQuestScene.cpp; sourceTree = "<group>"; };
@@ -707,6 +713,8 @@
 		B5BD195D1BE645AC0052ACDD /* fromold */ = {
 			isa = PBXGroup;
 			children = (
+				B5B7486D1C10AAA8009D546D /* Msg.cpp */,
+				B5B7486E1C10AAA8009D546D /* Msg.h */,
 				B5BD19681BE6468F0052ACDD /* SImplePixelNode.cpp */,
 				B5BD19691BE6468F0052ACDD /* SimplePixelNode.h */,
 				B5BD19311BE645990052ACDD /* BeatDef.cpp */,
@@ -762,6 +770,8 @@
 				B5BD19701BE652910052ACDD /* QuestDef.hpp */,
 				B5BD196C1BE64F5A0052ACDD /* QuestScene.cpp */,
 				B5BD196D1BE64F5A0052ACDD /* QuestScene.h */,
+				B5B7486A1C10A484009D546D /* ACSoundManage.cpp */,
+				B5B7486B1C10A484009D546D /* ACSoundManage.hpp */,
 			);
 			name = "game-scene";
 			sourceTree = "<group>";
@@ -989,6 +999,8 @@
 				B581F9D61BFF0D4700F9BDDB /* EnergyBar.cpp in Sources */,
 				B506AEB21BEF5EC500021FC7 /* ShieldBeat.cpp in Sources */,
 				B50A36FF1BE7DB870007B7CA /* PlanePixelNode.cpp in Sources */,
+				B5B7486C1C10A484009D546D /* ACSoundManage.cpp in Sources */,
+				B5B7486F1C10AAA8009D546D /* Msg.cpp in Sources */,
 				B58AE4301C030FD6005F9E85 /* DynamicPixelNode.cpp in Sources */,
 				B5BD19551BE645990052ACDD /* SOCommon.cpp in Sources */,
 				B5BD196E1BE64F5A0052ACDD /* QuestScene.cpp in Sources */,

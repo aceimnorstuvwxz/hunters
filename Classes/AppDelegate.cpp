@@ -2,6 +2,7 @@
 #include "TestGuideScene.h"
 #include "ProgressInfo.hpp"
 #include "StoryInfo.hpp"
+#include "ACSoundManage.hpp"
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -48,6 +49,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     ProgressInfo::s()->load(); // 读出进度信息
     StoryInfo::s()->loadConfig(); // 加载关卡配置数据
+
+    ACSoundManage::s()->load(); // preload sounds
 
     Director::getInstance()->setClearColor(Color4F::WHITE);
 

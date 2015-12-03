@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "HeroGraphicUnitAnimationDef.hpp"
 #include "PixelNode.h"
+#include "ACSoundManage.hpp"
 
 
 class BattleRoadProtocal

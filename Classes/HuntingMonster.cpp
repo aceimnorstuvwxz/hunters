@@ -407,13 +407,16 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             //真的击中了
             arrow._leftHitTimes--;
             arrow._hitedMonsterIds.push_back(_id);
+            ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
 
 
             //附箭或穿透效果
             applyEffectArrow(arrow, isThrough);
 
             //通用效果（根据 arrow 速度和方向的击退效果，受伤闪白）
-
+            op_toastUnderAttack();
+            float pushBackDiff = arrow._speed.x*0.01f;
+            _hubNode->setPositionY(_hubNode->getPositionY() + pushBackDiff);
 
 
             _bloowNow -= calcArrowDamage(arrow._type);
@@ -456,7 +459,7 @@ void HuntingMonster::applyEffectArrow(ArrowUnit& arrow, bool isThrough)
 
 void HuntingMonster::update(float dt)
 {
-    const float move_speed = 2;
+    const float move_speed = 4;
     _hubNode->setPositionY(_hubNode->getPositionY() - move_speed*dt);
 }
 
