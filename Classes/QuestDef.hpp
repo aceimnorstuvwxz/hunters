@@ -64,11 +64,6 @@ public:
     
 
 
-//    enum Z_ORDER
-//    {
-//        Z_BLOODBAR = 2,
-//    };
-
 };
 
 

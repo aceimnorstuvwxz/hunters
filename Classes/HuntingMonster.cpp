@@ -46,11 +46,6 @@ void HuntingMonster::initMonsterThings()
     _hubNode->addChild(_dpxNode);
     _dpxNode->setCameraMask(_mainCamera->getCameraMask(), true);
 
-    _pxRect = PixelNode::create();
-    _pxRect->setCameraMask(_mainCamera->getCameraMask());
-    _pxRect->setPosition3D({0,0,1});
-    _pxRect->configSopx("hunters/sopx/hit_rect.png.sopx");
-    _hubNode->addChild(_pxRect);
 }
 int HuntingMonster::boneIndexType2sopxId(int boneIndexType)
 {
@@ -120,8 +115,23 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     _steadyScale = QuestDef::ARROW_SCALE/0.15f/huntingMonsterGeneralType2scale(generalType);
     _dpxNode->configAction(BT_STEADY, {0,0,0}, {0,180,0}, _steadyScale, _steadyScale, DelayTime::create(0.5));
 
+    //blood
+    _dpxNode->configAddSopx("hunters/sopx/blood_line.png.sopx", BT_BLOOD, {0,0,0}, true, false);
+    _dpxNode->configAction(BT_BLOOD, {0,120,0}, {0,0,0}, 60, 3/huntingMonsterGeneralType2scale(generalType), DelayTime::create(0));
+
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_moving(1);
+
+
+    _bloodMax = _bloowNow = calcBloodMax(generalType, level);
+    refreshBloodLine();
+
+}
+
+void HuntingMonster::refreshBloodLine()
+{
+    float radio = _bloowNow/_bloodMax;
+    _dpxNode->configAction(BT_BLOOD, {+60*(1.f-radio),120,0}, {0,0,0}, 60*radio, 3/huntingMonsterGeneralType2scale(_generalType), DelayTime::create(0));
 
 }
 
@@ -197,6 +207,9 @@ ACPositionScaleRotation HuntingMonster::help_calcBonePosition(int boneIndexType)
             r = {-1+4*3,head_pos-30-4*3,-1.5};
             break;
 
+        case BT_BLOOD:
+            r = {0,0,0};
+            break;
         default:
             assert(false);
             break;
@@ -301,7 +314,7 @@ ACPositionScaleRotation HuntingMonster::help_boneDeadGesture(int boneIndex)
     switch (boneIndex) {
 
         case BT_STEADY:
-            r =  {0,0,-2};
+            r =  {0,-1000,200};
             break;
 
         case BT_HEAD:
@@ -337,6 +350,11 @@ ACPositionScaleRotation HuntingMonster::help_boneDeadGesture(int boneIndex)
             r = {0,0,1};
             break;
 
+
+        case BT_BLOOD:
+            r = {0,0,1};
+            break;
+
         default:
             assert(false);
             break;
@@ -362,13 +380,14 @@ int HuntingMonster::op_getId()
     return _id;
 }
 
-void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
+bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
 {
     Vec2 pos_arrow = {arrow._pxNode->getPositionY(), arrow._pxNode->getPositionZ()};
     float pos_monster = _hubNode->getPositionY();
 
     float x_expand = 0.5f*20*huntingMonsterGeneralType2scale(_generalType)*0.15;
     float y_height = 20*4*huntingMonsterGeneralType2scale(_generalType)*0.15f;
+    bool ret = false;
 
     if (pos_arrow.x > pos_monster-x_expand && pos_arrow.x < pos_monster+x_expand && pos_arrow.y > 0 &&
         pos_arrow.y < y_height
@@ -389,14 +408,31 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             arrow._leftHitTimes--;
             arrow._hitedMonsterIds.push_back(_id);
 
+
             //附箭或穿透效果
             applyEffectArrow(arrow, isThrough);
 
             //通用效果（根据 arrow 速度和方向的击退效果，受伤闪白）
 
+
+
+            _bloowNow -= calcArrowDamage(arrow._type);
+            if (_bloowNow <= 0) {
+                _bloowNow = 0;
+
+                op_toastDead(arrow._speed);
+                ret = true;
+                auto p = _hubNode;
+                _mainCamera->scheduleOnce([p](float dt){
+                    p->removeFromParent();
+                }, 1.f, fmt::sprintf("monster dead %d", random(0, 999999999)));
+            }
+
+            refreshBloodLine();
+
         }
     }
-
+    return ret;
 }
 
 void HuntingMonster::applyEffectArrow(ArrowUnit& arrow, bool isThrough)
@@ -423,3 +459,5 @@ void HuntingMonster::update(float dt)
     const float move_speed = 2;
     _hubNode->setPositionY(_hubNode->getPositionY() - move_speed*dt);
 }
+
+

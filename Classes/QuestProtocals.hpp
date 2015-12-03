@@ -296,13 +296,18 @@ public:
     virtual void op_move(HeroPositionType desPositionType, bool direct = false) = 0;
  };
 
-enum class HuntingMonsterGeneralType
+enum class HuntingMonsterGeneralType:int
     //在图形上有大小区分，普通，大，极大，同时在攻击力、移动速度、血量上有不同配置
 {
-    NORMAL,
-    BIG,
-    GIANT
+    NORMAL=1,
+    BIG=4,
+    GIANT=8,
 };
+
+inline float calcBloodMax(HuntingMonsterGeneralType generalType, int level)
+{
+    return 0.5f*100*(1.f+level*1.f/4.f)*static_cast<int>(generalType);
+}
 
 inline float huntingMonsterGeneralType2scale(HuntingMonsterGeneralType generalType){
     return  generalType ==  HuntingMonsterGeneralType::NORMAL ? 1.f :
@@ -329,7 +334,7 @@ public:
     virtual void op_toastUnderAttack() = 0; //播放被攻击动画，变白
     virtual void op_toastDead(cocos2d::Vec2 direction) = 0; //播放死亡，散架了，坠落到地上。从哪个方向的箭杀死的，头会按那个方向飞走，然后其它的散开落地
     virtual int op_getId() = 0;
-    virtual void op_dealWithArrow(ArrowUnit& arrow) = 0;
+    virtual bool op_dealWithArrow(ArrowUnit& arrow) = 0;
 };
 
 
@@ -361,6 +366,68 @@ enum class HuntingArrowType:int
     BOMB_1 = 41,
     BOMB_2 = 42
 };
+
+inline float calcArrowDamage(HuntingArrowType arrowType)
+{
+    float r = 0;
+    switch (arrowType) {
+        case HuntingArrowType::META_0:
+            r = 50;
+            break;
+        case HuntingArrowType::META_1:
+            r = 75;
+            break;
+        case HuntingArrowType::META_2:
+            r = 130;
+            break;
+
+        case HuntingArrowType::SLOW_0:
+            r = 150;
+            break;
+        case HuntingArrowType::SLOW_1:
+            r = 180;
+            break;
+        case HuntingArrowType::SLOW_2:
+            r = 250;
+            break;
+
+        case HuntingArrowType::HIGH_0:
+            r = 150;
+            break;
+        case HuntingArrowType::HIGH_1:
+            r = 200;
+            break;
+        case HuntingArrowType::HIGH_2:
+            r = 300;
+            break;
+
+        case HuntingArrowType::MULTI_0:
+            r = 100;
+            break;
+        case HuntingArrowType::MULTI_1:
+            r = 110;
+            break;
+        case HuntingArrowType::MULTI_2:
+            r = 120;
+            break;
+
+        case HuntingArrowType::BOMB_0:
+            r = 100;
+            break;
+        case HuntingArrowType::BOMB_1:
+            r = 100;
+            break;
+        case HuntingArrowType::BOMB_2:
+            r = 110;
+            break;
+
+        default:
+            assert(false);
+            break;
+    }
+
+    return r*0.5f;
+}
 
 inline int hitTimesOfArrow(HuntingArrowType type)
 {

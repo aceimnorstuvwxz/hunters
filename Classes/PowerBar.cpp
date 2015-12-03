@@ -158,7 +158,7 @@ void PowerBar::initTouchThings()
 
     listener->onTouchMoved = [this](Touch* touch, Event* event){
         moved = true;
-        auto diff = touch->getStartLocation() - touch->getLocation();
+        auto diff = -(touch->getStartLocation() - touch->getLocation());
         angle = vector2angel(diff);
         if (angle>180) {
             angle = angle-360;

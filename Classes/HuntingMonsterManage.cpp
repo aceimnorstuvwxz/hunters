@@ -71,7 +71,11 @@ void HuntingMonsterManage::op_dealCollision(ArrowUnit& arrow) //bool 返回，tr
     //炸弹在 与地板碰撞处理，其它的箭也会与地板处理（要消失！）
     //这里的碰撞的难点在于对于穿透箭的处理。
 
-    for (auto iter = _monsters.begin(); iter != _monsters.end(); iter++) {
-        (*iter)->op_dealWithArrow(arrow);
+    for (auto iter = _monsters.begin(); iter != _monsters.end(); ) {
+        if ((*iter)->op_dealWithArrow(arrow) ){
+            iter = _monsters.erase(iter);
+        } else {
+            iter++;
+        }
     }
 }

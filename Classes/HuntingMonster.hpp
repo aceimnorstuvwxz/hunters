@@ -37,6 +37,7 @@ public:
         BT_LEG_R,
         BT_SWORD_MAX,
         BT_SHIELD,
+        BT_BLOOD,
         BT_MAX,
     };
     static int boneIndexType2sopxId(int boneIndexType);
@@ -54,7 +55,7 @@ public:
     virtual void op_toastUnderAttack(); //播放被攻击动画，变白
     virtual void op_toastDead(cocos2d::Vec2 direction); //播放死亡，散架了，坠落到地上，过一会儿后消失
     virtual int op_getId();
-    virtual void op_dealWithArrow(ArrowUnit& arrow);
+    virtual bool op_dealWithArrow(ArrowUnit& arrow);
 
     void update(float dt);
 
@@ -73,7 +74,6 @@ protected:
     cocos2d::Node* _hubNode;
     void initHubThings();
 
-    PixelNode* _pxRect;
     DynamicPixelNode* _dpxNode; //本体
     void initMonsterThings();
 
@@ -83,6 +83,10 @@ protected:
     void ani_dizzy(); //晕了，会晃头，有一圈星星
 
     void applyEffectArrow(ArrowUnit& arrow, bool isThrough);
+
+    float _bloodMax;
+    float _bloowNow;
+    void refreshBloodLine();
 
 };
 
