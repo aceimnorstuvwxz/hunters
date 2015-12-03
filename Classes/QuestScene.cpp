@@ -115,6 +115,7 @@ bool QuestScene::init()
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar);
     _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage);
+    _huntingMonsterManage.configProtocal(&_energyBar);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);

@@ -450,9 +450,14 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             if (_bloowNow <= 0) {
                 _bloowNow = 0;
 
+                //金币
                 toastGold();
                 MoneyManager::s()->add(calcMonsterGold(_generalType, _level));
-                
+
+                //能量
+                _energyBarProtocal->op_addEnergy(calcMonsterEnergy(_generalType));
+
+                //死亡
                 op_toastDead(arrow._speed);
                 ret = true;
                 auto p = _hubNode;

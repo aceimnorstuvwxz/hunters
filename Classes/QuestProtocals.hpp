@@ -316,6 +316,12 @@ inline int calcMonsterGold(HuntingMonsterGeneralType generalType, int level)
     return r * (5 + level/4);
 }
 
+inline float calcMonsterEnergy(HuntingMonsterGeneralType generalType)
+{
+    float r =  (generalType == HuntingMonsterGeneralType::NORMAL ? 1 : generalType == HuntingMonsterGeneralType::BIG ? 2 : 3);
+    return 0.33f/20*r; //要20个普通的才能换1格能量
+}
+
 inline float huntingMonsterGeneralType2scale(HuntingMonsterGeneralType generalType){
     return  generalType ==  HuntingMonsterGeneralType::NORMAL ? 1.f :
         generalType == HuntingMonsterGeneralType::BIG ? 2.f:

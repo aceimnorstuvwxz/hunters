@@ -62,6 +62,7 @@ void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, Hun
     auto sp = HuntingMonster::create();
     sp->init(_mainLayer, _mainCamera);
     sp->op_configType(generalType, specialType, true, level);
+    sp->configProtocal(_energyBarProtocal);
     _monsters.push_back(sp);
 }
 
