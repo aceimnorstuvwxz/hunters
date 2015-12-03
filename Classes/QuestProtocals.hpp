@@ -310,6 +310,12 @@ inline float calcBloodMax(HuntingMonsterGeneralType generalType, int level)
     return 0.5f*100*(1.f+level*1.f/4.f)*static_cast<int>(generalType);
 }
 
+inline int calcMonsterGold(HuntingMonsterGeneralType generalType, int level)
+{
+    int r =  (generalType == HuntingMonsterGeneralType::NORMAL ? 1 : generalType == HuntingMonsterGeneralType::BIG ? 2 : 3);
+    return r * (5 + level/4);
+}
+
 inline float huntingMonsterGeneralType2scale(HuntingMonsterGeneralType generalType){
     return  generalType ==  HuntingMonsterGeneralType::NORMAL ? 1.f :
         generalType == HuntingMonsterGeneralType::BIG ? 2.f:

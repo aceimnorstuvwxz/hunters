@@ -65,14 +65,6 @@ void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, Hun
     _monsters.push_back(sp);
 }
 
-bool HuntingMonsterManage::dealWithPerMonster(std::shared_ptr<HuntingMonster> monster, ArrowUnit& arrow)
-{
-
-
-    //返回值表示，这个 arrow 是否被消耗尽
-    return false;
-}
-
 void HuntingMonsterManage::op_dealCollision(ArrowUnit& arrow) //bool 返回，true 表示撞到了，那么对于 arrowManage 可以去掉此 arrow 了。//arrow 的所有效果都在另一侧制造。
 {
     //在这里处理 箭与怪物的碰撞
@@ -85,5 +77,15 @@ void HuntingMonsterManage::op_dealCollision(ArrowUnit& arrow) //bool 返回，tr
         } else {
             iter++;
         }
+    }
+    if (arrow._leftHitTimes > 0) {
+        groundCollision(arrow);//地板测试
+    }
+}
+
+void HuntingMonsterManage::groundCollision(ArrowUnit& arrow)
+{
+    if (arrow._pxNode->getPositionZ() <= 0) {
+        arrow._leftHitTimes = 0;
     }
 }

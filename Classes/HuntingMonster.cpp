@@ -12,6 +12,7 @@
 #include "intersection.h"
 #include "HuntingHeroMetaSuitManage.hpp"
 #include "QuestDef.hpp"
+#include "MoneyManager.hpp"
 
 USING_NS_CC;
 
@@ -24,6 +25,7 @@ void HuntingMonster::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera
 
     initHubThings();
     initMonsterThings();
+    initGoldThings();
     _id = _idGen++;
 }
 
@@ -47,6 +49,27 @@ void HuntingMonster::initMonsterThings()
     _dpxNode->setCameraMask(_mainCamera->getCameraMask(), true);
 
 }
+
+void HuntingMonster::initGoldThings()
+{
+    {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(4.f);
+        node->setPosition3D({0,100,0});
+        node->configSopx("hunters/sopx/icon-gold.png.sopx");
+        _hubNode->addChild(node);
+        _pxGold = node;
+        node->setVisible(false);
+    }
+
+}
+
+void HuntingMonster::toastGold()
+{
+    _pxGold->runAction(Sequence::create(Show::create(), Spawn::create(MoveBy::create(0.5, {0,30.f/huntingMonsterGeneralType2scale(_generalType),0}), RotateBy::create(0.5, {0,360,0}),  NULL),Hide::create(), NULL));
+}
+
 int HuntingMonster::boneIndexType2sopxId(int boneIndexType)
 {
     int r = 0;
@@ -97,7 +120,7 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     _dpxNode->configClear();
 
 
-    _dpxNode->setScale(huntingMonsterGeneralType2scale(generalType));
+    _hubNode->setScale(huntingMonsterGeneralType2scale(generalType)*0.15f);
 
     // 穿衣服
     for (int i = 0; i < BT_SWORD_MAX; i++) {
@@ -125,6 +148,9 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
 
     _bloodMax = _bloowNow = calcBloodMax(generalType, level);
     refreshBloodLine();
+
+    _pxGold->setScale(4.f/huntingMonsterGeneralType2scale(_generalType));
+
 
 }
 
@@ -419,10 +445,14 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             _hubNode->setPositionY(_hubNode->getPositionY() + pushBackDiff);
 
 
+
             _bloowNow -= calcArrowDamage(arrow._type);
             if (_bloowNow <= 0) {
                 _bloowNow = 0;
 
+                toastGold();
+                MoneyManager::s()->add(calcMonsterGold(_generalType, _level));
+                
                 op_toastDead(arrow._speed);
                 ret = true;
                 auto p = _hubNode;

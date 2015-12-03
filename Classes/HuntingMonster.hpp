@@ -88,6 +88,10 @@ protected:
     float _bloowNow;
     void refreshBloodLine();
 
+    PixelNode* _pxGold;
+    void initGoldThings();
+    void toastGold();
+
 };
 
 
