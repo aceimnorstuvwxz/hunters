@@ -211,9 +211,10 @@ public:
 
 enum class EnergySkillType:int
 {
-    SHIELD, //护盾
-    CRITICAL, //暴击加成
-    TIMESTOP, //时光暂停
+    FLOAT_LASER //空中的激光器支援
+//    SHIELD, //护盾
+//    CRITICAL, //暴击加成
+//    TIMESTOP, //时光暂停
 };
 
 class EnergyBarProtocal

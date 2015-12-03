@@ -66,48 +66,48 @@ void EnergyBar::initEnergyThings()
         _hubNode->addChild(node);
         _pxScope = node;
     }
-    {
-        auto node = PixelNode::create();
-        node->setCameraMask(_mainCamera->getCameraMask());
-        node->setScale(1);
-        node->setPosition3D({0,0,0});
-        node->configSopx("hunters/sopx/icon_enegy_skill_a.png.sopx");
-        _hubNode->addChild(node);
+//    {
+//        auto node = PixelNode::create();
+//        node->setCameraMask(_mainCamera->getCameraMask());
+//        node->setScale(1);
+//        node->setPosition3D({0,0,0});
+//        node->configSopx("hunters/sopx/icon_enegy_skill_a.png.sopx");
+//        _hubNode->addChild(node);
+//
+//        node->setVisible(false);
+//        _pxSkillA = node;
+//
+//    }
+//
+//    {
+//        auto node = PixelNode::create();
+//        node->setCameraMask(_mainCamera->getCameraMask());
+//        node->setScale(1);
+//        node->setPosition3D({0,0,0});
+//        node->configSopx("hunters/sopx/icon_enegy_skill_b.png.sopx");
+//        _hubNode->addChild(node);
+//
+//        node->setVisible(false);
+//        _pxSkillB = node;
+//    }
+//
+//    {
+//        auto node = PixelNode::create();
+//        node->setCameraMask(_mainCamera->getCameraMask());
+//        node->setScale(1);
+//        node->setPosition3D({0,0,0.1});
+//        node->configSopx("hunters/sopx/icon_enegy_skill_c.png.sopx");
+//        _hubNode->addChild(node);
+//
+//        node->setVisible(false);
+//        _pxSkillC = node;
+//    }
 
-        node->setVisible(false);
-        _pxSkillA = node;
+//    _pxSkillA->setOpacity(0);
+//    _pxSkillB->setOpacity(0);
 
-    }
-
-    {
-        auto node = PixelNode::create();
-        node->setCameraMask(_mainCamera->getCameraMask());
-        node->setScale(1);
-        node->setPosition3D({0,0,0});
-        node->configSopx("hunters/sopx/icon_enegy_skill_b.png.sopx");
-        _hubNode->addChild(node);
-
-        node->setVisible(false);
-        _pxSkillB = node;
-    }
-
-    {
-        auto node = PixelNode::create();
-        node->setCameraMask(_mainCamera->getCameraMask());
-        node->setScale(1);
-        node->setPosition3D({0,0,0.1});
-        node->configSopx("hunters/sopx/icon_enegy_skill_c.png.sopx");
-        _hubNode->addChild(node);
-
-        node->setVisible(false);
-        _pxSkillC = node;
-    }
-
-    _pxSkillA->setOpacity(0);
-    _pxSkillB->setOpacity(0);
-
-    _pxSkillA->configOpacityAni(true, true, 1);
-    _pxSkillB->configOpacityAni(true, true, 1);
+//    _pxSkillA->configOpacityAni(true, true, 1);
+//    _pxSkillB->configOpacityAni(true, true, 1);
 
     updateEnegyContent(0,0);
 }
@@ -132,36 +132,36 @@ void EnergyBar::updateEnegyContent(float last, float curr)
 {
     _pxContent->setScale(66.f*curr, 1.f);
     _pxContent->setPositionX(-33.f + 66.f*curr*0.5f);
-    const float in_time = 0.3;
+//    const float in_time = 0.3;
 
-    if (last < 1.f/3.f && curr >= 1.f/3.f) {
-        //显示小技能
-        _pxSkillA->stopAllActions();
-        _pxSkillB->stopAllActions();
-
-        auto ac = Sequence::create(Show::create(), FadeIn::create(in_time), NULL);
-        _pxSkillA->runAction(ac->clone());
-        _pxSkillB->runAction(ac);
-    }
-
-    if (last < 1.f && curr == 1.f) {
-        //显示大技能
-        _pxContent->configMixColorAni({1,1,1,1}, 1, -1);
-    }
-
-    if (last >= 1.f/3.f && curr <= 1.f/3.f) {
-
-        _pxSkillA->stopAllActions();
-        _pxSkillB->stopAllActions();
-        auto ac = Sequence::create(FadeOut::create(in_time), Hide::create(), NULL);
-
-        _pxSkillA->runAction(ac->clone());
-        _pxSkillB->runAction(ac);
-    }
-
-    if (last >= 1.f && curr <= 1.f) {
-        _pxContent->configMixColorAni({1,1,1,1}, 1, 0);
-    }
+//    if (last < 1.f/3.f && curr >= 1.f/3.f) {
+//        //显示小技能
+//        _pxSkillA->stopAllActions();
+//        _pxSkillB->stopAllActions();
+//
+//        auto ac = Sequence::create(Show::create(), FadeIn::create(in_time), NULL);
+//        _pxSkillA->runAction(ac->clone());
+//        _pxSkillB->runAction(ac);
+//    }
+//
+//    if (last < 1.f && curr == 1.f) {
+//        //显示大技能
+//        _pxContent->configMixColorAni({1,1,1,1}, 1, -1);
+//    }
+//
+//    if (last >= 1.f/3.f && curr <= 1.f/3.f) {
+//
+//        _pxSkillA->stopAllActions();
+//        _pxSkillB->stopAllActions();
+//        auto ac = Sequence::create(FadeOut::create(in_time), Hide::create(), NULL);
+//
+//        _pxSkillA->runAction(ac->clone());
+//        _pxSkillB->runAction(ac);
+//    }
+//
+//    if (last >= 1.f && curr <= 1.f) {
+//        _pxContent->configMixColorAni({1,1,1,1}, 1, 0);
+//    }
 }
 
 void EnergyBar::initInteractiveThings()
@@ -180,15 +180,16 @@ void EnergyBar::initInteractiveThings()
 
     listener->onTouchEnded = [this](Touch* touch, Event* event){
         auto p = touch->getLocation();
-        if (_pxSkillA->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
+       /* if (_pxSkillA->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
             CCLOG("skill a");
             tryReleaseSkill(EnergySkillType::SHIELD);
         } else if (_pxSkillB->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
             CCLOG("skill b");
             tryReleaseSkill(EnergySkillType::CRITICAL);
-        } else if (_pxScope->fetchScreenRect(0, _mainCamera).containsPoint(p) || _pxSkillC->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
+        } else */
+        if (_pxScope->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
             CCLOG("skill c");
-            tryReleaseSkill(EnergySkillType::TIMESTOP);
+            tryReleaseSkill(EnergySkillType::FLOAT_LASER);
         }
     };
 
@@ -200,12 +201,16 @@ void EnergyBar::initInteractiveThings()
 
 void EnergyBar::tryReleaseSkill(EnergySkillType st)
 {
-    if (st == EnergySkillType::SHIELD &&
+    if (st == EnergySkillType::FLOAT_LASER &&
         _targetEnergy >= 1.f/3.f) {
-        //API 释放护盾
+        //API 释放激光器
+
+        CCLOG("floating laser");
 
         _targetEnergy -= 1.f/3.f;
-    } else if (st == EnergySkillType::CRITICAL &&
+    }
+
+    /*else if (st == EnergySkillType::CRITICAL &&
                _targetEnergy >= 1.f/3.f) {
         //API 释放暴击加成
 
@@ -213,6 +218,6 @@ void EnergyBar::tryReleaseSkill(EnergySkillType st)
     } else if (st == EnergySkillType::TIMESTOP && _targetEnergy >= 1.f) {
         //API 释放时光停止
         _targetEnergy = 0;
-    }
+    }*/
 }
 

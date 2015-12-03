@@ -39,9 +39,9 @@ protected:
     PixelNode* _pxBg;
     PixelNode* _pxScope;
     PixelNode* _pxContent;
-    PixelNode* _pxSkillA;
-    PixelNode* _pxSkillB;
-    PixelNode* _pxSkillC;
+//    PixelNode* _pxSkillA;
+//    PixelNode* _pxSkillB;
+//    PixelNode* _pxSkillC;
     void initEnergyThings();
     void updateEnegyContent(float last, float curr);
     void initInteractiveThings();
