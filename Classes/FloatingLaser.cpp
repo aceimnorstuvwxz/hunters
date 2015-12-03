@@ -70,7 +70,9 @@ void FloatingLaser::op_appear(cocos2d::Vec2 pos, float time) //出现的位置 �
     const float east_rate = 2.f;
     _hubNode->setVisible(true);
     _hubNode->setPosition3D({0,pos.x-150,pos.y+100});
-    _hubNode->runAction(EaseOut::create(Spawn::create( RotateBy::create(in_time*1.1f, {0,360*10,0}), MoveTo::create(in_time, {0,pos.x,pos.y}), NULL), east_rate));
+    _hubNode->runAction(EaseOut::create(Spawn::create( MoveTo::create(in_time, {0,pos.x,pos.y}), NULL), east_rate));
+    _pxMachine->runAction(EaseOut::create(Spawn::create( RotateBy::create(in_time*1.1f, {0,0,360*10}), NULL), east_rate));
+
 
     _hubNode->scheduleOnce([this](float dt){
         const float time = 1.5f;
@@ -84,7 +86,10 @@ void FloatingLaser::op_appear(cocos2d::Vec2 pos, float time) //出现的位置 �
         _enable = false;
         const float out_time = 1.5f;
         _hubNode->stopAllActions();
-        _hubNode->runAction(EaseIn::create(Spawn::create( RotateBy::create(out_time, {0,360*10,0}),Sequence::create(MoveTo::create(out_time, {0,pos.x + 200,pos.y+100}), Hide::create(), NULL), NULL), east_rate));
+        _hubNode->runAction(EaseIn::create(Spawn::create(Sequence::create(MoveTo::create(out_time, {0,pos.x + 200,pos.y+100}), Hide::create(), NULL), NULL), east_rate));
+
+        _pxMachine->runAction(EaseIn::create(Spawn::create( RotateBy::create(out_time, {0,0,360*10}), NULL), east_rate));
+
     }, in_time+time, "laser gone");
     
 }

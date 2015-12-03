@@ -76,12 +76,12 @@ bool QuestScene::init()
     });
 
     addCommonBtn({0.9,0.2}, "laser appear", [this](){
-        _floatingLaser.op_appear({-50,80}, 20);
+        _floatingLaserManage.op_launchOneLaser();
     });
 
     static float xpos = -100;
     addCommonBtn({0.9,0.3}, "laser toast", [this](){
-        _floatingLaser.op_toastLaser({xpos, 0});
+        _floatingLaserManage.op_toastLaser({xpos, 0});
         xpos += 10;
     });
 
@@ -114,7 +114,7 @@ bool QuestScene::init()
     _huntingHerosManage.init(_mainLayer, _mainCamera);
     _huntingArrowManage.init(_mainLayer, _mainCamera);
     _huntingMonsterManage.init(_mainLayer, _mainCamera);
-    _floatingLaser.init(_mainLayer, _mainCamera);
+    _floatingLaserManage.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);

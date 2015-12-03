@@ -496,4 +496,13 @@ public:
 
     virtual bool op_isEnable() = 0;
 };
+
+
+class FloatingLaserManageProtocal
+{
+public:
+    virtual void op_launchOneLaser() = 0; //释放一个激光器
+    virtual int op_fetchLaserNumber() = 0; //获取天上有几个激光器
+    virtual void op_toastLaser(cocos2d::Vec2 target) = 0; //放激光
+};
 #endif /* QuestProtocals_hpp */
