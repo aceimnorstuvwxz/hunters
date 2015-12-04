@@ -60,11 +60,24 @@ void FloatingLaser::initLaserThings()
         _hubNode->addChild(node);
         _pxLasers.push_back(node);
     }
-    
+
+    {
+        auto node = PixelTextNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        float scaleBase = 5;
+        node->setScale(scaleBase*0.8f,scaleBase*1.f);
+        node->setPosition3D({20,0,5});
+        node->configText("00^",1);
+        node->configMixColor({1.f, 255.f/255.f, 251.f/255.f,1.f});
+        _hubNode->addChild(node);
+        _ptxTime = node;
+    }
+
 }
 
 void FloatingLaser::op_appear(cocos2d::Vec2 pos, float time) //出现的位置 从上方降下来 time 有效时间，时间一到 自动消失
 {
+    _leftTime = time;
     _position = pos;
     const float in_time = 1.5f;
     const float east_rate = 2.f;
@@ -90,7 +103,12 @@ void FloatingLaser::op_appear(cocos2d::Vec2 pos, float time) //出现的位置 �
 
         _pxMachine->runAction(EaseIn::create(Spawn::create( RotateBy::create(out_time, {0,0,360*10}), NULL), east_rate));
 
-    }, in_time+time, "laser gone");
+    }, time, "laser gone");
+
+    _hubNode->schedule([this](float dt){
+        _leftTime-=dt;
+        _ptxTime->configText(fmt::sprintf("%02d^", static_cast<int>(_leftTime)));
+    }, 0.5, static_cast<int>( time/0.5), 0, "time schedule");
     
 }
 
@@ -114,6 +132,5 @@ void FloatingLaser::op_toastLaser(cocos2d::Vec2 target) //释放一个激光，�
 
 void FloatingLaser::update(float dt)
 {
-
 }
 

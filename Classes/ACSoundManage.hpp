@@ -19,6 +19,7 @@ public:
         SN_ARROW_NORMAL_HIT,
         SN_ADD_HERO,
         SN_ARROW_SHOOT,
+        SN_LASER_HIT,
     };
     static ACSoundManage* s() { return &_instance; }
 

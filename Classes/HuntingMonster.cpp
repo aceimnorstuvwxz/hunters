@@ -433,7 +433,6 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             //真的击中了
             arrow._leftHitTimes--;
             arrow._hitedMonsterIds.push_back(_id);
-            ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
 
 
             //附箭或穿透效果
@@ -450,6 +449,13 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             //激光
             int num = _floatingLaserManageProtocal->op_fetchLaserNumber();
             _floatingLaserManageProtocal->op_toastLaser(pos_arrow);
+
+            //声音
+            if (num > 0) {
+                ACSoundManage::s()->play(ACSoundManage::SN_LASER_HIT);
+            } else {
+                ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
+            }
 
             //伤害计算
             _bloowNow -= (1+num)*damage;

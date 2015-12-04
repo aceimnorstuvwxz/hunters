@@ -21,6 +21,7 @@ void ACSoundManage::load()
     _effectsMap[SN_ARROW_NORMAL_HIT] = "arrow_normal_hit.wav";
     _effectsMap[SN_ADD_HERO] = "add_hero.mp3";
     _effectsMap[SN_ARROW_SHOOT] = "arrow_shoot.wav";
+    _effectsMap[SN_LASER_HIT] = "laser_hit.wav";
 
 
     for (auto file : _effectsMap) {

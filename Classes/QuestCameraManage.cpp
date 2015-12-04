@@ -46,7 +46,7 @@ void QuestCameraManage::op_switchToPosition(QuestCameraPosition p, bool direct) 
             targetRotation = {CC_RADIANS_TO_DEGREES(0.9607),0,0};
             break;
         case QuestCameraPosition::FORWARD:
-            targetPosition = {QuestDef::CAMERA_FORWARD_EXPAND,0,QuestDef::CAMERA_FORWARD_EXPAND*0.2f};
+            targetPosition = {QuestDef::CAMERA_FORWARD_EXPAND,0,QuestDef::CAMERA_FORWARD_EXPAND*0.25f};
             targetRotation = {90,0,-90};
             break;
 

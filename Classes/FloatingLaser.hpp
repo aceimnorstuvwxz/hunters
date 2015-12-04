@@ -14,6 +14,7 @@
 #include "DynamicPixelNode.hpp"
 #include "QuestProtocals.hpp"
 #include "PixelNode.h"
+#include "PixelTextNode.hpp"
 
 class FloatingLaser:FloatingLaserProtocal
 {
@@ -30,6 +31,7 @@ public:
 
 protected:
     bool _enable = false;
+    float _leftTime = 0;
     cocos2d::Vec2 _position;
 
     cocos2d::Layer* _mainLayer;
@@ -41,7 +43,9 @@ protected:
     PixelNode* _pxMachine;
     static constexpr int N_NUM_LASER = 4;
     std::deque<PixelNode*> _pxLasers;
+    PixelTextNode* _ptxTime;
     void initLaserThings();
+
 };
 
 #endif /* FloatingLaser_hpp */
