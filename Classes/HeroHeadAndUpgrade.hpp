@@ -54,5 +54,13 @@ protected:
 
     HuntingHero _huntingHero;
     void initHeroThings();
+
+    PixelNode* _pxUpgradeRect;
+    PixelNode* _pxUpgradeButton;
+    PixelTextNode* _ptxUpgradeGold;
+    PixelTextNode* _ptxUpgradeDesc[3];
+    void showUpgradeRect(bool enable, int howMuch, std::string iconSopx);
+    void dismissUpgradeRect();
+    void initUpgradeThings();
 };
 #endif /* HeroHeadAndUpgrade_hpp */

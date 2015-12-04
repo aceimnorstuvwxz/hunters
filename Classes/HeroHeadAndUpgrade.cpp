@@ -25,6 +25,7 @@ void HeroHeadAndUpgrade::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCa
     initHeadThings();
     initHeroThings();
     initTouchThings();
+    initUpgradeThings();
 }
 
 
@@ -61,6 +62,45 @@ void HeroHeadAndUpgrade::initHeadThings()
     }
 }
 
+void HeroHeadAndUpgrade::initUpgradeThings()
+{
+    {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1,1);
+        node->setPosition3D({0,0,0});
+        node->configSopx("hunters/upgrade/upgrade_rect.png.sopx");
+        _hubNode->addChild(node);
+        _pxUpgradeRect = node;
+        node->setVisible(false);
+    }
+
+    {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1,1);
+        node->setPosition3D({0,0,0});
+        node->configSopx("hunters/upgrade/upgrade_btn.png.sopx");
+        _hubNode->addChild(node);
+        _pxUpgradeButton = node;
+        node->setVisible(false);
+    }
+
+    {
+        auto node = PixelTextNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        float scaleBase = 1.5;
+        node->setScale(scaleBase*0.6f,scaleBase*1.2f);
+        node->setPosition3D({0,-45,1});
+        node->configText("100",1);
+        node->configMixColor({1.f, 255.f/255.f, 251.f/255.f,1.f});
+        _hubNode->addChild(node);
+        _ptxUpgradeGold = node;
+        node->setVisible(true);
+    }
+
+}
+
 void HeroHeadAndUpgrade::initHeroThings()
 {
     _huntingHero.init(_mainLayer, _mainCamera);
@@ -79,6 +119,8 @@ void HeroHeadAndUpgrade::initTouchThings()
         auto rect = _pxHeadIcon->fetchScreenRect(0, _mainCamera);
         if (rect.containsPoint(touch->getLocation())) {
             CCLOG("head icon touch in");
+            return true;
+        } else if (_pxUpgradeRect->isVisible() && _pxUpgradeRect->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
             return true;
         }
         return false;
@@ -113,6 +155,13 @@ void HeroHeadAndUpgrade::initTouchThings()
                     _pxHeadIcon->runAction(Sequence::create(Hide::create(), DelayTime::create(delay_time), Show::create(), NULL));
                     _pxBuyConfirm->runAction(Sequence::create(Show::create(), DelayTime::create(delay_time), Hide::create(), NULL));
                 }
+            } else if (_heroHeadState == HeroHeadState::ALIVE) {
+                if (!_pxUpgradeRect->isVisible()) {
+                    //显示升级
+                    showUpgradeRect(true, 100, "sdfds");
+                } else {
+
+                }
             }
 
         }
@@ -124,6 +173,23 @@ void HeroHeadAndUpgrade::initTouchThings()
     _mainLayer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, _mainLayer);
 
 }
+
+void HeroHeadAndUpgrade::showUpgradeRect(bool enable, int howMuch, std::string iconSopx)
+{
+    const float delay_time = 2.2;
+    auto ac = Sequence::create(Show::create(), DelayTime::create(delay_time), Hide::create(), NULL);
+    _pxUpgradeRect->runAction(ac->clone());
+    _pxUpgradeButton->runAction(ac->clone());
+    _ptxUpgradeGold->runAction(ac);
+    _ptxUpgradeGold->configText(fmt::sprintf("%d", howMuch), 0.8);
+
+    Vec4 enableColor = {1.f, 200.f/255.f, 51.f/255.f,1.f};
+    Vec4 disableCOlor = {0.5f,0.5f,0.5f,1.f};
+    auto col = enable ? enableColor : disableCOlor;
+    _pxUpgradeButton->configMixColor(col);
+    _ptxUpgradeGold->configMixColor(col);
+}
+
 
 void HeroHeadAndUpgrade::op_configPosition(HeroPositionType position, bool direct) //设置位置
 {
