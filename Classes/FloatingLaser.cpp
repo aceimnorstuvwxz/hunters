@@ -32,7 +32,7 @@ void FloatingLaser::initHubThings()
     _hubNode->setZOrder(9);
     _hubNode->setRotation3D({90,0,-90});
     _mainLayer->addChild(_hubNode);
-    //    _hubNode->setVisible(false);
+        _hubNode->setVisible(false);
 }
 
 void FloatingLaser::initLaserThings()

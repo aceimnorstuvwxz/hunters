@@ -445,8 +445,14 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             _hubNode->setPositionY(_hubNode->getPositionY() + pushBackDiff);
 
 
+            float damage = calcArrowDamage(arrow._type);
 
-            _bloowNow -= calcArrowDamage(arrow._type);
+            //激光
+            int num = _floatingLaserManageProtocal->op_fetchLaserNumber();
+            _floatingLaserManageProtocal->op_toastLaser(pos_arrow);
+
+            //伤害计算
+            _bloowNow -= (1+num)*damage;
             if (_bloowNow <= 0) {
                 _bloowNow = 0;
 

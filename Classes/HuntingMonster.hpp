@@ -46,8 +46,9 @@ public:
     ACPositionScaleRotation help_boneDeadGesture(int boneIndex);
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocal(EnergyBarProtocal* energyBarProtocal){
+    void configProtocal(EnergyBarProtocal* energyBarProtocal, FloatingLaserManageProtocal *floatingLaserManageProtocal){
         _energyBarProtocal = energyBarProtocal;
+        _floatingLaserManageProtocal = floatingLaserManageProtocal;
     }
 
 
@@ -64,6 +65,7 @@ public:
 protected:
 
     EnergyBarProtocal* _energyBarProtocal;
+    FloatingLaserManageProtocal* _floatingLaserManageProtocal;
     HuntingMonsterGeneralType _generalType;
     HuntingMonsterSpecialType _specialType;
     bool _hasShield;

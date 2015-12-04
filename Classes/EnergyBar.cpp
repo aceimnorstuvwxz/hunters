@@ -190,6 +190,7 @@ void EnergyBar::initInteractiveThings()
         if (_pxScope->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
             CCLOG("skill c");
             tryReleaseSkill(EnergySkillType::FLOAT_LASER);
+
         }
     };
 
@@ -206,6 +207,7 @@ void EnergyBar::tryReleaseSkill(EnergySkillType st)
         //API 释放激光器
 
         CCLOG("floating laser");
+        _floatingLaserManageProtocal->op_launchOneLaser();
 
         _targetEnergy -= 1.f/3.f;
     }

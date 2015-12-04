@@ -24,8 +24,9 @@ class HuntingMonsterManage:public HuntingMonsterManageProtocal
 public:
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocal(EnergyBarProtocal * energyBarProtocal) {
+    void configProtocal(EnergyBarProtocal * energyBarProtocal, FloatingLaserManageProtocal* floatingLaserManageProtocal) {
         _energyBarProtocal = energyBarProtocal;
+        _floatingLaserManageProtocal = floatingLaserManageProtocal;
     }
     virtual void op_dealCollision(ArrowUnit& arrow);
 
@@ -34,6 +35,7 @@ public:
 protected:
 
     EnergyBarProtocal* _energyBarProtocal;
+    FloatingLaserManageProtocal* _floatingLaserManageProtocal;
 
 
     cocos2d::Layer* _mainLayer;
