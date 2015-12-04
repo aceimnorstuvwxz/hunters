@@ -91,7 +91,7 @@ void HeroHeadAndUpgrade::initUpgradeThings()
         node->setCameraMask(_mainCamera->getCameraMask());
         float scaleBase = 1.5;
         node->setScale(scaleBase*0.6f,scaleBase*1.2f);
-        node->setPosition3D({0,-45,1});
+        node->setPosition3D({1.5f,-45,1});
         node->configText("100",1);
         node->configMixColor({1.f, 255.f/255.f, 251.f/255.f,1.f});
         _hubNode->addChild(node);

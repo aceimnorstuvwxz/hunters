@@ -279,6 +279,28 @@ enum class HeroType:int
     HT_BOMB_ATTACK = 4 //炸弹
 };
 
+    //是否可以转职
+inline bool heroCouldTransfer(HeroType heroType, int grade) {
+    return heroType == HeroType::HT_META && grade == 2;
+}
+    //是否可以升级
+inline bool heroCouldUpgrade(HeroType heroType, int grade) {
+    return  !heroCouldTransfer(heroType, grade) && grade < 2;
+}
+    //升级的金钱
+inline int heroUpgradeGold(HeroType heroType, int grade) {
+    return (grade+1)*100 + (heroType == HeroType::HT_META ? 0 : 200);
+}
+
+    //转职的金钱
+inline int heroTransferGold() {
+    return 300;
+}
+
+
+
+
+
 class HuntingHeroProtocal
 {
 public:
