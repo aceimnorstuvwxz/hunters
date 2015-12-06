@@ -453,9 +453,8 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             //声音
             if (num > 0) {
                 ACSoundManage::s()->play(ACSoundManage::SN_LASER_HIT);
-            } else {
-                ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
             }
+            ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
 
             //伤害计算
             _bloowNow -= (1+num)*damage;

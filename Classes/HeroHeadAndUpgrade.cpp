@@ -277,7 +277,11 @@ void HeroHeadAndUpgrade::initTouchThings()
 
                 } else if (!_pxUpgradeRect->isVisible() && _pxHeadIcon->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
                     //显示升级
-                    showUpgradeRect(true, 100);
+                    if (heroCouldUpgrade(_heroType, _heroLevel)) {
+                        showUpgradeRect(true, heroUpgradeGold(_heroType, _heroLevel));
+                    } else if (heroCouldTransfer(_heroType, _heroLevel)) {
+                        showUpgradeRect(true, heroTransferGold());
+                    }
                 } else {
                     if (_pxUpgradeButton->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
                         CCLOG("upgrade comfirm");
