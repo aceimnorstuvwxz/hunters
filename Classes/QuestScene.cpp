@@ -117,6 +117,7 @@ bool QuestScene::init()
     _huntingArrowManage.init(_mainLayer, _mainCamera);
     _huntingMonsterManage.init(_mainLayer, _mainCamera);
     _floatingLaserManage.init(_mainLayer, _mainCamera);
+    _flyCrowManage.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
@@ -195,5 +196,5 @@ void QuestScene::update(float dt)
     _windBar.update(dt);
     _huntingArrowManage.update(dt);
     _huntingMonsterManage.update(dt);
-    _crow.update(dt);
+    _flyCrowManage.update(dt);
 }

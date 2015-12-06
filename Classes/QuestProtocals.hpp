@@ -591,4 +591,11 @@ public:
     virtual void op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition) = 0;
     virtual bool op_dealWithArrow(ArrowUnit& arrow) = 0;
 };
+
+    class FlyingCrowManageProtocal
+    {
+    public:
+        virtual void op_dealCollision(ArrowUnit& arrow) = 0;
+
+    };
 #endif /* QuestProtocals_hpp */

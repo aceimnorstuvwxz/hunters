@@ -19,11 +19,15 @@
 class FlyingCrow:public FlyingCrowProtocal
 {
 public:
+
+    static std::shared_ptr<FlyingCrow> create() { return std::make_shared<FlyingCrow>(); }
+
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
 
 
     virtual void op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition);
     virtual bool op_dealWithArrow(ArrowUnit& arrow);
+    virtual void op_configCry() { _need2cry = true;}
 
 
     void update(float dt);
@@ -32,7 +36,7 @@ public:
     void toastDead();
 
 protected:
-    
+    bool _need2cry = false;
     FlyingCrowType _crowType;
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;

@@ -12,6 +12,7 @@
 #include "HuntingHeroMetaSuitManage.hpp"
 #include "QuestDef.hpp"
 #include "SOCommon.h"
+#include "ACSoundManage.hpp"
 
 USING_NS_CC;
 void FlyingCrow::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
@@ -69,9 +70,9 @@ void FlyingCrow::initCrowThings()
 void FlyingCrow::op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition)
 {
     _crowType = type;
-    const Vec2 init_pos = {0,100};
+    const Vec2 init_pos = {170,60};
     Vec2 pos = init_pos + relativePosition;
-    _hubNode->setPosition(pos.x, pos.y);
+    _hubNode->setPosition3D({0, pos.x, pos.y});
 
     if (type == FlyingCrowType::CT_SHIELD) {
         _pxShield->setVisible(true);
@@ -90,6 +91,10 @@ void FlyingCrow::update(float dt)
     if (_alive) {
         _speed += _acce*dt;
         _hubNode->setPositionY(_hubNode->getPositionY() - _speed*dt);
+        if (_need2cry && _hubNode->getPositionY() < 100) {
+            _need2cry = false;
+            ACSoundManage::s()->play(ACSoundManage::SN_CROW_CRY);
+        }
 
     }
 }

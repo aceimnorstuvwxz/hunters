@@ -21,6 +21,7 @@ public:
         SN_ARROW_SHOOT,
         SN_LASER_HIT,
         SN_GOLD_COST,
+        SN_CROW_CRY,
     };
     static ACSoundManage* s() { return &_instance; }
 

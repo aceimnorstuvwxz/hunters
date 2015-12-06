@@ -14,12 +14,15 @@
 #include "DynamicPixelNode.hpp"
 #include "QuestProtocals.hpp"
 #include "PixelNode.h"
-#include "FloatingLaser.hpp"
+#include "FlyingCrow.hpp"
 
 class FlyingCrowManage: public FlyingCrowManageProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+
+    virtual void op_dealCollision(ArrowUnit& arrow);
+
 
     void update(float dt);
 
@@ -28,5 +31,13 @@ protected:
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 
-}
+    std::list<std::shared_ptr<FlyingCrow>> _crows;
+    int _batchCount = 0;
+    float _timeLeft = 1;
+
+    void addBatchOfCrows();
+    void addCrow(int x, int y, int h, bool cry);
+
+};
+
 #endif /* FlyingCrowManage_hpp */
