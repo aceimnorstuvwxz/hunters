@@ -268,6 +268,8 @@ void HeroHeadAndUpgrade::initTouchThings()
                             _heroLevel = 0;
                             _huntingHero.op_configHeroTypeAndGrade(_heroType, _heroLevel);
                             _huntingHero.op_toastUpgrade();
+                            int suitId = _huntingHero.op_fetchSuitId();
+                            _pxHeadIcon->configSopx(fmt::sprintf("hunters/heros/%d.png.head.png.sopx", suitId));
 
                             this->dismissTransfer();
                         }
