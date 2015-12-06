@@ -267,6 +267,12 @@ void DynamicPixelNode::configAction(int boneIndex, cocos2d::Vec3 position, cocos
     node->runAction(action);
 }
 
+void DynamicPixelNode::configStopActions(int boneIndex)
+{
+    auto node = _bones[boneIndex];
+    node->stopAllActions();
+}
+
 
 void DynamicPixelNode::configMixColor(const cocos2d::Vec4& mixColor) //设置叠色，将用alpha与原色混合。默认alpha为0，显示原色。
 

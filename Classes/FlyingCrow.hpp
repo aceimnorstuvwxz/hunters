@@ -22,22 +22,31 @@ public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
 
 
-    virtual void op_configRelativePosition(cocos2d::Vec2 relativePosition);
+    virtual void op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition);
     virtual bool op_dealWithArrow(ArrowUnit& arrow);
 
 
     void update(float dt);
 
-protected:
 
+    void toastDead();
+
+protected:
+    
+    FlyingCrowType _crowType;
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 
-
     cocos2d::Node* _hubNode;
     void initHubThings();
+    bool _alive = true;
 
     DynamicPixelNode* _dxCrow;
+    PixelNode* _pxShield;
+    float _speed;
+    float _acce;
+
+
     void initCrowThings();
 
 };

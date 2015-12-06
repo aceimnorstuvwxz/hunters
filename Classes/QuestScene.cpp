@@ -41,7 +41,9 @@ bool QuestScene::init()
     addCommonBtn({0.1,0.9}, "monster attack", [this](){
         _huntingArrowManage.op_shootArrow(HuntingArrowType::META_0, HeroPositionType::HPT_0, random(0, 180), 0.5);
     });
-
+    addCommonBtn({0.1,0.8}, "crow dead", [this](){
+        _crow.toastDead();
+    });
 //    static int iid = 0;
 //
 //    addCommonBtn({0.1,0.4}, "next monster", [this](){
@@ -132,10 +134,9 @@ bool QuestScene::init()
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
 
-
     //test
     _crow.init(_mainLayer, _mainCamera);
-    
+    _crow.op_config(FlyingCrowType::CT_SHIELD, {0,0});
     scheduleUpdate();
     return true;
 }
@@ -194,4 +195,5 @@ void QuestScene::update(float dt)
     _windBar.update(dt);
     _huntingArrowManage.update(dt);
     _huntingMonsterManage.update(dt);
+    _crow.update(dt);
 }
