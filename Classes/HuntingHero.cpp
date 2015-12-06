@@ -81,8 +81,11 @@ int HuntingHero::boneIndexType2sopxId(int boneIndexType)
     return r;
 }
 
-void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // 由英雄类型和等级 来指定穿着套装和弓
+void HuntingHero::op_configHeroTypeAndGrade(HeroType heroType, int grade) // 由英雄类型和等级 来指定穿着套装和弓
 {
+    bool gradeOnly = _heroType == heroType;
+    _heroType = heroType;
+    _heroGrade = grade;
     //会清空 VBO 后，重新写数据
     _dpxNode->configClear();
     assert( grade >= 0 && grade <3);
@@ -90,8 +93,11 @@ void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // �
     int suitId = 0;
     char bowType = 'm';
     if (heroType == HeroType::HT_META) {
-        suitId = HuntingHeroMetaSuitManage::s()->borrow();
-        _suidId = suitId;
+        if (!gradeOnly) {
+            suitId = HuntingHeroMetaSuitManage::s()->borrow();
+        } else {
+            suitId = _suidId;
+        }
         bowType = 'm';
     } else {
         switch (heroType) {
@@ -121,6 +127,7 @@ void HuntingHero::op_configHeroTypeAndDegree(HeroType heroType, int grade) // �
         }
     }
 
+    _suidId = suitId;
     // 穿衣服
     for (int i = 0; i < BT_BOW_MAX; i++) {
         _dpxNode->configAddSopx(fmt::sprintf("hunters/heros/%d.png.%d.so.png.sopx", suitId, boneIndexType2sopxId(i)), i, boneIndex2relativePosition(i));

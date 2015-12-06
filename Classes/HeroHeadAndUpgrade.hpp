@@ -58,8 +58,8 @@ protected:
     PixelNode* _pxUpgradeRect;
     PixelNode* _pxUpgradeButton;
     PixelTextNode* _ptxUpgradeGold;
-    PixelTextNode* _ptxUpgradeDesc[3];
-    void showUpgradeRect(bool enable, int howMuch, std::string iconSopx);
+    PixelNode* _pxUpgradeIcon;
+    void showUpgradeRect(bool enable, int howMuch);
     void dismissUpgradeRect();
     void initUpgradeThings();
 };

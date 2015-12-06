@@ -276,8 +276,30 @@ enum class HeroType:int
     HT_SLOW_DOWN = 1, //减速
     HT_HIGH_ATTACK = 2, //高功
     HT_MULTI_ATTACK = 3, //群攻
-    HT_BOMB_ATTACK = 4 //炸弹
+    HT_BOMB_ATTACK = 4, //炸弹
+    HT_NONE,
 };
+inline std::string heroType2string(HeroType t )
+{
+    switch (t) {
+
+        case HeroType::HT_META:
+            return "META";
+        case HeroType::HT_SLOW_DOWN:
+            return "SLOW";
+        case HeroType::HT_HIGH_ATTACK:
+            return "HIGH";
+        case HeroType::HT_MULTI_ATTACK:
+            return "MULTI";
+        case HeroType::HT_BOMB_ATTACK:
+            return "BOMB";
+
+        default:
+            assert(false);
+            break;
+    }
+    return "";
+}
 
     //是否可以转职
 inline bool heroCouldTransfer(HeroType heroType, int grade) {
@@ -304,7 +326,7 @@ inline int heroTransferGold() {
 class HuntingHeroProtocal
 {
 public:
-    virtual void op_configHeroTypeAndDegree(HeroType heroType, int grade) = 0; // 由英雄类型和等级 来指定穿着套装和弓
+    virtual void op_configHeroTypeAndGrade(HeroType heroType, int grade) = 0; // 由英雄类型和等级 来指定穿着套装和弓
     virtual void op_configRelativeAngle(float angle) = 0; //逆时针变大，设置单个英雄的相对设计角度
     virtual void op_startAiming() = 0; //开始瞄准，会举起弓到水平位置
     virtual void op_stopAiming() = 0; //取消瞄准，会放下弓
@@ -402,6 +424,12 @@ enum class HuntingArrowType:int
     BOMB_1 = 41,
     BOMB_2 = 42
 };
+
+    /*
+inline HuntingArrowType heroTyoeGrade2arrowType(HeroType heroType, int grade)
+{
+
+}*/
 
 inline float calcArrowDamage(HuntingArrowType arrowType)
 {

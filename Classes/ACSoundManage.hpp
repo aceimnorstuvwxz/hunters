@@ -20,6 +20,7 @@ public:
         SN_ADD_HERO,
         SN_ARROW_SHOOT,
         SN_LASER_HIT,
+        SN_GOLD_COST,
     };
     static ACSoundManage* s() { return &_instance; }
 

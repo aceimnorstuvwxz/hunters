@@ -10,6 +10,7 @@
 #define MoneyManager_hpp
 
 #include "QuestProtocals.hpp"
+#include "ACSoundManage.hpp"
 //金币管理
 class MoneyManager
 {
@@ -33,6 +34,7 @@ public:
     void cost(int gold){
         _gold -= gold; assert(_gold >= 0);
         _topIconsProtocal->op_configGold(_gold);
+        ACSoundManage::s()->play(ACSoundManage::SN_GOLD_COST);
     }
 
 protected:

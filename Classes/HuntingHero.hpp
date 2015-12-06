@@ -42,7 +42,7 @@ public:
     }
 
 
-    virtual void op_configHeroTypeAndDegree(HeroType heroType, int grade); // 由英雄类型和等级 来指定穿着套装和弓
+    virtual void op_configHeroTypeAndGrade(HeroType heroType, int grade); // 由英雄类型和等级 来指定穿着套装和弓
     virtual void op_configRelativeAngle(float angle); //逆时针变大，设置单个英雄的相对设计角度
     virtual void op_startAiming(); //开始瞄准，会举起弓到水平位置
     virtual void op_stopAiming(); //取消瞄准，会放下弓
@@ -60,7 +60,7 @@ public:
 
 protected:
     HuntingArrowManageProtocal* _huntingArrowManageProtocal;
-    HeroType _heroType = HeroType::HT_META;
+    HeroType _heroType = HeroType::HT_NONE;
     int _heroGrade = 0;
     int _suidId;
     HeroPositionType _heroPositionType = HeroPositionType::HPT_OUT;

@@ -87,6 +87,17 @@ void HeroHeadAndUpgrade::initUpgradeThings()
     }
 
     {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(0.8,0.8);
+        node->setPosition3D({0,-24,0});
+        node->configSopx("hunters/upgrade/icons/META_0.png.sopx");
+        _hubNode->addChild(node);
+        _pxUpgradeIcon = node;
+        node->setVisible(false);
+    }
+
+    {
         auto node = PixelTextNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
         float scaleBase = 1.5;
@@ -96,7 +107,7 @@ void HeroHeadAndUpgrade::initUpgradeThings()
         node->configMixColor({1.f, 255.f/255.f, 251.f/255.f,1.f});
         _hubNode->addChild(node);
         _ptxUpgradeGold = node;
-        node->setVisible(true);
+        node->setVisible(false);
     }
 
 }
@@ -104,7 +115,7 @@ void HeroHeadAndUpgrade::initUpgradeThings()
 void HeroHeadAndUpgrade::initHeroThings()
 {
     _huntingHero.init(_mainLayer, _mainCamera);
-    _huntingHero.op_configHeroTypeAndDegree(HeroType::HT_META, 0);
+    _huntingHero.op_configHeroTypeAndGrade(HeroType::HT_META, 0);
     _huntingHero.op_hide();
     _huntingHero.op_move(HeroPositionType::HPT_OUT, true);
 }
@@ -115,15 +126,15 @@ void HeroHeadAndUpgrade::initTouchThings()
     auto listener = EventListenerTouchOneByOne::create();
     static bool moved = false;
     listener->onTouchBegan = [this](Touch* touch, Event* event){
-        moved = false;
+        moved = false;/*
         auto rect = _pxHeadIcon->fetchScreenRect(0, _mainCamera);
         if (rect.containsPoint(touch->getLocation())) {
             CCLOG("head icon touch in");
             return true;
         } else if (_pxUpgradeRect->isVisible() && _pxUpgradeRect->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
             return true;
-        }
-        return false;
+        }*/
+        return true;
     };
 
     listener->onTouchMoved = [this](Touch* touch, Event* event){
@@ -134,7 +145,7 @@ void HeroHeadAndUpgrade::initTouchThings()
     listener->onTouchEnded = [this](Touch* touch, Event* event){
         if (!moved) {
             //没有移动，则是普通点击
-            if (_heroHeadState == HeroHeadState::EMPTY && MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) {
+            if (_pxHeadIcon->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation()) && _heroHeadState == HeroHeadState::EMPTY && MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) {
                 if (_pxBuyConfirm->isVisible()) {
                     //确认购买
                     MoneyManager::s()->cost(MoneyCostDef::C_ADD_HERO);
@@ -156,11 +167,37 @@ void HeroHeadAndUpgrade::initTouchThings()
                     _pxBuyConfirm->runAction(Sequence::create(Show::create(), DelayTime::create(delay_time), Hide::create(), NULL));
                 }
             } else if (_heroHeadState == HeroHeadState::ALIVE) {
-                if (!_pxUpgradeRect->isVisible()) {
+                if (!_pxUpgradeRect->isVisible() && _pxHeadIcon->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
                     //显示升级
-                    showUpgradeRect(true, 100, "sdfds");
+                    showUpgradeRect(true, 100);
                 } else {
+                    if (_pxUpgradeButton->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
+                        CCLOG("upgrade comfirm");
+                        if (heroCouldUpgrade(_heroType, _heroLevel)) {
+                            int m = heroUpgradeGold(_heroType, _heroLevel);
+                            if (m <= MoneyManager::s()->get()) {
+                                MoneyManager::s()->cost(m);
+                                _heroLevel++;
+                                _huntingHero.op_configHeroTypeAndGrade(_heroType, _heroLevel);
+                                _huntingHero.op_toastUpgrade();
+                                //TODO 升级声音和效果
+                            } else {
+                                //钱不够
+                            }
+                        } else if (heroCouldTransfer(_heroType, _heroLevel)) {
+                            int m =  heroTransferGold();
+                            if (m <= MoneyManager::s()->get()) {
+                                MoneyManager::s()->cost(m);
+                                _heroLevel = 0;
+                                //打开转职面板
+                                //TODO 升级声音和效果
+                            } else {
+                                //钱不够
+                            }
+                        }
 
+                    }
+                    dismissUpgradeRect();
                 }
             }
 
@@ -174,12 +211,13 @@ void HeroHeadAndUpgrade::initTouchThings()
 
 }
 
-void HeroHeadAndUpgrade::showUpgradeRect(bool enable, int howMuch, std::string iconSopx)
+void HeroHeadAndUpgrade::showUpgradeRect(bool enable, int howMuch)
 {
     const float delay_time = 2.2;
     auto ac = Sequence::create(Show::create(), DelayTime::create(delay_time), Hide::create(), NULL);
     _pxUpgradeRect->runAction(ac->clone());
     _pxUpgradeButton->runAction(ac->clone());
+    _pxUpgradeIcon->runAction(ac->clone());
     _ptxUpgradeGold->runAction(ac);
     _ptxUpgradeGold->configText(fmt::sprintf("%d", howMuch), 0.8);
 
@@ -188,6 +226,22 @@ void HeroHeadAndUpgrade::showUpgradeRect(bool enable, int howMuch, std::string i
     auto col = enable ? enableColor : disableCOlor;
     _pxUpgradeButton->configMixColor(col);
     _ptxUpgradeGold->configMixColor(col);
+
+    std::string sopxfile = fmt::sprintf("hunters/upgrade/icons/%s_%d.png.sopx", heroType2string(_heroType), _heroLevel);
+    _pxUpgradeIcon->configSopx(sopxfile);
+
+}
+
+void HeroHeadAndUpgrade::dismissUpgradeRect()
+{
+    auto clo = [](Node* n) {
+        n->stopAllActions();
+        n->setVisible(false);
+    };
+    clo(_pxUpgradeRect);
+    clo(_pxUpgradeButton);
+    clo(_pxUpgradeIcon);
+    clo(_ptxUpgradeGold);
 }
 
 
