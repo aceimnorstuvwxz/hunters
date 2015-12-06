@@ -65,6 +65,7 @@
 		B50A36F91BE7C0030007B7CA /* PixelDataCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50A36F71BE7C0030007B7CA /* PixelDataCache.cpp */; };
 		B50A36FB1BE7C5480007B7CA /* beats in Resources */ = {isa = PBXBuildFile; fileRef = B50A36FA1BE7C5480007B7CA /* beats */; };
 		B50A36FF1BE7DB870007B7CA /* PlanePixelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50A36FD1BE7DB870007B7CA /* PlanePixelNode.cpp */; };
+		B511952B1C14876600E94259 /* FlyingCrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51195291C14876600E94259 /* FlyingCrow.cpp */; };
 		B539D28F1BE7620E0096FF04 /* PixelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B539D28D1BE7620E0096FF04 /* PixelNode.cpp */; };
 		B53B8CB31BEFA1BC006F5432 /* WelcoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB11BEFA1BC006F5432 /* WelcoScene.cpp */; };
 		B53B8CB81BF09DF8006F5432 /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */; };
@@ -231,6 +232,8 @@
 		B50A36FA1BE7C5480007B7CA /* beats */ = {isa = PBXFileReference; lastKnownFileType = folder; path = beats; sourceTree = "<group>"; };
 		B50A36FD1BE7DB870007B7CA /* PlanePixelNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlanePixelNode.cpp; sourceTree = "<group>"; };
 		B50A36FE1BE7DB870007B7CA /* PlanePixelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanePixelNode.h; sourceTree = "<group>"; };
+		B51195291C14876600E94259 /* FlyingCrow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FlyingCrow.cpp; sourceTree = "<group>"; };
+		B511952A1C14876600E94259 /* FlyingCrow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FlyingCrow.hpp; sourceTree = "<group>"; };
 		B539D28D1BE7620E0096FF04 /* PixelNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelNode.cpp; sourceTree = "<group>"; };
 		B539D28E1BE7620E0096FF04 /* PixelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelNode.h; sourceTree = "<group>"; };
 		B53B8CB11BEFA1BC006F5432 /* WelcoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WelcoScene.cpp; sourceTree = "<group>"; };
@@ -705,6 +708,8 @@
 				B582F28E1C10EE3800BEAEDD /* FloatingLaser.hpp */,
 				B582F2901C11087500BEAEDD /* FloatingLaserManage.cpp */,
 				B582F2911C11087500BEAEDD /* FloatingLaserManage.hpp */,
+				B51195291C14876600E94259 /* FlyingCrow.cpp */,
+				B511952A1C14876600E94259 /* FlyingCrow.hpp */,
 			);
 			name = "hunter-hero";
 			sourceTree = "<group>";
@@ -1036,6 +1041,7 @@
 				B5944EA41BF12A1600028078 /* CopyBeat.cpp in Sources */,
 				B5BD19541BE645990052ACDD /* ScatPixelScene.cpp in Sources */,
 				B506AEB61BEF686A00021FC7 /* BattleState.cpp in Sources */,
+				B511952B1C14876600E94259 /* FlyingCrow.cpp in Sources */,
 				B5BD194F1BE645990052ACDD /* BeatQuestScene.cpp in Sources */,
 				B5FFA6711BED166200511FBD /* BeatField.cpp in Sources */,
 				B5BD19581BE645990052ACDD /* TRBaseScene.cpp in Sources */,

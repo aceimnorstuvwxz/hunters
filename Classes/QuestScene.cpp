@@ -131,6 +131,10 @@ bool QuestScene::init()
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
+
+
+    //test
+    _crow.init(_mainLayer, _mainCamera);
     
     scheduleUpdate();
     return true;

@@ -24,6 +24,7 @@
 #include "HuntingArrowManage.hpp"
 #include "HuntingMonsterManage.hpp"
 #include "FloatingLaserManage.hpp"
+#include "FlyingCrow.hpp"
 // Beat Quest Game Scene
 
 
@@ -71,6 +72,7 @@ protected:
 
 
     FloatingLaserManage _floatingLaserManage;
+    FlyingCrow _crow;
 
     void update(float dt) override;
 };

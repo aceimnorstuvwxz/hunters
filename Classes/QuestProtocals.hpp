@@ -577,4 +577,12 @@ public:
     virtual int op_fetchLaserNumber() = 0; //获取天上有几个激光器
     virtual void op_toastLaser(cocos2d::Vec2 target) = 0; //放激光
 };
+
+
+class FlyingCrowProtocal
+{
+public:
+    virtual void op_configRelativePosition(cocos2d::Vec2 relativePosition) = 0;
+    virtual bool op_dealWithArrow(ArrowUnit& arrow) = 0;
+};
 #endif /* QuestProtocals_hpp */
