@@ -16,6 +16,14 @@
 #include "PixelTextNode.hpp"
 #include "PlanePixelNode.h"
 #include "HuntingHero.hpp"
+#include "RoadPlane.h"
+
+struct TransferUnit
+{
+    PixelNode* _pxRect;
+    PixelTextNode* _ptxTitle;
+    PixelTextNode* _ptxDesctibe[3];
+};
 
 
 class HeroHeadAndUpgrade:public HeroHeadAndUpgradeProtocal
@@ -29,7 +37,7 @@ public:
     virtual HeroPositionType op_fetchPosition(); //获取位置
     virtual void op_tellGoldChange(); //被通知金币改变
 
-    HuntingHero* op_fetchHero() { return &_huntingHero; }
+    HuntingHero* op_fetchHero(bool direct = false) { return direct ? &_huntingHero : _heroHeadState == HeroHeadState::EMPTY ? nullptr : &_huntingHero; }
 
     void update(float dt);
 
@@ -44,6 +52,7 @@ protected:
     cocos2d::Camera* _mainCamera;
 
     cocos2d::Node* _hubNode;
+    cocos2d::Node* _transferHubNode;
 
     void initHubThings();
 
@@ -62,5 +71,12 @@ protected:
     void showUpgradeRect(bool enable, int howMuch);
     void dismissUpgradeRect();
     void initUpgradeThings();
+
+//    cocos2d::Node* _hubNodeOfTransfer;
+    TransferUnit _transfers[4];
+    void initTransferThings();
+    RoadPlane* _darkShadow;
+    void showTransfer();
+    void dismissTransfer();
 };
 #endif /* HeroHeadAndUpgrade_hpp */

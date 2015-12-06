@@ -24,7 +24,7 @@ public:
     void configProtocals(HuntingArrowManageProtocal* huntingArrowManageProtocal) {
 
         for (HeroHeadAndUpgrade& head :_headIcons) {
-            head.op_fetchHero()->configProtocals(huntingArrowManageProtocal);
+            head.op_fetchHero(true)->configProtocals(huntingArrowManageProtocal);
         }
     }
 

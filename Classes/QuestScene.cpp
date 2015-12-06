@@ -68,11 +68,11 @@ bool QuestScene::init()
     addCommonBtn({0.9,0.8}, "road shadow", [this](){
         _battleRoad.op_toastDarkShadow(1.0, 2);
     });
-    addCommonBtn({0.9,0.7}, "enegy test", [this](){
+    addCommonBtn({0.9,0.7}, "enegy add", [this](){
         _energyBar.op_addEnergy(0.1);
     });
-    addCommonBtn({0.9,0.6}, "gold number", [this](){
-        _topIcons.op_configGold(random(0, 99999));
+    addCommonBtn({0.9,0.6}, "gold add", [this](){
+        MoneyManager::s()->add(100);
     });
 
     addCommonBtn({0.9,0.2}, "laser appear", [this](){

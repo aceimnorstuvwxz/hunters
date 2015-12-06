@@ -26,17 +26,32 @@ void HeroHeadAndUpgrade::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCa
     initHeroThings();
     initTouchThings();
     initUpgradeThings();
+    initTransferThings();
+
 }
 
 
 void HeroHeadAndUpgrade::initHubThings()
 {
-    _hubNode = Node::create();
-    _hubNode->setPosition3D({0,0,-10});
-    _hubNode->setScale(0.08);
-    _hubNode->setCameraMask(_mainCamera->getCameraMask());
-    _hubNode->setZOrder(10);
-    _mainCamera->addChild(_hubNode);
+    {
+        auto node = Node::create();
+        node->setPosition3D({0,0,-10});
+        node->setScale(0.08);
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setZOrder(10);
+        _mainCamera->addChild(node);
+        _hubNode = node;
+    }
+
+    {
+        auto node = Node::create();
+        node->setPosition3D({0,0,-10});
+        node->setScale(0.1);
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setZOrder(10);
+        _mainCamera->addChild(node);
+        _transferHubNode = node;
+    }
 }
 
 void HeroHeadAndUpgrade::initHeadThings()
@@ -59,6 +74,20 @@ void HeroHeadAndUpgrade::initHeadThings()
         _hubNode->addChild(node);
         _pxBuyConfirm = node;
         _pxBuyConfirm->setVisible(false);
+    }
+
+    {
+        auto node = RoadPlane::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setPosition3D({0,0,-11});
+        node->setScale(1000.f);
+        //    node->setRotation3D({90,0,-90});
+        _mainCamera->addChild(node);
+        node->configImage("hunters/upgrade/dark_shadow.png");
+        _darkShadow = node;
+        _darkShadow->setOpacity(100);
+        _darkShadow->configBlend(true);
+        _darkShadow->setVisible(false);
     }
 }
 
@@ -110,6 +139,69 @@ void HeroHeadAndUpgrade::initUpgradeThings()
         node->setVisible(false);
     }
 
+}
+
+void HeroHeadAndUpgrade::initTransferThings()
+{
+    std::string textTitles[] = {"aela","ayne","yeta","fayne"};
+    std::string descLine0[] = {    "slow",    "very",     "toast",   "binding"};
+    std::string descLine1[] = {    "down",     "high",     "multiple", "with"};
+    std::string descLine2[] = {    "enemies",       "damage",   "arrows",   "bombs"};
+    std::vector<std::string*> descs = {descLine0, descLine1, descLine2};
+
+    const float location_scale = 45.f;
+    for (int i = 0; i < 4; i++) {
+        {
+            auto node = PixelNode::create();
+            node->setCameraMask(_mainCamera->getCameraMask());
+            node->setScale(1,1);
+            node->setPosition3D({(1.f*i-1.5f)*location_scale,0.f,0.f});
+            node->configSopx(fmt::sprintf("hunters/upgrade/transfer_rect_%d.png.sopx", i+4));
+            _transferHubNode->addChild(node);
+//            node->setVisible(false);
+            _transfers[i]._pxRect = node;
+        }
+
+        {
+            auto node = PixelTextNode::create();
+            node->setCameraMask(_mainCamera->getCameraMask());
+            float scaleBase = 1.0f;
+            node->setScale(scaleBase*0.7f,scaleBase*1.f);
+            node->setPosition3D({(i-1.5f)*location_scale,25,0});
+            node->configText(textTitles[i],1);
+            node->configMixColor({1.f, 255.f/255.f, 251.f/255.f,1.f});
+            _transferHubNode->addChild(node);
+            _transfers[i]._ptxTitle= node;
+        }
+        for (int j = 0; j < 3; j++) {
+            {
+                const float j_scale = 7;
+                auto node = PixelTextNode::create();
+                node->setCameraMask(_mainCamera->getCameraMask());
+                float scaleBase = 1.0f;
+                node->setScale(scaleBase*0.7f,scaleBase*1.f);
+                node->setPosition3D({(i-1.5f)*location_scale,-10 - j * j_scale,0});
+                node->configText(descs[j][i],1);
+                node->configMixColor({1.f, 255.f/255.f, 251.f/255.f,1.f});
+                _transferHubNode->addChild(node);
+                _transfers[i]._ptxDesctibe[j]= node;
+            }
+        }
+    }
+    _transferHubNode->setVisible(false);
+}
+
+
+void HeroHeadAndUpgrade::showTransfer()
+{
+    _darkShadow->setVisible(true);
+    _transferHubNode->setVisible(true);
+}
+
+void HeroHeadAndUpgrade::dismissTransfer()
+{
+    _darkShadow->setVisible(false);
+    _transferHubNode->setVisible(false);
 }
 
 void HeroHeadAndUpgrade::initHeroThings()
@@ -167,7 +259,21 @@ void HeroHeadAndUpgrade::initTouchThings()
                     _pxBuyConfirm->runAction(Sequence::create(Show::create(), DelayTime::create(delay_time), Hide::create(), NULL));
                 }
             } else if (_heroHeadState == HeroHeadState::ALIVE) {
-                if (!_pxUpgradeRect->isVisible() && _pxHeadIcon->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
+                if (_transferHubNode->isVisible()) {
+                    for (int i = 0; i < 4; i++) {
+                        if (_transfers[i]._pxRect->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation()) )
+                        {
+
+                            _heroType = i == 0 ? HeroType::HT_SLOW_DOWN : i == 1 ? HeroType::HT_HIGH_ATTACK : i == 2 ? HeroType::HT_MULTI_ATTACK:HeroType::HT_BOMB_ATTACK;
+                            _heroLevel = 0;
+                            _huntingHero.op_configHeroTypeAndGrade(_heroType, _heroLevel);
+                            _huntingHero.op_toastUpgrade();
+
+                            this->dismissTransfer();
+                        }
+                    }
+
+                } else if (!_pxUpgradeRect->isVisible() && _pxHeadIcon->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
                     //显示升级
                     showUpgradeRect(true, 100);
                 } else {
@@ -190,6 +296,7 @@ void HeroHeadAndUpgrade::initTouchThings()
                                 MoneyManager::s()->cost(m);
                                 _heroLevel = 0;
                                 //打开转职面板
+                                this->showTransfer();
                                 //TODO 升级声音和效果
                             } else {
                                 //钱不够

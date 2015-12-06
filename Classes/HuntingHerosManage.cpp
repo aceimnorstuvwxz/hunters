@@ -25,6 +25,7 @@ void HuntingHerosManage::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCa
 void HuntingHerosManage::op_aimingStart() //power bar 通知开始瞄准
 {
     for (auto& head : _headIcons) {
+        if (head.op_fetchHero())
         head.op_fetchHero()->op_startAiming();
     }
 
@@ -34,6 +35,8 @@ void HuntingHerosManage::op_aimingCancel() //power bar 通知瞄准取消
 {
 
     for (auto& head : _headIcons) {
+        if (head.op_fetchHero())
+
         head.op_fetchHero()->op_stopAiming();
     }
 
@@ -43,6 +46,8 @@ void HuntingHerosManage::op_configAiming(float angle, float strenth) //设置瞄
 {
 
     for (auto& head : _headIcons) {
+        if (head.op_fetchHero())
+
         head.op_fetchHero()->op_configAiming(angle, strenth);
     }
 }
@@ -52,6 +57,7 @@ void HuntingHerosManage::op_toastBow(float angle, float strenth) //以这个角�
     const float time_step = QuestDef::BOW_TOAST_STEP;
     for (int i = 0; i < 4; i++) {
         _mainCamera->scheduleOnce([this,i,angle, strenth](float dt) {
+            if (_positionMap[i]->op_fetchHero())
             _positionMap[i]->op_fetchHero()->op_toastShoot(angle,strenth);
         }, i*time_step, fmt::sprintf("dfgfdg %d", i));
     }
