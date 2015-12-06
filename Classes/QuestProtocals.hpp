@@ -7,7 +7,7 @@
 #include "HeroGraphicUnitAnimationDef.hpp"
 #include "PixelNode.h"
 #include "ACSoundManage.hpp"
-
+#include "format.h"
 
 class BattleRoadProtocal
 {
@@ -279,6 +279,7 @@ enum class HeroType:int
     HT_BOMB_ATTACK = 4, //炸弹
     HT_NONE,
 };
+
 inline std::string heroType2string(HeroType t )
 {
     switch (t) {
@@ -312,6 +313,27 @@ inline bool heroCouldUpgrade(HeroType heroType, int grade) {
     //升级的金钱
 inline int heroUpgradeGold(HeroType heroType, int grade) {
     return (grade+1)*100 + (heroType == HeroType::HT_META ? 0 : 200);
+}
+
+inline std::string heroTypeGrade2levelString(HeroType t, int g)
+{
+    int r = 0;
+    switch (t) {
+        case HeroType::HT_META:
+            r = 0;
+            break;
+
+
+        default:
+            r = 3;
+            break;
+    }
+    r = r+g+1;
+    if (r == 6) {
+        return "max";
+    } else {
+        return fmt::sprintf("lv%d", r);
+    }
 }
 
     //转职的金钱

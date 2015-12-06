@@ -58,6 +58,7 @@ protected:
 
     PixelNode* _pxHeadIcon;
     PixelNode* _pxBuyConfirm;
+    PixelTextNode* _ptxLevel;
     void initHeadThings();
     void initTouchThings();
 

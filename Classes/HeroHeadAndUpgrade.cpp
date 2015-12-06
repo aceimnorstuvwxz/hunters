@@ -76,6 +76,23 @@ void HeroHeadAndUpgrade::initHeadThings()
         _pxBuyConfirm->setVisible(false);
     }
 
+
+    {
+        auto node = PixelTextNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        float scaleBase = 0.6;
+        node->setScale(scaleBase*1.f,scaleBase*1.f);
+        node->setPosition3D({-3.5,-8,0.2});
+        node->configText("lv1",1);
+        node->configMixColor({257.f/255.f, 240.f/255.f, 0.f/255.f,1.f});
+        _hubNode->addChild(node);
+        _ptxLevel = node;
+        node->setVisible(false);
+    }
+
+
+    
+
     {
         auto node = RoadPlane::create();
         node->setCameraMask(_mainCamera->getCameraMask());
@@ -251,6 +268,8 @@ void HeroHeadAndUpgrade::initTouchThings()
                     _pxHeadIcon->setVisible(true);
                     _pxHeadIcon->configSopx(fmt::sprintf("hunters/heros/%d.png.head.png.sopx", suitId));
                     ACSoundManage::s()->play(ACSoundManage::SN_ADD_HERO);
+                    _ptxLevel->setVisible(true);
+                    _ptxLevel->configText(heroTypeGrade2levelString(_heroType,_heroLevel));
 
                 } else {
                     //显示确认购买
@@ -270,6 +289,7 @@ void HeroHeadAndUpgrade::initTouchThings()
                             _huntingHero.op_toastUpgrade();
                             int suitId = _huntingHero.op_fetchSuitId();
                             _pxHeadIcon->configSopx(fmt::sprintf("hunters/heros/%d.png.head.png.sopx", suitId));
+                            _ptxLevel->configText(heroTypeGrade2levelString(_heroType,_heroLevel));
 
                             this->dismissTransfer();
                         }
@@ -292,6 +312,8 @@ void HeroHeadAndUpgrade::initTouchThings()
                                 _heroLevel++;
                                 _huntingHero.op_configHeroTypeAndGrade(_heroType, _heroLevel);
                                 _huntingHero.op_toastUpgrade();
+                                _ptxLevel->configText(heroTypeGrade2levelString(_heroType,_heroLevel));
+
                                 //TODO 升级声音和效果
                             } else {
                                 //钱不够
