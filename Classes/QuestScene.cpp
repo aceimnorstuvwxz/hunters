@@ -127,10 +127,12 @@ bool QuestScene::init()
 
     MoneyManager::s()->configProtocals(&_topIcons);
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar);
-    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage);
+    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage);
     _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage);
     _energyBar.configProtocals(&_floatingLaserManage);
+    _topIcons.configProtocals(&_battleRoad);
+    _flyCrowManage.configProtocals(&_topIcons);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);

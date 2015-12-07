@@ -23,6 +23,9 @@ public:
     static std::shared_ptr<FlyingCrow> create() { return std::make_shared<FlyingCrow>(); }
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+    void configProtocals(TopIconsProtocal* topIconsProtocal) {
+        _topIconsProtocal = topIconsProtocal;
+    }
 
 
     virtual void op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition);
@@ -34,8 +37,10 @@ public:
 
 
     void toastDead();
+    bool isDead() {return !_alive;}
 
 protected:
+    TopIconsProtocal* _topIconsProtocal;
     bool _need2cry = false;
     FlyingCrowType _crowType;
     cocos2d::Layer* _mainLayer;

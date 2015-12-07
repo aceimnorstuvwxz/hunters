@@ -24,6 +24,7 @@ void ACSoundManage::load()
     _effectsMap[SN_LASER_HIT] = "laser_hit.wav";
     _effectsMap[SN_GOLD_COST] = "gold_cost.mp3";
     _effectsMap[SN_CROW_CRY] = "crow_cry.wav";
+    _effectsMap[SN_HIT_SHIELD] = "hit_shield.wav";
 
 
     for (auto file : _effectsMap) {

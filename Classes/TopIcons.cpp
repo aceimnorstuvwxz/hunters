@@ -136,3 +136,14 @@ void TopIcons::update(float dt)
         _pxGoldNumber->configText(fmt::sprintf("%05d", _currentGoldNumber),1);
     }
 }
+
+void TopIcons::op_minusHeart()
+{
+    _heart--;
+    _ptxHeartNumber->configText(fmt::sprintf("%d", _heart));
+    _battleRoadProtocal->op_hitCastle(_heart == 0);
+    if (_heart == 0) {
+        //game over
+    }
+
+}

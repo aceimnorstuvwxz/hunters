@@ -94,6 +94,26 @@ void FlyingCrow::op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition)
 
 bool FlyingCrow::op_dealWithArrow(ArrowUnit& arrow)
 {
+    Vec2 pos_arrow = {arrow._pxNode->getPositionY(), arrow._pxNode->getPositionZ()};
+    Vec2 pos_crow =  {_hubNode->getPositionY(), _hubNode->getPositionZ()};
+    Vec2 len_diff = pos_crow-pos_arrow;
+    float crow_rlen = _pxShield->isVisible() ? 14:8;
+    if (len_diff.length() < crow_rlen) {
+        arrow._leftHitTimes--;
+        //hit
+        if (_pxShield->isVisible()) {
+            _pxShield->configMixColorAni({1,1,1,1}, 0.2, 2);
+            _pxShield->runAction(Sequence::create(DelayTime::create(0.2*2), Hide::create(), NULL));
+            ACSoundManage::s()->play(ACSoundManage::SN_HIT_SHIELD);
+        } else {
+            _dxCrow->configMixColorAni({1,1,1,1}, 0.2, 2);
+            this->toastDead();
+            ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
+
+            return true;
+        }
+    }
+
     return false;
 }
 
@@ -112,6 +132,11 @@ void FlyingCrow::update(float dt)
 //            _shitSpeed += dt*QuestDef::GRAVITY;
 //            _pxCrowShit->setPositionY(_pxCrowShit->getPositionY()-_shitSpeed*dt);
 //        }
+        if (_hubNode->getPositionY() < -140) {
+            //hit!
+            _topIconsProtocal->op_minusHeart();
+            toastDead();
+        }
 
     }
 }

@@ -21,13 +21,16 @@ class FlyingCrowManage: public FlyingCrowManageProtocal
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
 
+    void configProtocals(TopIconsProtocal* topIconsProtocal) {
+        _topIconsProtocal = topIconsProtocal;
+    }
     virtual void op_dealCollision(ArrowUnit& arrow);
 
 
     void update(float dt);
 
 protected:
-
+    TopIconsProtocal* _topIconsProtocal;
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 

@@ -73,5 +73,6 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
 
 
     _huntingMonsterManageProtocal->op_dealCollision(unit);
+    _flyingCrowManageProtocal->op_dealCollision(unit);
 
 }

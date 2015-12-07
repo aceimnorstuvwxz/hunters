@@ -23,10 +23,17 @@ class TopIcons:public TopIconsProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+    void configProtocals(BattleRoadProtocal* battleRoadProtocal) {
+        _battleRoadProtocal = battleRoadProtocal;
+    }
+
     virtual void op_configGold(int number) override; //设置金币数量
+    virtual void op_minusHeart();
 
     void update(float dt);
 protected:
+    BattleRoadProtocal* _battleRoadProtocal;
+
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 
@@ -43,6 +50,7 @@ protected:
     int _targetGoldNumber = 0;
     void initGoldThings();
 
+    int _heart = QuestDef::INIT_HEART;
 
     PixelNode* _pxPauseIcon;
     void initPauseThings();

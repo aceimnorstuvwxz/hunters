@@ -18,7 +18,13 @@ void FlyingCrowManage::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCame
 
 void FlyingCrowManage::op_dealCollision(ArrowUnit& arrow)
 {
-
+    for (auto iter = _crows.begin(); iter != _crows.end(); ) {
+        if ((*iter)->op_dealWithArrow(arrow) ){
+            iter = _crows.erase(iter);
+        } else {
+            iter++;
+        }
+    }
 }
 
 void FlyingCrowManage::update(float dt)
@@ -32,7 +38,13 @@ void FlyingCrowManage::update(float dt)
     for (auto crow : _crows) {
         crow->update(dt);
     }
-    
+    for (auto iter = _crows.begin(); iter != _crows.end(); ) {
+        if ((*iter)->isDead()) {
+            iter = _crows.erase(iter);
+        } else {
+            iter++;
+        }
+    }
 }
 
 static const bool _X_  = true;
@@ -170,6 +182,7 @@ void FlyingCrowManage::addCrow(int x, int y, int h, bool cry)
 
     auto sp = FlyingCrow::create();
     sp->init(_mainLayer, _mainCamera);
+    sp->configProtocals(_topIconsProtocal);
     sp->op_config(t, Vec2{x*20.f, (y-h*1.f/2)*20.f});
     if (cry) sp->op_configCry();
     _crows.push_back(sp);

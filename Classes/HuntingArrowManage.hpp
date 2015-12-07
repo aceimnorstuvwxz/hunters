@@ -23,9 +23,10 @@ class HuntingArrowManage:public HuntingArrowManageProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(WindBarProtocal* windBarProtocal, HuntingMonsterManageProtocal* huntingMonsterManageProtocal) {
+    void configProtocals(WindBarProtocal* windBarProtocal, HuntingMonsterManageProtocal* huntingMonsterManageProtocal, FlyingCrowManageProtocal* flyingCrowManageProtocal) {
         _windBarProtocal = windBarProtocal;
         _huntingMonsterManageProtocal = huntingMonsterManageProtocal;
+        _flyingCrowManageProtocal = flyingCrowManageProtocal;
     }
     virtual void op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) ; //放箭
 
@@ -34,7 +35,7 @@ public:
 protected:
     WindBarProtocal* _windBarProtocal;
     HuntingMonsterManageProtocal* _huntingMonsterManageProtocal;
-
+    FlyingCrowManageProtocal* _flyingCrowManageProtocal;
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
     std::list<ArrowUnit> _arrowUnits;
