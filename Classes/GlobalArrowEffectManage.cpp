@@ -112,7 +112,7 @@ void GlobalArrowEffectManage::op_bomb(int grade, cocos2d::Vec2 pos)
         }
         ACSoundManage::s()->play(ACSoundManage::SN_THUNDER_HIT);
     }
-    _monsterManageProtocal->op_bomb(pos.y, grade);
+    _monsterManageProtocal->op_bomb(pos.x, grade);
 
 
 }
@@ -128,7 +128,7 @@ void GlobalArrowEffectManage::op_thunder(cocos2d::Vec2 pos)
         _dxThunder->configAction(i, {0,0,-1000}, {0,0,0}, 1, 1, Sequence::create(DelayTime::create(ani_step*i), MoveBy::create(0, Vec3{0,0,1000}), DelayTime::create(ani_step), MoveBy::create(0, Vec3{0,0,-1000}), DelayTime::create(ani_step*(2-i)), NULL));
     }
     ACSoundManage::s()->play(ACSoundManage::SN_THUNDER_HIT);
-    _monsterManageProtocal->op_thunder(pos.y);
+    _monsterManageProtocal->op_thunder(pos.x);
 }
 
 void GlobalArrowEffectManage::update(float dt)

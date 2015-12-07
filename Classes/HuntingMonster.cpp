@@ -446,6 +446,7 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             _hubNode->setPositionY(_hubNode->getPositionY() + pushBackDiff);
 
             float dama = calcArrowDamage(arrow._type);
+            bool nodamage = false;
 
             //特殊效果
             if (arrow._type == HuntingArrowType::SLOW_0) {
@@ -457,6 +458,7 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             } else if (arrow._type == HuntingArrowType::SLOW_2) {
                 // 特殊 雷击 范围
                 _effetcManageProtocal->op_thunder(pos_arrow);
+                nodamage = true;
             } else if (arrow._type == HuntingArrowType::MULTI_2) {
                 _poisonTime = 8.f;
                 _poisonDamage = 0.5f * dama;
@@ -466,6 +468,7 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
 
                 _effetcManageProtocal->op_bomb(arrow._type == HuntingArrowType::BOMB_0 ? 0 :
                                                arrow._type == HuntingArrowType::BOMB_1 ? 1 : 2, pos_arrow);
+                nodamage = true;
             }
 
 
@@ -481,7 +484,9 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
 
             //伤害计算
-            damage( (1+num)*dama, arrow._speed);
+            if (!nodamage) {
+                damage( (1+num)*dama, arrow._speed);
+            }
 
         }
     }
@@ -517,7 +522,7 @@ void HuntingMonster::damage(float damage, cocos2d::Vec2 dir)
 
 void HuntingMonster::op_thunderTest(float pos)
 {
-    if (std::abs(_hubNode->getPositionY() - pos) < 10) {
+    if (std::abs(_hubNode->getPositionY() - pos) < 30) {
 
         damage(calcArrowDamage(HuntingArrowType::SLOW_2), {0, -1});
         _slowDownTime = 3.f;
@@ -531,7 +536,7 @@ void HuntingMonster::op_thunderTest(float pos)
 
 void HuntingMonster::op_bombTest(float pos, int grade)
 {
-    if (std::abs(_hubNode->getPositionY() - pos) < (grade <= 1 ? 10 : 15)) {
+    if (std::abs(_hubNode->getPositionY() - pos) < (grade <= 1 ? 30 : 45)) {
 
         damage(calcArrowDamage(grade == 0 ? HuntingArrowType::BOMB_0 : grade == 1 ? HuntingArrowType::BOMB_1 :HuntingArrowType::BOMB_2), {0, -1});
 

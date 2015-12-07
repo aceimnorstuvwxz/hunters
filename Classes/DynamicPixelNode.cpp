@@ -252,6 +252,7 @@ void DynamicPixelNode::configAddSopx(const std::string& file, int boneIndex, coc
         _count += localCount;
     }
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    free(vertexData);
 
 }
 

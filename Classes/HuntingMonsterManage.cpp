@@ -111,6 +111,15 @@ void HuntingMonsterManage::op_bomb(float pos, int grade)
 void HuntingMonsterManage::groundCollision(ArrowUnit& arrow)
 {
     if (arrow._pxNode->getPositionZ() <= 0) {
+        if (arrow._type == HuntingArrowType::BOMB_0 ||
+            arrow._type == HuntingArrowType::BOMB_1 ||
+            arrow._type == HuntingArrowType::BOMB_2 ) {
+            _effetcManageProtocal->op_bomb(arrow._type == HuntingArrowType::BOMB_0 ? 0 :
+                                           arrow._type == HuntingArrowType::BOMB_1 ? 1 : 2, {arrow._pxNode->getPositionY(), arrow._pxNode->getPositionZ()});
+        }
+        if (arrow._type == HuntingArrowType::SLOW_2) {
+            _effetcManageProtocal->op_thunder({arrow._pxNode->getPositionY(), arrow._pxNode->getPositionZ()});
+        }
         arrow._leftHitTimes = 0;
     }
 }
