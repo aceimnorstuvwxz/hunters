@@ -36,7 +36,7 @@ public:
     void update(float dt);
 
 
-    void toastDead();
+    void toastDead(bool needDown = true);
     bool isDead() {return !_alive;}
 
 protected:

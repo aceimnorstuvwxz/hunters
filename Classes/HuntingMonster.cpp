@@ -119,7 +119,6 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     //会清空 VBO 后，重新写数据
     _dpxNode->configClear();
 
-
     _hubNode->setScale(huntingMonsterGeneralType2scale(generalType)*0.15f);
 
     // 穿衣服

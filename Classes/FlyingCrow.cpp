@@ -133,16 +133,16 @@ void FlyingCrow::update(float dt)
 //            _shitSpeed += dt*QuestDef::GRAVITY;
 //            _pxCrowShit->setPositionY(_pxCrowShit->getPositionY()-_shitSpeed*dt);
 //        }
-        if (_hubNode->getPositionY() < -140) {
+        if (_hubNode->getPositionY() < -160) {
             //hit!
             _topIconsProtocal->op_minusHeart();
-            toastDead();
+            toastDead(false);
         }
 
     }
 }
 
-void FlyingCrow::toastDead()
+void FlyingCrow::toastDead(bool needDown)
 {
     _alive = false;
     for (int i = 0; i < 8; i++) {
@@ -150,7 +150,9 @@ void FlyingCrow::toastDead()
     }
     const float dead_time = 1.f;
     const float fout = 0.5f;
+    if (needDown) {
     _hubNode->runAction(EaseIn::create(Spawn::create(RotateBy::create(dead_time, Vec3{0,-90,0}), MoveBy::create(dead_time, {0,0, -(_hubNode->getPositionZ())}), NULL), 2));
+    }
     auto p = _hubNode;
     _hubNode->scheduleOnce([p](float dt) {p->removeFromParent();}, dead_time+fout, fmt::sprintf("crow dead %d", random(0, 99999)));
 }
