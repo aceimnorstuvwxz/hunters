@@ -46,9 +46,10 @@ public:
     ACPositionScaleRotation help_boneDeadGesture(int boneIndex);
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocal(EnergyBarProtocal* energyBarProtocal, FloatingLaserManageProtocal *floatingLaserManageProtocal){
+    void configProtocal(EnergyBarProtocal* energyBarProtocal, FloatingLaserManageProtocal *floatingLaserManageProtocal, GlobalArrowEffectManageProtocal* effetcManageProtocal){
         _energyBarProtocal = energyBarProtocal;
         _floatingLaserManageProtocal = floatingLaserManageProtocal;
+        _effetcManageProtocal = effetcManageProtocal;
     }
 
 
@@ -58,12 +59,15 @@ public:
     virtual void op_toastUnderAttack(); //播放被攻击动画，变白
     virtual void op_toastDead(cocos2d::Vec2 direction); //播放死亡，散架了，坠落到地上，过一会儿后消失
     virtual int op_getId();
-    virtual bool op_dealWithArrow(ArrowUnit& arrow);
+    virtual void op_dealWithArrow(ArrowUnit& arrow);
 
+    virtual void op_thunderTest(float pos) ;
+    virtual void op_bombTest(float pos, int grade);
     void update(float dt);
+     bool isDead(){return !_alive;};
 
 protected:
-
+    GlobalArrowEffectManageProtocal* _effetcManageProtocal;
     EnergyBarProtocal* _energyBarProtocal;
     FloatingLaserManageProtocal* _floatingLaserManageProtocal;
     HuntingMonsterGeneralType _generalType;
@@ -77,6 +81,7 @@ protected:
     float _slowDownRate = 1;
     float _poisonTime = 0;
     float _poisonDamage;
+    bool _alive = true;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
@@ -101,6 +106,8 @@ protected:
     PixelNode* _pxGold;
     void initGoldThings();
     void toastGold();
+
+    void damage(float damage, cocos2d::Vec2 dir);
 
 };
 

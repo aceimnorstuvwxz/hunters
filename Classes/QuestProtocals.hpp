@@ -417,7 +417,9 @@ public:
     virtual void op_toastUnderAttack() = 0; //播放被攻击动画，变白
     virtual void op_toastDead(cocos2d::Vec2 direction) = 0; //播放死亡，散架了，坠落到地上。从哪个方向的箭杀死的，头会按那个方向飞走，然后其它的散开落地
     virtual int op_getId() = 0;
-    virtual bool op_dealWithArrow(ArrowUnit& arrow) = 0;
+    virtual void op_dealWithArrow(ArrowUnit& arrow) = 0;
+    virtual void op_thunderTest(float pos) = 0;
+    virtual void op_bombTest(float pos, int grade) = 0;
 };
 
 
@@ -543,7 +545,9 @@ struct ArrowUnit
 class HuntingMonsterManageProtocal
 {
 public:
-    virtual void op_dealCollision(ArrowUnit& arrow) = 0; 
+    virtual void op_dealCollision(ArrowUnit& arrow) = 0;
+    virtual void op_thunder(float pos) = 0;
+    virtual void op_bomb(float pos, int grade) = 0;
 };
 
 inline cocos2d::Vec2 huntingCalcSpeed(float angle, float strenth){

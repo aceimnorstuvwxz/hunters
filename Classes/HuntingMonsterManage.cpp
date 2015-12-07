@@ -62,7 +62,7 @@ void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, Hun
     auto sp = HuntingMonster::create();
     sp->init(_mainLayer, _mainCamera);
     sp->op_configType(generalType, specialType, true, level);
-    sp->configProtocal(_energyBarProtocal, _floatingLaserManageProtocal);
+    sp->configProtocal(_energyBarProtocal, _floatingLaserManageProtocal, _effetcManageProtocal);
     _monsters.push_back(sp);
 }
 
@@ -71,9 +71,19 @@ void HuntingMonsterManage::op_dealCollision(ArrowUnit& arrow) //bool 返回，tr
     //在这里处理 箭与怪物的碰撞
     //炸弹在 与地板碰撞处理，其它的箭也会与地板处理（要消失！）
     //这里的碰撞的难点在于对于穿透箭的处理。
-
     for (auto iter = _monsters.begin(); iter != _monsters.end(); ) {
-        if ((*iter)->op_dealWithArrow(arrow) ){
+        if ((*iter)->isDead() ){
+            iter = _monsters.erase(iter);
+        } else {
+            iter++;
+        }
+    }
+
+    for (auto mon : _monsters) {
+        mon->op_dealWithArrow(arrow);
+    }
+    for (auto iter = _monsters.begin(); iter != _monsters.end(); ) {
+        if ((*iter)->isDead() ){
             iter = _monsters.erase(iter);
         } else {
             iter++;
@@ -81,6 +91,20 @@ void HuntingMonsterManage::op_dealCollision(ArrowUnit& arrow) //bool 返回，tr
     }
     if (arrow._leftHitTimes > 0) {
         groundCollision(arrow);//地板测试
+    }
+}
+
+void HuntingMonsterManage::op_thunder(float pos)
+{
+    for (auto sp : _monsters) {
+        sp->op_thunderTest(pos);
+    }
+}
+
+void HuntingMonsterManage::op_bomb(float pos, int grade)
+{
+    for (auto sp : _monsters) {
+        sp->op_bombTest(pos, grade);
     }
 }
 

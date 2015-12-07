@@ -409,14 +409,13 @@ int HuntingMonster::op_getId()
     return _id;
 }
 
-bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
+void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
 {
     Vec2 pos_arrow = {arrow._pxNode->getPositionY(), arrow._pxNode->getPositionZ()};
     float pos_monster = _hubNode->getPositionY();
 
     float x_expand = 0.5f*20*huntingMonsterGeneralType2scale(_generalType)*0.15;
     float y_height = 20*4*huntingMonsterGeneralType2scale(_generalType)*0.15f;
-    bool ret = false;
 
     if (pos_arrow.x > pos_monster-x_expand && pos_arrow.x < pos_monster+x_expand && pos_arrow.y > 0 &&
         pos_arrow.y < y_height
@@ -446,7 +445,7 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             float pushBackDiff = arrow._speed.x*0.01f;
             _hubNode->setPositionY(_hubNode->getPositionY() + pushBackDiff);
 
-            float damage = calcArrowDamage(arrow._type);
+            float dama = calcArrowDamage(arrow._type);
 
             //特殊效果
             if (arrow._type == HuntingArrowType::SLOW_0) {
@@ -457,13 +456,16 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
                 _slowDownRate = 0.45f;
             } else if (arrow._type == HuntingArrowType::SLOW_2) {
                 // 特殊 雷击 范围
+                _effetcManageProtocal->op_thunder(pos_arrow);
             } else if (arrow._type == HuntingArrowType::MULTI_2) {
                 _poisonTime = 8.f;
-                _poisonDamage = 0.5f * damage;
+                _poisonDamage = 0.5f * dama;
             } else if (arrow._type == HuntingArrowType::BOMB_0 ||
                        arrow._type == HuntingArrowType::BOMB_1 ||
                        arrow._type == HuntingArrowType::BOMB_2) {
-                //
+
+                _effetcManageProtocal->op_bomb(arrow._type == HuntingArrowType::BOMB_0 ? 0 :
+                                               arrow._type == HuntingArrowType::BOMB_1 ? 1 : 2, pos_arrow);
             }
 
 
@@ -479,31 +481,63 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
 
             //伤害计算
-            _bloowNow -= (1+num)*damage;
-            if (_bloowNow <= 0) {
-                _bloowNow = 0;
-
-                //金币
-                toastGold();
-                MoneyManager::s()->add(calcMonsterGold(_generalType, _level));
-
-                //能量
-                _energyBarProtocal->op_addEnergy(calcMonsterEnergy(_generalType));
-
-                //死亡
-                op_toastDead(arrow._speed);
-                ret = true;
-                auto p = _hubNode;
-                _mainCamera->scheduleOnce([p](float dt){
-                    p->removeFromParent();
-                }, 1.f, fmt::sprintf("monster dead %d", random(0, 999999999)));
-            }
-
-            refreshBloodLine();
+            damage( (1+num)*dama, arrow._speed);
 
         }
     }
-    return ret;
+}
+
+void HuntingMonster::damage(float damage, cocos2d::Vec2 dir)
+{
+    if (_bloowNow <= 0 ) return;
+    //伤害计算
+    _bloowNow -= damage;
+    if (_bloowNow <= 0) {
+        _alive = false;
+        _bloowNow = 0;
+
+        //金币
+        toastGold();
+        MoneyManager::s()->add(calcMonsterGold(_generalType, _level));
+
+        //能量
+        _energyBarProtocal->op_addEnergy(calcMonsterEnergy(_generalType));
+
+        //死亡
+        op_toastDead(dir);
+        auto p = _hubNode;
+        _mainCamera->scheduleOnce([p](float dt){
+            p->removeFromParent();
+        }, 1.f, fmt::sprintf("monster dead %d", random(0, 999999999)));
+    }
+
+    refreshBloodLine();
+}
+
+
+void HuntingMonster::op_thunderTest(float pos)
+{
+    if (std::abs(_hubNode->getPositionY() - pos) < 10) {
+
+        damage(calcArrowDamage(HuntingArrowType::SLOW_2), {0, -1});
+        _slowDownTime = 3.f;
+        _slowDownRate = 0.f;
+        _dpxNode->configMixColor({102.f/255.f,0.f/255.f,139.f/255.f,0.5f});
+        auto p = _dpxNode;
+        _dpxNode->scheduleOnce([p](float dt) {p->configMixColor({0,0,0,0,});}, _slowDownTime, fmt::sprintf("sdfs %d", random(0, 99999)));
+
+    }
+}
+
+void HuntingMonster::op_bombTest(float pos, int grade)
+{
+    if (std::abs(_hubNode->getPositionY() - pos) < (grade <= 1 ? 10 : 15)) {
+
+        damage(calcArrowDamage(grade == 0 ? HuntingArrowType::BOMB_0 : grade == 1 ? HuntingArrowType::BOMB_1 :HuntingArrowType::BOMB_2), {0, -1});
+
+        _hubNode->setPositionY(_hubNode->getPositionY() + 0.5f*(pos - _hubNode->getPositionY()));
+
+    }
 }
 
 void HuntingMonster::applyEffectArrow(ArrowUnit& arrow, bool isThrough)

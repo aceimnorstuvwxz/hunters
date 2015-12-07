@@ -247,9 +247,10 @@ void DynamicPixelNode::configAddSopx(const std::string& file, int boneIndex, coc
 
     glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 //    CCLOG("buffer store capatity=%d, used=%d", _bufferStoreSize, _count+localCount);
-    assert((_count+localCount) <= _bufferStoreSize);
-    glBufferSubData(GL_ARRAY_BUFFER, sizeof(DynamicPixelVertexPormat)*_count, sizeof(DynamicPixelVertexPormat)*localCount, vertexData);
-    _count += localCount;
+    if( (_count+localCount) <= _bufferStoreSize) {
+        glBufferSubData(GL_ARRAY_BUFFER, sizeof(DynamicPixelVertexPormat)*_count, sizeof(DynamicPixelVertexPormat)*localCount, vertexData);
+        _count += localCount;
+    }
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 }

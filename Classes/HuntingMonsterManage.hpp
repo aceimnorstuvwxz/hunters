@@ -24,15 +24,20 @@ class HuntingMonsterManage:public HuntingMonsterManageProtocal
 public:
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocal(EnergyBarProtocal * energyBarProtocal, FloatingLaserManageProtocal* floatingLaserManageProtocal) {
+    void configProtocal(EnergyBarProtocal * energyBarProtocal, FloatingLaserManageProtocal* floatingLaserManageProtocal,GlobalArrowEffectManageProtocal* effetcManageProtocal) {
         _energyBarProtocal = energyBarProtocal;
         _floatingLaserManageProtocal = floatingLaserManageProtocal;
+        _effetcManageProtocal = effetcManageProtocal;
     }
     virtual void op_dealCollision(ArrowUnit& arrow);
+
+    virtual void op_thunder(float pos);
+    virtual void op_bomb(float pos, int grade);
 
     void update(float dt);
 
 protected:
+    GlobalArrowEffectManageProtocal* _effetcManageProtocal;
 
     EnergyBarProtocal* _energyBarProtocal;
     FloatingLaserManageProtocal* _floatingLaserManageProtocal;
