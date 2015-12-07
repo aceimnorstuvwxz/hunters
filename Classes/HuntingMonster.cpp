@@ -130,10 +130,10 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     // 穿上剑
     _dpxNode->configAddSopx(fmt::sprintf("hunters/swords/%d.tga.png.sopx", level), BT_SWORD_MAX, boneIndex2relativePosition(BT_SWORD_MAX), true, false);
 
-    // 盾
-    if (_hasShield) {
-        _dpxNode->configAddSopx(fmt::sprintf("hunters/shields/%d.png.sopx", 0), BT_SHIELD, boneIndex2relativePosition(BT_SHIELD), true, false);
-    }
+//    // 盾
+//    if (_hasShield) {
+//        _dpxNode->configAddSopx(fmt::sprintf("hunters/shields/%d.png.sopx", 0), BT_SHIELD, boneIndex2relativePosition(BT_SHIELD), true, false);
+//    }
 
     _steadyScale = QuestDef::ARROW_SCALE/0.15f/huntingMonsterGeneralType2scale(generalType);
     _dpxNode->configAction(BT_STEADY, {0,0,0}, {0,180,0}, _steadyScale, _steadyScale, DelayTime::create(0.5));
