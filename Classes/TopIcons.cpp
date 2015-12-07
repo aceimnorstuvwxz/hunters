@@ -89,7 +89,7 @@ void TopIcons::initGoldThings()
         node->setPosition3D({-70+heart_pos,0,0.5});
         node->configSopx("hunters/sopx/heart_icon.png.sopx");
         _hubNode->addChild(node);
-        //        _pxGoldIcon = node;
+                _pxHeart = node;
     }
 
     {
@@ -142,6 +142,7 @@ void TopIcons::op_minusHeart()
     _heart--;
     _ptxHeartNumber->configText(fmt::sprintf("%d", _heart));
     _battleRoadProtocal->op_hitCastle(_heart == 0);
+    _pxHeart->configMixColorAni({1,1,1,1}, 0.2);
     if (_heart == 0) {
         //game over
     }

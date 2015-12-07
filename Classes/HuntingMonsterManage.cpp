@@ -18,6 +18,8 @@ void HuntingMonsterManage::init(cocos2d::Layer *mainLayer, cocos2d::Camera *main
 
 void HuntingMonsterManage::update(float dt)
 {
+
+
     _timeLeft -= dt;
     if (_timeLeft <= 0) {
 
@@ -55,6 +57,16 @@ void HuntingMonsterManage::update(float dt)
     for (auto sp : _monsters) {
         sp->update(dt);
     }
+
+
+    for (auto iter = _monsters.begin(); iter != _monsters.end(); ) {
+        if ((*iter)->isDead() ){
+            iter = _monsters.erase(iter);
+        } else {
+            iter++;
+        }
+    }
+
 }
 
 void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level)
@@ -62,7 +74,7 @@ void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, Hun
     auto sp = HuntingMonster::create();
     sp->init(_mainLayer, _mainCamera);
     sp->op_configType(generalType, specialType, true, level);
-    sp->configProtocal(_energyBarProtocal, _floatingLaserManageProtocal, _effetcManageProtocal);
+    sp->configProtocal(_energyBarProtocal, _floatingLaserManageProtocal, _effetcManageProtocal, _topIconsProtocal);
     _monsters.push_back(sp);
 }
 

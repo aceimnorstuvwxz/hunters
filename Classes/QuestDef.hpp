@@ -62,6 +62,7 @@ public:
 
     constexpr static const int INIT_HEART = 20;
     constexpr static const float GRAVITY = 50;
+    constexpr static const float EMEMY_ATTACK_POS = -160;
     
     
 

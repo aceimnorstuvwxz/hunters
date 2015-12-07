@@ -133,7 +133,7 @@ bool QuestScene::init()
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar);
     _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage);
-    _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage);
+    _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons);
     _energyBar.configProtocals(&_floatingLaserManage);
     _topIcons.configProtocals(&_battleRoad);
     _flyCrowManage.configProtocals(&_topIcons);

@@ -46,7 +46,8 @@ public:
     ACPositionScaleRotation help_boneDeadGesture(int boneIndex);
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocal(EnergyBarProtocal* energyBarProtocal, FloatingLaserManageProtocal *floatingLaserManageProtocal, GlobalArrowEffectManageProtocal* effetcManageProtocal){
+    void configProtocal(EnergyBarProtocal* energyBarProtocal, FloatingLaserManageProtocal *floatingLaserManageProtocal, GlobalArrowEffectManageProtocal* effetcManageProtocal, TopIconsProtocal* topIconsProtocal) {
+        _topIconsProtocal = topIconsProtocal;
         _energyBarProtocal = energyBarProtocal;
         _floatingLaserManageProtocal = floatingLaserManageProtocal;
         _effetcManageProtocal = effetcManageProtocal;
@@ -67,6 +68,8 @@ public:
      bool isDead(){return !_alive;};
 
 protected:
+    TopIconsProtocal* _topIconsProtocal;
+
     GlobalArrowEffectManageProtocal* _effetcManageProtocal;
     EnergyBarProtocal* _energyBarProtocal;
     FloatingLaserManageProtocal* _floatingLaserManageProtocal;

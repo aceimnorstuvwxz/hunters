@@ -44,6 +44,7 @@ protected:
 
     PixelNode* _pxGoldBg;
     PixelNode* _pxGoldIcon;
+    PixelNode* _pxHeart;
     PixelTextNode* _pxGoldNumber;
     PixelTextNode* _ptxHeartNumber;
     int _currentGoldNumber = 0;

@@ -571,6 +571,13 @@ void HuntingMonster::update(float dt)
         move_speed = move_speed*_slowDownRate;
     }
     _hubNode->setPositionY(_hubNode->getPositionY() - move_speed*dt);
+
+    if (_hubNode->getPositionY() < QuestDef::EMEMY_ATTACK_POS) {
+        //hit!
+        _topIconsProtocal->op_minusHeart();
+        _alive = false;
+        _hubNode->removeFromParent();
+    }
 }
 
 

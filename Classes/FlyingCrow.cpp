@@ -133,7 +133,7 @@ void FlyingCrow::update(float dt)
 //            _shitSpeed += dt*QuestDef::GRAVITY;
 //            _pxCrowShit->setPositionY(_pxCrowShit->getPositionY()-_shitSpeed*dt);
 //        }
-        if (_hubNode->getPositionY() < -160) {
+        if (_hubNode->getPositionY() < QuestDef::EMEMY_ATTACK_POS) {
             //hit!
             _topIconsProtocal->op_minusHeart();
             toastDead(false);
