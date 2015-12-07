@@ -8,6 +8,7 @@
 #include "PixelNode.h"
 #include "ACSoundManage.hpp"
 #include "format.h"
+#include "QuestDef.hpp"
 
 class BattleRoadProtocal
 {
@@ -552,7 +553,7 @@ inline cocos2d::Vec2 huntingCalcSpeed(float angle, float strenth){
 }
 
 inline cocos2d::Vec2 huntingCalcAcce(float wind){
-    const float gravity = 50;
+    const float gravity = QuestDef::GRAVITY;
     const float windpower = 4;
 
     cocos2d::Vec2 acce = 1.5f*cocos2d::Vec2{windpower*wind, -gravity};

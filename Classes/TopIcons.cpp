@@ -30,6 +30,12 @@ void TopIcons::initHubThings()
     _hubNode->setScale(0.1);
     _hubNode->setCameraMask(_mainCamera->getCameraMask());
     _mainCamera->addChild(_hubNode);
+//
+//    _heartHubNode = Node::create();
+//    _heartHubNode->setPosition3D({0,5,-10});
+//    _heartHubNode->setScale(0.1);
+//    _heartHubNode->setCameraMask(_mainCamera->getCameraMask());
+//    _mainCamera->addChild(_heartHubNode);
 }
 
 
@@ -56,6 +62,7 @@ void TopIcons::initGoldThings()
         _pxGoldIcon = node;
     }
 
+
     {
         auto node = PixelTextNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
@@ -65,6 +72,35 @@ void TopIcons::initGoldThings()
         node->configMixColor({1.f, 200.f/255.f, 51.f/255.f,1.f});
         _hubNode->addChild(node);
         _pxGoldNumber = node;
+    }
+    const float heart_pos = -15;
+    {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1.0);
+        node->setPosition3D({-70+heart_pos,0,0});
+        node->configSopx("hunters/sopx/heart_bg.png.sopx");
+        _hubNode->addChild(node);
+    }
+    {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1.0);
+        node->setPosition3D({-70+heart_pos,0,0.5});
+        node->configSopx("hunters/sopx/heart_icon.png.sopx");
+        _hubNode->addChild(node);
+        //        _pxGoldIcon = node;
+    }
+
+    {
+        auto node = PixelTextNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1.f,1.2f);
+        node->setPosition3D({-62+heart_pos,0.5,0.5});
+        node->configText("20",1);
+        node->configMixColor({0.f/255.f, 0.f/255.f, 0.f/255.f,1.f});
+        _hubNode->addChild(node);
+        _ptxHeartNumber = node;
     }
 }
 

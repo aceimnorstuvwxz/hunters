@@ -65,6 +65,17 @@ void FlyingCrow::initCrowThings()
         _hubNode->addChild(node);
         _pxShield = node;
     }
+    {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1);
+        node->setPosition3D({0,-5,0});
+        node->configSopx("hunters/flycrow/crow_shit.png.sopx");
+        node->configBlend(true);
+        node->setVisible(false);
+        _hubNode->addChild(node);
+        _pxCrowShit = node;
+    }
 }
 
 void FlyingCrow::op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition)
@@ -95,6 +106,12 @@ void FlyingCrow::update(float dt)
             _need2cry = false;
             ACSoundManage::s()->play(ACSoundManage::SN_CROW_CRY);
         }
+
+//        if (_hubNode->getPositionY() < -100) {
+//            _pxCrowShit->setVisible(true);
+//            _shitSpeed += dt*QuestDef::GRAVITY;
+//            _pxCrowShit->setPositionY(_pxCrowShit->getPositionY()-_shitSpeed*dt);
+//        }
 
     }
 }

@@ -236,7 +236,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
 
 void BattleRoad::initCastleThings()
 {
-    const float scale = 1.6;
+    const float scale = 1.2;
     {
         auto px = PixelNode::create();
         px->setCameraMask(_mainCamera->getCameraMask());
@@ -262,7 +262,7 @@ void BattleRoad::initCastleThings()
     }
 
     const float heart_pos = 23;
-    const float heart_hei = 80;
+    const float heart_hei = 50;
     {
         auto px = PixelNode::create();
         px->setCameraMask(_mainCamera->getCameraMask());

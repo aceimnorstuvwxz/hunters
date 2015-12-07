@@ -32,11 +32,13 @@ protected:
 
 
     cocos2d::Node* _hubNode;
+    cocos2d::Node* _heartHubNode;
     void initHubThings();
 
     PixelNode* _pxGoldBg;
     PixelNode* _pxGoldIcon;
     PixelTextNode* _pxGoldNumber;
+    PixelTextNode* _ptxHeartNumber;
     int _currentGoldNumber = 0;
     int _targetGoldNumber = 0;
     void initGoldThings();

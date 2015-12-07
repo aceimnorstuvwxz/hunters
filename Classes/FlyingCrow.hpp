@@ -50,6 +50,9 @@ protected:
     float _speed;
     float _acce;
 
+    PixelNode* _pxCrowShit;
+    float _shitSpeed = 0;
+
 
     void initCrowThings();
 
