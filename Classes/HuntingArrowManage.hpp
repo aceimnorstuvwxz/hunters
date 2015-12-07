@@ -41,6 +41,7 @@ protected:
     std::list<ArrowUnit> _arrowUnits;
 
     void dealWithUnit(ArrowUnit& unit, float dt);
+    void op_shootArrowAst(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth); //放箭
     
 };
 #endif /* HuntingArrowManage_hpp */

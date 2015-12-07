@@ -200,7 +200,7 @@ ACPositionScaleRotation HuntingMonster::help_calcBonePosition(int boneIndexType)
     switch (boneIndexType) {
 
         case BT_STEADY:
-            r =  {0,head_pos-100,-2};
+            r =  {0,0,0};
             break;
 
         case BT_HEAD:
@@ -262,6 +262,9 @@ void HuntingMonster::ani_moving(float radio)
 
     cfg = help_calcBonePosition(BT_BODY);
     _dpxNode->configAction(BT_BODY, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, RepeatForever::create(bodyMove->clone()));
+
+    _steadyScale = QuestDef::ARROW_SCALE/0.15f/huntingMonsterGeneralType2scale(_generalType);
+    _dpxNode->configAction(BT_STEADY, {0,0,0}, {0,180,0}, _steadyScale, _steadyScale, RepeatForever::create(bodyMove->clone()));
 
     _dpxNode->configAction(BT_LEG_L, {-5+0.5f*run_length,head_pos-48,0}, {0,0,-angle_forward}, 1.f*3,1.f*3, RepeatForever::create(Spawn::create(
                                                                                                             Sequence::create(                                                                                                                             MoveBy::create(run_time, {-run_length,0,0}), MoveBy::create(run_time, {run_length,0,0}), NULL),
@@ -443,8 +446,27 @@ bool HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             float pushBackDiff = arrow._speed.x*0.01f;
             _hubNode->setPositionY(_hubNode->getPositionY() + pushBackDiff);
 
-
             float damage = calcArrowDamage(arrow._type);
+
+            //特殊效果
+            if (arrow._type == HuntingArrowType::SLOW_0) {
+                _slowDownTime = 3.f;
+                _slowDownRate = 0.65f;
+            } else if (arrow._type == HuntingArrowType::SLOW_1) {
+                _slowDownTime = 4.f;
+                _slowDownRate = 0.45f;
+            } else if (arrow._type == HuntingArrowType::SLOW_2) {
+                // 特殊 雷击 范围
+            } else if (arrow._type == HuntingArrowType::MULTI_2) {
+                _poisonTime = 8.f;
+                _poisonDamage = 0.5f * damage;
+            } else if (arrow._type == HuntingArrowType::BOMB_0 ||
+                       arrow._type == HuntingArrowType::BOMB_1 ||
+                       arrow._type == HuntingArrowType::BOMB_2) {
+                //
+            }
+
+
 
             //激光
             int num = _floatingLaserManageProtocal->op_fetchLaserNumber();
@@ -505,7 +527,11 @@ void HuntingMonster::applyEffectArrow(ArrowUnit& arrow, bool isThrough)
 
 void HuntingMonster::update(float dt)
 {
-    const float move_speed = 4;
+    float move_speed = 4;
+    if (_slowDownTime >0) {
+        _slowDownTime -= dt;
+        move_speed = move_speed*_slowDownRate;
+    }
     _hubNode->setPositionY(_hubNode->getPositionY() - move_speed*dt);
 }
 

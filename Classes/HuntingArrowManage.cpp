@@ -37,8 +37,22 @@ void HuntingArrowManage::update(float dt)
     }
 
 }
+void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth)  //放箭
+{
+    int arrowCount = 1;
+    if (arrowType == HuntingArrowType::MULTI_0) {
+        arrowCount = 2;
+    } else if (arrowType == HuntingArrowType::MULTI_1) {
+        arrowCount = 3;
+    } else if (arrowType == HuntingArrowType::MULTI_2) {
+        arrowCount = 4;
+    }
+    for (int i = 0; i < arrowCount; i++) {
+        op_shootArrowAst(arrowType, position, angle+(i-arrowCount*0.5f)*5.f, strenth);
+    }
+}
 
-void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) //放箭
+void HuntingArrowManage::op_shootArrowAst(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) //放箭
 
 {
     float y = heroPositionType2floatYposition(position) + QuestDef::ARROW_SHOOT_Y;

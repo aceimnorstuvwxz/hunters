@@ -23,6 +23,7 @@ public:
         SN_GOLD_COST,
         SN_CROW_CRY,
         SN_HIT_SHIELD,
+        SN_THUNDER_HIT,
     };
     static ACSoundManage* s() { return &_instance; }
 

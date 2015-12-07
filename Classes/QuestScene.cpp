@@ -38,11 +38,14 @@ bool QuestScene::init()
 //        _huntingMonster.op_toastAttack();
 //    });
 
-    addCommonBtn({0.1,0.9}, "monster attack", [this](){
-        _huntingArrowManage.op_shootArrow(HuntingArrowType::META_0, HeroPositionType::HPT_0, random(0, 180), 0.5);
+    addCommonBtn({0.1,0.9}, "bomb base", [this](){
+        _globalArrowEffectManage.op_bomb(0, {random(-100.f, 100.f), 20.f});
     });
-    addCommonBtn({0.1,0.8}, "crow dead", [this](){
-        _crow.toastDead();
+    addCommonBtn({0.1,0.8}, "thunder", [this](){
+        _globalArrowEffectManage.op_thunder({random(-100.f, 100.f),0});
+    });
+    addCommonBtn({0.1,0.7}, "bomb s", [this](){
+        _globalArrowEffectManage.op_bomb(2, {random(-100.f, 100.f), 20.f});
     });
 //    static int iid = 0;
 //
@@ -118,6 +121,7 @@ bool QuestScene::init()
     _huntingMonsterManage.init(_mainLayer, _mainCamera);
     _floatingLaserManage.init(_mainLayer, _mainCamera);
     _flyCrowManage.init(_mainLayer, _mainCamera);
+    _globalArrowEffectManage.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
@@ -133,6 +137,7 @@ bool QuestScene::init()
     _energyBar.configProtocals(&_floatingLaserManage);
     _topIcons.configProtocals(&_battleRoad);
     _flyCrowManage.configProtocals(&_topIcons);
+    _globalArrowEffectManage.configProtocals(&_huntingMonsterManage);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);

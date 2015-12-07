@@ -50,19 +50,21 @@ public:
     void configSpecialDoubleBoneRotateFirst(int boneIndex, cocos2d::Vec3 rotateion); //弓的特殊要求!!
     //TODO 提供普遍双层 BONE，来应对更高级的 archor 等效果，使得 Bone 控制更灵活
 
+    void configBlend(bool enable) {_blend = enable;}
+
     void update(float dt) override;
 
 protected:
     virtual ~DynamicPixelNode();
     GLuint _vao;
     GLuint _vbo;
+    bool _blend = false;
 
     void prepareVertexData();
     void prepareShaders();
     static cocos2d::GLProgramState* _programState;
     cocos2d::CustomCommand _command;
     int _count = 0;
-    bool _blend = false;
     int _bufferStoreSize = 50000;
     static constexpr const int BONE_NUM_MAX = 10; //与 VSH 同步
     cocos2d::Node* _bones[BONE_NUM_MAX];

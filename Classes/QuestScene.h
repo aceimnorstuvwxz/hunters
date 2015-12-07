@@ -26,6 +26,7 @@
 #include "FloatingLaserManage.hpp"
 #include "FlyingCrow.hpp"
 #include "FlyingCrowManage.hpp"
+#include "GlobalArrowEffectManage.hpp"
 // Beat Quest Game Scene
 
 
@@ -63,6 +64,7 @@ protected:
 
     HuntingMonsterManage _huntingMonsterManage;
     HuntingArrowManage _huntingArrowManage;
+    GlobalArrowEffectManage _globalArrowEffectManage;
 
 
     cocos2d::Sprite* _pauseShadow;

@@ -73,6 +73,10 @@ protected:
     int _id;
     static int _idGen;
     float _steadyScale;
+    float _slowDownTime = 0;
+    float _slowDownRate = 1;
+    float _poisonTime = 0;
+    float _poisonDamage;
 
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;

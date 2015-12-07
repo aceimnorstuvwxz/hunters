@@ -43,6 +43,7 @@ void FlyingCrow::initCrowThings()
     _dxCrow->setPosition3D({0,0,0});
     _hubNode->addChild(_dxCrow);
     _dxCrow->setCameraMask(_mainCamera->getCameraMask(), true);
+    _dxCrow->configBlend(true);
 
     for (int i = 0; i < 8; i++) {
         _dxCrow->configAddSopx(fmt::sprintf("hunters/flycrow/%d.png.ps.png.sopx", i), i, {0,0,0}, true, true);

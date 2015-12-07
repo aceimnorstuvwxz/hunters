@@ -601,4 +601,12 @@ public:
         virtual void op_dealCollision(ArrowUnit& arrow) = 0;
 
     };
+
+    class GlobalArrowEffectManageProtocal
+    {
+    public:
+        virtual void op_bomb(int grade, cocos2d::Vec2 pos) = 0;
+        virtual void op_thunder(cocos2d::Vec2 pos) = 0;
+    };
+
 #endif /* QuestProtocals_hpp */
