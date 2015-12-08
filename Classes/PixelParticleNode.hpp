@@ -17,11 +17,12 @@
 
 struct PixelParticleVertexFormal
 {
-    cocos2d::Vec3 srcPos;
-    cocos2d::Vec3 desPos;
+    cocos2d::Vec3 centerPos;
+    cocos2d::Vec3 diffPos;
     cocos2d::Vec4 scaleLife;
     cocos2d::Vec4 color;
     cocos2d::Vec3 speed;
+    cocos2d::Vec3 normal;
 };
 
 struct PixelParticleBuffer
@@ -56,7 +57,12 @@ protected:
     static constexpr int BUFFER_STORGE_SIZE = 50000; //指顶点数目
 
     static constexpr int N_TMP_BUFFER = 16; //指可容纳粒子数
-    PixelParticleVertexFormal _tempVertexBuffer[N_TMP_BUFFER*36];
+    PixelParticleVertexFormal _tmpVertexBuffer[N_TMP_BUFFER*36];
+    int _tmpLocalCount;
+
+
+    void addPerParticle(float time, float timeVar, cocos2d::Vec3 position, cocos2d::Vec3 positionVar, cocos2d::Vec4 color, cocos2d::Vec4 colorVar, cocos2d::Vec3 speed, cocos2d::Vec3 speedVar, float beginScale, float beginScaleVar, float endScale, float endScaleVar);
+
 };
 
 #endif /* PixelParticleNode_hpp */

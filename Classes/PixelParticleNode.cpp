@@ -36,10 +36,10 @@ void PixelParticleNode::prepareVertexData()
         glBufferData(GL_ARRAY_BUFFER, sizeof(PixelParticleVertexFormal) * BUFFER_STORGE_SIZE, nullptr, GL_STREAM_DRAW); //预支空间
         // position
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(PixelParticleVertexFormal), (GLvoid *)offsetof(PixelParticleVertexFormal, srcPos));
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(PixelParticleVertexFormal), (GLvoid *)offsetof(PixelParticleVertexFormal, centerPos));
 
         glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(PixelParticleVertexFormal), (GLvoid *)offsetof(PixelParticleVertexFormal, desPos));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(PixelParticleVertexFormal), (GLvoid *)offsetof(PixelParticleVertexFormal, diffPos));
         
         glEnableVertexAttribArray(2);
         glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(PixelParticleVertexFormal), (GLvoid *)offsetof(PixelParticleVertexFormal, scaleLife));
@@ -49,6 +49,9 @@ void PixelParticleNode::prepareVertexData()
 
         glEnableVertexAttribArray(4);
         glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(PixelParticleVertexFormal), (GLvoid *)offsetof(PixelParticleVertexFormal, speed));
+
+        glEnableVertexAttribArray(5);
+        glVertexAttribPointer(5, 3, GL_FLOAT, GL_FALSE, sizeof(PixelParticleVertexFormal), (GLvoid *)offsetof(PixelParticleVertexFormal, normal));
 
         GL::bindVAO(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -64,11 +67,12 @@ void PixelParticleNode::prepareShaders()
     auto fragSource = fileUtils->getStringFromFile("3d/pixel_particle.fsh");
 
     auto glprogram = GLProgram::createWithByteArrays(vertSource.c_str(), fragSource.c_str());
-    glprogram->bindAttribLocation("a_cbf_src_pos", 0);
-    glprogram->bindAttribLocation("a_cbf_des_pos", 1);
+    glprogram->bindAttribLocation("a_cbf_center_pos", 0);
+    glprogram->bindAttribLocation("a_cbf_diff_pos", 1);
     glprogram->bindAttribLocation("a_cbf_scale_life", 2);
     glprogram->bindAttribLocation("a_cbf_color", 3);
     glprogram->bindAttribLocation("a_cbf_speed", 4);
+    glprogram->bindAttribLocation("a_cbf_normal", 5);
 
     glprogram->link();
     glprogram->updateUniforms();
@@ -168,11 +172,98 @@ void PixelParticleNode::addParticleBatch(int count, float time, float timeVar, c
         //超载，丢弃
         return;
     }
-    int localCount = 0;
-    auto genCube = [&localCount,=this](float time, cocos2d::Vec3 position, cocos2d::Vec4 color, cocos2d::Vec3 speed, float beginScale, float endScale) {
-        
-    }
+    _tmpLocalCount = 0;
     for (int i = 0; i < count; i++) {
+        addPerParticle(time, timeVar, position, positionVar, color, colorVar, speed, speedVar, beginScale, beginScaleVar, endScale, endScaleVar);
     }
 
+    glBindBuffer(GL_ARRAY_BUFFER, buffer._vbo);
+    glBufferSubData(GL_ARRAY_BUFFER, sizeof(PixelParticleVertexFormal)*buffer._count, sizeof(PixelParticleVertexFormal)*_tmpLocalCount, _tmpVertexBuffer);
+    buffer._count += _tmpLocalCount;
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void PixelParticleNode::addPerParticle(float time, float timeVar, cocos2d::Vec3 position, cocos2d::Vec3 positionVar, cocos2d::Vec4 color, cocos2d::Vec4 colorVar, cocos2d::Vec3 speed, cocos2d::Vec3 speedVar, float beginScale, float beginScaleVar, float endScale, float endScaleVar)
+{
+
+    // 8 point
+    const float half_step = 0.5f;
+
+    cocos2d::Vec3 cornors[8] = {{1,1,1}, {-1,1,1}, {-1,-1,1}, {1,-1,1}, {1,1,-1}, {-1,1,-1}, {-1,-1,-1}, {1,-1,-1}};
+    Node* node = Node::create();
+    node->setRotation3D({random(0.f, 360.f),random(0.f, 360.f),random(0.f, 360.f)});
+    auto mat = node->getNodeToParentTransform();
+
+    auto genface = [this, &cornors, half_step, &mat](int a, int b, int c, int d, const cocos2d::Vec4& color, const cocos2d::Vec3& centerPos, const cocos2d::Vec4& scaleLife, const Vec3& speed, const Vec3& normal){
+        _tmpVertexBuffer[_tmpLocalCount].centerPos = centerPos;
+        _tmpVertexBuffer[_tmpLocalCount].diffPos = cornors[a] * half_step;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].diffPos);
+        _tmpVertexBuffer[_tmpLocalCount].normal = normal;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].normal);
+        _tmpVertexBuffer[_tmpLocalCount].color = color;
+        _tmpVertexBuffer[_tmpLocalCount].speed = speed;
+        _tmpVertexBuffer[_tmpLocalCount++].scaleLife = scaleLife;
+
+
+        _tmpVertexBuffer[_tmpLocalCount].centerPos = centerPos;
+        _tmpVertexBuffer[_tmpLocalCount].diffPos = cornors[b] * half_step;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].diffPos);
+        _tmpVertexBuffer[_tmpLocalCount].normal = normal;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].normal);
+        _tmpVertexBuffer[_tmpLocalCount].color = color;
+        _tmpVertexBuffer[_tmpLocalCount].speed = speed;
+        _tmpVertexBuffer[_tmpLocalCount++].scaleLife = scaleLife;
+
+
+        _tmpVertexBuffer[_tmpLocalCount].centerPos = centerPos;
+        _tmpVertexBuffer[_tmpLocalCount].diffPos = cornors[c] * half_step;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].diffPos);
+        _tmpVertexBuffer[_tmpLocalCount].normal = normal;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].normal);
+        _tmpVertexBuffer[_tmpLocalCount].color = color;
+        _tmpVertexBuffer[_tmpLocalCount].speed = speed;
+        _tmpVertexBuffer[_tmpLocalCount++].scaleLife = scaleLife;
+
+        _tmpVertexBuffer[_tmpLocalCount].centerPos = centerPos;
+        _tmpVertexBuffer[_tmpLocalCount].diffPos = cornors[a] * half_step;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].diffPos);
+        _tmpVertexBuffer[_tmpLocalCount].normal = normal;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].normal);
+        _tmpVertexBuffer[_tmpLocalCount].color = color;
+        _tmpVertexBuffer[_tmpLocalCount].speed = speed;
+        _tmpVertexBuffer[_tmpLocalCount++].scaleLife = scaleLife;
+
+
+        _tmpVertexBuffer[_tmpLocalCount].centerPos = centerPos;
+        _tmpVertexBuffer[_tmpLocalCount].diffPos = cornors[c] * half_step;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].diffPos);
+        _tmpVertexBuffer[_tmpLocalCount].normal = normal;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].normal);
+        _tmpVertexBuffer[_tmpLocalCount].color = color;
+        _tmpVertexBuffer[_tmpLocalCount].speed = speed;
+        _tmpVertexBuffer[_tmpLocalCount++].scaleLife = scaleLife;
+
+
+        _tmpVertexBuffer[_tmpLocalCount].centerPos = centerPos;
+        _tmpVertexBuffer[_tmpLocalCount].diffPos = cornors[d] * half_step;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].diffPos);
+        _tmpVertexBuffer[_tmpLocalCount].normal = normal;
+        mat.transformVector(&_tmpVertexBuffer[_tmpLocalCount].normal);
+        _tmpVertexBuffer[_tmpLocalCount].color = color;
+        _tmpVertexBuffer[_tmpLocalCount].speed = speed;
+        _tmpVertexBuffer[_tmpLocalCount++].scaleLife = scaleLife;
+    };
+
+    auto dColor = color + random(-1.f, 1.f)*colorVar;
+    auto dPos = position + Vec3{random(-1.f, 1.f)*positionVar.x,random(-1.f, 1.f)*positionVar.y,random(-1.f, 1.f)*positionVar.z};
+    auto dSpeed = speed + random(-1.f, 1.f)*speedVar;
+    Vec4 dScleLife = {beginScale + random(-1.f, 1.f)*beginScaleVar, endScale + random(-1.f, 1.f)*endScaleVar, _ppbuffer[_activeBufferIndex]._time, _ppbuffer[_activeBufferIndex]._time + time + random(0.f, 1.f)*timeVar};
+
+    genface(0,1,2,3,dColor, dPos, dScleLife, dSpeed, {0,0,1});
+    genface(5,4,7,6,dColor, dPos, dScleLife, dSpeed, {0,0,-1});
+
+    genface(4,0,3,7,dColor, dPos, dScleLife, dSpeed, {1,0,0});
+    genface(1,5,6,2,dColor, dPos, dScleLife, dSpeed,{-1,0,0});
+    genface(4,5,1,0,dColor, dPos, dScleLife, dSpeed, {0,1,0});
+    genface(6,7,3,2,dColor, dPos, dScleLife, dSpeed, {0,-1,0});
 }
