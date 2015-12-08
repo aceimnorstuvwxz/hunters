@@ -372,9 +372,11 @@ public:
 enum class HuntingMonsterGeneralType:int
     //在图形上有大小区分，普通，大，极大，同时在攻击力、移动速度、血量上有不同配置
 {
-    NORMAL=1,
-    BIG=4,
-    GIANT=8,
+    NORMAL = 1, //这个数值是血量倍数
+    BIG = 4,
+    GIANT = 8,
+    SUPER = 16,
+    TITAN = 32,
 };
 
 inline float calcBloodMax(HuntingMonsterGeneralType generalType, int level)
@@ -384,20 +386,27 @@ inline float calcBloodMax(HuntingMonsterGeneralType generalType, int level)
 
 inline int calcMonsterGold(HuntingMonsterGeneralType generalType, int level)
 {
-    int r =  (generalType == HuntingMonsterGeneralType::NORMAL ? 1 : generalType == HuntingMonsterGeneralType::BIG ? 2 : 3);
+    int r =  (generalType == HuntingMonsterGeneralType::NORMAL ? 1 :
+              generalType == HuntingMonsterGeneralType::BIG ? 2 :
+              generalType == HuntingMonsterGeneralType::GIANT ? 4 :
+              generalType == HuntingMonsterGeneralType::SUPER ? 6 : 10);
     return r * (5 + level/4);
 }
 
 inline float calcMonsterEnergy(HuntingMonsterGeneralType generalType)
 {
-    float r =  (generalType == HuntingMonsterGeneralType::NORMAL ? 1 : generalType == HuntingMonsterGeneralType::BIG ? 2 : 3);
+    int r =  (generalType == HuntingMonsterGeneralType::NORMAL ? 1 :
+              generalType == HuntingMonsterGeneralType::BIG ? 2 :
+              generalType == HuntingMonsterGeneralType::GIANT ? 4 :
+              generalType == HuntingMonsterGeneralType::SUPER ? 7 : 10);
     return 0.33f/20*r; //要20个普通的才能换1格能量
 }
 
 inline float huntingMonsterGeneralType2scale(HuntingMonsterGeneralType generalType){
-    return  generalType ==  HuntingMonsterGeneralType::NORMAL ? 1.f :
-        generalType == HuntingMonsterGeneralType::BIG ? 2.f:
-    3.f;
+    return  generalType == HuntingMonsterGeneralType::NORMAL ? 1 :
+    generalType == HuntingMonsterGeneralType::BIG ? 2 :
+    generalType == HuntingMonsterGeneralType::GIANT ? 3 :
+    generalType == HuntingMonsterGeneralType::SUPER ? 4.5f : 6.f;
 }
 
 enum class HuntingMonsterSpecialType

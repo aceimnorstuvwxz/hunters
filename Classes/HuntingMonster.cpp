@@ -148,10 +148,8 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
 //    _dpxNode->configAction(BT_CIRCLE, {0,0,0}, {90,0,0}, 2, 2, DelayTime::create(0));
 
 
-
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_moving(1);
-
 
     _bloodMax = _bloowNow = calcBloodMax(generalType, level);
     refreshBloodLine();

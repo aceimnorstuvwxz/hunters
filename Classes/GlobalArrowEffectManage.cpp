@@ -53,7 +53,7 @@ void GlobalArrowEffectManage::initEffectsThings()
         dx->setCameraMask(_mainCamera->getCameraMask(), true);
         dx->setVisible(false);
         for (int i = 0; i < 3; i++) {
-            dx->configAddSopx(fmt::sprintf("hunters/effects/base_bomb_%d.png.sopx", i), i, {0,0,0}, true, true);
+            dx->configAddSopx(fmt::sprintf("hunters/effects/new_base_bomb_%d.png.sopx", i), i, {0,0,0}, true, true);
         }
         dx->configBlend(true);
 
@@ -85,11 +85,11 @@ void GlobalArrowEffectManage::op_bomb(int grade, cocos2d::Vec2 pos)
 {
     if (grade == 0) {
         _dxBaseBomb->setPositionY(pos.x);
-//        _dxBaseBomb->setPositionZ(pos.y);
+        _dxBaseBomb->setPositionZ(pos.y);
 
         _dxBaseBomb->setVisible(true);
         const float ani_step = 0.1;
-        const int frame_num = 3;
+        const int frame_num = 4;
         _dxBaseBomb->runAction(Sequence::create(DelayTime::create(ani_step*frame_num), Hide::create(), NULL));
 
         for (int i = 0; i < frame_num; i++) {

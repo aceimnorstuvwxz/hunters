@@ -39,6 +39,22 @@ void HuntingMonsterManage::update(float dt)
             gt = HuntingMonsterGeneralType::NORMAL;
         }
 
+        if (_currentWave > 15) {
+            float newR = rand_0_1();
+            if (newR < 0.05f) {
+                gt = HuntingMonsterGeneralType::SUPER;
+            }
+        }
+        
+        if (_currentWave > 25) {
+            float newR = rand_0_1();
+            if (newR < 0.09f) {
+                gt = HuntingMonsterGeneralType::SUPER;
+            } else if (newR < 0.04f) {
+                gt = HuntingMonsterGeneralType::TITAN;
+            }
+        }
+
         //盾
         bool hasShiled = false;
         int shieldCount = 0;
@@ -66,7 +82,10 @@ void HuntingMonsterManage::update(float dt)
             _currentWaveMonsterCnt = random(10, 20);
             _timeLeft = random(15, 30);
         } else {
-            _timeLeft = gt == HuntingMonsterGeneralType::GIANT ? random(10, 15) :
+            _timeLeft =
+            gt == HuntingMonsterGeneralType::TITAN ? random(15, 20) :
+            gt == HuntingMonsterGeneralType::SUPER ? random(13, 18) :
+            gt == HuntingMonsterGeneralType::GIANT ? random(10, 15) :
             gt == HuntingMonsterGeneralType::BIG? random(8, 10): random(5,8);
             _timeLeft = _timeLeft*0.6;
         }
