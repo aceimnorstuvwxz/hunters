@@ -50,6 +50,7 @@ void HuntingArrowManage::op_shootArrow(HuntingArrowType arrowType, HeroPositionT
     for (int i = 0; i < arrowCount; i++) {
         op_shootArrowAst(arrowType, position, angle+(i-arrowCount*0.5f)*5.f, strenth);
     }
+    ACSoundManage::s()->play(ACSoundManage::SN_ARROW_SHOOT);
 }
 
 void HuntingArrowManage::op_shootArrowAst(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) //放箭
@@ -67,8 +68,6 @@ void HuntingArrowManage::op_shootArrowAst(HuntingArrowType arrowType, HeroPositi
     cocos2d::Vec2 speed = huntingCalcSpeed(angle, strenth);
 
     _arrowUnits.push_back({px,speed,arrowType,hitTimesOfArrow(arrowType),{}});
-
-    ACSoundManage::s()->play(ACSoundManage::SN_ARROW_SHOOT);
 }
 
  void HuntingArrowManage::dealWithUnit(ArrowUnit& unit, float dt)
