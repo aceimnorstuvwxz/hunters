@@ -33,7 +33,7 @@ public:
 
     virtual void op_configWind(float windDirection); //设置风的方向，表现为树的移动、云的飘动，正-向右，负-向左，大小表示风的强度
     virtual void op_hitCastle(bool dead);
-
+    virtual void op_configCastle(int grade); // 0 没有损伤 5完全毁灭
 
 protected:
 
@@ -63,6 +63,7 @@ protected:
     PixelNode* _pxCantleBg;
     PixelTextNode* _ptxHeart;
     void initCastleThings();
+    int _castleDestroyGrade = 0;
 
 
 };

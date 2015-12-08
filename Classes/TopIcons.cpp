@@ -166,6 +166,10 @@ void TopIcons::op_minusHeart()
     _ptxHeartNumber->configText(fmt::sprintf("%d", _heart));
     _battleRoadProtocal->op_hitCastle(_heart == 0);
     _pxHeart->configMixColorAni({1,1,1,1}, 0.2);
+
+    int grade = (QuestDef::INIT_HEART - _heart)/4;
+     _battleRoadProtocal->op_configCastle(grade); // 0 没有损伤 5完全毁灭
+
     if (_heart == 0) {
         //game over
     }
@@ -176,7 +180,9 @@ void TopIcons::op_addWave()
 {
     _currentWave++;
     _ptxWaveNumber->configText(fmt::sprintf("%d", _currentWave));
+    auto ac = Sequence::create(ScaleTo::create(0.1f, 1.3f),ScaleTo::create(0.1f, 1.2f), NULL);
 
-    _ptxWaveTitle->configMixColorAni({1,1,1,1}, 0.3, 1);
-    _ptxWaveNumber->configMixColorAni({1,1,1,1}, 0.3, 1);
+    _ptxWaveTitle->runAction(ac->clone());
+    _ptxWaveNumber->runAction(ac->clone());
+    ACSoundManage::s()->play(ACSoundManage::SN_NEW_WAVE);
 }

@@ -24,6 +24,7 @@ public:
         SN_CROW_CRY,
         SN_HIT_SHIELD,
         SN_THUNDER_HIT,
+        SN_NEW_WAVE,
     };
     static ACSoundManage* s() { return &_instance; }
 

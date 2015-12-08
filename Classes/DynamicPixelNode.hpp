@@ -66,7 +66,7 @@ protected:
     cocos2d::CustomCommand _command;
     int _count = 0;
     int _bufferStoreSize = 50000;
-    static constexpr const int BONE_NUM_MAX = 10; //与 VSH 同步
+    static constexpr const int BONE_NUM_MAX = 11; //与 VSH 同步
     cocos2d::Node* _bones[BONE_NUM_MAX];
     cocos2d::Mat4 _boneMatrixs[BONE_NUM_MAX];
     int _specialBoneIndex = -1;

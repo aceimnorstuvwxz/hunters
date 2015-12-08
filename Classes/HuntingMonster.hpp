@@ -38,6 +38,7 @@ public:
         BT_SWORD_MAX,
         BT_SHIELD,
         BT_BLOOD,
+//        BT_CIRCLE,
         BT_MAX,
     };
     static int boneIndexType2sopxId(int boneIndexType);

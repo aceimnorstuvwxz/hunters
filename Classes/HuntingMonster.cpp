@@ -143,6 +143,12 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     _dpxNode->configAddSopx("hunters/sopx/blood_line.png.sopx", BT_BLOOD, {0,0,0}, true, false);
     _dpxNode->configAction(BT_BLOOD, {0,120,0}, {0,0,0}, 60, 3/huntingMonsterGeneralType2scale(generalType), DelayTime::create(0));
 
+//    //circle
+//    _dpxNode->configAddSopx(fmt::sprintf("hunters/sopx/foot_circle_monster.png.sopx", 0), BT_CIRCLE, {0,0,0}, true, false);
+//    _dpxNode->configAction(BT_CIRCLE, {0,0,0}, {90,0,0}, 2, 2, DelayTime::create(0));
+
+
+
     _hubNode->setCameraMask(_mainCamera->getCameraMask(), true);
     ani_moving(1);
 

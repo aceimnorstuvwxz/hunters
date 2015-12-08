@@ -240,7 +240,7 @@ void BattleRoad::initCastleThings()
     {
         auto px = PixelNode::create();
         px->setCameraMask(_mainCamera->getCameraMask());
-        px->configSopx("hunters/sopx/castle.png.sopx");
+        px->configSopx("hunters/sopx/castle_0.png.sopx");
         px->setPosition3D({-2,QuestDef::CASTLE_POS,0});
         px->setRotation3D({90,0,-90});
         px->setScale(QuestDef::ARROW_SCALE);
@@ -369,5 +369,20 @@ void BattleRoad::op_hitCastle(bool dead)
     _pxCastle->configMixColorAni({1.f,1.f,1.f,1.f}, 0.3, dead ? 5 : 1);
 }
 
-
+void BattleRoad::op_configCastle(int grade) // [0-5]
+{
+    if (grade > 5) {
+        grade = 5;
+    }
+    if (_castleDestroyGrade != grade) {
+        _castleDestroyGrade = grade;
+        _pxCastle->configSopx(fmt::sprintf("hunters/sopx/castle_%d.png.sopx", grade));
+        float time = 0.1;
+        _pxCastle->runAction(Sequence::create(
+                                              MoveBy::create(time, Vec3{0,-2, 0}),
+                                              MoveBy::create(time, Vec3{0,2, 0}),
+                                              MoveBy::create(time, Vec3{0,-2, 0}),
+                                              MoveBy::create(time, Vec3{0,2, 0}), NULL));
+    }
+}
 
