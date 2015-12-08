@@ -83,6 +83,7 @@
 		B582F28F1C10EE3800BEAEDD /* FloatingLaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B582F28D1C10EE3800BEAEDD /* FloatingLaser.cpp */; };
 		B582F2921C11087500BEAEDD /* FloatingLaserManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B582F2901C11087500BEAEDD /* FloatingLaserManage.cpp */; };
 		B58AE4301C030FD6005F9E85 /* DynamicPixelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58AE42E1C030FD6005F9E85 /* DynamicPixelNode.cpp */; };
+		B58B03A11C17671B00380435 /* PixelParticleNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58B039F1C17671B00380435 /* PixelParticleNode.cpp */; };
 		B58DDCAB1BE8D70600B54804 /* HeroGraphicNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */; };
 		B58DDCAE1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */; };
 		B58DDCB11BE91B1500B54804 /* BattleRoles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58DDCAF1BE91B1500B54804 /* BattleRoles.cpp */; };
@@ -268,6 +269,8 @@
 		B582F2911C11087500BEAEDD /* FloatingLaserManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FloatingLaserManage.hpp; sourceTree = "<group>"; };
 		B58AE42E1C030FD6005F9E85 /* DynamicPixelNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DynamicPixelNode.cpp; sourceTree = "<group>"; };
 		B58AE42F1C030FD6005F9E85 /* DynamicPixelNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DynamicPixelNode.hpp; sourceTree = "<group>"; };
+		B58B039F1C17671B00380435 /* PixelParticleNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelParticleNode.cpp; sourceTree = "<group>"; };
+		B58B03A01C17671B00380435 /* PixelParticleNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PixelParticleNode.hpp; sourceTree = "<group>"; };
 		B58DDCA91BE8D70600B54804 /* HeroGraphicNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicNode.cpp; sourceTree = "<group>"; };
 		B58DDCAA1BE8D70600B54804 /* HeroGraphicNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeroGraphicNode.hpp; sourceTree = "<group>"; };
 		B58DDCAC1BE8F82400B54804 /* HeroGraphicUnitAnimationDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroGraphicUnitAnimationDef.cpp; sourceTree = "<group>"; };
@@ -585,6 +588,8 @@
 				B50A36F81BE7C0030007B7CA /* PixelDataCache.hpp */,
 				B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */,
 				B5594DC01BEBCBE7007BDD87 /* PixelTextNode.hpp */,
+				B58B039F1C17671B00380435 /* PixelParticleNode.cpp */,
+				B58B03A01C17671B00380435 /* PixelParticleNode.hpp */,
 			);
 			name = "pixel-node";
 			sourceTree = "<group>";
@@ -1026,6 +1031,7 @@
 				B50A36FF1BE7DB870007B7CA /* PlanePixelNode.cpp in Sources */,
 				B5B7486C1C10A484009D546D /* ACSoundManage.cpp in Sources */,
 				B5B7486F1C10AAA8009D546D /* Msg.cpp in Sources */,
+				B58B03A11C17671B00380435 /* PixelParticleNode.cpp in Sources */,
 				B58AE4301C030FD6005F9E85 /* DynamicPixelNode.cpp in Sources */,
 				B5BD19551BE645990052ACDD /* SOCommon.cpp in Sources */,
 				B5BD196E1BE64F5A0052ACDD /* QuestScene.cpp in Sources */,
