@@ -19,10 +19,16 @@ void HuntingMonsterManage::init(cocos2d::Layer *mainLayer, cocos2d::Camera *main
 void HuntingMonsterManage::update(float dt)
 {
 
-
+    static bool _needTellWave = true;
     _timeLeft -= dt;
     if (_timeLeft <= 0) {
 
+        if ( _needTellWave ) {
+            _needTellWave = false;
+            _topIconsProtocal->op_addWave();
+        }
+
+        // 主类别
         HuntingMonsterGeneralType gt;
         float ran = rand_0_1();
         if (ran < (0.05 + _currentWave/50.f*0.3f)) {
@@ -33,18 +39,30 @@ void HuntingMonsterManage::update(float dt)
             gt = HuntingMonsterGeneralType::NORMAL;
         }
 
+        //盾
+        bool hasShiled = false;
+        int shieldCount = 0;
+        if (_currentWave > 10) {
+            hasShiled = rand_0_1() < std::min(0.5f, 0.1f+0.5f*_currentWave/50.f);
+            shieldCount = hasShiled ? (1 + _currentWave/15) : 0;
+        }
+
+        //等级
         int level = _currentWave;
         float ran2 = rand_0_1();
         if (ran2 < 0.1) {
+            level += 3;
+        } else if (ran2 < 0.2) {
             level += 2;
         } else if (ran2 < 0.3) {
             level += 1;
         }
         level = std::min(40, level);
-        addMonster(gt, HuntingMonsterSpecialType::NONE, false, level);
+        addMonster(gt, HuntingMonsterSpecialType::NONE, hasShiled, level, shieldCount);
         _currentWaveMonsterCnt--;
         if (_currentWaveMonsterCnt == 0) {
             _currentWave++;
+            _needTellWave = true;
             _currentWaveMonsterCnt = random(10, 20);
             _timeLeft = random(15, 30);
         } else {
@@ -69,11 +87,11 @@ void HuntingMonsterManage::update(float dt)
 
 }
 
-void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level)
+void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level, int shieldCount)
 {
     auto sp = HuntingMonster::create();
     sp->init(_mainLayer, _mainCamera);
-    sp->op_configType(generalType, specialType, true, level);
+    sp->op_configType(generalType, specialType, hasShield, level, shieldCount);
     sp->configProtocal(_energyBarProtocal, _floatingLaserManageProtocal, _effetcManageProtocal, _topIconsProtocal);
     _monsters.push_back(sp);
 }

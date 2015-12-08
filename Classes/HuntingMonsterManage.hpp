@@ -35,6 +35,7 @@ public:
 
     virtual void op_thunder(float pos);
     virtual void op_bomb(float pos, int grade);
+    void op_testSetWave(int wave) { _currentWave = wave; }
 
     void update(float dt);
 
@@ -54,7 +55,7 @@ protected:
     int _currentWave = 0;
     float _timeLeft = 10; //初始的5秒休息
 
-    void addMonster(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level);
+    void addMonster(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level, int shieldCount);
 
 
     void groundCollision(ArrowUnit& arrow);

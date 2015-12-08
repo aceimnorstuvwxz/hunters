@@ -336,6 +336,7 @@ void PixelNode::configMixColor(const cocos2d::Vec4& mixColor) //设置叠色，�
 
 void PixelNode::configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOutTime, int repeat) //混色动画，用来实现，rival受攻击
 {
+    _copyMixColor = _mixColor;
     _mixColor = {mixColor.x, mixColor.y, mixColor.z, 0};
     _aniMixColorTarget = mixColor;
     _aniMixColorTime = repeat;
@@ -353,6 +354,11 @@ void PixelNode::update(float dt)
             _aniMixColorTime--;
             _mixColor.w = 0;
             _aniMixColorAlphaStep = - _aniMixColorAlphaStep;
+
+            if (_aniMixColorTime == 0) {
+                //结束了
+                _mixColor = _copyMixColor;
+            }
         }
     }
 }

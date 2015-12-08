@@ -116,6 +116,29 @@ void TopIcons::initPauseThings()
         _hubNode->addChild(node);
         _pxPauseIcon = node;
     }
+
+
+    {
+        auto node = PixelTextNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1.2f,1.2f);
+        node->setPosition3D({89,-14,0});
+        node->configText("wave",1);
+        node->configMixColor({1.f, 200.f/255.f, 51.f/255.f,1.f});
+        _hubNode->addChild(node);
+        _ptxWaveTitle = node;
+    }
+
+    {
+        auto node = PixelTextNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(1.2f,1.2f);
+        node->setPosition3D({96,-22,0});
+        node->configText("00",1);
+        node->configMixColor({1.f, 200.f/255.f, 51.f/255.f,1.f});
+        _hubNode->addChild(node);
+        _ptxWaveNumber = node;
+    }
 }
 
 
@@ -147,4 +170,13 @@ void TopIcons::op_minusHeart()
         //game over
     }
 
+}
+
+void TopIcons::op_addWave()
+{
+    _currentWave++;
+    _ptxWaveNumber->configText(fmt::sprintf("%d", _currentWave));
+
+    _ptxWaveTitle->configMixColorAni({1,1,1,1}, 0.3, 1);
+    _ptxWaveNumber->configMixColorAni({1,1,1,1}, 0.3, 1);
 }

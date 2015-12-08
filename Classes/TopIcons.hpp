@@ -27,8 +27,9 @@ public:
         _battleRoadProtocal = battleRoadProtocal;
     }
 
-    virtual void op_configGold(int number) override; //设置金币数量
+    virtual void op_configGold(int number); //设置金币数量
     virtual void op_minusHeart();
+    virtual void op_addWave();
 
     void update(float dt);
 protected:
@@ -47,6 +48,9 @@ protected:
     PixelNode* _pxHeart;
     PixelTextNode* _pxGoldNumber;
     PixelTextNode* _ptxHeartNumber;
+    PixelTextNode* _ptxWaveTitle;
+    PixelTextNode* _ptxWaveNumber;
+    int _currentWave = 0;
     int _currentGoldNumber = 0;
     int _targetGoldNumber = 0;
     void initGoldThings();

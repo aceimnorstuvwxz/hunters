@@ -79,9 +79,12 @@ bool QuestScene::init()
     addCommonBtn({0.9,0.6}, "gold add", [this](){
         MoneyManager::s()->add(100);
     });
+    addCommonBtn({0.9,0.6}, "gold add", [this](){
+        MoneyManager::s()->add(100);
+    });
 
-    addCommonBtn({0.9,0.2}, "laser appear", [this](){
-        _floatingLaserManage.op_launchOneLaser();
+    addCommonBtn({0.9,0.4}, "20 wave", [this](){
+        _huntingMonsterManage.op_testSetWave(20);
     });
 
     static float xpos = -100;

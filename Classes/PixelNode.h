@@ -64,6 +64,7 @@ protected:
 
 
     cocos2d::Vec4 _mixColor = {0,0,0,0};
+    cocos2d::Vec4 _copyMixColor;
     bool _blend = false;
 
     int _aniMixColorTime = 0;

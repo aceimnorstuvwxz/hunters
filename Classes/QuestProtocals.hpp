@@ -210,6 +210,7 @@ class TopIconsProtocal
 public:
     virtual void op_configGold(int number) = 0; //设置金币数量
     virtual void op_minusHeart() = 0;
+    virtual void op_addWave() = 0;
 };
 
 enum class EnergySkillType:int
@@ -412,7 +413,7 @@ struct ArrowUnit;
 class HuntingMonsterProtocal
 {
 public:
-    virtual void op_configType(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level) = 0; //level 决定了其基础的等级，决定了套装样子和基础血量和攻击力
+    virtual void op_configType(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level, int shieldCount) = 0; //level 决定了其基础的等级，决定了套装样子和基础血量和攻击力
     virtual void op_toastAttack() = 0; //攻击
     virtual void op_toastUnderAttack() = 0; //播放被攻击动画，变白
     virtual void op_toastDead(cocos2d::Vec2 direction) = 0; //播放死亡，散架了，坠落到地上。从哪个方向的箭杀死的，头会按那个方向飞走，然后其它的散开落地

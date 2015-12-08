@@ -108,12 +108,13 @@ int HuntingMonster::boneIndexType2sopxId(int boneIndexType)
     return r;
 }
 
-void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level) // 由英雄类型和等级 来指定穿着套装和弓
+void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, HuntingMonsterSpecialType specialType, bool hasShield, int level, int shieldCount) // 由英雄类型和等级 来指定穿着套装和弓
 {
 
     _generalType = generalType;
     _specialType = specialType;
     _hasShield = hasShield;
+    _shieldCount = shieldCount;
     _level = level;
 
     //会清空 VBO 后，重新写数据
@@ -129,10 +130,11 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     // 穿上剑
     _dpxNode->configAddSopx(fmt::sprintf("hunters/swords/%d.tga.png.sopx", level), BT_SWORD_MAX, boneIndex2relativePosition(BT_SWORD_MAX), true, false);
 
-//    // 盾
-//    if (_hasShield) {
-//        _dpxNode->configAddSopx(fmt::sprintf("hunters/shields/%d.png.sopx", 0), BT_SHIELD, boneIndex2relativePosition(BT_SHIELD), true, false);
-//    }
+    // 盾
+    if (_hasShield) {
+        _dpxNode->configAddSopx(fmt::sprintf("hunters/monsters/shield.png.sopx", 0), BT_SHIELD, boneIndex2relativePosition(BT_SHIELD), true, false);
+        _dpxNode->configBlend(true);
+    }
 
     _steadyScale = QuestDef::ARROW_SCALE/0.15f/huntingMonsterGeneralType2scale(generalType);
     _dpxNode->configAction(BT_STEADY, {0,0,0}, {0,180,0}, _steadyScale, _steadyScale, DelayTime::create(0.5));
@@ -182,6 +184,9 @@ cocos2d::Vec3 HuntingMonster::boneIndex2relativePosition(int boneIndexType)
         case BT_SWORD_MAX:
             r = {10.f,10.f,0};
             break;
+        case BT_SHIELD:
+            r = {0,10,0};
+            break;
         default:
             break;
     }
@@ -229,7 +234,8 @@ ACPositionScaleRotation HuntingMonster::help_calcBonePosition(int boneIndexType)
             r ={-10+4*3,head_pos-35,1};
             break;
         case BT_SHIELD:
-            r = {-1+4*3,head_pos-30-4*3,-1.5};
+            r = {0,head_pos-30-4*3,-1.5};
+            sx = sy = 2.5f;
             break;
 
         case BT_BLOOD:
@@ -281,8 +287,10 @@ void HuntingMonster::ani_moving(float radio)
     cfg = help_calcBonePosition(BT_SWORD_MAX);
     _dpxNode->configAction(BT_SWORD_MAX, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, RepeatForever::create(RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-3}),RotateBy::create(run_time*0.5, Vec3{0,0,3}), NULL), NULL))));
 
+
+    
     cfg = help_calcBonePosition(BT_SHIELD);
-    _dpxNode->configAction(BT_SHIELD, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, RepeatForever::create(Sequence::create(MoveBy::create(run_time*0.5, {2,4,0}), MoveBy::create(run_time*0.5, {-2,-4,0}), NULL)));
+    _dpxNode->configAction(BT_SHIELD, _hasShield ? cfg.position : Vec3{0,0,1000}, cfg.rotation, cfg.scaleX, cfg.scaleY, RepeatForever::create(Sequence::create(MoveBy::create(run_time*0.5, {2,4,0}), MoveBy::create(run_time*0.5, {-2,-4,0}), NULL)));
 }
 
 void HuntingMonster::ani_attacking()
@@ -319,6 +327,11 @@ void HuntingMonster::ani_attacking()
 
     cfg = help_calcBonePosition(BT_SHIELD);
     _dpxNode->configAction(BT_SHIELD, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, RepeatForever::create(Sequence::create(MoveBy::create(run_time*0.5, {2,4,0}), MoveBy::create(run_time*0.5, {-2,-4,0}), NULL)));
+}
+
+void HuntingMonster::closeShield()
+{
+    _dpxNode->configAction(BT_SHIELD, {0,0,0}, {0,0,0}, 0, 0, DelayTime::create(0));
 }
 void HuntingMonster::op_toastAttack() //攻击
 {
@@ -408,7 +421,11 @@ void HuntingMonster::op_toastDead(cocos2d::Vec2 direction) //播放死亡，散�
     for (int i = 0; i < BT_MAX; i++) {
         auto cfg = help_calcBonePosition(i);
         auto dfg = help_boneDeadGesture(i);
+        if (i != BT_SHIELD) {
+
+
         _dpxNode->configAction(i, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, EaseIn::create( Spawn::create(MoveTo::create(0.5, {dfg.position.x + cfg.position.x+xradio*(cfg.position.y-ground_y), dfg.position.y, dfg.position.z}), RotateTo::create(0.5, dfg.rotation), NULL), 1.f));
+            }
     }
 }
 
@@ -448,9 +465,26 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             arrow._leftHitTimes--;
             arrow._hitedMonsterIds.push_back(_id);
 
+            //护盾
+            bool shielded = false;
+            if (_hasShield) {
+                if (arrow._type == HuntingArrowType::SLOW_2 ||
+                    arrow._type == HuntingArrowType::BOMB_0 ||
+                     arrow._type == HuntingArrowType::BOMB_1 ||
+                    arrow._type == HuntingArrowType::BOMB_2){}
+                else {
+                    _shieldCount--;
+                }
+                if (_shieldCount == 0) {
+                    _hasShield = false;
+                    closeShield();
+                }
+                shielded = true;
+            }
+
 
             //附箭或穿透效果
-            if (needApplyArrow) {
+            if (needApplyArrow && !shielded) {
                 applyEffectArrow(arrow, isThrough);
             }
 
@@ -463,17 +497,17 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             bool nodamage = false;
 
             //特殊效果
-            if (arrow._type == HuntingArrowType::SLOW_0) {
+            if (arrow._type == HuntingArrowType::SLOW_0 && !shielded) {
                 _slowDownTime = 3.f;
                 _slowDownRate = 0.65f;
-            } else if (arrow._type == HuntingArrowType::SLOW_1) {
+            } else if (arrow._type == HuntingArrowType::SLOW_1 && !shielded) {
                 _slowDownTime = 4.f;
                 _slowDownRate = 0.45f;
             } else if (arrow._type == HuntingArrowType::SLOW_2) {
                 // 特殊 雷击 范围
                 _effetcManageProtocal->op_thunder(pos_arrow);
                 nodamage = true;
-            } else if (arrow._type == HuntingArrowType::MULTI_2) {
+            } else if (arrow._type == HuntingArrowType::MULTI_2 && !shielded) {
                 _poisonTime = 8.f;
                 _poisonDamage = 0.5f * dama;
             } else if (arrow._type == HuntingArrowType::BOMB_0 ||
@@ -495,10 +529,13 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             if (num > 0) {
                 ACSoundManage::s()->play(ACSoundManage::SN_LASER_HIT);
             }
-            ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
-
+            if (shielded) {
+                ACSoundManage::s()->play(ACSoundManage::SN_HIT_SHIELD);
+            } else {
+                ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
+            }
             //伤害计算
-            if (!nodamage) {
+            if (!nodamage && !shielded) {
                 damage( (1+num)*dama, arrow._speed);
             }
 
