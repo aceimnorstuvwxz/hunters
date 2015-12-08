@@ -288,12 +288,12 @@ void HuntingMonster::ani_moving(float radio)
 void HuntingMonster::ani_attacking()
 {
     //设置各 bone 的动作
-    float head_pos = 70;
+//    float head_pos = 70;
 
     const float run_time = 2.0;
-    const float run_length = 8;
-    const float angle_forward = 25;
-    const float angle_back = 25;
+//    const float run_length = 8;
+//    const float angle_forward = 25;
+//    const float angle_back = 25;
     const float attack_interval = 1.f;
     auto bodyMove =Sequence::create(MoveBy::create(run_time*0.5, {0,2,0}), MoveBy::create(run_time*0.5, {0,-2,0}), NULL);
 
@@ -393,6 +393,15 @@ ACPositionScaleRotation HuntingMonster::help_boneDeadGesture(int boneIndex)
 }
 void HuntingMonster::op_toastDead(cocos2d::Vec2 direction) //播放死亡，散架了，坠落到地上，过一会儿后消失
 {
+    if (direction.y == 0) {
+        direction.y = 0.01;
+    }
+    if (direction.y > 0) {
+        direction.y = -direction.y;
+    }
+    if (std::abs(direction.x) > std::abs(direction.y)) {
+        direction.x = (direction.x < 0 ? -1 : 1)* std::abs(direction.y);
+    }
     float xradio = direction.x/direction.y;
     float ground_y = 0;
     //散架处理
@@ -430,6 +439,10 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
         }
 
         if (!duplicate) {
+            bool needApplyArrow = true; /*!(arrow._type == HuntingArrowType::BOMB_0 ||
+                                    arrow._type == HuntingArrowType::BOMB_1 ||
+                                    arrow._type == HuntingArrowType::BOMB_2 ||
+                                    arrow._type == HuntingArrowType::SLOW_2);*/
             bool isThrough = arrow._leftHitTimes > 1;
             //真的击中了
             arrow._leftHitTimes--;
@@ -437,7 +450,9 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
 
 
             //附箭或穿透效果
-            applyEffectArrow(arrow, isThrough);
+            if (needApplyArrow) {
+                applyEffectArrow(arrow, isThrough);
+            }
 
             //通用效果（根据 arrow 速度和方向的击退效果，受伤闪白）
             op_toastUnderAttack();
@@ -554,11 +569,12 @@ void HuntingMonster::applyEffectArrow(ArrowUnit& arrow, bool isThrough)
     float x_pos = (pos_arrow.x - pos_monster)/0.15f/pxScale/_steadyScale;
     float y_pos = pos_arrow.y/0.15f/pxScale/_steadyScale;
 
-    _dpxNode->configAddSopx(fmt::sprintf("hunters/arrows/%02d.png.sopx", static_cast<int>(arrow._type)), BT_STEADY, {x_pos,y_pos,5},true, false, {0,0,45-vector2angel(arrow._speed)});
 
     //附箭或穿透效果
     if (!isThrough) {
-
+        _dpxNode->configAddSopx(fmt::sprintf("hunters/arrows/c%02d.png.sopx", static_cast<int>(arrow._type)), BT_STEADY, {x_pos,y_pos,5},true, false, {0,0,45-vector2angel(arrow._speed)});
+    } else {
+        _dpxNode->configAddSopx(fmt::sprintf("hunters/arrows/through.png.sopx", static_cast<int>(arrow._type)), BT_STEADY, {x_pos,y_pos,5},true, false, {0,0,45-vector2angel(arrow._speed)});
     }
 
 }

@@ -79,18 +79,17 @@ void FlyingCrow::initCrowThings()
     }
 }
 
-void FlyingCrow::op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition)
+void FlyingCrow::op_config(bool acce, bool shield, cocos2d::Vec2 relativePosition)
 {
-    _crowType = type;
     const Vec2 init_pos = {170,60};
     Vec2 pos = init_pos + relativePosition;
     _hubNode->setPosition3D({0, pos.x, pos.y});
 
-    if (type == FlyingCrowType::CT_SHIELD) {
+    if (shield) {
         _pxShield->setVisible(true);
     }
     _speed = 10;
-    _acce = type == FlyingCrowType::CT_ACCE ? 5 : 0;
+    _acce = acce ? 5 : 0;
 }
 
 bool FlyingCrow::op_dealWithArrow(ArrowUnit& arrow)
@@ -128,6 +127,7 @@ void FlyingCrow::update(float dt)
             ACSoundManage::s()->play(ACSoundManage::SN_CROW_CRY);
         }
 
+        //不下落
 //        if (_hubNode->getPositionY() < -100) {
 //            _pxCrowShit->setVisible(true);
 //            _shitSpeed += dt*QuestDef::GRAVITY;

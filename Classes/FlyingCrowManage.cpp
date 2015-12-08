@@ -169,21 +169,16 @@ void FlyingCrowManage::addBatchOfCrows()
 
 void FlyingCrowManage::addCrow(int x, int y, int h, bool cry)
 {
-    float rAcce = 0.05f + 0.2f*std::min(1.f, (_batchCount*1.f/20));
-    float rShield = 0.05f + 0.2f*std::min(1.f, (_batchCount*1.f/20));
+    float rAcce = 0.05f + 0.25f*std::min(1.f, (_batchCount*1.f/20));
+    float rShield = 0.05f + 0.4f*std::min(1.f, (_batchCount*1.f/20));
 
-    float r= rand_0_1();
-    FlyingCrowType t = FlyingCrowType::CT_NORMAL;
-    if (r < rAcce) {
-        t = FlyingCrowType::CT_ACCE;
-    } else if (r < rAcce + rShield) {
-        t = FlyingCrowType::CT_SHIELD;
-    }
+    bool acce = rand_0_1() < rAcce;
+    bool shield = rand_0_1() < rShield;
 
     auto sp = FlyingCrow::create();
     sp->init(_mainLayer, _mainCamera);
     sp->configProtocals(_topIconsProtocal);
-    sp->op_config(t, Vec2{x*20.f, (y-h*1.f/2)*20.f});
+    sp->op_config(acce, shield, Vec2{x*20.f, (y-h*1.f/2)*20.f});
     if (cry) sp->op_configCry();
     _crows.push_back(sp);
 

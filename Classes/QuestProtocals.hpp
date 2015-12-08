@@ -586,16 +586,16 @@ public:
 };
 
 
-enum class FlyingCrowType{
-        CT_NORMAL, //普通
-        CT_ACCE, //在中间会突然加速
-        CT_SHIELD, //身上背个盾，需要打两次
-};
+//enum class FlyingCrowType{
+//        CT_NORMAL, //普通
+//        CT_ACCE, //在中间会突然加速
+//        CT_SHIELD, //身上背个盾，需要打两次
+//};
 
 class FlyingCrowProtocal
 {
 public:
-    virtual void op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition) = 0;
+    virtual void op_config(bool acce, bool shield, cocos2d::Vec2 relativePosition) = 0;
     virtual bool op_dealWithArrow(ArrowUnit& arrow) = 0;
 };
 

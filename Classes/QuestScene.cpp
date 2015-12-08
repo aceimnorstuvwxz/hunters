@@ -142,9 +142,6 @@ bool QuestScene::init()
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
 
-    //test
-    _crow.init(_mainLayer, _mainCamera);
-    _crow.op_config(FlyingCrowType::CT_SHIELD, {0,0});
     scheduleUpdate();
     return true;
 }

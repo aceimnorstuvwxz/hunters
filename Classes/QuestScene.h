@@ -75,7 +75,6 @@ protected:
 
 
     FloatingLaserManage _floatingLaserManage;
-    FlyingCrow _crow;
     FlyingCrowManage _flyCrowManage;
 
     void update(float dt) override;

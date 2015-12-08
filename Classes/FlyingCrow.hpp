@@ -28,7 +28,7 @@ public:
     }
 
 
-    virtual void op_config(FlyingCrowType type, cocos2d::Vec2 relativePosition);
+    virtual void op_config(bool acce, bool shield, cocos2d::Vec2 relativePosition);
     virtual bool op_dealWithArrow(ArrowUnit& arrow);
     virtual void op_configCry() { _need2cry = true;}
 
@@ -42,7 +42,6 @@ public:
 protected:
     TopIconsProtocal* _topIconsProtocal;
     bool _need2cry = false;
-    FlyingCrowType _crowType;
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 

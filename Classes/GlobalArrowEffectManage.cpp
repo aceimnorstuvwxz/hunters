@@ -121,7 +121,7 @@ void GlobalArrowEffectManage::op_thunder(cocos2d::Vec2 pos)
 {
     _dxThunder->setPositionY(pos.x);
     _dxThunder->setVisible(true);
-    const float ani_step = 0.2;
+    const float ani_step = 0.15;
     _dxThunder->runAction(Sequence::create(DelayTime::create(ani_step*2), Hide::create(), NULL));
 
     for (int i = 0; i < 2; i++) {
