@@ -439,11 +439,14 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
     Vec2 pos_arrow = {arrow._pxNode->getPositionY(), arrow._pxNode->getPositionZ()};
     float pos_monster = _hubNode->getPositionY();
 
-    float x_expand = 0.5f*20*huntingMonsterGeneralType2scale(_generalType)*0.15;
-    float y_height = 20*4*huntingMonsterGeneralType2scale(_generalType)*0.15f;
-
-    if (pos_arrow.x > pos_monster-x_expand && pos_arrow.x < pos_monster+x_expand && pos_arrow.y > 0 &&
-        pos_arrow.y < y_height
+    float typescale = huntingMonsterGeneralType2scale(_generalType);
+    float x_expand = 0.5f*20*typescale*0.15;
+    float y_height = 20*4*typescale*0.15f;
+    float shiled_r = 0.9f*y_height;
+    Vec2 centerPos = {pos_monster,  y_height*0.6f};
+    if ( (_hasShield &&  (centerPos-pos_arrow).length() < shiled_r) || //盾碰撞
+        (pos_arrow.x > pos_monster-x_expand && pos_arrow.x < pos_monster+x_expand && pos_arrow.y > 0 &&
+        pos_arrow.y < y_height) //普通碰撞
         ) {
         //击中
         //检查是否重复
@@ -575,12 +578,21 @@ void HuntingMonster::op_thunderTest(float pos)
 {
     if (std::abs(_hubNode->getPositionY() - pos) < 30) {
 
-        damage(calcArrowDamage(HuntingArrowType::SLOW_2), {0, -1});
-        _slowDownTime = 3.f;
-        _slowDownRate = 0.f;
-        _dpxNode->configMixColor({102.f/255.f,0.f/255.f,139.f/255.f,0.5f});
-        auto p = _dpxNode;
-        _dpxNode->scheduleOnce([p](float dt) {p->configMixColor({0,0,0,0,});}, _slowDownTime, fmt::sprintf("sdfs %d", random(0, 99999)));
+        if (_hasShield) {
+            _shieldCount--;
+            if (_shieldCount == 0) {
+                _hasShield = false;
+                closeShield();
+            }
+            ACSoundManage::s()->play(ACSoundManage::SN_HIT_SHIELD);
+        } else {
+            damage(calcArrowDamage(HuntingArrowType::SLOW_2), {0, -1});
+            _slowDownTime = 3.f;
+            _slowDownRate = 0.f;
+            _dpxNode->configMixColor({102.f/255.f,0.f/255.f,139.f/255.f,0.5f});
+            auto p = _dpxNode;
+            _dpxNode->scheduleOnce([p](float dt) {p->configMixColor({0,0,0,0,});}, _slowDownTime, fmt::sprintf("sdfs %d", random(0, 99999)));
+        }
 
     }
 }
@@ -588,11 +600,21 @@ void HuntingMonster::op_thunderTest(float pos)
 void HuntingMonster::op_bombTest(float pos, int grade)
 {
     if (std::abs(_hubNode->getPositionY() - pos) < (grade <= 1 ? 30 : 45)) {
+        if (_hasShield) {
+            _shieldCount--;
 
-        damage(calcArrowDamage(grade == 0 ? HuntingArrowType::BOMB_0 : grade == 1 ? HuntingArrowType::BOMB_1 :HuntingArrowType::BOMB_2), {0, -1});
+            if (_shieldCount == 0) {
+                _hasShield = false;
+                closeShield();
+            }
+            ACSoundManage::s()->play(ACSoundManage::SN_HIT_SHIELD);
+        } else {
+            damage(calcArrowDamage(grade == 0 ? HuntingArrowType::BOMB_0 : grade == 1 ? HuntingArrowType::BOMB_1 :HuntingArrowType::BOMB_2), {0, -1});
 
-        _hubNode->setPositionY(_hubNode->getPositionY() + 0.5f*(pos - _hubNode->getPositionY()));
-
+            if (grade >= 1) {
+                _hubNode->setPositionY(_hubNode->getPositionY() + 0.5f*(pos - _hubNode->getPositionY()));
+            }
+        }
     }
 }
 
