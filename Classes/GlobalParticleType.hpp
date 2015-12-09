@@ -23,6 +23,8 @@ enum class GlobalParticleType
     ARROW_BOMB,
     ARROW_MULTI,
     ARROW_HIGH,
+
+    BLOOD,
 };
 
 #endif /* GlobalParticleType_hpp */

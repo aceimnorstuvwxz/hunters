@@ -494,7 +494,9 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
             //附箭或穿透效果
             if (needApplyArrow && !shielded) {
                 applyEffectArrow(arrow, isThrough);
+                _particleManage->toastPartles(GlobalParticleType::BLOOD, pos_arrow,  -arrow._speed, 0);
             }
+            
 
             //通用效果（根据 arrow 速度和方向的击退效果，受伤闪白）
             op_toastUnderAttack();

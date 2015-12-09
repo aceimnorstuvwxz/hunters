@@ -58,4 +58,8 @@ void GlobalParticleManage::toastPartles(GlobalParticleType t, cocos2d::Vec2 pos,
         Vec4 color = Vec4{60/255.f,250/255.f,250/255.f,0.5f};
         _particleNode->addParticleBatch(random(0, 1), 0.5+0.15*degree, 0.5, {pos.x+2,pos.y,-1}, {2,3,0}, color, {0.2,0.2,0.2,0.2}, {0,0,0}, {3,3,3}, 2, 0.5, 0.5, 0.25);
     }
+    else if (t == GlobalParticleType::BLOOD) {
+        Vec4 color = Vec4{255/255.f,30/255.f,60/255.f,0.5f};
+        _particleNode->addParticleBatch(random(5, 10), 0.1+0.15*degree, 0.5, {pos.x,pos.y,2}, {1,1,0}, color, {0.2,0.2,0.2,0.2}, 0.1f*Vec3{dir.x,dir.y,0}, {std::abs(dir.x)*0.35f,std::abs(dir.y)*0.35f,5}, 1, 0.25, 2.5, 0.5);
+    }
 }
