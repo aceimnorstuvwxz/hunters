@@ -21,8 +21,9 @@ class FlyingCrowManage: public FlyingCrowManageProtocal
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
 
-    void configProtocals(TopIconsProtocal* topIconsProtocal) {
+    void configProtocals(TopIconsProtocal* topIconsProtocal, GlobalParticleManageProtocal* particleManageProtocal) {
         _topIconsProtocal = topIconsProtocal;
+        _particleManageProtocal = particleManageProtocal;
     }
     virtual void op_dealCollision(ArrowUnit& arrow);
 
@@ -30,6 +31,7 @@ public:
     void update(float dt);
 
 protected:
+    GlobalParticleManageProtocal* _particleManageProtocal;
     TopIconsProtocal* _topIconsProtocal;
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;

@@ -151,18 +151,23 @@ void PixelParticleNode::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &t
     renderer->addCommand(&_command);
 }
 
+void PixelParticleNode::switchBuffer()
+{
+    _timeCount = 0;
+    if (_activeBufferIndex == 0) {
+        _activeBufferIndex = 1;
+    } else {
+        _activeBufferIndex = 0;
+    }
+    _ppbuffer[_activeBufferIndex]._count = 0;
+    _ppbuffer[_activeBufferIndex]._time = 0;
+}
+
 void PixelParticleNode::update(float dt)
 {
     _timeCount += dt;
     if (_timeCount > 10) {
-        _timeCount = 0;
-        if (_activeBufferIndex == 0) {
-            _activeBufferIndex = 1;
-        } else {
-            _activeBufferIndex = 0;
-        }
-        _ppbuffer[_activeBufferIndex]._count = 0;
-        _ppbuffer[_activeBufferIndex]._time = 0;
+        switchBuffer();
     }
 
     _ppbuffer[0]._time += dt;
@@ -186,6 +191,7 @@ void PixelParticleNode::addParticleBatch(int count, float time, float timeVar, c
     auto& buffer = _ppbuffer[_activeBufferIndex];
     if (buffer._count + count*36 > BUFFER_STORGE_SIZE) {
         //超载，丢弃
+        switchBuffer();
         return;
     }
     _tmpLocalCount = 0;

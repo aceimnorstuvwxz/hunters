@@ -126,6 +126,9 @@ void FlyingCrow::update(float dt)
             _need2cry = false;
             ACSoundManage::s()->play(ACSoundManage::SN_CROW_CRY);
         }
+        if (_acce > 0) {
+            _particleManage->toastPartles(GlobalParticleType::CROW_ACCE, {_hubNode->getPositionY(), _hubNode->getPositionZ()}, {0,0}, 0);
+        }
 
         //不下落
 //        if (_hubNode->getPositionY() < -100) {

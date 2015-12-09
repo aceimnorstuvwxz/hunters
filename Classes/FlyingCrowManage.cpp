@@ -177,7 +177,7 @@ void FlyingCrowManage::addCrow(int x, int y, int h, bool cry)
 
     auto sp = FlyingCrow::create();
     sp->init(_mainLayer, _mainCamera);
-    sp->configProtocals(_topIconsProtocal);
+    sp->configProtocals(_topIconsProtocal, _particleManageProtocal);
     sp->op_config(acce, shield, Vec2{x*20.f, (y-h*1.f/2)*20.f});
     if (cry) sp->op_configCry();
     _crows.push_back(sp);

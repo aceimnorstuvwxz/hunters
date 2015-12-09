@@ -47,11 +47,12 @@ public:
     ACPositionScaleRotation help_boneDeadGesture(int boneIndex);
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocal(EnergyBarProtocal* energyBarProtocal, FloatingLaserManageProtocal *floatingLaserManageProtocal, GlobalArrowEffectManageProtocal* effetcManageProtocal, TopIconsProtocal* topIconsProtocal) {
+    void configProtocal(EnergyBarProtocal* energyBarProtocal, FloatingLaserManageProtocal *floatingLaserManageProtocal, GlobalArrowEffectManageProtocal* effetcManageProtocal, TopIconsProtocal* topIconsProtocal, GlobalParticleManageProtocal* particleManage) {
         _topIconsProtocal = topIconsProtocal;
         _energyBarProtocal = energyBarProtocal;
         _floatingLaserManageProtocal = floatingLaserManageProtocal;
         _effetcManageProtocal = effetcManageProtocal;
+        _particleManage = particleManage;
     }
 
 
@@ -70,7 +71,7 @@ public:
 
 protected:
     TopIconsProtocal* _topIconsProtocal;
-
+    GlobalParticleManageProtocal* _particleManage;
     GlobalArrowEffectManageProtocal* _effetcManageProtocal;
     EnergyBarProtocal* _energyBarProtocal;
     FloatingLaserManageProtocal* _floatingLaserManageProtocal;

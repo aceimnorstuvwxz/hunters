@@ -664,6 +664,7 @@ void HuntingMonster::update(float dt)
     //粒子特效
     if (_specialType == HuntingMonsterSpecialType::ACCE) {
         //
+        _particleManage->toastPartles(GlobalParticleType::MONSTER_ACCE, {_hubNode->getPositionY(), 5.f},  {0,0 }, 0);
     } else if (_specialType == HuntingMonsterSpecialType::ATKFIRE && _atkFired) {
         //
     }

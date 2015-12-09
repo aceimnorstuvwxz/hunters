@@ -28,6 +28,7 @@
 #include "FlyingCrowManage.hpp"
 #include "GlobalArrowEffectManage.hpp"
 #include "PixelParticleNode.hpp"
+#include "GlobalParticleManage.hpp"
 // Beat Quest Game Scene
 
 
@@ -77,11 +78,11 @@ protected:
 
     FloatingLaserManage _floatingLaserManage;
     FlyingCrowManage _flyCrowManage;
+    GlobalParticleManage _particleManage;
 
     void update(float dt) override;
 
-    //test
-    PixelParticleNode* _particle;
+
 
 };
 

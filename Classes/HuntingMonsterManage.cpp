@@ -65,6 +65,8 @@ void HuntingMonsterManage::update(float dt)
 
         //特殊类别
         HuntingMonsterSpecialType st = HuntingMonsterSpecialType::NONE;
+        if (gt == HuntingMonsterGeneralType::NORMAL ||
+            gt == HuntingMonsterGeneralType::BIG)
         {
 
             float rcfg = 0.03f + 0.1f * _currentWave/30.f;
@@ -123,7 +125,7 @@ void HuntingMonsterManage::addMonster(HuntingMonsterGeneralType generalType, Hun
     auto sp = HuntingMonster::create();
     sp->init(_mainLayer, _mainCamera);
     sp->op_configType(generalType, specialType, hasShield, level, shieldCount);
-    sp->configProtocal(_energyBarProtocal, _floatingLaserManageProtocal, _effetcManageProtocal, _topIconsProtocal);
+    sp->configProtocal(_energyBarProtocal, _floatingLaserManageProtocal, _effetcManageProtocal, _topIconsProtocal, _particleManageProtocal);
     _monsters.push_back(sp);
 }
 

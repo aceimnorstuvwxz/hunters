@@ -9,6 +9,7 @@
 #include "ACSoundManage.hpp"
 #include "format.h"
 #include "QuestDef.hpp"
+#include "GlobalParticleType.hpp"
 
 class BattleRoadProtocal
 {
@@ -619,6 +620,14 @@ public:
     public:
         virtual void op_bomb(int grade, cocos2d::Vec2 pos) = 0;
         virtual void op_thunder(cocos2d::Vec2 pos) = 0;
+    };
+
+
+    class GlobalParticleManageProtocal
+    {
+    public:
+        virtual void toastPartles(GlobalParticleType t, cocos2d::Vec2 pos, cocos2d::Vec2 dir, int degree) = 0;
+
     };
 
 #endif /* QuestProtocals_hpp */

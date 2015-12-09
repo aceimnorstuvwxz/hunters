@@ -90,9 +90,6 @@ bool QuestScene::init()
         xpos += 10;
     });
 
-    addCommonBtn({0.9,0.2}, "particle", [this](){
-        _particle->addParticleBatch(10, 5, 5, {0,0,0}, {20,20,20}, {rand_0_1(),rand_0_1(),rand_0_1(),rand_0_1()}, {0,0,0,0}, {rand_0_1(),rand_0_1(),rand_0_1()}, {0,0,0}, 1, 0, 2, 0);
-    });
 
 
     auto layer = Layer::create();
@@ -126,6 +123,7 @@ bool QuestScene::init()
     _floatingLaserManage.init(_mainLayer, _mainCamera);
     _flyCrowManage.init(_mainLayer, _mainCamera);
     _globalArrowEffectManage.init(_mainLayer, _mainCamera);
+    _particleManage.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
@@ -137,10 +135,10 @@ bool QuestScene::init()
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar);
     _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage);
-    _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons);
+    _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage);
     _energyBar.configProtocals(&_floatingLaserManage);
     _topIcons.configProtocals(&_battleRoad);
-    _flyCrowManage.configProtocals(&_topIcons);
+    _flyCrowManage.configProtocals(&_topIcons, &_particleManage);
     _globalArrowEffectManage.configProtocals(&_huntingMonsterManage);
 
     // init actions
@@ -148,11 +146,6 @@ bool QuestScene::init()
 
 
     // test
-    _particle = PixelParticleNode::create();
-    _particle->setCameraMask(_mainCamera->getCameraMask());
-    _particle->setRotation3D({90,0,-90});
-    _particle->setScale(1);
-    _mainLayer->addChild(_particle);
 
 
     scheduleUpdate();

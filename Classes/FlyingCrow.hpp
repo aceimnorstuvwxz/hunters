@@ -23,8 +23,9 @@ public:
     static std::shared_ptr<FlyingCrow> create() { return std::make_shared<FlyingCrow>(); }
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(TopIconsProtocal* topIconsProtocal) {
+    void configProtocals(TopIconsProtocal* topIconsProtocal, GlobalParticleManageProtocal* particleManage) {
         _topIconsProtocal = topIconsProtocal;
+        _particleManage = particleManage;
     }
 
 
@@ -40,6 +41,7 @@ public:
     bool isDead() {return !_alive;}
 
 protected:
+    GlobalParticleManageProtocal* _particleManage;
     TopIconsProtocal* _topIconsProtocal;
     bool _need2cry = false;
     cocos2d::Layer* _mainLayer;
