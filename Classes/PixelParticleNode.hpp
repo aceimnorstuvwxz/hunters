@@ -58,9 +58,10 @@ protected:
 
     static constexpr int N_TMP_BUFFER = 16; //指可容纳粒子数
     PixelParticleVertexFormal _tmpVertexBuffer[N_TMP_BUFFER*36];
-    int _tmpLocalCount;
+    int _tmpLocalCount = 0;
 
     void switchBuffer();
+    void uploadBuffer();
 
 
 

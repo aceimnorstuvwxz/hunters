@@ -153,6 +153,7 @@ void PixelParticleNode::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &t
 
 void PixelParticleNode::switchBuffer()
 {
+    uploadBuffer();
     _timeCount = 0;
     if (_activeBufferIndex == 0) {
         _activeBufferIndex = 1;
@@ -172,7 +173,7 @@ void PixelParticleNode::update(float dt)
 
     _ppbuffer[0]._time += dt;
     _ppbuffer[1]._time += dt;
-
+    uploadBuffer();
 }
 
 PixelParticleNode::~PixelParticleNode()
@@ -188,21 +189,30 @@ PixelParticleNode::~PixelParticleNode()
 void PixelParticleNode::addParticleBatch(int count, float time, float timeVar, cocos2d::Vec3 position, cocos2d::Vec3 positionVar, cocos2d::Vec4 color, cocos2d::Vec4 colorVar, cocos2d::Vec3 speed, cocos2d::Vec3 speedVar, float beginScale, float beginScaleVar, float endScale, float endScaleVar)
 {
     assert(count <= N_TMP_BUFFER);
-    auto& buffer = _ppbuffer[_activeBufferIndex];
-    if (buffer._count + count*36 > BUFFER_STORGE_SIZE) {
+    if (_ppbuffer[_activeBufferIndex]._count + count*36 > BUFFER_STORGE_SIZE) {
         //超载，丢弃
         switchBuffer();
-        return;
     }
-    _tmpLocalCount = 0;
     for (int i = 0; i < count; i++) {
         addPerParticle(time, timeVar, position, positionVar, color, colorVar, speed, speedVar, beginScale, beginScaleVar, endScale, endScaleVar);
     }
+    /*
+     每一帧的 Particle要暂存，每帧统一 glBufferSubData 提交，否则一个帧内多次调用 glBufferSubData 会造成掉帧验证（60->40）
+     
+     */
 
+}
+
+void PixelParticleNode::uploadBuffer()
+{
+    if (_tmpLocalCount == 0 ) return;
+
+    auto& buffer = _ppbuffer[_activeBufferIndex];
     glBindBuffer(GL_ARRAY_BUFFER, buffer._vbo);
     glBufferSubData(GL_ARRAY_BUFFER, sizeof(PixelParticleVertexFormal)*buffer._count, sizeof(PixelParticleVertexFormal)*_tmpLocalCount, _tmpVertexBuffer);
     buffer._count += _tmpLocalCount;
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    _tmpLocalCount = 0;
 }
 
 void PixelParticleNode::addPerParticle(float time, float timeVar, cocos2d::Vec3 position, cocos2d::Vec3 positionVar, cocos2d::Vec4 color, cocos2d::Vec4 colorVar, cocos2d::Vec3 speed, cocos2d::Vec3 speedVar, float beginScale, float beginScaleVar, float endScale, float endScaleVar)
