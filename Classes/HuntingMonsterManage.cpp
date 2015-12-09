@@ -63,6 +63,18 @@ void HuntingMonsterManage::update(float dt)
             shieldCount = hasShiled ? (1 + _currentWave/15) : 0;
         }
 
+        //特殊类别
+        HuntingMonsterSpecialType st = HuntingMonsterSpecialType::NONE;
+        {
+
+            float rcfg = 0.03f + 0.1f * _currentWave/30.f;
+            if (rand_0_1() < rcfg) {
+                st = HuntingMonsterSpecialType::ACCE;
+            } else if (_currentWave > 13 && rand_0_1() < rcfg) {
+                st = HuntingMonsterSpecialType::ATKFIRE;
+            }
+        }
+
         //等级
         int level = _currentWave;
         float ran2 = rand_0_1();
@@ -74,7 +86,7 @@ void HuntingMonsterManage::update(float dt)
             level += 1;
         }
         level = std::min(40, level);
-        addMonster(gt, HuntingMonsterSpecialType::NONE, hasShiled, level, shieldCount);
+        addMonster(gt, st, hasShiled, level, shieldCount);
         _currentWaveMonsterCnt--;
         if (_currentWaveMonsterCnt == 0) {
             _currentWave++;

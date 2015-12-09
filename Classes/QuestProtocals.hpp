@@ -412,11 +412,8 @@ inline float huntingMonsterGeneralType2scale(HuntingMonsterGeneralType generalTy
 enum class HuntingMonsterSpecialType
     //特效类别，特效表示这个怪有特技，同时图形上有粒子效果
 {
-    METAL, //速度慢，血量高，有紫色粒子效果
-    WOOD, //
-    WATER, //能够自愈
-    FIRE, //攻击力加强
-    EARTH, //移动速度快
+    ACCE, //加速前进的
+    ATKFIRE, //被炸后着火狂奔的
     NONE,
 };
 struct ArrowUnit;

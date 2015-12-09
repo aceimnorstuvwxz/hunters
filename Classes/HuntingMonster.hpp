@@ -88,6 +88,12 @@ protected:
     float _poisonDamage;
     bool _alive = true;
 
+    float _moveSpeed;
+    static constexpr float NORMAL_SPEED = 4;
+    static constexpr float FIRE_SPEED = 8;
+    static constexpr float ACCE_RATE = 2;
+    bool _atkFired = false;
+
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 
@@ -114,6 +120,8 @@ protected:
     void closeShield();
 
     void damage(float damage, cocos2d::Vec2 dir);
+
+
 
 };
 

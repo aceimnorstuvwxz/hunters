@@ -116,6 +116,7 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     _hasShield = hasShield;
     _shieldCount = shieldCount;
     _level = level;
+    _moveSpeed = NORMAL_SPEED;
 
     //会清空 VBO 后，重新写数据
     _dpxNode->configClear();
@@ -574,6 +575,10 @@ void HuntingMonster::damage(float damage, cocos2d::Vec2 dir)
         }, 1.f, fmt::sprintf("monster dead %d", random(0, 999999999)));
     }
 
+    if (_specialType == HuntingMonsterSpecialType::ATKFIRE) {
+        _atkFired = true;
+    }
+
     refreshBloodLine();
 }
 
@@ -644,11 +649,25 @@ void HuntingMonster::applyEffectArrow(ArrowUnit& arrow, bool isThrough)
 
 void HuntingMonster::update(float dt)
 {
-    float move_speed = 4;
+    if (_specialType == HuntingMonsterSpecialType::ACCE) {
+        _moveSpeed += dt*ACCE_RATE;
+    } else if (_specialType == HuntingMonsterSpecialType::ATKFIRE && _atkFired) {
+        _moveSpeed = FIRE_SPEED;
+    }
+
+    float move_speed = _moveSpeed;
     if (_slowDownTime >0) {
         _slowDownTime -= dt;
         move_speed = move_speed*_slowDownRate;
     }
+
+    //粒子特效
+    if (_specialType == HuntingMonsterSpecialType::ACCE) {
+        //
+    } else if (_specialType == HuntingMonsterSpecialType::ATKFIRE && _atkFired) {
+        //
+    }
+
     _hubNode->setPositionY(_hubNode->getPositionY() - move_speed*dt);
 
     if (_hubNode->getPositionY() < QuestDef::EMEMY_ATTACK_POS) {
