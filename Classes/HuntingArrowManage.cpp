@@ -81,6 +81,9 @@ void HuntingArrowManage::op_shootArrowAst(HuntingArrowType arrowType, HeroPositi
 
     unit._pxNode->setRotation3D({90, 45-vector2angel(unit._speed), -90});
 
+    auto at = arrowType2particleType(unit._type);
+    _particleManageProtocal->toastPartles(at.first, {unit._pxNode->getPositionY(),unit._pxNode->getPositionZ()}, {0,0}, at.second);
+
 
     unit._speed += acce*dt;
 

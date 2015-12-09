@@ -460,6 +460,63 @@ enum class HuntingArrowType:int
     BOMB_1 = 41,
     BOMB_2 = 42
 };
+    inline std::pair<GlobalParticleType, int> arrowType2particleType(HuntingArrowType t)
+    {
+        switch (t) {
+            case HuntingArrowType::META_0:
+                return {GlobalParticleType::ARROW_NORMAL, 0};
+                break;
+            case HuntingArrowType::META_1:
+                return {GlobalParticleType::ARROW_NORMAL, 1};
+                break;
+            case HuntingArrowType::META_2:
+                return {GlobalParticleType::ARROW_NORMAL, 2};
+                break;
+
+            case HuntingArrowType::SLOW_0:
+                return {GlobalParticleType::ARROW_SLOW, 0};
+                break;
+            case HuntingArrowType::SLOW_1:
+                return {GlobalParticleType::ARROW_SLOW, 1};
+                break;
+            case HuntingArrowType::SLOW_2:
+                return {GlobalParticleType::ARROW_SLOW, 2};
+                break;
+
+            case HuntingArrowType::HIGH_0:
+                return {GlobalParticleType::ARROW_HIGH, 0};
+                break;
+            case HuntingArrowType::HIGH_1:
+                return {GlobalParticleType::ARROW_HIGH, 1};
+                break;
+            case HuntingArrowType::HIGH_2:
+                return {GlobalParticleType::ARROW_HIGH, 2};
+                break;
+
+            case HuntingArrowType::MULTI_0:
+                return {GlobalParticleType::ARROW_MULTI, 0};
+                break;
+            case HuntingArrowType::MULTI_1:
+                return {GlobalParticleType::ARROW_MULTI, 1};
+                break;
+            case HuntingArrowType::MULTI_2:
+                return {GlobalParticleType::ARROW_MULTI, 2};
+                break;
+
+            case HuntingArrowType::BOMB_0:
+                return {GlobalParticleType::ARROW_BOMB, 0};
+                break;
+            case HuntingArrowType::BOMB_1:
+                return {GlobalParticleType::ARROW_BOMB, 1};
+                break;
+            case HuntingArrowType::BOMB_2:
+                return {GlobalParticleType::ARROW_BOMB, 2};
+                break;
+            default:
+                assert(false);
+                break;
+        }
+    }
 
     /*
 inline HuntingArrowType heroTyoeGrade2arrowType(HeroType heroType, int grade)

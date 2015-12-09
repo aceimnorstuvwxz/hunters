@@ -133,7 +133,7 @@ bool QuestScene::init()
 
     MoneyManager::s()->configProtocals(&_topIcons);
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar);
-    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage);
+    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage, &_particleManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage);
     _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage);
     _energyBar.configProtocals(&_floatingLaserManage);

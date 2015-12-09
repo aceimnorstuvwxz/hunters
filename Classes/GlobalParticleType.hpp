@@ -18,6 +18,7 @@ enum class GlobalParticleType
 
     CROW_ACCE,
 
+    ARROW_NORMAL,
     ARROW_SLOW,
     ARROW_BOMB,
     ARROW_MULTI,
