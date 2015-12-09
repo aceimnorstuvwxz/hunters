@@ -18,6 +18,8 @@ bool PixelParticleNode::init()
         prepareShaders();
     }
 
+    scheduleUpdate();
+
     return true;
 }
 
@@ -151,6 +153,20 @@ void PixelParticleNode::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &t
 
 void PixelParticleNode::update(float dt)
 {
+    _timeCount += dt;
+    if (_timeCount > 10) {
+        _timeCount = 0;
+        if (_activeBufferIndex == 0) {
+            _activeBufferIndex = 1;
+        } else {
+            _activeBufferIndex = 0;
+        }
+        _ppbuffer[_activeBufferIndex]._count = 0;
+        _ppbuffer[_activeBufferIndex]._time = 0;
+    }
+
+    _ppbuffer[0]._time += dt;
+    _ppbuffer[1]._time += dt;
 
 }
 

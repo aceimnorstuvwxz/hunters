@@ -27,6 +27,7 @@
 #include "FlyingCrow.hpp"
 #include "FlyingCrowManage.hpp"
 #include "GlobalArrowEffectManage.hpp"
+#include "PixelParticleNode.hpp"
 // Beat Quest Game Scene
 
 
@@ -78,6 +79,10 @@ protected:
     FlyingCrowManage _flyCrowManage;
 
     void update(float dt) override;
+
+    //test
+    PixelParticleNode* _particle;
+
 };
 
 #endif /* QuestScene_hpp */

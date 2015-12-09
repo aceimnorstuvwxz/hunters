@@ -90,6 +90,10 @@ bool QuestScene::init()
         xpos += 10;
     });
 
+    addCommonBtn({0.9,0.2}, "particle", [this](){
+        _particle->addParticleBatch(10, 5, 5, {0,0,0}, {20,20,20}, {rand_0_1(),rand_0_1(),rand_0_1(),rand_0_1()}, {0,0,0,0}, {rand_0_1(),rand_0_1(),rand_0_1()}, {0,0,0}, 1, 0, 2, 0);
+    });
+
 
     auto layer = Layer::create();
     this->addChild(layer);
@@ -141,6 +145,15 @@ bool QuestScene::init()
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);
+
+
+    // test
+    _particle = PixelParticleNode::create();
+    _particle->setCameraMask(_mainCamera->getCameraMask());
+    _particle->setRotation3D({90,0,-90});
+    _particle->setScale(1);
+    _mainLayer->addChild(_particle);
+
 
     scheduleUpdate();
     return true;

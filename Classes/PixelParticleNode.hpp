@@ -62,6 +62,7 @@ protected:
 
 
     void addPerParticle(float time, float timeVar, cocos2d::Vec3 position, cocos2d::Vec3 positionVar, cocos2d::Vec4 color, cocos2d::Vec4 colorVar, cocos2d::Vec3 speed, cocos2d::Vec3 speedVar, float beginScale, float beginScaleVar, float endScale, float endScaleVar);
+    float _timeCount = 0;
 
 };
 
