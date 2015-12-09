@@ -62,6 +62,12 @@ void HuntingHerosManage::op_toastBow(float angle, float strenth) //以这个角�
         }, i*time_step, fmt::sprintf("dfgfdg %d", i));
     }
 }
+void HuntingHerosManage::op_tellGoldChange() //被通知金币改变
+{
+    for (auto& h : _headIcons) {
+        h.op_tellGoldChange();
+    }
+}
 
 
 void HuntingHerosManage::update(float dt)

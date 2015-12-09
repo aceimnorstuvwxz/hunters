@@ -34,6 +34,7 @@ public:
     virtual void op_aimingCancel(); //power bar 通知瞄准取消
     virtual void op_configAiming(float angle, float strenth); //设置瞄准的参数
     virtual void op_toastBow(float angle, float strenth); //以这个角度开始放箭
+    virtual void op_tellGoldChange(); //被通知金币改变
 
     void update(float dt);
 

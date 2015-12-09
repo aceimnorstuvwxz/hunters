@@ -77,7 +77,7 @@ bool QuestScene::init()
         _energyBar.op_addEnergy(0.1);
     });
     addCommonBtn({0.9,0.6}, "gold add", [this](){
-        MoneyManager::s()->add(100);
+        MoneyManager::s()->add(10000);
     });
 
     addCommonBtn({0.9,0.4}, "20 wave", [this](){
@@ -131,7 +131,7 @@ bool QuestScene::init()
     BattleState::s()->configProtocals(&_bloodBar, &_beatField,
                                       &_battleRoles, &_battleRoad, &_cameraManage, _mainCamera, this);
 
-    MoneyManager::s()->configProtocals(&_topIcons);
+    MoneyManager::s()->configProtocals(&_topIcons, &_huntingHerosManage);
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar);
     _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage, &_particleManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage);

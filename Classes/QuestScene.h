@@ -75,14 +75,11 @@ protected:
 
     void battleBegin();
 
-
     FloatingLaserManage _floatingLaserManage;
     FlyingCrowManage _flyCrowManage;
     GlobalParticleManage _particleManage;
 
     void update(float dt) override;
-
-
 
 };
 

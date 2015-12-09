@@ -257,8 +257,8 @@ void HeroHeadAndUpgrade::initTouchThings()
             if (_pxHeadIcon->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation()) && _heroHeadState == HeroHeadState::EMPTY && MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) {
                 if (_pxBuyConfirm->isVisible()) {
                     //确认购买
-                    MoneyManager::s()->cost(MoneyCostDef::C_ADD_HERO);
                     _heroHeadState = HeroHeadState::ALIVE;
+                    MoneyManager::s()->cost(MoneyCostDef::C_ADD_HERO);
                     _huntingHero.op_show();
                     _huntingHero.op_move(_heroPositionType, false);
                     int suitId = _huntingHero.op_fetchSuitId();
@@ -276,6 +276,7 @@ void HeroHeadAndUpgrade::initTouchThings()
                     const float delay_time = 2.5;
                     _pxHeadIcon->runAction(Sequence::create(Hide::create(), DelayTime::create(delay_time), Show::create(), NULL));
                     _pxBuyConfirm->runAction(Sequence::create(Show::create(), DelayTime::create(delay_time), Hide::create(), NULL));
+                    _pxBuyConfirm->configMixColor((MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) ? Vec4{0,0,0,0} : Vec4{0.5f,0.5f,0.5f,1.f});
                 }
             } else if (_heroHeadState == HeroHeadState::ALIVE) {
                 if (_transferHubNode->isVisible()) {
@@ -298,9 +299,11 @@ void HeroHeadAndUpgrade::initTouchThings()
                 } else if (!_pxUpgradeRect->isVisible() && _pxHeadIcon->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
                     //显示升级
                     if (heroCouldUpgrade(_heroType, _heroLevel)) {
-                        showUpgradeRect(true, heroUpgradeGold(_heroType, _heroLevel));
+                        int howMuch = heroUpgradeGold(_heroType, _heroLevel);
+                        showUpgradeRect(MoneyManager::s()->get() >= howMuch, heroUpgradeGold(_heroType, _heroLevel));
                     } else if (heroCouldTransfer(_heroType, _heroLevel)) {
-                        showUpgradeRect(true, heroTransferGold());
+                        int howMuch = heroTransferGold();
+                        showUpgradeRect(MoneyManager::s()->get() >= howMuch, heroTransferGold());
                     }
                 } else {
                     if (_pxUpgradeButton->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
@@ -356,6 +359,9 @@ void HeroHeadAndUpgrade::showUpgradeRect(bool enable, int howMuch)
     _ptxUpgradeGold->runAction(ac);
     _ptxUpgradeGold->configText(fmt::sprintf("%d", howMuch), 0.8);
 
+//    _pxUpgradeRect->configMixColor(MoneyManager::s()->get() >= howMuch ? Vec4{0,0,0,0} : Vec4{0.5,0.5,0.5,1.0});
+
+
     Vec4 enableColor = {1.f, 200.f/255.f, 51.f/255.f,1.f};
     Vec4 disableCOlor = {0.5f,0.5f,0.5f,1.f};
     auto col = enable ? enableColor : disableCOlor;
@@ -400,10 +406,12 @@ void HeroHeadAndUpgrade::op_tellGoldChange() //被通知金币改变
 {
     if (_heroHeadState == HeroHeadState::EMPTY) {
         if (MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) {
-            _pxHeadIcon->configMixColor({0.5,0.5,0.5,1.0});
-        } else {
             _pxHeadIcon->configMixColor({0,0,0,0});
+        } else {
+            _pxHeadIcon->configMixColor({0.5,0.5,0.5,1.0});
         }
+    } else {
+        _pxHeadIcon->configMixColor({0,0,0,0});
     }
 }
 
