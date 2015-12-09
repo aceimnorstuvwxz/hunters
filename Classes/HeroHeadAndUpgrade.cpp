@@ -270,6 +270,7 @@ void HeroHeadAndUpgrade::initTouchThings()
                     ACSoundManage::s()->play(ACSoundManage::SN_ADD_HERO);
                     _ptxLevel->setVisible(true);
                     _ptxLevel->configText(heroTypeGrade2levelString(_heroType,_heroLevel));
+                    _powerBarProtocal->op_firstHeroPosition(_heroPositionType);
 
                 } else {
                     //显示确认购买

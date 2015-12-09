@@ -54,14 +54,41 @@ void HuntingHerosManage::op_configAiming(float angle, float strenth) //设置瞄
 
 void HuntingHerosManage::op_toastBow(float angle, float strenth) //以这个角度开始放箭
 {
-    const float time_step = QuestDef::BOW_TOAST_STEP;
+    _waiting = true;
+    _angle = angle;
+    _strenth = strenth;
+    int cnt = 0;
     for (int i = 0; i < 4; i++) {
-        _mainCamera->scheduleOnce([this,i,angle, strenth](float dt) {
-            if (_positionMap[i]->op_fetchHero())
-            _positionMap[i]->op_fetchHero()->op_toastShoot(angle,strenth);
-        }, i*time_step, fmt::sprintf("dfgfdg %d", i));
+        if (_headIcons[i].op_isAlive()) {
+            cnt++;
+        }
     }
+    _timeTarget = QuestDef::BOW_TOAST_STEP * cnt;
 }
+
+void HuntingHerosManage::op_tellArrowIdle()
+{
+    /*if (_waiting) {
+        this->toastBowAst();
+    }*/
+}
+void HuntingHerosManage::toastBowAst() //以这个角度开始放箭
+{
+    const float time_step = QuestDef::BOW_TOAST_STEP;
+    _waiting = false;
+    int cnt = 0;
+    for (int i = 0; i < 4; i++) {
+        if (_positionMap[i]->op_isAlive()) {
+            _mainCamera->scheduleOnce([this,i](float dt) {
+                if (_positionMap[i]->op_fetchHero())
+                    _positionMap[i]->op_fetchHero()->op_toastShoot(_angle,_strenth);
+            }, cnt*time_step, fmt::sprintf("arrow shoot per node %d", i));
+            cnt++;
+        }
+    }
+
+}
+
 void HuntingHerosManage::op_tellGoldChange() //被通知金币改变
 {
     for (auto& h : _headIcons) {
@@ -72,7 +99,11 @@ void HuntingHerosManage::op_tellGoldChange() //被通知金币改变
 
 void HuntingHerosManage::update(float dt)
 {
-
+    _timePast += dt;
+    if (_waiting && _timePast > _timeTarget) {
+        toastBowAst();
+        _timePast = 0;
+    }
 }
 
 void HuntingHerosManage::initHeadsThings()
@@ -83,5 +114,4 @@ void HuntingHerosManage::initHeadsThings()
         _headIcons[i].configProtocals(this);
         _positionMap[i] = &_headIcons[i];
     }
-
 }

@@ -192,7 +192,7 @@ void PowerBar::initPathThings()
 {
 
     _pathHubNode = Node::create();
-    float y = heroPositionType2floatYposition(HeroPositionType::HPT_0);
+    float y = heroPositionType2floatYposition(HeroPositionType::HPT_3);
     _pathHubNode->setPosition3D({0,y,QuestDef::ARROW_SHOOT_Z});
     _pathHubNode->setRotation3D({90,0,-90});
     _pathHubNode->setScale(1);
@@ -208,6 +208,13 @@ void PowerBar::initPathThings()
         n->configBlend(true);
         _pathHubNode->addChild(n);
         _pxPathPoints[i] = n;
+    }
+}
+void PowerBar::op_firstHeroPosition(HeroPositionType t)
+{
+    float n = heroPositionType2floatYposition(t);
+    if (_pathHubNode->getPositionY() < n) {
+        _pathHubNode->setPositionY(n);
     }
 }
 

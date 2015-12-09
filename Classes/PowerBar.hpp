@@ -20,15 +20,21 @@ class PowerBar:public PowerBarProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(HuntingHerosManageProtocal* huntingHerosManageProtocal, WindBarProtocal* windParProtocal) {_huntingHerosManageProtocal = huntingHerosManageProtocal; _windBarProtocal = windParProtocal;}
+    void configProtocals(HuntingHerosManageProtocal* huntingHerosManageProtocal, WindBarProtocal* windParProtocal,HuntingArrowManageProtocal* huntingArrowManageProtocal) {
+        _huntingHerosManageProtocal = huntingHerosManageProtocal;
+        _windBarProtocal = windParProtocal;
+        _huntingArrowManageProtocal = huntingArrowManageProtocal;
+    }
     virtual void op_configEnable(bool enable){_enable = enable;} //放箭触摸瞄准的开关
     virtual void op_show();
     virtual void op_dismiss();
     virtual void op_configPower(float power, int angle); //power [0-1]
+    virtual void op_firstHeroPosition(HeroPositionType t);
 
     void update(float dt);
 
 protected:
+    HuntingArrowManageProtocal* _huntingArrowManageProtocal;
     HuntingHerosManageProtocal* _huntingHerosManageProtocal;
     WindBarProtocal* _windBarProtocal;
 

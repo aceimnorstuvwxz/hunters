@@ -237,6 +237,14 @@ public:
     virtual float op_fetchWind() = 0;
 };
 
+    enum class HeroPositionType:int
+    {
+        HPT_0 = 0, //最前排
+        HPT_1 = 1,
+        HPT_2 = 2,
+        HPT_3 = 3, //最后
+        HPT_OUT = 4 //视野外
+        };
 class PowerBarProtocal
 {
 public:
@@ -244,18 +252,11 @@ public:
     virtual void op_show() = 0;
     virtual void op_dismiss() = 0;
     virtual void op_configPower(float power, int angle) = 0; //power [0-1]
+    virtual void op_firstHeroPosition(HeroPositionType t) = 0;
 };
 
 
 
-enum class HeroPositionType:int
-{
-        HPT_0 = 0, //最前排
-        HPT_1 = 1,
-        HPT_2 = 2,
-        HPT_3 = 3, //最后
-        HPT_OUT = 4 //视野外
-};
 
 float heroPositionType2floatYposition(HeroPositionType positionType);
 
@@ -268,6 +269,7 @@ public:
     virtual void op_configAiming(float angle, float strenth) = 0; //设置瞄准的参数
     virtual void op_toastBow(float angle, float strenth) = 0; //以这个角度开始放箭
     virtual void op_tellGoldChange() = 0; //被通知金币改变
+    virtual void op_tellArrowIdle() = 0; //通知箭完毕可以放箭了
 
 };
 
@@ -598,6 +600,7 @@ class HuntingArrowManageProtocal
 {
 public:
     virtual void op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) = 0; //放箭
+    virtual bool op_isBusy() = 0;
 };
 
 struct ArrowUnit

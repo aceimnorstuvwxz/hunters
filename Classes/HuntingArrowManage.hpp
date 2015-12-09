@@ -23,17 +23,21 @@ class HuntingArrowManage:public HuntingArrowManageProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(WindBarProtocal* windBarProtocal, HuntingMonsterManageProtocal* huntingMonsterManageProtocal, FlyingCrowManageProtocal* flyingCrowManageProtocal, GlobalParticleManageProtocal* particleManageProtocal) {
+    void configProtocals(WindBarProtocal* windBarProtocal, HuntingMonsterManageProtocal* huntingMonsterManageProtocal, FlyingCrowManageProtocal* flyingCrowManageProtocal, GlobalParticleManageProtocal* particleManageProtocal,
+                         HuntingHerosManageProtocal* huntingHerosManageProtocal) {
         _windBarProtocal = windBarProtocal;
         _huntingMonsterManageProtocal = huntingMonsterManageProtocal;
         _flyingCrowManageProtocal = flyingCrowManageProtocal;
         _particleManageProtocal = particleManageProtocal;
+        _huntingHerosManageProtocal = huntingHerosManageProtocal;
     }
     virtual void op_shootArrow(HuntingArrowType arrowType, HeroPositionType position, float angle, float strenth) ; //放箭
+    virtual bool op_isBusy(){ return _arrowUnits.size() > 0;}
 
     void update(float dt);
 
 protected:
+    HuntingHerosManageProtocal* _huntingHerosManageProtocal;
     GlobalParticleManageProtocal* _particleManageProtocal;
     WindBarProtocal* _windBarProtocal;
     HuntingMonsterManageProtocal* _huntingMonsterManageProtocal;

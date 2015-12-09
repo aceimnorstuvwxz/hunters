@@ -31,6 +31,9 @@ void HuntingArrowManage::update(float dt)
         if (iter->_leftHitTimes <= 0) {
             iter->_pxNode->removeFromParent();
             iter = _arrowUnits.erase(iter);
+            if (_arrowUnits.size() == 0) {
+                _huntingHerosManageProtocal->op_tellArrowIdle();
+            }
         } else {
             iter++;
         }

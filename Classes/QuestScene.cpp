@@ -132,9 +132,9 @@ bool QuestScene::init()
                                       &_battleRoles, &_battleRoad, &_cameraManage, _mainCamera, this);
 
     MoneyManager::s()->configProtocals(&_topIcons, &_huntingHerosManage);
-    _powerBar.configProtocals(&_huntingHerosManage, &_windBar);
-    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage, &_particleManage);
-    _huntingHerosManage.configProtocals(&_huntingArrowManage);
+    _powerBar.configProtocals(&_huntingHerosManage, &_windBar, &_huntingArrowManage);
+    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage, &_particleManage, &_huntingHerosManage);
+    _huntingHerosManage.configProtocals(&_huntingArrowManage, &_powerBar);
     _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage);
     _energyBar.configProtocals(&_floatingLaserManage);
     _topIcons.configProtocals(&_battleRoad);
@@ -199,12 +199,11 @@ void QuestScene::battleBegin()
 
 void QuestScene::update(float dt)
 {
-//    _battleRoad.update(dt);
-//    _beatField.update(dt);
     _topIcons.update(dt);
     _energyBar.update(dt);
     _windBar.update(dt);
     _huntingArrowManage.update(dt);
     _huntingMonsterManage.update(dt);
     _flyCrowManage.update(dt);
+    _huntingHerosManage.update(dt);
 }
