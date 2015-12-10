@@ -211,12 +211,14 @@ void HeroHeadAndUpgrade::initTransferThings()
 
 void HeroHeadAndUpgrade::showTransfer()
 {
+    _questSceneProtocal->op_configPaused(true);
     _darkShadow->setVisible(true);
     _transferHubNode->setVisible(true);
 }
 
 void HeroHeadAndUpgrade::dismissTransfer()
 {
+    _questSceneProtocal->op_configPaused(false);
     _darkShadow->setVisible(false);
     _transferHubNode->setVisible(false);
 }

@@ -21,11 +21,11 @@ class HuntingHerosManage:public HuntingHerosManageProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(HuntingArrowManageProtocal* huntingArrowManageProtocal, PowerBarProtocal* powerBarProtocal) {
+    void configProtocals(HuntingArrowManageProtocal* huntingArrowManageProtocal, PowerBarProtocal* powerBarProtocal, QUestSceneProtocal* questSceneProtocal) {
         _huntingArrowManageProtocal = huntingArrowManageProtocal;
         for (HeroHeadAndUpgrade& head :_headIcons) {
             head.op_fetchHero(true)->configProtocals(huntingArrowManageProtocal);
-            head.configPowerBarProtocal(powerBarProtocal);
+            head.configPowerBarProtocal(powerBarProtocal, questSceneProtocal);
         }
     }
 
