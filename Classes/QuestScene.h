@@ -29,6 +29,7 @@
 #include "GlobalArrowEffectManage.hpp"
 #include "PixelParticleNode.hpp"
 #include "GlobalParticleManage.hpp"
+#include "TornadoManage.hpp"
 // Beat Quest Game Scene
 
 
@@ -79,6 +80,7 @@ protected:
     FloatingLaserManage _floatingLaserManage;
     FlyingCrowManage _flyCrowManage;
     GlobalParticleManage _particleManage;
+    TornadoManage _tornadoManage;
 
     bool _paused = false;
 

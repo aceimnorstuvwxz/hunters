@@ -78,10 +78,8 @@ bool QuestScene::init()
         _huntingMonsterManage.op_testSetWave(20);
     });
 
-    static float xpos = -100;
-    addCommonBtn({0.9,0.3}, "laser toast", [this](){
-        _floatingLaserManage.op_toastLaser({xpos, 0});
-        xpos += 10;
+    addCommonBtn({0.9,0.3}, "tornado", [this](){
+        _tornadoManage.op_configTornado(true, random(0, 150), true, random(0, 150));
     });
 
 
@@ -118,6 +116,7 @@ bool QuestScene::init()
     _flyCrowManage.init(_mainLayer, _mainCamera);
     _globalArrowEffectManage.init(_mainLayer, _mainCamera);
     _particleManage.init(_mainLayer, _mainCamera);
+    _tornadoManage.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
@@ -210,5 +209,6 @@ void QuestScene::update(float dt)
         _huntingMonsterManage.update(dt);
         _flyCrowManage.update(dt);
         _huntingHerosManage.update(dt);
+        _tornadoManage.update(dt);
     }
 }

@@ -29,6 +29,7 @@ void ACSoundManage::load()
     _effectsMap[SN_NEW_WAVE] = "new_wave.mp3";
     _effectsMap[SN_NEW_HERO] = "new_hero.mp3";
     _effectsMap[SN_HERO_UPGRADE] = "hero_upgrade.mp3";
+    _effectsMap[SN_TORNADO] = "tornado.wav";
 
 
     for (auto file : _effectsMap) {
@@ -44,14 +45,19 @@ void ACSoundManage::load()
 
 }
 
-void ACSoundManage::play(int name)
+void ACSoundManage::play(int name, bool loop)
 {
     if (_effectsMap.count(name)) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(fmt::sprintf("sounds/%s", _effectsMap[name]).c_str());
+        _soundIdMap[name] = CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(fmt::sprintf("sounds/%s", _effectsMap[name]).c_str(), loop);
     } else if (_musicMap.count(name)) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(fmt::sprintf("sounds/%s", _musicMap[name]).c_str());
     } else {
         assert(false);
         // preload first!
     }
+}
+
+void ACSoundManage::stop(int SN_NAME)
+{
+    if (_soundIdMap.count(SN_NAME)) CocosDenshion::SimpleAudioEngine::getInstance()->stopEffect(_soundIdMap[SN_NAME]);
 }

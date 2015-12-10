@@ -705,4 +705,13 @@ public:
 
     };
 
+    class TornadoManageProtocal
+    {
+    public:
+        virtual void op_configTornado(bool t0, float t0Pos, bool t1, float t1Pos) = 0;//最多两个 tornado
+        virtual void op_configPaused(bool pause) = 0;
+        virtual std::pair<float, float> op_getTornados() = 0; //当不存在时返回的位置为一个-MAX的值，保证箭不会碰到
+
+    };
+
 #endif /* QuestProtocals_hpp */

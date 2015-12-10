@@ -27,11 +27,13 @@ public:
         SN_NEW_WAVE,
         SN_NEW_HERO,
         SN_HERO_UPGRADE,
+        SN_TORNADO,
     };
     static ACSoundManage* s() { return &_instance; }
 
     void load();
-    void play(int SN_NAME);
+    void play(int SN_NAME, bool loop = false);
+    void stop(int SN_NAME);
 
 protected:
 
@@ -39,6 +41,7 @@ protected:
 
     std::unordered_map<int, std::string> _effectsMap;
     std::unordered_map<int, std::string> _musicMap;
+    std::unordered_map<int, int> _soundIdMap;
 
 };
 #endif /* ACSoundManage_hpp */
