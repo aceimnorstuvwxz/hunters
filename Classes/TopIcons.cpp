@@ -165,7 +165,7 @@ void TopIcons::op_minusHeart()
     _heart--;
     _ptxHeartNumber->configText(fmt::sprintf("%d", _heart));
     _battleRoadProtocal->op_hitCastle(_heart == 0);
-    _pxHeart->configMixColorAni({1,1,1,1}, 0.2);
+    _pxHeart->configMixColorAni(ColCastleHit(), 0.2);
 
     int grade = (QuestDef::INIT_HEART - _heart)/4;
      _battleRoadProtocal->op_configCastle(grade); // 0 没有损伤 5完全毁灭

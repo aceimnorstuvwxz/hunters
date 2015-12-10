@@ -366,7 +366,7 @@ void BattleRoad::op_configWind(float windDirection) //设置风的方向，表�
 
 void BattleRoad::op_hitCastle(bool dead)
 {
-    _pxCastle->configMixColorAni({1.f,1.f,1.f,1.f}, 0.3, dead ? 5 : 1);
+    _pxCastle->configMixColorAni(ColCastleHit(), 0.3, dead ? 5 : 1);
 }
 
 void BattleRoad::op_configCastle(int grade) // [0-5]

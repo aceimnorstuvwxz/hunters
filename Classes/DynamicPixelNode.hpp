@@ -79,6 +79,8 @@ protected:
     int _aniMixColorTime = 0;
     float _aniMixColorAlphaStep;
     cocos2d::Vec4 _aniMixColorTarget;
+    cocos2d::Vec4 _copyMixColor;
+
 };
 
 

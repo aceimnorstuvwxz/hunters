@@ -178,7 +178,14 @@ void HuntingHero::op_toastBoost(float interval) //播放一段时间的暴击增
 }
 void HuntingHero::op_toastUpgrade() //播放升级动画
 {
+    ani_idle();
+    const float jump_tiem = 0.2f;
+    _hubNode->runAction( Sequence::create(
+                                          EaseOut::create(MoveBy::create(jump_tiem, Vec3{0, 0, 5}), 2.f), EaseIn::create(MoveBy::create(jump_tiem, Vec3{0, 0, -5}), 2.f),
 
+                                          EaseOut::create(MoveBy::create(jump_tiem, Vec3{0, 0, 5}), 2.f), EaseIn::create(MoveBy::create(jump_tiem, Vec3{0, 0, -5}), 2.f),
+
+                                          NULL));
 }
 
 void HuntingHero::op_show()

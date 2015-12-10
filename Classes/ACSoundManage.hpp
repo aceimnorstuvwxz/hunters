@@ -25,6 +25,8 @@ public:
         SN_HIT_SHIELD,
         SN_THUNDER_HIT,
         SN_NEW_WAVE,
+        SN_NEW_HERO,
+        SN_HERO_UPGRADE,
     };
     static ACSoundManage* s() { return &_instance; }
 

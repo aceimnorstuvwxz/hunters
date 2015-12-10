@@ -279,11 +279,16 @@ void DynamicPixelNode::configStopActions(int boneIndex)
 void DynamicPixelNode::configMixColor(const cocos2d::Vec4& mixColor) //设置叠色，将用alpha与原色混合。默认alpha为0，显示原色。
 
 {
-    _mixColor = mixColor;
+    if (_aniMixColorTime != 0) {
+        _copyMixColor = mixColor;
+    } else {
+        _mixColor = mixColor;
+    }
 }
 
 void DynamicPixelNode::configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOutTime, int repeat) //混色动画，用来实现，rival受攻击
 {
+    _copyMixColor = _mixColor;
     _mixColor = {mixColor.x, mixColor.y, mixColor.z, 0};
     _aniMixColorTarget = mixColor;
     _aniMixColorTime = repeat;
@@ -305,6 +310,11 @@ void DynamicPixelNode::update(float dt)
             _aniMixColorTime--;
             _mixColor.w = 0;
             _aniMixColorAlphaStep = - _aniMixColorAlphaStep;
+
+            if (_aniMixColorTime == 0) {
+                //结束了
+                _mixColor = _copyMixColor;
+            }
         }
     }
 }

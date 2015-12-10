@@ -6,6 +6,16 @@
 #include <stdio.h>
 #include "cocos2d.h"
 
+inline cocos2d::Vec4 ColCastleHit()
+{
+    return {1,0,0,0.5};
+}
+
+inline cocos2d::Vec4 ColMonsterSlow()
+{
+    return {102.f/255.f,0.f/255.f,139.f/255.f, 0.5f};
+}
+
 
 class QuestDef
 {
@@ -63,6 +73,7 @@ public:
     constexpr static const int INIT_HEART = 20;
     constexpr static const float GRAVITY = 50;
     constexpr static const float EMEMY_ATTACK_POS = -160;
+
     
     
 

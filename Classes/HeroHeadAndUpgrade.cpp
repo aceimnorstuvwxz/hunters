@@ -273,6 +273,7 @@ void HeroHeadAndUpgrade::initTouchThings()
                     _ptxLevel->setVisible(true);
                     _ptxLevel->configText(heroTypeGrade2levelString(_heroType,_heroLevel));
                     _powerBarProtocal->op_firstHeroPosition(_heroPositionType);
+                    ACSoundManage::s()->play(ACSoundManage::SN_NEW_HERO);
 
                 } else {
                     //显示确认购买
@@ -321,6 +322,8 @@ void HeroHeadAndUpgrade::initTouchThings()
                                 _ptxLevel->configText(heroTypeGrade2levelString(_heroType,_heroLevel));
 
                                 //TODO 升级声音和效果
+                                ACSoundManage::s()->play(ACSoundManage::SN_HERO_UPGRADE);
+
                             } else {
                                 //钱不够
                             }

@@ -600,9 +600,6 @@ void HuntingMonster::op_thunderTest(float pos)
             damage(calcArrowDamage(HuntingArrowType::SLOW_2), {0, -1});
             _slowDownTime = 3.f;
             _slowDownRate = 0.f;
-            _dpxNode->configMixColor({102.f/255.f,0.f/255.f,139.f/255.f,0.5f});
-            auto p = _dpxNode;
-            _dpxNode->scheduleOnce([p](float dt) {p->configMixColor({0,0,0,0,});}, _slowDownTime, fmt::sprintf("sdfs %d", random(0, 99999)));
         }
 
     }
@@ -661,6 +658,10 @@ void HuntingMonster::update(float dt)
     if (_slowDownTime >0) {
         _slowDownTime -= dt;
         move_speed = move_speed*_slowDownRate;
+        _dpxNode->configMixColor(ColMonsterSlow());
+    } else {
+
+        _dpxNode->configMixColor({0,0,0,0});
     }
 
     //粒子特效

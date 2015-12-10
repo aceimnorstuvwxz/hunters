@@ -331,7 +331,11 @@ PixelNode::~PixelNode(){
 void PixelNode::configMixColor(const cocos2d::Vec4& mixColor) //设置叠色，将用alpha与原色混合。默认alpha为0，显示原色。
 
 {
-    _mixColor = mixColor;
+    if (_aniMixColorTime != 0) {
+        _copyMixColor = mixColor;
+    } else {
+        _mixColor = mixColor;
+    }
 }
 
 void PixelNode::configMixColorAni(const cocos2d::Vec4& mixColor, float fadeInOutTime, int repeat) //混色动画，用来实现，rival受攻击
