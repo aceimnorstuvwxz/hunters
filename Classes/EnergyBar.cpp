@@ -31,7 +31,7 @@ void EnergyBar::op_addEnergy(float howmuch)
 void EnergyBar::initHubThings()
 {
     _hubNode = Node::create();
-    _hubNode->setPosition3D({0,-5,-10});
+    _hubNode->setPosition3D({0,-4.35f,-10});
     _hubNode->setScale(0.1);
     _hubNode->setCameraMask(_mainCamera->getCameraMask());
     _mainCamera->addChild(_hubNode);

@@ -180,7 +180,7 @@ void TopIcons::op_addWave()
 {
     _currentWave++;
     _ptxWaveNumber->configText(fmt::sprintf("%d", _currentWave));
-    auto ac = Sequence::create(ScaleTo::create(0.1f, 1.3f),ScaleTo::create(0.1f, 1.2f), NULL);
+    auto ac =  EaseInOut::create(Sequence::create(ScaleTo::create(0.15f, 1.5f),ScaleTo::create(0.15f, 1.2f), NULL), 2.f);
 
     _ptxWaveTitle->runAction(ac->clone());
     _ptxWaveNumber->runAction(ac->clone());
