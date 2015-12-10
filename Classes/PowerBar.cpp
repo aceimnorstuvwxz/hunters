@@ -205,7 +205,7 @@ void PowerBar::initPathThings()
         auto n = PixelNode::create();
         n->setCameraMask(_mainCamera->getCameraMask());
         n->configSopx("hunters/sopx/path_point.png.sopx");
-        n->configBlend(true);
+//        n->configBlend(true);
         _pathHubNode->addChild(n);
         _pxPathPoints[i] = n;
     }
@@ -227,7 +227,10 @@ void PowerBar::showPath(float angle, float strenth)
     for (int i = 0; i < N_PATH_POINTS; i++) {
         auto pos = movePathCalc({0,0}, speed, acce, time_step*(i+0.5));
         _pxPathPoints[i]->setPosition(pos.x,pos.y);
-        _pxPathPoints[i]->setScale(0.2f-0.1f*i/N_PATH_POINTS);
+        _pxPathPoints[i]->setScale(20.f*(0.2f-0.1f*i/N_PATH_POINTS));
+        auto oldRot = _pxPathPoints[i]->getRotation3D();
+        float sc = 5.f;
+        _pxPathPoints[i]->setRotation3D({oldRot.x+sc*random(-1.f, 1.f),oldRot.y+sc*random(-1.f, 1.f),oldRot.z+sc*random(-1.f, 1.f)});
     }
 
 }

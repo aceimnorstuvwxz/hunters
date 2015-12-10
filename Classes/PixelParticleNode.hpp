@@ -56,7 +56,7 @@ protected:
     cocos2d::CustomCommand _command;
     static constexpr int BUFFER_STORGE_SIZE = 50000; //指顶点数目
 
-    static constexpr int N_TMP_BUFFER = 16; //指可容纳粒子数
+    static constexpr int N_TMP_BUFFER = 128; //指可容纳粒子数 大于一个帧会产生的粒子数目
     PixelParticleVertexFormal _tmpVertexBuffer[N_TMP_BUFFER*36];
     int _tmpLocalCount = 0;
 

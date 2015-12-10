@@ -189,10 +189,13 @@ PixelParticleNode::~PixelParticleNode()
 void PixelParticleNode::addParticleBatch(int count, float time, float timeVar, cocos2d::Vec3 position, cocos2d::Vec3 positionVar, cocos2d::Vec4 color, cocos2d::Vec4 colorVar, cocos2d::Vec3 speed, cocos2d::Vec3 speedVar, float beginScale, float beginScaleVar, float endScale, float endScaleVar)
 {
     assert(count <= N_TMP_BUFFER);
-    if (_ppbuffer[_activeBufferIndex]._count + _tmpLocalCount + count*36 > BUFFER_STORGE_SIZE) {
+    if (_ppbuffer[_activeBufferIndex]._count + _tmpLocalCount + count*36 > BUFFER_STORGE_SIZE ) {
         //超载，丢弃
         switchBuffer();
+    } else if (_tmpLocalCount/36+count > N_TMP_BUFFER) {
+        uploadBuffer();
     }
+    
     for (int i = 0; i < count; i++) {
         addPerParticle(time, timeVar, position, positionVar, color, colorVar, speed, speedVar, beginScale, beginScaleVar, endScale, endScaleVar);
     }

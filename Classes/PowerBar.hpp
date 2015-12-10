@@ -45,7 +45,7 @@ protected:
     void initHubThings();
     bool _enable = true;
 
-    static constexpr int N_PATH_POINTS = 10;
+    static constexpr int N_PATH_POINTS = 6;
     cocos2d::Node* _pathHubNode;
     PixelNode* _pxPathPoints[N_PATH_POINTS];
     void initPathThings();
