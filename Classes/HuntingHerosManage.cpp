@@ -115,3 +115,19 @@ void HuntingHerosManage::initHeadsThings()
         _positionMap[i] = &_headIcons[i];
     }
 }
+
+bool HuntingHerosManage::op_fetchIsHeadsBusy() //获取是否升级忙，则不会放箭
+{
+    bool ret = false;
+    for (int i = 0; i < 4; i++) {
+        if (_headIcons[i].op_isHeadBusy()) {ret = true;break;}
+    }
+    return ret;
+}
+
+void HuntingHerosManage::op_configPaused(bool pause)
+{
+    for (auto& h : _headIcons) {
+        h.op_fetchHero(true)->op_configPaused(pause);
+    }
+}

@@ -186,3 +186,10 @@ void HuntingMonsterManage::groundCollision(ArrowUnit& arrow)
         arrow._leftHitTimes = 0;
     }
 }
+
+void HuntingMonsterManage::op_configPaused(bool pause)
+{
+    for (auto& m : _monsters) {
+        m->op_configPaused(pause);
+    }
+}

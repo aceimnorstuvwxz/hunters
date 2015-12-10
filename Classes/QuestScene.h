@@ -39,6 +39,7 @@ public:
     virtual bool init() override;
 
     virtual void op_showPauseShadow() override;
+    virtual void op_configPaused(bool pause) override;
 
 protected:
     cocos2d::Layer* _mainLayer;
@@ -78,6 +79,8 @@ protected:
     FloatingLaserManage _floatingLaserManage;
     FlyingCrowManage _flyCrowManage;
     GlobalParticleManage _particleManage;
+
+    bool _paused = false;
 
     void update(float dt) override;
 

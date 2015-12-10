@@ -45,8 +45,10 @@ public:
 
     void addParticleBatch(int count, float time, float timeVar, cocos2d::Vec3 position, cocos2d::Vec3 positionVar, cocos2d::Vec4 color, cocos2d::Vec4 colorVar, cocos2d::Vec3 speed, cocos2d::Vec3 speedVar, float beginScale, float beginScaleVar, float endScale, float endScaleVar);
 
+    virtual void pause() override;
+    virtual void resume() override;
 protected:
-
+    bool _paused = false;
     virtual ~PixelParticleNode();
     void prepareVertexData();
     void prepareShaders();

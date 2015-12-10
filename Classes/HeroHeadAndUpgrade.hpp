@@ -38,6 +38,9 @@ public:
         _powerBarProtocal = powerBarProtocal;
     }
 
+    virtual bool op_isHeadBusy();
+
+
     virtual void op_configPosition(HeroPositionType position, bool direct); //设置位置
     virtual HeroPositionType op_fetchPosition(); //获取位置
     virtual void op_tellGoldChange(); //被通知金币改变

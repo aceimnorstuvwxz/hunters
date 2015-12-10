@@ -54,6 +54,9 @@ public:
 
     void update(float dt) override;
 
+    virtual void pause() override;
+    virtual void resume() override;
+
 protected:
     virtual ~DynamicPixelNode();
     GLuint _vao;

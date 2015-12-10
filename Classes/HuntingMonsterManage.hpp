@@ -37,6 +37,7 @@ public:
     virtual void op_thunder(float pos);
     virtual void op_bomb(float pos, int grade);
     void op_testSetWave(int wave) { _currentWave = wave; }
+    virtual void op_configPaused(bool pause);
 
     void update(float dt);
 

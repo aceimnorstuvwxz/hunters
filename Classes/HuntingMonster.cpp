@@ -681,4 +681,13 @@ void HuntingMonster::update(float dt)
     }
 }
 
+void HuntingMonster::op_configPaused(bool pause)
+{
+    if (pause) {
+        _dpxNode->pause();
+    } else {
+        _dpxNode->resume();
+    }
+}
+
 

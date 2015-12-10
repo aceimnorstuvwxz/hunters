@@ -380,3 +380,12 @@ void HuntingHero::ani_run() //跑步动作
 
     _dpxNode->configAction(BT_BOW_MAX, help_calcBonePosition(BT_BOW_MAX), {0,0,100-45}, 3.f,3.f, RepeatForever::create(RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-15}),RotateBy::create(run_time*0.5, Vec3{0,0,15}), NULL), NULL))));
 }
+
+void HuntingHero::op_configPaused(bool pause)
+{
+    if (pause) {
+        _dpxNode->pause();
+    } else {
+        _dpxNode->resume();
+    }
+}

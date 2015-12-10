@@ -416,6 +416,11 @@ void HeroHeadAndUpgrade::op_tellGoldChange() //被通知金币改变
     }
 }
 
+bool HeroHeadAndUpgrade::op_isHeadBusy()
+{
+    return _pxUpgradeRect->isVisible() || _transferHubNode->isVisible();
+}
+
 HeroPositionType HeroHeadAndUpgrade::op_fetchPosition() //获取位置
 {
     return _heroPositionType;

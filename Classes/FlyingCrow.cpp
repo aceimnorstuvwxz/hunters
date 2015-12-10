@@ -117,6 +117,15 @@ bool FlyingCrow::op_dealWithArrow(ArrowUnit& arrow)
     return false;
 }
 
+void FlyingCrow::op_configPaused(bool pause)
+{
+    if (pause) {
+        _dxCrow->pause();
+    } else {
+        _dxCrow->resume();
+    }
+}
+
 void FlyingCrow::update(float dt)
 {
     if (_alive) {

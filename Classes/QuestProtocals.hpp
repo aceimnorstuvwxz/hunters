@@ -204,6 +204,7 @@ class QUestSceneProtocal
 {
 public:
     virtual void op_showPauseShadow() = 0;
+    virtual void op_configPaused(bool pause) = 0;
 };
 
 
@@ -270,6 +271,9 @@ public:
     virtual void op_toastBow(float angle, float strenth) = 0; //以这个角度开始放箭
     virtual void op_tellGoldChange() = 0; //被通知金币改变
     virtual void op_tellArrowIdle() = 0; //通知箭完毕可以放箭了
+    virtual bool op_fetchIsHeadsBusy() = 0; //获取是否升级忙，则不会放箭
+    virtual void op_configPaused(bool pause) = 0;
+
 
 };
 
@@ -371,6 +375,8 @@ public:
     virtual void op_show() = 0;
     virtual void op_hide() = 0;
     virtual void op_move(HeroPositionType desPositionType, bool direct = false) = 0;
+    virtual void op_configPaused(bool pause) = 0;
+
  };
 
 enum class HuntingMonsterGeneralType:int
@@ -432,6 +438,8 @@ public:
     virtual void op_dealWithArrow(ArrowUnit& arrow) = 0;
     virtual void op_thunderTest(float pos) = 0;
     virtual void op_bombTest(float pos, int grade) = 0;
+    virtual void op_configPaused(bool pause) = 0;
+
 };
 
 
@@ -442,7 +450,7 @@ public:
     virtual HeroPositionType op_fetchPosition() = 0; //获取位置
     virtual void op_tellGoldChange() = 0; //被通知金币改变
 
-
+    virtual bool op_isHeadBusy() = 0;
 };
 
 enum class HuntingArrowType:int
@@ -618,6 +626,8 @@ public:
     virtual void op_dealCollision(ArrowUnit& arrow) = 0;
     virtual void op_thunder(float pos) = 0;
     virtual void op_bomb(float pos, int grade) = 0;
+    virtual void op_configPaused(bool pause) = 0;
+
 };
 
 inline cocos2d::Vec2 huntingCalcSpeed(float angle, float strenth){
@@ -667,12 +677,15 @@ class FlyingCrowProtocal
 public:
     virtual void op_config(bool acce, bool shield, cocos2d::Vec2 relativePosition) = 0;
     virtual bool op_dealWithArrow(ArrowUnit& arrow) = 0;
+    virtual void op_configPaused(bool pause) = 0;
+
 };
 
     class FlyingCrowManageProtocal
     {
     public:
         virtual void op_dealCollision(ArrowUnit& arrow) = 0;
+        virtual void op_configPaused(bool pause) = 0;
 
     };
 
@@ -688,6 +701,7 @@ public:
     {
     public:
         virtual void toastPartles(GlobalParticleType t, cocos2d::Vec2 pos, cocos2d::Vec2 dir, int degree) = 0;
+        virtual void op_configPaused(bool pause) = 0;
 
     };
 

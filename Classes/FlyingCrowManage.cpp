@@ -183,3 +183,10 @@ void FlyingCrowManage::addCrow(int x, int y, int h, bool cry)
     _crows.push_back(sp);
 
 }
+
+void FlyingCrowManage::op_configPaused(bool pause)
+{
+    for (auto& c : _crows) {
+        c->op_configPaused(pause);
+    }
+}

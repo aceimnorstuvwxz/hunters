@@ -63,6 +63,7 @@ public:
     virtual void op_toastDead(cocos2d::Vec2 direction); //播放死亡，散架了，坠落到地上，过一会儿后消失
     virtual int op_getId();
     virtual void op_dealWithArrow(ArrowUnit& arrow);
+    virtual void op_configPaused(bool pause) ;
 
     virtual void op_thunderTest(float pos) ;
     virtual void op_bombTest(float pos, int grade);

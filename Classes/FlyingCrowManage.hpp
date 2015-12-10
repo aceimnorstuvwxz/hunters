@@ -26,6 +26,7 @@ public:
         _particleManageProtocal = particleManageProtocal;
     }
     virtual void op_dealCollision(ArrowUnit& arrow);
+    virtual void op_configPaused(bool pause);
 
 
     void update(float dt);

@@ -316,3 +316,19 @@ void DynamicPixelNode::configSpecialDoubleBoneRotateFirst(int boneIndex, cocos2d
     _specialBonePreNode->setRotation3D(rotateion);
     _specialBoneIndex = boneIndex;
 }
+
+void DynamicPixelNode::pause()
+{
+    Node::pause();
+    for (auto b : _bones) {
+        b->pause();
+    }
+}
+
+void DynamicPixelNode::resume()
+{
+    Node::resume();
+    for (auto b : _bones) {
+        b->resume();
+    }
+}

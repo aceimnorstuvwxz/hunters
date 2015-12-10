@@ -38,14 +38,8 @@ bool QuestScene::init()
 //        _huntingMonster.op_toastAttack();
 //    });
 
-    addCommonBtn({0.1,0.9}, "bomb base", [this](){
-        _globalArrowEffectManage.op_bomb(0, {random(-100.f, 100.f), 20.f});
-    });
-    addCommonBtn({0.1,0.8}, "thunder", [this](){
-        _globalArrowEffectManage.op_thunder({random(-100.f, 100.f),0});
-    });
-    addCommonBtn({0.1,0.7}, "bomb s", [this](){
-        _globalArrowEffectManage.op_bomb(2, {random(-100.f, 100.f), 20.f});
+    addCommonBtn({0.1,0.7}, "pause", [this](){
+        op_configPaused(!_paused);
     });
 //    static int iid = 0;
 //
@@ -197,13 +191,24 @@ void QuestScene::battleBegin()
     BattleState::s()->initAsNextRival(); //初始化首个rival的数据
 }
 
+void QuestScene::op_configPaused(bool pause)
+{
+    _paused = pause;
+    _flyCrowManage.op_configPaused(pause);
+    _huntingMonsterManage.op_configPaused(pause);
+    _huntingHerosManage.op_configPaused(pause);
+    _particleManage.op_configPaused(pause);
+}
+
 void QuestScene::update(float dt)
 {
     _topIcons.update(dt);
     _energyBar.update(dt);
     _windBar.update(dt);
-    _huntingArrowManage.update(dt);
-    _huntingMonsterManage.update(dt);
-    _flyCrowManage.update(dt);
-    _huntingHerosManage.update(dt);
+    if (!_paused) {
+        _huntingArrowManage.update(dt);
+        _huntingMonsterManage.update(dt);
+        _flyCrowManage.update(dt);
+        _huntingHerosManage.update(dt);
+    }
 }

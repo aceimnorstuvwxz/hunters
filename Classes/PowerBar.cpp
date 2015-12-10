@@ -119,7 +119,7 @@ void PowerBar::initTouchThings()
     listener->onTouchBegan = [this](Touch* touch, Event* event){
         moved = false;
         startPos = touch->getLocation();
-        if (_enable) {
+        if (_enable && !_huntingHerosManageProtocal->op_fetchIsHeadsBusy()) {
             auto size = Director::getInstance()->getWinSize();
             float yr = touch->getLocation().y / size.height;
             float xr = touch->getLocation().x / size.width;

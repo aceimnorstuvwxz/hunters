@@ -27,6 +27,7 @@ public:
 //        _monsterManageProtocal = monsterManageProtocal;
 //    }
     virtual void toastPartles(GlobalParticleType t, cocos2d::Vec2 pos, cocos2d::Vec2 dir, int degree);
+    virtual void op_configPaused(bool pause) ;
 
 protected:
 //    HuntingMonsterManageProtocal* _monsterManageProtocal;

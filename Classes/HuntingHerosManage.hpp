@@ -35,6 +35,8 @@ public:
     virtual void op_toastBow(float angle, float strenth); //以这个角度开始放箭
     virtual void op_tellGoldChange(); //被通知金币改变
     virtual void op_tellArrowIdle();
+    virtual bool op_fetchIsHeadsBusy(); //获取是否升级忙，则不会放箭
+    virtual void op_configPaused(bool pause);
 
     void update(float dt);
 

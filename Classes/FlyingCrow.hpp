@@ -32,7 +32,7 @@ public:
     virtual void op_config(bool acce, bool shield, cocos2d::Vec2 relativePosition);
     virtual bool op_dealWithArrow(ArrowUnit& arrow);
     virtual void op_configCry() { _need2cry = true;}
-
+    virtual void op_configPaused(bool pause);
 
     void update(float dt);
 

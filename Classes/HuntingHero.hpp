@@ -57,6 +57,8 @@ public:
     virtual void op_hide();
     virtual void op_move(HeroPositionType desPositionType, bool direct = false);
     int op_fetchSuitId() { return _suidId; }
+    virtual void op_configPaused(bool pause);
+
 
 protected:
     HuntingArrowManageProtocal* _huntingArrowManageProtocal;

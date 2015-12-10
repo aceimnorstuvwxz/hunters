@@ -166,6 +166,9 @@ void PixelParticleNode::switchBuffer()
 
 void PixelParticleNode::update(float dt)
 {
+    if (_paused) {
+        return;
+    }
     _timeCount += dt;
     if (_timeCount > 10) {
         switchBuffer();
@@ -301,4 +304,16 @@ void PixelParticleNode::addPerParticle(float time, float timeVar, cocos2d::Vec3 
     genface(1,5,6,2,dColor, dPos, dScleLife, dSpeed,{-1,0,0});
     genface(4,5,1,0,dColor, dPos, dScleLife, dSpeed, {0,1,0});
     genface(6,7,3,2,dColor, dPos, dScleLife, dSpeed, {0,-1,0});
+}
+
+ void PixelParticleNode::pause()
+{
+    Node::pause();
+    _paused = true;
+}
+ void PixelParticleNode::resume()
+{
+    Node::resume();
+    _paused = false;
+
 }
