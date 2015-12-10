@@ -54,7 +54,7 @@ protected:
 
     void initEffectsThings();
 
-    float _posT0;
-    float _posT1;
+    float _posT0 = -1000;
+    float _posT1 = -1000;
 };
 #endif /* TornadoManage_hpp */

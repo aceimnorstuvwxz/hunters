@@ -78,17 +78,25 @@ void HuntingArrowManage::op_shootArrowAst(HuntingArrowType arrowType, HeroPositi
 
     cocos2d::Vec2 acce = huntingCalcAcce(_windBarProtocal->op_fetchWind());
 
-    unit._pxNode->setPositionY(unit._speed.x * dt + unit._pxNode->getPositionY()); //x
+    auto tpos = _tornadoManageProtocal->op_getTornados();
+
+    float arrow_pos = unit._pxNode->getPositionY();
+    bool in_tor = std::abs(arrow_pos - tpos.first) < 3.5f || std::abs(arrow_pos - tpos.second) < 3.5f;
+    unit._pxNode->setPositionY((in_tor ? 0.22f:1.f) * unit._speed.x * dt + unit._pxNode->getPositionY()); //x
 
     unit._pxNode->setPositionZ(unit._speed.y * dt + unit._pxNode->getPositionZ()); //y
 
-    unit._pxNode->setRotation3D({90, 45-vector2angel(unit._speed), -90});
+    auto oldRot = unit._pxNode->getRotation3D();
+//    unit._pxNode->setRotation3D({in_tor ? (oldRot.x + 5*360*dt) : 90, 45-vector2angel(unit._speed), -90});
+    unit._pxNode->setRotation3D({90, 45-vector2angel(unit._speed), in_tor ? (oldRot.z + 2*360*dt) : -90});
 
     auto at = arrowType2particleType(unit._type);
     _particleManageProtocal->toastPartles(at.first, {unit._pxNode->getPositionY(),unit._pxNode->getPositionZ()}, {0,0}, at.second);
 
 
-    unit._speed += acce*dt;
+    if (!in_tor) {
+        unit._speed += acce*dt;
+    }
 
 
     _huntingMonsterManageProtocal->op_dealCollision(unit);

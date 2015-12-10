@@ -95,6 +95,12 @@ void HuntingMonsterManage::update(float dt)
             _needTellWave = true;
             _currentWaveMonsterCnt = random(10, 20);
             _timeLeft = random(15, 30);
+
+            //龙卷风
+            bool t0 = ((_currentWave == 3 || _currentWave == 10 || _currentWave == 15 )|| (_currentWave > 3 && rand_0_1() < (0.2f + 0.3*(_currentWave/40.f))));
+            bool t1 = (_currentWave > 15 && rand_0_1() < (0.1f + 0.25*(_currentWave/40.f)));
+
+            _tornadoManageProtocal->op_configTornado(t0, random(-60, 50), t1, random(20, 100));
         } else {
             _timeLeft =
             gt == HuntingMonsterGeneralType::TITAN ? random(15, 20) :

@@ -24,13 +24,13 @@ class HuntingMonsterManage:public HuntingMonsterManageProtocal
 public:
 
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocal(EnergyBarProtocal * energyBarProtocal, FloatingLaserManageProtocal* floatingLaserManageProtocal,GlobalArrowEffectManageProtocal* effetcManageProtocal, TopIconsProtocal* topIconsProtocal, GlobalParticleManageProtocal* particleManageProtocal) {
+    void configProtocal(EnergyBarProtocal * energyBarProtocal, FloatingLaserManageProtocal* floatingLaserManageProtocal,GlobalArrowEffectManageProtocal* effetcManageProtocal, TopIconsProtocal* topIconsProtocal, GlobalParticleManageProtocal* particleManageProtocal, TornadoManageProtocal* tornadoManageProtocal) {
         _energyBarProtocal = energyBarProtocal;
         _floatingLaserManageProtocal = floatingLaserManageProtocal;
         _effetcManageProtocal = effetcManageProtocal;
         _topIconsProtocal = topIconsProtocal;
         _particleManageProtocal = particleManageProtocal;
-
+        _tornadoManageProtocal = tornadoManageProtocal;
     }
     virtual void op_dealCollision(ArrowUnit& arrow);
 
@@ -42,6 +42,7 @@ public:
     void update(float dt);
 
 protected:
+    TornadoManageProtocal* _tornadoManageProtocal;
     GlobalParticleManageProtocal* _particleManageProtocal;
     TopIconsProtocal* _topIconsProtocal;
     GlobalArrowEffectManageProtocal* _effetcManageProtocal;

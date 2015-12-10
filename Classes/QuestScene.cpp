@@ -79,7 +79,7 @@ bool QuestScene::init()
     });
 
     addCommonBtn({0.9,0.3}, "tornado", [this](){
-        _tornadoManage.op_configTornado(true, random(0, 150), true, random(0, 150));
+        _tornadoManage.op_configTornado(true, random(-100, 0), true, random(0, 100));
     });
 
 
@@ -126,9 +126,9 @@ bool QuestScene::init()
 
     MoneyManager::s()->configProtocals(&_topIcons, &_huntingHerosManage);
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar, &_huntingArrowManage);
-    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage, &_particleManage, &_huntingHerosManage);
+    _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage, &_particleManage, &_huntingHerosManage, &_tornadoManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage, &_powerBar, this);
-    _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage);
+    _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage, &_tornadoManage);
     _energyBar.configProtocals(&_floatingLaserManage);
     _topIcons.configProtocals(&_battleRoad);
     _flyCrowManage.configProtocals(&_topIcons, &_particleManage);

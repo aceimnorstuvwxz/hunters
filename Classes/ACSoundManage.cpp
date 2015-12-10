@@ -28,7 +28,7 @@ void ACSoundManage::load()
     _effectsMap[SN_THUNDER_HIT] = "thunder_hit.mp3";
     _effectsMap[SN_NEW_WAVE] = "new_wave.mp3";
     _effectsMap[SN_NEW_HERO] = "new_hero.mp3";
-    _effectsMap[SN_HERO_UPGRADE] = "hero_upgrade.mp3";
+    _effectsMap[SN_HERO_UPGRADE] = "new_hero.mp3";
     _effectsMap[SN_TORNADO] = "tornado.wav";
 
 

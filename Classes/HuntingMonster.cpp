@@ -598,8 +598,8 @@ void HuntingMonster::op_thunderTest(float pos)
             ACSoundManage::s()->play(ACSoundManage::SN_HIT_SHIELD);
         } else {
             damage(calcArrowDamage(HuntingArrowType::SLOW_2), {0, -1});
-            _slowDownTime = 3.f;
-            _slowDownRate = 0.f;
+            _slowDownTime = 1.5f;
+            _slowDownRate = 0.2f;
         }
 
     }

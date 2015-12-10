@@ -297,6 +297,8 @@ void HeroHeadAndUpgrade::initTouchThings()
                             _ptxLevel->configText(heroTypeGrade2levelString(_heroType,_heroLevel));
 
                             this->dismissTransfer();
+                            ACSoundManage::s()->play(ACSoundManage::SN_HERO_UPGRADE);
+
                         }
                     }
 
