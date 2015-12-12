@@ -134,7 +134,7 @@ void TopIcons::initPauseThings()
         node->setCameraMask(_mainCamera->getCameraMask());
         node->setScale(1.2f,1.2f);
         node->setPosition3D({96,-22,0});
-        node->configText("00",1);
+        node->configText("0",1);
         node->configMixColor({1.f, 200.f/255.f, 51.f/255.f,1.f});
         _hubNode->addChild(node);
         _ptxWaveNumber = node;

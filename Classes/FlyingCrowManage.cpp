@@ -33,7 +33,7 @@ void FlyingCrowManage::update(float dt)
     if (_timeLeft <= 0) {
         addBatchOfCrows();
         _batchCount++;
-        _timeLeft = random(5.f, 25.f);
+        _timeLeft = random(25.f, 55.f);
     }
     for (auto crow : _crows) {
         crow->update(dt);
@@ -70,7 +70,7 @@ static const bool A_2[1*5] = {
 };
 
 static const bool A_3[1*5] = {
-    _X_,_X_,_X_,_X_,_X_,
+    ___,_X_,_X_,___,_X_,
 };
 
 static Pat PatsA[4] = {
@@ -91,13 +91,13 @@ static const bool B_1[2*5] = {
 };
 
 static const bool B_3[2*5] = {
-    _X_,___,_X_,___,___,
+    ___,_X_,___,_X_,___,
     _X_,___,_X_,___,_X_,
 };
 
 static const bool B_4[2*5] = {
     _X_,_X_,_X_,___,___,
-    ___,___,_X_,_X_,_X_,
+    ___,___,___,_X_,_X_,
 };
 
 static const bool B_5[2*5] = {
@@ -106,8 +106,8 @@ static const bool B_5[2*5] = {
 };
 
 static const bool B_2[2*5] = {
-    _X_,_X_,___,_X_,_X_,
-    _X_,_X_,___,_X_,_X_,
+    ___,_X_,___,_X_,___,
+    _X_,___,___,___,_X_,
 };
 
 static Pat PatsB[6] = {

@@ -77,6 +77,7 @@ void HuntingMonsterManage::update(float dt)
             }
         }
 
+
         //等级
         int level = _currentWave;
         float ran2 = rand_0_1();
@@ -87,13 +88,14 @@ void HuntingMonsterManage::update(float dt)
         } else if (ran2 < 0.3) {
             level += 1;
         }
+        level += 7;//去掉开始的不好看的敌人
         level = std::min(40, level);
         addMonster(gt, st, hasShiled, level, shieldCount);
         _currentWaveMonsterCnt--;
         if (_currentWaveMonsterCnt == 0) {
             _currentWave++;
             _needTellWave = true;
-            _currentWaveMonsterCnt = random(10, 20);
+            _currentWaveMonsterCnt = random(8, 15);
             _timeLeft = random(15, 30);
 
             //龙卷风
@@ -101,6 +103,16 @@ void HuntingMonsterManage::update(float dt)
             bool t1 = (_currentWave > 15 && rand_0_1() < (0.1f + 0.25*(_currentWave/40.f)));
 
             _tornadoManageProtocal->op_configTornado(t0, random(-60, 50), t1, random(20, 100));
+
+            //风
+            if (_currentWave > 5) {
+                _windBarProtocal->op_configWind(random(-5, 5));
+            } else {
+                _windBarProtocal->op_configWind(random(-2, 2));
+            }
+//            ACSoundManage::s()->play(ACSoundManage::SN_WIND_CHANGE);
+
+
         } else {
             _timeLeft =
             gt == HuntingMonsterGeneralType::TITAN ? random(15, 20) :
@@ -108,6 +120,9 @@ void HuntingMonsterManage::update(float dt)
             gt == HuntingMonsterGeneralType::GIANT ? random(10, 15) :
             gt == HuntingMonsterGeneralType::BIG? random(8, 10): random(5,8);
             _timeLeft = _timeLeft*0.6;
+            if (rand_0_1() < 0.2) {
+                _timeLeft = _timeLeft*3;//有一定几率拉开一定距离
+            }
         }
     }
 

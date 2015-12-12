@@ -128,11 +128,12 @@ bool QuestScene::init()
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar, &_huntingArrowManage);
     _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage, &_particleManage, &_huntingHerosManage, &_tornadoManage);
     _huntingHerosManage.configProtocals(&_huntingArrowManage, &_powerBar, this);
-    _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage, &_tornadoManage);
+    _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage, &_tornadoManage, &_windBar);
     _energyBar.configProtocals(&_floatingLaserManage);
     _topIcons.configProtocals(&_battleRoad);
     _flyCrowManage.configProtocals(&_topIcons, &_particleManage);
     _globalArrowEffectManage.configProtocals(&_huntingMonsterManage);
+    _windBar.configProtocals(&_battleRoad);
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);

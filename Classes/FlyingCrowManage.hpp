@@ -39,7 +39,7 @@ protected:
 
     std::list<std::shared_ptr<FlyingCrow>> _crows;
     int _batchCount = 0;
-    float _timeLeft = 1;
+    float _timeLeft = 10;
 
     void addBatchOfCrows();
     void addCrow(int x, int y, int h, bool cry);

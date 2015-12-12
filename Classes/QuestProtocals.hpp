@@ -391,6 +391,7 @@ enum class HuntingMonsterGeneralType:int
 
 inline float calcBloodMax(HuntingMonsterGeneralType generalType, int level)
 {
+    level -= 7;//hack
     return 0.5f*100*(1.f+level*1.f/4.f)*static_cast<int>(generalType);
 }
 

@@ -93,6 +93,7 @@ void WindBar::initWindThings()
 void WindBar::op_configWind(float wind) //设置风力数值，正表示往右（顺），负的表示往左（逆风）0无风
 {
     _targetWind = wind;
+    _battleRoadProtocal->op_configWind(wind);
 }
 
 

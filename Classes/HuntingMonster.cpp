@@ -142,7 +142,7 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
 
     //blood
     _dpxNode->configAddSopx("hunters/sopx/blood_line.png.sopx", BT_BLOOD, {0,0,0}, true, false);
-    _dpxNode->configAction(BT_BLOOD, {0,120,0}, {0,0,0}, 60, 3/huntingMonsterGeneralType2scale(generalType), DelayTime::create(0));
+    _dpxNode->configAction(BT_BLOOD, {0,120,0}, {0,0,0}, 40, 9/huntingMonsterGeneralType2scale(generalType), DelayTime::create(0));
 
 //    //circle
 //    _dpxNode->configAddSopx(fmt::sprintf("hunters/sopx/foot_circle_monster.png.sopx", 0), BT_CIRCLE, {0,0,0}, true, false);
@@ -426,11 +426,12 @@ void HuntingMonster::op_toastDead(cocos2d::Vec2 direction) //播放死亡，散�
     for (int i = 0; i < BT_MAX; i++) {
         auto cfg = help_calcBonePosition(i);
         auto dfg = help_boneDeadGesture(i);
-        if (i != BT_SHIELD) {
-
-
-        _dpxNode->configAction(i, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, EaseIn::create( Spawn::create(MoveTo::create(0.5, {dfg.position.x + cfg.position.x+xradio*(cfg.position.y-ground_y), dfg.position.y, dfg.position.z}), RotateTo::create(0.5, dfg.rotation), NULL), 1.f));
-            }
+        if (i == BT_STEADY) {
+            _dpxNode->configAction(BT_STEADY, {0,0,-1000}, {0,0,0}, 0, 0, DelayTime::create(0));
+        }
+        else if (i != BT_SHIELD) {
+            _dpxNode->configAction(i, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, EaseIn::create( Spawn::create(MoveTo::create(0.5, {dfg.position.x + cfg.position.x+xradio*(cfg.position.y-ground_y), dfg.position.y, dfg.position.z}), RotateTo::create(0.5, dfg.rotation), NULL), 1.f));
+        }
     }
 }
 

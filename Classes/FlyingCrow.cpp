@@ -81,7 +81,7 @@ void FlyingCrow::initCrowThings()
 
 void FlyingCrow::op_config(bool acce, bool shield, cocos2d::Vec2 relativePosition)
 {
-    const Vec2 init_pos = {170,60};
+    const Vec2 init_pos = {170,80};
     Vec2 pos = init_pos + relativePosition;
     _hubNode->setPosition3D({0, pos.x, pos.y});
 
