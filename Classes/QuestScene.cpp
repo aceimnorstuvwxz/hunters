@@ -82,6 +82,10 @@ bool QuestScene::init()
         _tornadoManage.op_configTornado(true, random(-100, 0), true, random(0, 100));
     });
 
+    addCommonBtn({0.9,0.05}, "tuto", [this](){
+        _tutorialManage.op_toastStory();
+    });
+
 
 
     auto layer = Layer::create();
@@ -117,6 +121,7 @@ bool QuestScene::init()
     _globalArrowEffectManage.init(_mainLayer, _mainCamera);
     _particleManage.init(_mainLayer, _mainCamera);
     _tornadoManage.init(_mainLayer, _mainCamera);
+    _tutorialManage.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
@@ -134,6 +139,7 @@ bool QuestScene::init()
     _flyCrowManage.configProtocals(&_topIcons, &_particleManage);
     _globalArrowEffectManage.configProtocals(&_huntingMonsterManage);
     _windBar.configProtocals(&_battleRoad);
+
 
     // init actions
     _cameraManage.op_switchToPosition(QuestCameraPosition::FORWARD, true);

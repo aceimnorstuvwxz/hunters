@@ -715,4 +715,11 @@ public:
 
     };
 
+    class TutorialManageProtocal
+    {
+    public:
+        virtual void op_toastStory() = 0;
+        virtual void op_toastEnergy() = 0;
+    };
+
 #endif /* QuestProtocals_hpp */

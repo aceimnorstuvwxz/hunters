@@ -29,6 +29,7 @@ public:
         SN_HERO_UPGRADE,
         SN_TORNADO,
 //        SN_WIND_CHANGE,
+        SN_KEY,
     };
     static ACSoundManage* s() { return &_instance; }
 

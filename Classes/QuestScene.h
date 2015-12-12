@@ -30,6 +30,7 @@
 #include "PixelParticleNode.hpp"
 #include "GlobalParticleManage.hpp"
 #include "TornadoManage.hpp"
+#include "TutorialManage.hpp"
 // Beat Quest Game Scene
 
 
@@ -81,6 +82,7 @@ protected:
     FlyingCrowManage _flyCrowManage;
     GlobalParticleManage _particleManage;
     TornadoManage _tornadoManage;
+    TutorialManage _tutorialManage;
 
     bool _paused = false;
 

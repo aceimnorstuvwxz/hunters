@@ -130,6 +130,7 @@
 		B5BD19771BE658230052ACDD /* BattleRoad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD19751BE658230052ACDD /* BattleRoad.cpp */; };
 		B5BD19811BE65C640052ACDD /* RoadPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5BD197F1BE65C640052ACDD /* RoadPlane.cpp */; };
 		B5BD19831BE669C40052ACDD /* battle_road in Resources */ = {isa = PBXBuildFile; fileRef = B5BD19821BE669C40052ACDD /* battle_road */; };
+		B5C4D04A1C1C373E000FD292 /* TutorialManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5C4D0481C1C373E000FD292 /* TutorialManage.cpp */; };
 		B5D44E431BF1CC0F0082C360 /* LaserBeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5D44E411BF1CC0F0082C360 /* LaserBeat.cpp */; };
 		B5F5B0F01C19E92B005FFC21 /* TornadoManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5F5B0EE1C19E92B005FFC21 /* TornadoManage.cpp */; };
 		B5FFA66D1BECFB7000511FBD /* SingleBeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5FFA66B1BECFB7000511FBD /* SingleBeat.cpp */; };
@@ -361,6 +362,8 @@
 		B5BD197F1BE65C640052ACDD /* RoadPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoadPlane.cpp; sourceTree = "<group>"; };
 		B5BD19801BE65C640052ACDD /* RoadPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadPlane.h; sourceTree = "<group>"; };
 		B5BD19821BE669C40052ACDD /* battle_road */ = {isa = PBXFileReference; lastKnownFileType = folder; path = battle_road; sourceTree = "<group>"; };
+		B5C4D0481C1C373E000FD292 /* TutorialManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialManage.cpp; sourceTree = "<group>"; };
+		B5C4D0491C1C373E000FD292 /* TutorialManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialManage.hpp; sourceTree = "<group>"; };
 		B5D44E411BF1CC0F0082C360 /* LaserBeat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserBeat.cpp; sourceTree = "<group>"; };
 		B5D44E421BF1CC0F0082C360 /* LaserBeat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LaserBeat.hpp; sourceTree = "<group>"; };
 		B5F5B0EE1C19E92B005FFC21 /* TornadoManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TornadoManage.cpp; sourceTree = "<group>"; };
@@ -737,6 +740,8 @@
 				B58B03A41C18474B00380435 /* GlobalParticleManage.hpp */,
 				B5F5B0EE1C19E92B005FFC21 /* TornadoManage.cpp */,
 				B5F5B0EF1C19E92B005FFC21 /* TornadoManage.hpp */,
+				B5C4D0481C1C373E000FD292 /* TutorialManage.cpp */,
+				B5C4D0491C1C373E000FD292 /* TutorialManage.hpp */,
 			);
 			name = "hunter-hero";
 			sourceTree = "<group>";
@@ -1069,6 +1074,7 @@
 				B582F2921C11087500BEAEDD /* FloatingLaserManage.cpp in Sources */,
 				B59E7ED61C064D6A005FA50D /* MoneyManager.cpp in Sources */,
 				B5944EA41BF12A1600028078 /* CopyBeat.cpp in Sources */,
+				B5C4D04A1C1C373E000FD292 /* TutorialManage.cpp in Sources */,
 				B5BD19541BE645990052ACDD /* ScatPixelScene.cpp in Sources */,
 				B506AEB61BEF686A00021FC7 /* BattleState.cpp in Sources */,
 				B511952B1C14876600E94259 /* FlyingCrow.cpp in Sources */,

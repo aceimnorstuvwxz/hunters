@@ -165,6 +165,10 @@ void PixelDataCache::preloadChars() //预加载字形文件（字母，数字，
     _charMap['?'] = loadScatPixelFile("sopx/chars/0/sp_why.png.sopx");
     _charMap['#'] = loadScatPixelFile("sopx/chars/0/sp_degree.png.sopx");
     _charMap['^'] = loadScatPixelFile("sopx/chars/0/sp_second.png.sopx");
+    _charMap[','] = loadScatPixelFile("sopx/chars/0/sp_douhao.png.sopx");
+    _charMap['.'] = loadScatPixelFile("sopx/chars/0/sp_juhao.png.sopx");
+
+
 
 
 }

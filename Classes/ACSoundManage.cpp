@@ -31,6 +31,7 @@ void ACSoundManage::load()
     _effectsMap[SN_HERO_UPGRADE] = "new_hero.mp3";
     _effectsMap[SN_TORNADO] = "tornado.wav";
 //    _effectsMap[SN_WIND_CHANGE] = "wind_change.wav";
+    _effectsMap[SN_KEY] = "key.mp3";
 
 
     for (auto file : _effectsMap) {
