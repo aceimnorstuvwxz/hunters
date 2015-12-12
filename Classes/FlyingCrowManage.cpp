@@ -144,8 +144,8 @@ static Pat PatsC[3] = {
 
 void FlyingCrowManage::addBatchOfCrows()
 {
-    float radioOfA = 0.7f - 0.2f*std::min(1.f,(_batchCount*1.f/20));
-    float radioOfB = 0.25f;
+    float radioOfA = 0.6f;
+    float radioOfB = 0.15f;
     float r = rand_0_1();
     Pat p;
     if (r < radioOfA) {

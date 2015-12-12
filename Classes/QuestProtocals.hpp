@@ -720,6 +720,13 @@ public:
     public:
         virtual void op_toastStory() = 0;
         virtual void op_toastEnergy() = 0;
+        virtual void op_toastAttack() = 0;
+        virtual void op_toastAddMoreHeros(int p) = 0;
+        virtual void op_toastAddMoreHerosDone() = 0;
+        virtual void op_toastHeroUpgrade(int p) = 0;
+        virtual void op_toastHeroUpgradeDone() = 0;
+        virtual void op_toastEnergyDone() = 0;
+
     };
 
 #endif /* QuestProtocals_hpp */

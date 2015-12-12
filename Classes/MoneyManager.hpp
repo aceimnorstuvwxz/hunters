@@ -23,7 +23,7 @@ public:
         _herosManageProtocal = herosManageProtocal;
     }
     void reset(){ //重设初始化，可能有初始化的金币数量
-        _gold = 999;
+        _gold = 199;
     }
     void add(int gold){
         _gold += gold;

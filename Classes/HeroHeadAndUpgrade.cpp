@@ -274,13 +274,15 @@ void HeroHeadAndUpgrade::initTouchThings()
                     _ptxLevel->configText(heroTypeGrade2levelString(_heroType,_heroLevel));
                     _powerBarProtocal->op_firstHeroPosition(_heroPositionType);
                     ACSoundManage::s()->play(ACSoundManage::SN_NEW_HERO);
-
+                    _tutorialManageProtocal->op_toastAttack();
                 } else {
                     //显示确认购买
                     const float delay_time = 2.5;
                     _pxHeadIcon->runAction(Sequence::create(Hide::create(), DelayTime::create(delay_time), Show::create(), NULL));
                     _pxBuyConfirm->runAction(Sequence::create(Show::create(), DelayTime::create(delay_time), Hide::create(), NULL));
                     _pxBuyConfirm->configMixColor((MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) ? Vec4{0,0,0,0} : Vec4{0.5f,0.5f,0.5f,1.f});
+                    _tutorialManageProtocal->op_toastAddMoreHerosDone();
+
                 }
             } else if (_heroHeadState == HeroHeadState::ALIVE) {
                 if (_transferHubNode->isVisible()) {
@@ -311,6 +313,7 @@ void HeroHeadAndUpgrade::initTouchThings()
                         int howMuch = heroTransferGold();
                         showUpgradeRect(MoneyManager::s()->get() >= howMuch, heroTransferGold());
                     }
+                    _tutorialManageProtocal->op_toastHeroUpgradeDone();
                 } else {
                     if (_pxUpgradeButton->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
                         CCLOG("upgrade comfirm");
@@ -415,11 +418,15 @@ void HeroHeadAndUpgrade::op_tellGoldChange() //被通知金币改变
     if (_heroHeadState == HeroHeadState::EMPTY) {
         if (MoneyManager::s()->get() >= MoneyCostDef::C_ADD_HERO) {
             _pxHeadIcon->configMixColor({0,0,0,0});
+            _tutorialManageProtocal->op_toastAddMoreHeros(static_cast<int>(_heroPositionType));
         } else {
             _pxHeadIcon->configMixColor({0.5,0.5,0.5,1.0});
         }
     } else {
         _pxHeadIcon->configMixColor({0,0,0,0});
+        if (MoneyManager::s()->get() >= 100) {
+            _tutorialManageProtocal->op_toastHeroUpgrade(static_cast<int>(_heroPositionType));
+        }
     }
 }
 

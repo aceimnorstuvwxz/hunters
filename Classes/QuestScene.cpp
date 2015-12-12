@@ -132,9 +132,9 @@ bool QuestScene::init()
     MoneyManager::s()->configProtocals(&_topIcons, &_huntingHerosManage);
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar, &_huntingArrowManage);
     _huntingArrowManage.configProtocals(&_windBar, &_huntingMonsterManage, &_flyCrowManage, &_particleManage, &_huntingHerosManage, &_tornadoManage);
-    _huntingHerosManage.configProtocals(&_huntingArrowManage, &_powerBar, this);
+    _huntingHerosManage.configProtocals(&_huntingArrowManage, &_powerBar, this, &_tutorialManage);
     _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage, &_tornadoManage, &_windBar);
-    _energyBar.configProtocals(&_floatingLaserManage);
+    _energyBar.configProtocals(&_floatingLaserManage, &_tutorialManage);
     _topIcons.configProtocals(&_battleRoad);
     _flyCrowManage.configProtocals(&_topIcons, &_particleManage);
     _globalArrowEffectManage.configProtocals(&_huntingMonsterManage);
@@ -149,6 +149,7 @@ bool QuestScene::init()
 
 
     scheduleUpdate();
+    _tutorialManage.op_toastStory();
     return true;
 }
 

@@ -21,13 +21,15 @@ class EnergyBar:public EnergyBarProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(FloatingLaserManageProtocal* floatingLaserManageProtocal) {
+    void configProtocals(FloatingLaserManageProtocal* floatingLaserManageProtocal, TutorialManageProtocal* tutorialManageProtocal) {
         _floatingLaserManageProtocal = floatingLaserManageProtocal;
+        _tutorialManageProtocal = tutorialManageProtocal;
     }
     virtual void op_addEnergy(float howmuch); //通知怪物死亡，加气
 
     void update(float dt);
 protected:
+    TutorialManageProtocal* _tutorialManageProtocal;
     FloatingLaserManageProtocal* _floatingLaserManageProtocal;
 
     float _targetEnergy = 0; //[0-1]

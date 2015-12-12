@@ -26,6 +26,9 @@ void EnergyBar::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
 void EnergyBar::op_addEnergy(float howmuch)
 {
     _targetEnergy = std::min(1.f, _targetEnergy + howmuch);
+    if (_targetEnergy > 0.35) {
+        _tutorialManageProtocal->op_toastEnergy();
+    }
 }
 
 void EnergyBar::initHubThings()
@@ -187,9 +190,10 @@ void EnergyBar::initInteractiveThings()
             CCLOG("skill b");
             tryReleaseSkill(EnergySkillType::CRITICAL);
         } else */
-        if (_pxScope->fetchScreenRect(0, _mainCamera).containsPoint(p)) {
+        if (_pxScope->fetchScreenRect(10, _mainCamera).containsPoint(p)) {
             CCLOG("skill c");
             tryReleaseSkill(EnergySkillType::FLOAT_LASER);
+            _tutorialManageProtocal->op_toastEnergyDone();
 
         }
     };

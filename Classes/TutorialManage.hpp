@@ -27,11 +27,26 @@ public:
 
     virtual void op_toastStory();
     virtual void op_toastEnergy();
+    virtual void op_toastAttack();
+
+
+    virtual void op_toastAddMoreHeros(int p);
+    virtual void op_toastAddMoreHerosDone();
+    virtual void op_toastHeroUpgrade(int p);
+    virtual void op_toastHeroUpgradeDone();
+    virtual void op_toastEnergyDone();
 
 
     void update(float dt);
 
 protected:
+    int _upgWait = 5;
+    bool _autoHide = false;
+    bool _willShowAttack = true;
+    bool _upgrade = true;
+    bool _addMore = true;
+    bool _energy = true;
+    bool _touchEndSkipOnce = false;
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 
@@ -40,6 +55,7 @@ protected:
     void initHubThings();
 
     RoadPlane* _darkShadow;
+    PixelNode* _pxHand;
     void showString(std::string str);
 
     void initTutorialThings();

@@ -34,9 +34,10 @@ public:
     virtual void configProtocals(HuntingHerosManageProtocal* huntingHerosManageProtocal) {
         _huntingHerosManageProtocal = huntingHerosManageProtocal;
     }
-    void configPowerBarProtocal(PowerBarProtocal* powerBarProtocal, QUestSceneProtocal* questSceneProtocal) {
+    void configPowerBarProtocal(PowerBarProtocal* powerBarProtocal, QUestSceneProtocal* questSceneProtocal, TutorialManageProtocal* tutorialManageProtocal) {
         _powerBarProtocal = powerBarProtocal;
         _questSceneProtocal = questSceneProtocal;
+        _tutorialManageProtocal = tutorialManageProtocal;
     }
 
     virtual bool op_isHeadBusy();
@@ -52,6 +53,7 @@ public:
     void update(float dt);
 
 protected:
+    TutorialManageProtocal* _tutorialManageProtocal;
     QUestSceneProtocal* _questSceneProtocal;
     PowerBarProtocal* _powerBarProtocal;
     HuntingHerosManageProtocal* _huntingHerosManageProtocal;
