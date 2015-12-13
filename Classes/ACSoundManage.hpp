@@ -30,6 +30,12 @@ public:
         SN_TORNADO,
 //        SN_WIND_CHANGE,
         SN_KEY,
+        SN_M_0,
+        SN_M_1,
+        SN_M_2,
+        SN_M_3,
+        SN_M_WELCO,
+        SN_M_CREDITS,
     };
     static ACSoundManage* s() { return &_instance; }
 

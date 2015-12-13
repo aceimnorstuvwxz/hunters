@@ -150,6 +150,7 @@ bool QuestScene::init()
 
     scheduleUpdate();
     _tutorialManage.op_toastStory();
+    ACSoundManage::s()->play(ACSoundManage::SN_M_0, true);
     return true;
 }
 

@@ -33,6 +33,13 @@ void ACSoundManage::load()
 //    _effectsMap[SN_WIND_CHANGE] = "wind_change.wav";
     _effectsMap[SN_KEY] = "key.mp3";
 
+    _musicMap[SN_M_0] = "m_0.mp3";
+    _musicMap[SN_M_1] = "m_1.mp3";
+    _musicMap[SN_M_2] = "m_2.mp3";
+    _musicMap[SN_M_3] = "m_3.mp3";
+    _musicMap[SN_M_WELCO] = "m_welco.mp3";
+    _musicMap[SN_M_CREDITS] = "m_credits.mp3";
+
 
     for (auto file : _effectsMap) {
 
@@ -52,7 +59,7 @@ void ACSoundManage::play(int name, bool loop)
     if (_effectsMap.count(name)) {
         _soundIdMap[name] = CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(fmt::sprintf("sounds/%s", _effectsMap[name]).c_str(), loop);
     } else if (_musicMap.count(name)) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(fmt::sprintf("sounds/%s", _musicMap[name]).c_str());
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(fmt::sprintf("sounds/%s", _musicMap[name]).c_str(), loop);
     } else {
         assert(false);
         // preload first!

@@ -28,7 +28,8 @@ void TutorialManage::op_toastStory()
     std::pair<float, std::string> texts[] = {
         {1.f, "a long time ago,"},
         {1.f, " you live in a castle."},
-        {0.5f, "one day, "},
+        {0.5f, "life is peace."},
+        {0.5f, "but one day, "},
         {1.f, "monsters come in,"},
         {0.5f, "touch above to recruit a hero! hurry!"},
     };
