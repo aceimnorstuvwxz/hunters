@@ -46,6 +46,7 @@ void TutorialManage::op_toastStory()
         _pxHand->setPosition3D({-35,35,0});
         float t = 0.5f;
         _pxHand->runAction(RepeatForever::create(Sequence::create(Show::create(), DelayTime::create(t), Hide::create(), DelayTime::create(t), NULL)));
+        ACSoundManage::s()->play(ACSoundManage::SN_M_1,true);
     }, t*3, "show hand");
     
 }
@@ -55,7 +56,7 @@ void TutorialManage:: op_toastAttack()
     if (!_willShowAttack) {
         return;
     }
-    _touchEndSkipOnce = true;
+//    _touchEndSkipOnce = true;
     _willShowAttack = false;
     _hubNode->setVisible(true);
     _ptMessage->setVisible(true);
@@ -207,8 +208,14 @@ void TutorialManage::initTutorialThings()
 
     listener->onTouchBegan = [this](Touch* touch, Event* event){
 
+        if (_touchEndSkipOnce) {
+            _touchEndSkipOnce = false;
+            return false;
+        }
+        _hubNode->setVisible(false);
+        _darkShadow->setVisible(false);
 
-        return true;
+        return false;
     };
 
     listener->onTouchMoved = [this](Touch* touch, Event* event){
@@ -216,12 +223,6 @@ void TutorialManage::initTutorialThings()
     };
 
     listener->onTouchEnded = [this](Touch* touch, Event* event){
-        if (_touchEndSkipOnce) {
-            _touchEndSkipOnce = false;
-            return ;
-        }
-        _hubNode->setVisible(false);
-        _darkShadow->setVisible(false);
 
     };
 

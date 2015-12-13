@@ -106,9 +106,9 @@ void HuntingMonsterManage::update(float dt)
 
             //风
             if (_currentWave > 5) {
-                _windBarProtocal->op_configWind(random(-5, 5));
+                _windBarProtocal->op_configWind(random(0, 5));
             } else {
-                _windBarProtocal->op_configWind(random(-2, 2));
+                _windBarProtocal->op_configWind(random(0, 2));
             }
 //            ACSoundManage::s()->play(ACSoundManage::SN_WIND_CHANGE);
 

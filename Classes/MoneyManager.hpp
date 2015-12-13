@@ -29,6 +29,7 @@ public:
         _gold += gold;
         _topIconsProtocal->op_configGold(_gold);
         _herosManageProtocal->op_tellGoldChange();
+        ACSoundManage::s()->play(ACSoundManage::SN_GOLD_COST);
     }
     int get(){
         return _gold;

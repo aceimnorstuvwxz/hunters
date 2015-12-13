@@ -24,33 +24,15 @@ bool QuestScene::init()
     PixelDataCache::s()->preload("beats/a.png.sopx");
     PixelDataCache::s()->preload("beats/b.png.sopx");
     PixelDataCache::s()->preloadChars();
+
+    /*
     addCommonBtn({0.9,0.5}, "reset", [](){Director::getInstance()->replaceScene(QuestScene::create());});
 
 
-//    addCommonBtn({0.1,0.1}, "monster dead", [this](){
-//        _huntingMonster.op_toastDead({1,-1});
-//    });
-//    addCommonBtn({0.1,0.2}, "monster underat", [this](){
-//        _huntingMonster.op_toastUnderAttack();
-//    });
-//
-//    addCommonBtn({0.1,0.3}, "monster attack", [this](){
-//        _huntingMonster.op_toastAttack();
-//    });
 
     addCommonBtn({0.1,0.7}, "pause", [this](){
         op_configPaused(!_paused);
     });
-//    static int iid = 0;
-//
-//    addCommonBtn({0.1,0.4}, "next monster", [this](){
-//        _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid++);
-//    });
-//
-//    addCommonBtn({0.1,0.5}, "next monster", [this](){
-//        _huntingMonster.op_configType(HuntingMonsterGeneralType::NORMAL, HuntingMonsterSpecialType::NONE, true, iid--);
-//    });
-  
 
 
     static float wind = 0;
@@ -86,7 +68,7 @@ bool QuestScene::init()
         _tutorialManage.op_toastStory();
     });
 
-
+*/
 
     auto layer = Layer::create();
     this->addChild(layer);
@@ -150,7 +132,6 @@ bool QuestScene::init()
 
     scheduleUpdate();
     _tutorialManage.op_toastStory();
-    ACSoundManage::s()->play(ACSoundManage::SN_M_0, true);
     return true;
 }
 
