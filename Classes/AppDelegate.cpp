@@ -3,6 +3,8 @@
 #include "ProgressInfo.hpp"
 #include "StoryInfo.hpp"
 #include "ACSoundManage.hpp"
+#include "PixelDataCache.hpp"
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -51,6 +53,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     StoryInfo::s()->loadConfig(); // 加载关卡配置数据
 
     ACSoundManage::s()->load(); // preload sounds
+
+    PixelDataCache::s()->preloadChars();
 
     Director::getInstance()->setClearColor(Color4F::WHITE);
 

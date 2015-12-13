@@ -21,9 +21,6 @@ bool QuestScene::init()
     StoryInfo::s()->loadConfig();
     HeroGraphicAnimationDef::loadConfig();
     RivalGraphicAnimationDef::loadConfig();
-    PixelDataCache::s()->preload("beats/a.png.sopx");
-    PixelDataCache::s()->preload("beats/b.png.sopx");
-    PixelDataCache::s()->preloadChars();
 
     /*
     addCommonBtn({0.9,0.5}, "reset", [](){Director::getInstance()->replaceScene(QuestScene::create());});
