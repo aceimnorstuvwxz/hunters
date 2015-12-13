@@ -42,6 +42,10 @@ public:
     void load();
     void play(int SN_NAME, bool loop = false);
     void stop(int SN_NAME);
+    bool getSoundState();
+    void soundSwitch();
+    bool getMusicState();
+    void musicSwitch();
 
 protected:
 

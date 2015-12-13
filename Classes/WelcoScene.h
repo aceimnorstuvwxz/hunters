@@ -44,6 +44,9 @@ protected:
 
     PixelNode* _pxMusicSwitch;
     PixelNode* _pxSoundSwitch;
+    PixelNode* _pxTwitter;
+    PixelNode* _pxWeibo;
+
 
     void initButtonsThings();
     void initExtraButtons();

@@ -28,7 +28,7 @@ bool WelcoScene::init()
     camera->setCameraFlag(CameraFlag::USER1);
     layer->addChild(camera);
     camera->setCameraMask((unsigned short)CameraFlag::USER1);
-    camera->setPosition3D({QuestDef::CAMERA_FORWARD_EXPAND,0,27});
+    camera->setPosition3D({100,0,27});
     camera->setRotation3D({105,0,-90});
     _mainLayer = layer;
     _mainCamera = camera;
@@ -39,6 +39,8 @@ bool WelcoScene::init()
     initTouchThings();
 
     scheduleUpdate();
+
+    ACSoundManage::s()->play(ACSoundManage::SN_M_WELCO);
     return true;
 }
 
@@ -295,7 +297,7 @@ void WelcoScene::initButtonsThings()
         auto node = PixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
         node->setPosition3D({-49,20,0});
-        node->configSopx("sopx/welco/sound.png.sopx");
+        node->configSopx(ACSoundManage::s()->getSoundState() ? "sopx/welco/sound.png.sopx" : "sopx/welco/sound_x.png.sopx");
         hub->addChild(node);
         node->setScale(0.4);
         node->setVisible(false);
@@ -309,12 +311,13 @@ void WelcoScene::initButtonsThings()
                                          Spawn::create(
                                                        FadeIn::create(0.3), NULL),
                                          NULL));
+        _pxSoundSwitch = node;
     }
     {
         auto node = PixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
         node->setPosition3D({-40,20,0});
-        node->configSopx("sopx/welco/music.png.sopx");
+        node->configSopx(ACSoundManage::s()->getMusicState() ? "sopx/welco/music.png.sopx":"sopx/welco/music_x.png.sopx");
         hub->addChild(node);
         node->setScale(0.4);
         node->setVisible(false);
@@ -328,6 +331,7 @@ void WelcoScene::initButtonsThings()
                                          Spawn::create(
                                                        FadeIn::create(0.3), NULL),
                                          NULL));
+        _pxMusicSwitch = node;
     }
 
 
@@ -349,6 +353,7 @@ void WelcoScene::initButtonsThings()
                                          Spawn::create(
                                                        FadeIn::create(0.3), NULL),
                                          NULL));
+        _pxTwitter = node;
     }
 
     {
@@ -369,6 +374,7 @@ void WelcoScene::initButtonsThings()
                                          Spawn::create(
                                                        FadeIn::create(0.3), NULL),
                                          NULL));
+        _pxWeibo = node;
     }
 }
 
@@ -391,8 +397,6 @@ void WelcoScene::initTouchThings()
 
     listener->onTouchBegan = [this](Touch* touch, Event* event){
 
-        // TODO
-        Director::getInstance()->pushScene(LoadingScene::create());
         return true;
     };
 
@@ -401,6 +405,17 @@ void WelcoScene::initTouchThings()
     };
 
     listener->onTouchEnded = [this](Touch* touch, Event* event){
+        if (_pxSoundSwitch->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation())) {
+            CCLOG("sound switch");
+            ACSoundManage::s()->soundSwitch();
+
+            _pxSoundSwitch->configSopx(ACSoundManage::s()->getSoundState() ? "sopx/welco/sound.png.sopx" : "sopx/welco/sound_x.png.sopx");
+            
+        } else if (_pxMusicSwitch->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation())) {
+            CCLOG("musci switch");
+            ACSoundManage::s()->musicSwitch();
+            _pxMusicSwitch->configSopx(ACSoundManage::s()->getMusicState() ? "sopx/welco/music.png.sopx":"sopx/welco/music_x.png.sopx");
+        }
 
     };
 

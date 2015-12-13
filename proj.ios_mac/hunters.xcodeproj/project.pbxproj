@@ -71,6 +71,7 @@
 		B539D28F1BE7620E0096FF04 /* PixelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B539D28D1BE7620E0096FF04 /* PixelNode.cpp */; };
 		B53B8CB31BEFA1BC006F5432 /* WelcoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB11BEFA1BC006F5432 /* WelcoScene.cpp */; };
 		B53B8CB81BF09DF8006F5432 /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */; };
+		B53EBFF21C1D7EE700276BD2 /* SocialShareManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53EBFF01C1D7EE700276BD2 /* SocialShareManage.cpp */; };
 		B54186171C0C43350049A3FF /* HuntingMonster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54186151C0C43350049A3FF /* HuntingMonster.cpp */; };
 		B5594DC11BEBCBE7007BDD87 /* PixelTextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */; };
 		B56EF9BD1C0DE8AA00FD7BBE /* Box2dTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56EF9BB1C0DE8AA00FD7BBE /* Box2dTestScene.cpp */; };
@@ -250,6 +251,8 @@
 		B53B8CB21BEFA1BC006F5432 /* WelcoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcoScene.h; sourceTree = "<group>"; };
 		B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
 		B53B8CB71BF09DF8006F5432 /* LoadingScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoadingScene.hpp; sourceTree = "<group>"; };
+		B53EBFF01C1D7EE700276BD2 /* SocialShareManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SocialShareManage.cpp; sourceTree = "<group>"; };
+		B53EBFF11C1D7EE700276BD2 /* SocialShareManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SocialShareManage.hpp; sourceTree = "<group>"; };
 		B54186151C0C43350049A3FF /* HuntingMonster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingMonster.cpp; sourceTree = "<group>"; };
 		B54186161C0C43350049A3FF /* HuntingMonster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingMonster.hpp; sourceTree = "<group>"; };
 		B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelTextNode.cpp; sourceTree = "<group>"; };
@@ -817,6 +820,8 @@
 				B5BD19701BE652910052ACDD /* QuestDef.hpp */,
 				B5BD196C1BE64F5A0052ACDD /* QuestScene.cpp */,
 				B5BD196D1BE64F5A0052ACDD /* QuestScene.h */,
+				B53EBFF01C1D7EE700276BD2 /* SocialShareManage.cpp */,
+				B53EBFF11C1D7EE700276BD2 /* SocialShareManage.hpp */,
 				B5B7486A1C10A484009D546D /* ACSoundManage.cpp */,
 				B5B7486B1C10A484009D546D /* ACSoundManage.hpp */,
 			);
@@ -1067,6 +1072,7 @@
 				B5BD196A1BE6468F0052ACDD /* SImplePixelNode.cpp in Sources */,
 				B599C0F21C01C88A0012205A /* WindBar.cpp in Sources */,
 				B59E7ED31C064B72005FA50D /* HuntingHerosManage.cpp in Sources */,
+				B53EBFF21C1D7EE700276BD2 /* SocialShareManage.cpp in Sources */,
 				B5BD195B1BE645990052ACDD /* TRLocale.cpp in Sources */,
 				B5BD19811BE65C640052ACDD /* RoadPlane.cpp in Sources */,
 				B58B03A51C18474B00380435 /* GlobalParticleManage.cpp in Sources */,

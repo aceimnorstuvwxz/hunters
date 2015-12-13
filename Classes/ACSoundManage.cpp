@@ -70,3 +70,30 @@ void ACSoundManage::stop(int SN_NAME)
 {
     if (_soundIdMap.count(SN_NAME)) CocosDenshion::SimpleAudioEngine::getInstance()->stopEffect(_soundIdMap[SN_NAME]);
 }
+
+
+bool ACSoundManage::getSoundState()
+{
+    bool v = UserDefault::getInstance()->getBoolForKey("cbf_sound", true);
+    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(v ? 1.f : 0.f);
+    return v;
+}
+void ACSoundManage::soundSwitch()
+{
+    bool old = UserDefault::getInstance()->getBoolForKey("cbf_sound", true);
+    UserDefault::getInstance()->setBoolForKey("cbf_sound", !old);
+    getSoundState();
+
+}
+bool ACSoundManage::getMusicState()
+{
+    bool v =  UserDefault::getInstance()->getBoolForKey("cbf_music", true);
+    CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(v ? 1.f : 0.f);
+    return v;
+}
+void ACSoundManage::musicSwitch()
+{
+    bool old = UserDefault::getInstance()->getBoolForKey("cbf_music", true);
+    UserDefault::getInstance()->setBoolForKey("cbf_music", !old);
+    getMusicState();
+}
