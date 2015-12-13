@@ -72,6 +72,7 @@
 		B53B8CB31BEFA1BC006F5432 /* WelcoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB11BEFA1BC006F5432 /* WelcoScene.cpp */; };
 		B53B8CB81BF09DF8006F5432 /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */; };
 		B53EBFF21C1D7EE700276BD2 /* SocialShareManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53EBFF01C1D7EE700276BD2 /* SocialShareManage.cpp */; };
+		B53EBFF61C1DC82B00276BD2 /* CreditsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53EBFF41C1DC82B00276BD2 /* CreditsScene.cpp */; };
 		B54186171C0C43350049A3FF /* HuntingMonster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54186151C0C43350049A3FF /* HuntingMonster.cpp */; };
 		B5594DC11BEBCBE7007BDD87 /* PixelTextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */; };
 		B56EF9BD1C0DE8AA00FD7BBE /* Box2dTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56EF9BB1C0DE8AA00FD7BBE /* Box2dTestScene.cpp */; };
@@ -253,6 +254,8 @@
 		B53B8CB71BF09DF8006F5432 /* LoadingScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoadingScene.hpp; sourceTree = "<group>"; };
 		B53EBFF01C1D7EE700276BD2 /* SocialShareManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SocialShareManage.cpp; sourceTree = "<group>"; };
 		B53EBFF11C1D7EE700276BD2 /* SocialShareManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SocialShareManage.hpp; sourceTree = "<group>"; };
+		B53EBFF41C1DC82B00276BD2 /* CreditsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CreditsScene.cpp; sourceTree = "<group>"; };
+		B53EBFF51C1DC82B00276BD2 /* CreditsScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CreditsScene.hpp; sourceTree = "<group>"; };
 		B54186151C0C43350049A3FF /* HuntingMonster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuntingMonster.cpp; sourceTree = "<group>"; };
 		B54186161C0C43350049A3FF /* HuntingMonster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HuntingMonster.hpp; sourceTree = "<group>"; };
 		B5594DBF1BEBCBE7007BDD87 /* PixelTextNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelTextNode.cpp; sourceTree = "<group>"; };
@@ -612,6 +615,8 @@
 			children = (
 				B53B8CB11BEFA1BC006F5432 /* WelcoScene.cpp */,
 				B53B8CB21BEFA1BC006F5432 /* WelcoScene.h */,
+				B53EBFF41C1DC82B00276BD2 /* CreditsScene.cpp */,
+				B53EBFF51C1DC82B00276BD2 /* CreditsScene.hpp */,
 				B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */,
 				B53B8CB71BF09DF8006F5432 /* LoadingScene.hpp */,
 			);
@@ -1081,6 +1086,7 @@
 				B59E7ED61C064D6A005FA50D /* MoneyManager.cpp in Sources */,
 				B5944EA41BF12A1600028078 /* CopyBeat.cpp in Sources */,
 				B5C4D04A1C1C373E000FD292 /* TutorialManage.cpp in Sources */,
+				B53EBFF61C1DC82B00276BD2 /* CreditsScene.cpp in Sources */,
 				B5BD19541BE645990052ACDD /* ScatPixelScene.cpp in Sources */,
 				B506AEB61BEF686A00021FC7 /* BattleState.cpp in Sources */,
 				B511952B1C14876600E94259 /* FlyingCrow.cpp in Sources */,

@@ -10,6 +10,7 @@
 #include "LoadingScene.hpp"
 
 #include "QuestScene.h"
+#include "CreditsScene.hpp"
 USING_NS_CC;
 
 bool WelcoScene::init()
@@ -494,6 +495,7 @@ void WelcoScene::initTouchThings()
 
         } else if (_pxCredits->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation()) ){
             //todo credits
+            Director::getInstance()->pushScene(CreditsScene::create());
             sfx = true;
 
         }
