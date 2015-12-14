@@ -729,4 +729,11 @@ public:
 
     };
 
+    class PauseGameOverProtocal
+    {
+    public:
+        virtual void op_pause() = 0;
+        virtual void op_gameOver() = 0;
+    };
+
 #endif /* QuestProtocals_hpp */

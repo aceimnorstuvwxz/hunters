@@ -31,6 +31,7 @@
 #include "GlobalParticleManage.hpp"
 #include "TornadoManage.hpp"
 #include "TutorialManage.hpp"
+#include "PauseGameOver.hpp"
 // Beat Quest Game Scene
 
 
@@ -83,6 +84,7 @@ protected:
     GlobalParticleManage _particleManage;
     TornadoManage _tornadoManage;
     TutorialManage _tutorialManage;
+    PauseGameOver _pauseGameOver;
 
     bool _paused = false;
 

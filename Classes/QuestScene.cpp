@@ -101,6 +101,7 @@ bool QuestScene::init()
     _particleManage.init(_mainLayer, _mainCamera);
     _tornadoManage.init(_mainLayer, _mainCamera);
     _tutorialManage.init(_mainLayer, _mainCamera);
+    _pauseGameOver.init(_mainLayer, _mainCamera);
 
     // config
     _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
