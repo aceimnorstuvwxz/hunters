@@ -252,6 +252,13 @@ void WelcoScene::initButtonsThings()
                                                        FadeIn::create(0.3), NULL),
                                          DelayTime::create(1.f),
                                          ScaleTo::create(0.15, 0.5), ScaleTo::create(0.15, 0.4),
+                                         DelayTime::create(3.f),
+                                         ScaleTo::create(0.15, 0.5), ScaleTo::create(0.15, 0.4),
+                                         DelayTime::create(3.f),
+                                         ScaleTo::create(0.15, 0.5), ScaleTo::create(0.15, 0.4),
+                                         DelayTime::create(3.f),
+                                         ScaleTo::create(0.15, 0.5), ScaleTo::create(0.15, 0.4),
+                                         DelayTime::create(3.f),
                                          NULL));
         _pxPlay = node;
     }
@@ -425,6 +432,47 @@ void WelcoScene::initButtonsThings()
         _pxWeibo = node;
     }
 
+    {
+        auto node = PixelNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setPosition3D({49,-25,0});
+        node->configSopx("sopx/welco/moregame.png.sopx");
+        hub->addChild(node);
+        node->setScale(0.3);
+        node->setVisible(false);
+        node->setOpacity(0);
+        node->runAction(Sequence::create(
+                                         DelayTime::create(1.5f),
+                                         DelayTime::create(0.3),
+                                         DelayTime::create(shake_time*6+0.5),
+                                         DelayTime::create(stay_time+move_time+0.3+0.3+0.3+0.4),
+                                         Show::create(),
+                                         Spawn::create(
+                                                       FadeIn::create(0.3), NULL),
+
+                                         DelayTime::create(5.f),
+
+                                         RotateBy::create(0.15, {0,0,5}),                                        RotateBy::create(0.15, {0,0,-5}),
+                                         RotateBy::create(0.15, {0,0,-5}),                                        RotateBy::create(0.15, {0,0,5}),
+
+                                         DelayTime::create(5.f),
+
+
+                                         RotateBy::create(0.15, {0,0,5}),                                        RotateBy::create(0.15, {0,0,-5}),
+                                         RotateBy::create(0.15, {0,0,-5}),                                        RotateBy::create(0.15, {0,0,5}),
+
+                                         DelayTime::create(5.f),
+
+
+                                         RotateBy::create(0.15, {0,0,5}),                                        RotateBy::create(0.15, {0,0,-5}),
+                                         RotateBy::create(0.15, {0,0,-5}),                                        RotateBy::create(0.15, {0,0,5}),
+
+                                         DelayTime::create(5.f),
+
+                                         NULL));
+        _pxMoreGame = node;
+    }
+
 
 
 
@@ -496,6 +544,10 @@ void WelcoScene::initTouchThings()
         } else if (_pxCredits->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation()) ){
             //todo credits
             Director::getInstance()->pushScene(CreditsScene::create());
+            sfx = true;
+
+        }else if (_pxMoreGame->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation())) {
+            Application::getInstance()->openURL("https://itunes.apple.com/developer/bingfeng-chen/id1041292698");
             sfx = true;
 
         }

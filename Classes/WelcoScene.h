@@ -42,10 +42,12 @@ protected:
     PixelNode* _pxLeaderboard;
     PixelNode* _pxCredits;
 
+
     PixelNode* _pxMusicSwitch;
     PixelNode* _pxSoundSwitch;
     PixelNode* _pxTwitter;
     PixelNode* _pxWeibo;
+    PixelNode* _pxMoreGame;
 
 
     void initButtonsThings();
