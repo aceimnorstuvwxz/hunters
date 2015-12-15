@@ -555,6 +555,7 @@ void WelcoScene::initTouchThings()
             sfx = true;
 
         } else if (_pxPlay->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation())) {
+            ACSoundManage::s()->stopMusic();
             Director::getInstance()->replaceScene(LoadingScene::create());
             sfx = true;
         } else if (_pxLeaderboard->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation()) ) {

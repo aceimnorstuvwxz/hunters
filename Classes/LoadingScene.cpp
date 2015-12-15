@@ -46,7 +46,7 @@ bool LoadingScene::init()
     auto hub = Sprite3D::create();
     hub->setPosition3D({0,0,0});
     hub->setCameraMask(_mainCamera->getCameraMask());
-//    hub->setScale(2.0);
+    hub->setScale(0.7);
     _mainLayer->addChild(hub);
     {
 

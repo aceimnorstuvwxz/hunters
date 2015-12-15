@@ -73,6 +73,11 @@ void ACSoundManage::stop(int SN_NAME)
     if (_soundIdMap.count(SN_NAME)) CocosDenshion::SimpleAudioEngine::getInstance()->stopEffect(_soundIdMap[SN_NAME]);
 }
 
+void ACSoundManage::stopMusic()
+{
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+}
+
 
 bool ACSoundManage::getSoundState()
 {

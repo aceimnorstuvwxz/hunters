@@ -130,6 +130,7 @@ void TopIcons::initPauseThings()
     listener->onTouchEnded = [this](Touch* touch, Event* event){
         if (_pxPauseIcon->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation())) {
             _pauseGameOverProtocal->op_pause();
+            ACSoundManage::s()->play(ACSoundManage::SN_CLICK);
         } else if (_pxGoldBg->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
             //点击 gold 面板10次，加1000G
             _cnt++;

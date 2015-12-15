@@ -66,7 +66,7 @@ void PauseGameOver::initButtonsThings()
             auto node = PixelNode::create();
             node->setCameraMask(_mainCamera->getCameraMask());
             node->setScale(1.0);
-            node->setPosition3D({0,15-i*15.f,0});
+            node->setPosition3D({-55.f+i*55.f,0.f,0});
             node->configSopx("hunters/go/button.png.sopx");
             _hubNode->addChild(node);
             _btns[i].rect = node;
@@ -75,8 +75,8 @@ void PauseGameOver::initButtonsThings()
         {
             auto node = PixelNode::create();
             node->setCameraMask(_mainCamera->getCameraMask());
-            node->setScale(1.0);
-            node->setPosition3D({0,15-i*15.f,1});
+            node->setScale(1.4);
+            node->setPosition3D({-55.f+i*55.f,0.f,1});
             node->configSopx("hunters/go/button.png.sopx");
             _hubNode->addChild(node);
             _btns[i].icon = node;
@@ -99,6 +99,7 @@ void PauseGameOver::initButtonsThings()
     };
 
     listener->onTouchEnded = [this](Touch* touch, Event* event){
+        bool sfx = false;
 
         if (_btns[0].rect->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
             if (_paused) {
@@ -111,6 +112,7 @@ void PauseGameOver::initButtonsThings()
                 //restart
                 Director::getInstance()->replaceScene(LoadingScene::create());
             }
+            sfx = true;
         }
         else  if (_btns[1].rect->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
             if (_paused) {
@@ -132,9 +134,17 @@ void PauseGameOver::initButtonsThings()
 
             }
             Application::getInstance()->openURL("itms-apps://itunes.apple.com/app/id1041292699");
+            sfx = true;
+
         }
         else if (_btns[2].rect->fetchScreenRect(0, _mainCamera).containsPoint(touch->getLocation())) {
             Director::getInstance()->replaceScene(WelcoScene::create());
+            sfx = true;
+
+        }
+
+        if (sfx) {
+            ACSoundManage::s()->play(ACSoundManage::SN_CLICK);
         }
     };
 
