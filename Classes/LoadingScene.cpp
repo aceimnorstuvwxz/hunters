@@ -25,7 +25,7 @@ bool LoadingScene::init()
     assert(TRBaseScene::init());
 
 
-    addCommonBtn({0.9,0.9}, "bk", [](){ Director::getInstance()->popScene(); });
+//    addCommonBtn({0.9,0.9}, "bk", [](){ Director::getInstance()->popScene(); });
 
     auto layer = Layer::create();
     this->addChild(layer);
@@ -93,20 +93,9 @@ bool LoadingScene::init()
 
 void LoadingScene::loadingTask0()
 {
-    // Loading task 0
-    // 处理好关卡数据
-    // 执行到此ProgressInfo的关卡index已经是要进入的关卡了
-
-    // 初始化battleState的数据
-    BattleState::s()->initAsNewLevel(); //初始化新关卡的数据
 
 }
 
 void LoadingScene::loadingTask1(){
-    // 资源加载
-
-    // sopx
-
-    // 音频
 
 }

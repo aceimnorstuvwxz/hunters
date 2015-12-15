@@ -23,16 +23,19 @@ class TopIcons:public TopIconsProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
-    void configProtocals(BattleRoadProtocal* battleRoadProtocal) {
+    void configProtocals(BattleRoadProtocal* battleRoadProtocal, PauseGameOverProtocal* pauseGameOverProtocal) {
         _battleRoadProtocal = battleRoadProtocal;
+        _pauseGameOverProtocal = pauseGameOverProtocal;
     }
 
     virtual void op_configGold(int number); //设置金币数量
     virtual void op_minusHeart();
+    virtual void op_addHeart();
     virtual void op_addWave();
 
     void update(float dt);
 protected:
+    PauseGameOverProtocal* _pauseGameOverProtocal;
     BattleRoadProtocal* _battleRoadProtocal;
 
     cocos2d::Layer* _mainLayer;

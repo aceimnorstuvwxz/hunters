@@ -4,6 +4,7 @@
 #include "StoryInfo.hpp"
 #include "ACSoundManage.hpp"
 #include "PixelDataCache.hpp"
+#include "WelcoScene.h"
 
 USING_NS_CC;
 
@@ -42,15 +43,15 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
-    director->setDisplayStats(true);
+//    director->setDisplayStats(true);
 
     
     director->setAnimationInterval(1.0 / 60);
 
     register_all_packages();
 
-    ProgressInfo::s()->load(); // 读出进度信息
-    StoryInfo::s()->loadConfig(); // 加载关卡配置数据
+//    ProgressInfo::s()->load(); // 读出进度信息
+//    StoryInfo::s()->loadConfig(); // 加载关卡配置数据
 
     ACSoundManage::s()->load(); // preload sounds
 
@@ -58,7 +59,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     Director::getInstance()->setClearColor(Color4F::WHITE);
 
-    director->runWithScene(TestGuideScene::create());
+    director->runWithScene(WelcoScene::create());
 
     return true;
 }

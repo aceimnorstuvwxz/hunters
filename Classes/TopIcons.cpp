@@ -116,6 +116,26 @@ void TopIcons::initPauseThings()
         _hubNode->addChild(node);
         _pxPauseIcon = node;
     }
+    auto listener = EventListenerTouchOneByOne::create();
+
+    listener->onTouchBegan = [this](Touch* touch, Event* event){
+        return true;
+    };
+
+    listener->onTouchMoved = [this](Touch* touch, Event* event){
+
+    };
+
+    listener->onTouchEnded = [this](Touch* touch, Event* event){
+        if (_pxPauseIcon->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation())) {
+            _pauseGameOverProtocal->op_pause();
+        }
+    };
+
+    listener->onTouchCancelled = [this](Touch* touch, Event* event){
+    };
+
+    _mainLayer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, _mainLayer);
 
 
     {
@@ -172,8 +192,20 @@ void TopIcons::op_minusHeart()
 
     if (_heart == 0) {
         //game over
+        _pauseGameOverProtocal->op_gameOver();
     }
 
+}
+
+void TopIcons::op_addHeart()
+{
+    _heart += 10;
+
+    _ptxHeartNumber->configText(fmt::sprintf("%d", _heart));
+    _pxHeart->configMixColorAni({0,1.f,0,0.5}, 0.2);
+
+    int grade = (QuestDef::INIT_HEART - _heart)/4;
+    _battleRoadProtocal->op_configCastle(grade); // 0 没有损伤 5完全毁灭
 }
 
 void TopIcons::op_addWave()

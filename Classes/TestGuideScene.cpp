@@ -46,10 +46,10 @@ bool TestGuideScene::init()
         Director::getInstance()->pushScene(WelcoScene::create());
     });
 
-//    scheduleOnce([](float dt){
-//        Director::getInstance()->pushScene(QuestScene::create());
-//
-//    }, 0.5, "sdgf");
+    scheduleOnce([](float dt){
+        Director::getInstance()->replaceScene(WelcoScene::create());
+
+    }, 0.0, "sdgf");
 
     return true;
 }

@@ -10,6 +10,7 @@
 #include "format.h"
 #include "QuestDef.hpp"
 #include "GlobalParticleType.hpp"
+#include "SOCommon.h"
 
 class BattleRoadProtocal
 {
@@ -213,6 +214,7 @@ class TopIconsProtocal
 public:
     virtual void op_configGold(int number) = 0; //设置金币数量
     virtual void op_minusHeart() = 0;
+    virtual void op_addHeart() = 0;
     virtual void op_addWave() = 0;
 };
 

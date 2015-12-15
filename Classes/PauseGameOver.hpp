@@ -29,6 +29,10 @@ class PauseGameOver :public PauseGameOverProtocal
 {
 public:
     void init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera);
+    void configProtocals(QUestSceneProtocal* questSceneProtocal, TopIconsProtocal* topIconsProtocal){
+        _questSceneProtocal = questSceneProtocal;
+        _topIconsProtocal = topIconsProtocal;
+    }
 
     virtual void op_pause();
     virtual void op_gameOver();
@@ -36,6 +40,10 @@ public:
     void update(float dt);
 
 protected:
+    QUestSceneProtocal* _questSceneProtocal;
+    TopIconsProtocal* _topIconsProtocal;
+    bool _paused = false;
+    bool _goed = false;
     cocos2d::Layer* _mainLayer;
     cocos2d::Camera* _mainCamera;
 

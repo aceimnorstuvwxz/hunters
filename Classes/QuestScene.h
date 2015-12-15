@@ -58,12 +58,6 @@ protected:
     TopIcons _topIcons;
     EnergyBar _energyBar;
 
-
-    BattleRoles _battleRoles;
-
-    BloodBar _bloodBar;
-
-    BeatField _beatField;
     WindBar _windBar;
     PowerBar _powerBar;
     HuntingHerosManage _huntingHerosManage;

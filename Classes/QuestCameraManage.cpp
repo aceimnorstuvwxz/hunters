@@ -16,12 +16,6 @@ void QuestCameraManage::init(cocos2d::Camera* mainCamera)
 
 }
 
-void QuestCameraManage::configProtocals(BattleRoadProtocal* battleRoadProtocal, BattleRolesProtocal* battleRolesProtocal, BloodBarProtocal* bloodBarProtocal)
-{
-    _battleRoadProtocal = battleRoadProtocal;
-    _battleRolesProtocal = battleRolesProtocal;
-    _bloodBarProtocal = bloodBarProtocal;
-}
 
 
 void QuestCameraManage::op_startRunningShake()
@@ -63,17 +57,12 @@ void QuestCameraManage::op_switchToPosition(QuestCameraPosition p, bool direct) 
                                              RotateTo::create(camera_move_time, targetRotation), NULL));
         _mainCamera->scheduleOnce([this,p](float dt){
             // 不只是右侧的树，hero的visibility也是要设置的，但是和tree相反, 还有 bloodbar 的 visibility
-            _battleRoadProtocal->op_setRightTreesVisible(p == QuestCameraPosition::BATTLE);
-            _battleRolesProtocal->op_heroVisible(p != QuestCameraPosition::BATTLE);
             if (p == QuestCameraPosition::BATTLE) {
-                _bloodBarProtocal->op_show();
             } else {
-                _bloodBarProtocal->op_dismiss();
             }
         } , (p == QuestCameraPosition::BATTLE ? (1.f-time_at_show_right_trees) : time_at_show_right_trees)*camera_move_time, "right tree hide/show");
 
         _mainCamera->scheduleOnce([this,p](float dt){
-            _battleRoadProtocal->op_setLeftHillsVisible(p != QuestCameraPosition::BATTLE);
         }, p != QuestCameraPosition::BATTLE ? 0 : camera_move_time, "left hills hide/show");
     } else {
         _mainCamera->setPosition3D(targetPosition);

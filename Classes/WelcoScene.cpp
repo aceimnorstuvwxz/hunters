@@ -18,7 +18,7 @@ bool WelcoScene::init()
     assert(TRBaseScene::init());
 
 
-    addCommonBtn({0.9,0.9}, "rt", [](){ Director::getInstance()->replaceScene(WelcoScene::create()); });
+//    addCommonBtn({0.9,0.9}, "rt", [](){ Director::getInstance()->replaceScene(WelcoScene::create()); });
 
     auto layer = Layer::create();
     this->addChild(layer);

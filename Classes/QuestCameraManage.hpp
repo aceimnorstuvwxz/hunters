@@ -23,12 +23,12 @@ public:
     virtual void op_startRunningShake();
     virtual void op_stopRunningShake();
 
-    void configProtocals(BattleRoadProtocal* battleRoadProtocal, BattleRolesProtocal* battleRolesProtocal, BloodBarProtocal* bloodBarProtocal);
+//    void configProtocals(BattleRoadProtocal* battleRoadProtocal, BattleRolesProtocal* battleRolesProtocal, BloodBarProtocal* bloodBarProtocal);
 
 protected:
-    BattleRoadProtocal* _battleRoadProtocal;
-    BattleRolesProtocal* _battleRolesProtocal;
-    BloodBarProtocal* _bloodBarProtocal;
+//    BattleRoadProtocal* _battleRoadProtocal;
+//    BattleRolesProtocal* _battleRolesProtocal;
+//    BloodBarProtocal* _bloodBarProtocal;
     cocos2d::Camera* _mainCamera;
 
 

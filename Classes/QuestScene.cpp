@@ -9,6 +9,8 @@
 #include "StoryInfo.hpp"
 #include "BattleState.hpp"
 #include "MoneyManager.hpp"
+#include "HuntingHeroMetaSuitManage.hpp"
+
 USING_NS_CC;
 
 
@@ -17,6 +19,7 @@ bool QuestScene::init()
     assert(TRBaseScene::init());
 
     // preload  TODO 移到load界面中
+    HuntingHeroMetaSuitManage::s()->reset();
 
     StoryInfo::s()->loadConfig();
     HeroGraphicAnimationDef::loadConfig();
@@ -84,11 +87,8 @@ bool QuestScene::init()
     // init
     _cameraManage.init(_mainCamera);
     _battleRoad.init(_mainLayer, _mainCamera);
-    _battleRoles.init(_mainLayer, _mainCamera);
     _energyBar.init(_mainLayer, _mainCamera);
     _windBar.init(_mainLayer, _mainCamera);
-    _bloodBar.init(_mainLayer, _mainCamera);
-    _beatField.init(_mainLayer, _mainCamera);
     initPauseShadowThings();
     _topIcons.init(_mainLayer, _mainCamera);
     _powerBar.init(_mainLayer, _mainCamera);
@@ -104,10 +104,6 @@ bool QuestScene::init()
     _pauseGameOver.init(_mainLayer, _mainCamera);
 
     // config
-    _cameraManage.configProtocals(&_battleRoad, &_battleRoles, &_bloodBar);
-    _beatField.configProtocals(&_battleRoles, &_battleRoad);
-    BattleState::s()->configProtocals(&_bloodBar, &_beatField,
-                                      &_battleRoles, &_battleRoad, &_cameraManage, _mainCamera, this);
 
     MoneyManager::s()->configProtocals(&_topIcons, &_huntingHerosManage);
     _powerBar.configProtocals(&_huntingHerosManage, &_windBar, &_huntingArrowManage);
@@ -115,10 +111,11 @@ bool QuestScene::init()
     _huntingHerosManage.configProtocals(&_huntingArrowManage, &_powerBar, this, &_tutorialManage);
     _huntingMonsterManage.configProtocal(&_energyBar, &_floatingLaserManage, &_globalArrowEffectManage, &_topIcons, &_particleManage, &_tornadoManage, &_windBar);
     _energyBar.configProtocals(&_floatingLaserManage, &_tutorialManage);
-    _topIcons.configProtocals(&_battleRoad);
+    _topIcons.configProtocals(&_battleRoad, &_pauseGameOver);
     _flyCrowManage.configProtocals(&_topIcons, &_particleManage);
     _globalArrowEffectManage.configProtocals(&_huntingMonsterManage);
     _windBar.configProtocals(&_battleRoad);
+    _pauseGameOver.configProtocals(this, &_topIcons);
 
 
     // init actions
@@ -148,7 +145,6 @@ void QuestScene::initPauseShadowThings()
         if (_waiting2startBattle && _pauseShadow->isVisible()) {
             _waiting2startBattle = false;
             _pauseShadow->setVisible(false);
-            _beatField.op_startBeating();
         }
         return false;
     };
