@@ -75,7 +75,7 @@ bool QuestScene::init()
 
     auto size = Director::getInstance()->getVisibleSize();
 
-    auto camera = Camera::createPerspective(60, size.width/size.height, 1, 1000000);
+    auto camera = Camera::createPerspective(60, 1334.f/750 /*size.width/size.height*/, 1, 1000000);
     camera->setCameraFlag(CameraFlag::USER1);
     layer->addChild(camera);
     camera->setCameraMask((unsigned short)CameraFlag::USER1);
