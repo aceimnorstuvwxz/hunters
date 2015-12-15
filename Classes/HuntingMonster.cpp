@@ -447,7 +447,7 @@ void HuntingMonster::op_dealWithArrow(ArrowUnit& arrow)
 
     float typescale = huntingMonsterGeneralType2scale(_generalType);
     float x_expand = 0.5f*20*typescale*0.15;
-    float y_height = 20*4*typescale*0.15f;
+    float y_height = 20*4.2f*typescale*0.15f;
     float shiled_r = 0.9f*y_height;
     Vec2 centerPos = {pos_monster,  y_height*0.6f};
     if ( (_hasShield &&  (centerPos-pos_arrow).length() < shiled_r) || //盾碰撞

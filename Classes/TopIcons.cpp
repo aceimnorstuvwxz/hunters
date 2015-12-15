@@ -177,7 +177,7 @@ void TopIcons::op_configGold(int number)
 
 void TopIcons::update(float dt)
 {
-    const int step = 7;
+    int step = std::abs(_targetGoldNumber - _currentGoldNumber) > 50 ? 7 : 1;
     if (_targetGoldNumber != _currentGoldNumber) {
         if (_targetGoldNumber > _currentGoldNumber) {
             _currentGoldNumber = std::min(_currentGoldNumber += step, _targetGoldNumber);

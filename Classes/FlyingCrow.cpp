@@ -13,7 +13,7 @@
 #include "QuestDef.hpp"
 #include "SOCommon.h"
 #include "ACSoundManage.hpp"
-
+#include "MoneyManager.hpp"
 USING_NS_CC;
 void FlyingCrow::init(cocos2d::Layer *mainLayer, cocos2d::Camera *mainCamera)
 {
@@ -109,6 +109,7 @@ bool FlyingCrow::op_dealWithArrow(ArrowUnit& arrow)
             _dxCrow->configMixColorAni({1,1,1,1}, 0.2, 2);
             this->toastDead();
             ACSoundManage::s()->play(ACSoundManage::SN_ARROW_NORMAL_HIT);
+            MoneyManager::s()->add(10);
 
             return true;
         }
