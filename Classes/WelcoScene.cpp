@@ -435,7 +435,7 @@ void WelcoScene::initButtonsThings()
     {
         auto node = PixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({49,-25,0});
+        node->setPosition3D({49,-23,0});
         node->configSopx("sopx/welco/moregame.png.sopx");
         hub->addChild(node);
         node->setScale(0.3);
@@ -471,6 +471,26 @@ void WelcoScene::initButtonsThings()
 
                                          NULL));
         _pxMoreGame = node;
+    }
+
+    {
+        auto node = PixelTextNode::create();
+        node->setCameraMask(_mainCamera->getCameraMask());
+        node->setScale(0.27);
+        node->setPosition3D({45,-28,1});
+        node->configText("more game",1);
+        node->configMixColor({1.f, 200.f/255.f, 51.f/255.f,1.f});
+        hub->addChild(node);
+        node->setVisible(false);
+        node->runAction(Sequence::create(
+                                         DelayTime::create(1.5f),
+                                         DelayTime::create(0.3),
+                                         DelayTime::create(shake_time*6+0.5),
+                                         DelayTime::create(stay_time+move_time+0.3+0.3+0.3),
+                                         Show::create(),
+                                         Spawn::create(
+                                                       Show::create(), NULL),
+                                         NULL));
     }
 
 
