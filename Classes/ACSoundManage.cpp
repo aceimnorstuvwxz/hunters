@@ -33,6 +33,7 @@ void ACSoundManage::load()
 //    _effectsMap[SN_WIND_CHANGE] = "wind_change.wav";
     _effectsMap[SN_KEY] = "key.mp3";
     _effectsMap[SN_CLICK] = "click.mp3";
+    _effectsMap[SN_SPLASH] = "splash.mp3";
 
     _musicMap[SN_M_0] = "m_0.mp3";
     _musicMap[SN_M_1] = "m_1.mp3";

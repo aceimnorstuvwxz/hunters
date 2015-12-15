@@ -37,6 +37,7 @@ public:
         SN_M_WELCO,
         SN_M_CREDITS,
         SN_CLICK,
+        SN_SPLASH,
     };
     static ACSoundManage* s() { return &_instance; }
 

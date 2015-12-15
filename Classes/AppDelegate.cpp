@@ -58,6 +58,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     PixelDataCache::s()->preloadChars();
 
     Director::getInstance()->setClearColor(Color4F::WHITE);
+    ACSoundManage::s()->play(ACSoundManage::SN_SPLASH);
 
     director->runWithScene(WelcoScene::create());
 
