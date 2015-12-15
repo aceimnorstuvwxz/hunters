@@ -35,6 +35,7 @@ public:
 
     void update(float dt);
 protected:
+    int _cnt = 0;
     PauseGameOverProtocal* _pauseGameOverProtocal;
     BattleRoadProtocal* _battleRoadProtocal;
 
