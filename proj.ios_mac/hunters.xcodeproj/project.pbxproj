@@ -68,6 +68,10 @@
 		B511952B1C14876600E94259 /* FlyingCrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51195291C14876600E94259 /* FlyingCrow.cpp */; };
 		B511952E1C14B0B600E94259 /* FlyingCrowManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B511952C1C14B0B600E94259 /* FlyingCrowManage.cpp */; };
 		B51195331C15B56A00E94259 /* GlobalArrowEffectManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51195311C15B56A00E94259 /* GlobalArrowEffectManage.cpp */; };
+		B519F5061C21622C00E94966 /* GameSharing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B519F5041C21622C00E94966 /* GameSharing.cpp */; };
+		B519F5081C21626900E94966 /* GameCenterHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B519F5071C21626900E94966 /* GameCenterHelper.mm */; };
+		B519F50A1C2163A900E94966 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B519F5091C2163A900E94966 /* GameKit.framework */; };
+		B519F50D1C21650600E94966 /* ios_ids.plist in Resources */ = {isa = PBXBuildFile; fileRef = B519F50C1C21650600E94966 /* ios_ids.plist */; };
 		B539D28F1BE7620E0096FF04 /* PixelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B539D28D1BE7620E0096FF04 /* PixelNode.cpp */; };
 		B53B8CB31BEFA1BC006F5432 /* WelcoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB11BEFA1BC006F5432 /* WelcoScene.cpp */; };
 		B53B8CB81BF09DF8006F5432 /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53B8CB61BF09DF8006F5432 /* LoadingScene.cpp */; };
@@ -286,6 +290,11 @@
 		B511952D1C14B0B600E94259 /* FlyingCrowManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FlyingCrowManage.hpp; sourceTree = "<group>"; };
 		B51195311C15B56A00E94259 /* GlobalArrowEffectManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalArrowEffectManage.cpp; sourceTree = "<group>"; };
 		B51195321C15B56A00E94259 /* GlobalArrowEffectManage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GlobalArrowEffectManage.hpp; sourceTree = "<group>"; };
+		B519F5041C21622C00E94966 /* GameSharing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSharing.cpp; sourceTree = "<group>"; };
+		B519F5051C21622C00E94966 /* GameSharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSharing.h; sourceTree = "<group>"; };
+		B519F5071C21626900E94966 /* GameCenterHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GameCenterHelper.mm; path = ios/GameCenterHelper.mm; sourceTree = SOURCE_ROOT; };
+		B519F5091C2163A900E94966 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
+		B519F50C1C21650600E94966 /* ios_ids.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ios_ids.plist; sourceTree = "<group>"; };
 		B539D28D1BE7620E0096FF04 /* PixelNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelNode.cpp; sourceTree = "<group>"; };
 		B539D28E1BE7620E0096FF04 /* PixelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelNode.h; sourceTree = "<group>"; };
 		B53B8CB11BEFA1BC006F5432 /* WelcoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WelcoScene.cpp; sourceTree = "<group>"; };
@@ -477,6 +486,7 @@
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				B519F50A1C2163A900E94966 /* GameKit.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
@@ -519,6 +529,7 @@
 				503AE0FD17EB989F00D1A890 /* Prefix.pch */,
 				503AE0FE17EB989F00D1A890 /* RootViewController.h */,
 				503AE0FF17EB989F00D1A890 /* RootViewController.mm */,
+				B519F5071C21626900E94966 /* GameCenterHelper.mm */,
 			);
 			name = ios;
 			path = Classes;
@@ -559,6 +570,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B519F5091C2163A900E94966 /* GameKit.framework */,
 				8262943D1AAF051F00CB7CF7 /* Security.framework */,
 				52B47A461A53D09B004E4C60 /* Security.framework */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
@@ -583,6 +595,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B519F50C1C21650600E94966 /* ios_ids.plist */,
 				B581F9D11BFE46A600F9BDDB /* hunters */,
 				B58066DC1BF8C5FF002A1DC1 /* hunting */,
 				B58DDCB21BE91F7D00B54804 /* sopx */,
@@ -604,6 +617,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B519F5031C21621C00E94966 /* gamecenter */,
 				B56EF9BA1C0DE88600FD7BBE /* box2Dtest */,
 				B5BD195D1BE645AC0052ACDD /* fromold */,
 				B53B8CB01BEFA19E006F5432 /* other-scene */,
@@ -711,6 +725,15 @@
 				B506AEB51BEF686A00021FC7 /* BattleState.hpp */,
 			);
 			name = "battle-state";
+			sourceTree = "<group>";
+		};
+		B519F5031C21621C00E94966 /* gamecenter */ = {
+			isa = PBXGroup;
+			children = (
+				B519F5041C21622C00E94966 /* GameSharing.cpp */,
+				B519F5051C21622C00E94966 /* GameSharing.h */,
+			);
+			name = gamecenter;
 			sourceTree = "<group>";
 		};
 		B539D28C1BE761DD0096FF04 /* pixel-node */ = {
@@ -1043,6 +1066,11 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = SLJHUQ5M9G;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1129,6 +1157,7 @@
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				B5468A331C206A700065C544 /* Icon.png in Resources */,
 				B5468A211C206A700065C544 /* icon-144x144.png in Resources */,
+				B519F50D1C21650600E94966 /* ios_ids.plist in Resources */,
 				B5468A1E1C206A700065C544 /* Icon-76x76.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				B5468A2E1C206A700065C544 /* Icon-Small@2x.png in Resources */,
@@ -1222,6 +1251,8 @@
 				B5B7486F1C10AAA8009D546D /* Msg.cpp in Sources */,
 				B58B03A11C17671B00380435 /* PixelParticleNode.cpp in Sources */,
 				B58AE4301C030FD6005F9E85 /* DynamicPixelNode.cpp in Sources */,
+				B519F5061C21622C00E94966 /* GameSharing.cpp in Sources */,
+				B519F5081C21626900E94966 /* GameCenterHelper.mm in Sources */,
 				B5BD19551BE645990052ACDD /* SOCommon.cpp in Sources */,
 				B5BD196E1BE64F5A0052ACDD /* QuestScene.cpp in Sources */,
 				B582F28F1C10EE3800BEAEDD /* FloatingLaser.cpp in Sources */,

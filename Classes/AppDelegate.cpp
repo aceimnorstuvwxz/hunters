@@ -5,6 +5,7 @@
 #include "ACSoundManage.hpp"
 #include "PixelDataCache.hpp"
 #include "WelcoScene.h"
+#include "GameSharing.h"
 
 USING_NS_CC;
 
@@ -59,6 +60,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     Director::getInstance()->setClearColor(Color4F::WHITE);
     ACSoundManage::s()->play(ACSoundManage::SN_SPLASH);
+    GameSharing::initGameSharing();
 
     director->runWithScene(WelcoScene::create());
 
@@ -71,6 +73,6 @@ void AppDelegate::applicationDidEnterBackground() {
 }
 
 void AppDelegate::applicationWillEnterForeground() {
+    GameSharing::initGameSharing();
     Director::getInstance()->startAnimation();
-
 }
