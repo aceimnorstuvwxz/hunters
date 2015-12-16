@@ -11,6 +11,7 @@
 
 #include "QuestScene.h"
 #include "CreditsScene.hpp"
+#include "GameSharing.h"
 USING_NS_CC;
 
 bool WelcoScene::init()
@@ -559,11 +560,10 @@ void WelcoScene::initTouchThings()
             Director::getInstance()->replaceScene(LoadingScene::create());
             sfx = true;
         } else if (_pxLeaderboard->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation()) ) {
-            //TODO open leaderboards
+            GameSharing::openGameCenterLeaderboardsUI(0);
             sfx = true;
 
         } else if (_pxCredits->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation()) ){
-            //todo credits
             Director::getInstance()->pushScene(CreditsScene::create());
             sfx = true;
 

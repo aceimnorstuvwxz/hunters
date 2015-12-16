@@ -9,6 +9,7 @@
 #include "TopIcons.hpp"
 #include "format.h"
 #include "MoneyManager.hpp"
+#include "GameSharing.h"
 
 USING_NS_CC;
 
@@ -201,6 +202,7 @@ void TopIcons::op_minusHeart()
     if (_heart == 0) {
         //game over
         _pauseGameOverProtocal->op_gameOver();
+        GameSharing::submitScoreToLeaderboard(_currentWave, 0);
     }
 
 }

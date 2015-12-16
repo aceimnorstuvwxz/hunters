@@ -47,7 +47,8 @@ bool CreditsScene::init()
     _mainLayer->addChild(hub);
     _hub = hub;
 
-     initCreditsThings();
+    initCreditsThings();
+    initTouchThings();
 
 
     return true;
@@ -76,12 +77,16 @@ void CreditsScene::initCreditsThings()
         _hub->addChild(node);
     }
 
-    auto _image = RoadPlane::create();
-    _image->configImage("images/credits.png");
-    _image->configBlend(true);
-    _image->setCameraMask(_mainCamera->getCameraMask());
-    _image->runAction(ScaleTo::create(5, 0.08));
-    _hub->addChild(_image);
+    {
+
+        auto _image = RoadPlane::create();
+        _image->configImage("images/credits.png");
+        _image->configBlend(true);
+        _image->setScale(0.1);
+        _image->setCameraMask(_mainCamera->getCameraMask());
+        _image->runAction(MoveBy::create(30, Vec3{0,40,0}));
+        _hub->addChild(_image);
+    }
 
 }
 
