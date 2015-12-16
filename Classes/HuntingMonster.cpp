@@ -129,7 +129,9 @@ void HuntingMonster::op_configType(HuntingMonsterGeneralType generalType, Huntin
     }
 
     // 穿上剑
-    _dpxNode->configAddSopx(fmt::sprintf("hunters/swords/%d.tga.png.sopx", level), BT_SWORD_MAX, boneIndex2relativePosition(BT_SWORD_MAX), true, false);
+
+    _dpxNode->configAddSopx(fmt::sprintf(_level%2 == 0 ? "hunters/swords/%d.tga.png.sopx" : "hunters/hammers/%d.tga.png.sopx", level), BT_SWORD_MAX, boneIndex2relativePosition(BT_SWORD_MAX), true, false);
+
 
     // 盾
     if (_hasShield) {
@@ -290,7 +292,13 @@ void HuntingMonster::ani_moving(float radio)
     _dpxNode->configAction(BT_HAND_L, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, RepeatForever::create(Spawn::create( Sequence::create(MoveBy::create(run_time*0.5, {2,4,0}), MoveBy::create(run_time*0.5, {-2,-4,0}), NULL), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-10}),RotateBy::create(run_time*0.5, Vec3{0,0,10}), NULL), NULL)));
 
     cfg = help_calcBonePosition(BT_SWORD_MAX);
+    if (_level%2 == 0) {
+
     _dpxNode->configAction(BT_SWORD_MAX, cfg.position, cfg.rotation, cfg.scaleX, cfg.scaleY, RepeatForever::create(RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-3}),RotateBy::create(run_time*0.5, Vec3{0,0,3}), NULL), NULL))));
+    } else {
+        _dpxNode->configAction(BT_SWORD_MAX, cfg.position + Vec3{0,0,-2}, cfg.rotation + Vec3{0,0,-90}, cfg.scaleX, cfg.scaleY, RepeatForever::create(RepeatForever::create(Spawn::create( bodyMove->clone(), Sequence::create( RotateBy::create(run_time*0.5, Vec3{0,0,-3}),RotateBy::create(run_time*0.5, Vec3{0,0,3}), NULL), NULL))));
+
+    }
 
 
     
