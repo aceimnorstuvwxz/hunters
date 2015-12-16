@@ -209,7 +209,7 @@ void TopIcons::op_minusHeart()
 
 void TopIcons::op_addHeart()
 {
-    _heart += 10;
+    _heart += 20;
 
     _ptxHeartNumber->configText(fmt::sprintf("%d", _heart));
     _pxHeart->configMixColorAni({0,1.f,0,0.5}, 0.2);

@@ -125,15 +125,12 @@ void PauseGameOver::initButtonsThings()
             }
             else if (_goed) {
                 //add health
-                Director::getInstance()->replaceScene(LoadingScene::create());
-                _topIconsProtocal->op_addHeart();
-
                 _hubNode->setVisible(false);
                 _darkShadow->setVisible(false);
                 _questSceneProtocal->op_configPaused(false);
-
+                _topIconsProtocal->op_addHeart();
             }
-            Application::getInstance()->openURL("itms-apps://itunes.apple.com/app/id1041292699");
+            Application::getInstance()->openURL("itms-apps://itunes.apple.com/app/id1068411583");
             sfx = true;
 
         }

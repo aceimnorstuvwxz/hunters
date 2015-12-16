@@ -71,7 +71,7 @@ void WelcoScene::initBackgroundThings()
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-50, scene_things_start_pos, 0});
+        node->setPosition3D({-50+30, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/glass.png.sopx");
@@ -92,7 +92,7 @@ void WelcoScene::initBackgroundThings()
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-50, scene_things_start_pos, 0});
+        node->setPosition3D({-50+30, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/tree.png.sopx");
@@ -114,7 +114,7 @@ void WelcoScene::initBackgroundThings()
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-80, scene_things_start_pos, 0});
+        node->setPosition3D({-80+30, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/moutain.png.sopx");
@@ -136,7 +136,7 @@ void WelcoScene::initBackgroundThings()
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({-110, scene_things_start_pos, 0});
+        node->setPosition3D({-110+30, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/hill.png.sopx");
@@ -533,6 +533,9 @@ void WelcoScene::initTouchThings()
     };
 
     listener->onTouchEnded = [this](Touch* touch, Event* event){
+        if (!_pxPlay->isVisible()) {
+            return ;
+        }
         bool sfx = false;
         if (_pxSoundSwitch->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation())) {
             CCLOG("sound switch");
@@ -560,7 +563,9 @@ void WelcoScene::initTouchThings()
             Director::getInstance()->replaceScene(LoadingScene::create());
             sfx = true;
         } else if (_pxLeaderboard->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation()) ) {
-            GameSharing::openGameCenterLeaderboardsUI(0);
+            if (GameSharing::signInPlayer()) {
+                GameSharing::openGameCenterLeaderboardsUI(0);
+            }
             sfx = true;
 
         } else if (_pxCredits->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation()) ){
@@ -570,6 +575,7 @@ void WelcoScene::initTouchThings()
         }else if (_pxMoreGame->fetchScreenRect(5, _mainCamera).containsPoint(touch->getLocation())) {
             Application::getInstance()->openURL("https://itunes.apple.com/developer/bingfeng-chen/id1041292698");
             sfx = true;
+
 
         }
 
