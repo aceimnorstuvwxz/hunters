@@ -123,7 +123,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/tree.png.sopx");
         std::vector<PlanePixelBatchTuple> pixelBatchData;
-        for (int j = 0; j < 2; j++) {
+        for (int j = 0; j < 3; j++) {
             for (int i = 0; i < scene_things_width/tree_width_step; i++) {
                 pixelBatchData.push_back({{tree_width_step*i+random(-10.f, 10.f), 0.f, -10.f*j+random(-10.f, 0.f)},1.f + j, &pixelData});
             }
@@ -161,7 +161,7 @@ void BattleRoad::init(cocos2d::Layer* mainLayer, cocos2d::Camera* mainCamera)
     {
         auto node = PlanePixelNode::create();
         node->setCameraMask(_mainCamera->getCameraMask());
-        node->setPosition3D({relative_pos-25, scene_things_start_pos, 0});
+        node->setPosition3D({relative_pos-45, scene_things_start_pos, 0});
         _mainLayer->addChild(node);
         node->setRotation3D({90,0,-90});
         auto pixelData = loadScatPixelFile("battle_road/tmp/moutain.png.sopx");

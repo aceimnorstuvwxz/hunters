@@ -63,7 +63,7 @@ public:
     constexpr static const float HUNTING_X_HEROPOS_BEGIN = -125;
     constexpr static const float HUNTING_X_HEROPOS_STEP = 10;
     constexpr static const float HUNTING_X_END = 140;
-    constexpr static const float MONSTER_APPEAR_POS = 145;
+    constexpr static const float MONSTER_APPEAR_POS = 155;
     constexpr static const float ARROW_SHOOT_Z = 10;
     constexpr static const float ARROW_SHOOT_Y = 5;
     constexpr static const float ARROW_SCALE = 0.5;
