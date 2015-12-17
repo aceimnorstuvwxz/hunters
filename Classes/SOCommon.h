@@ -56,7 +56,7 @@ inline cocos2d::Vec2 movePathCalc(cocos2d::Vec2 origin, cocos2d::Vec2 speed, coc
 }
 
 inline cocos2d::Vec4 col2vec4(int r, int g, int b, int a){
-    return {r/255.f, g/255.f, b/255.f, a/255.f};
+    return {r*1.f/255.f, g*1.f/255.f, b*1.f/255.f, a*1.f/255.f};
 }
 
 #endif /* SOCommon_hpp */

@@ -177,7 +177,7 @@ void WelcoScene::initButtonsThings()
         node->configSopx("sopx/welco/arrow.png.sopx");
         hub->addChild(node);
         node->setOpacity(0);
-        node->setScale(1.1,1.5);
+        node->setScale(1.8);
         node->runAction(Sequence::create(
                                          FadeIn::create(1.5f),
                                          DelayTime::create(0.3),
@@ -192,6 +192,7 @@ void WelcoScene::initButtonsThings()
 
                                          MoveBy::create(move_time, {0,10,0}),
                                          NULL));
+        node->configMixColor(col2vec4(255, 255, 255, 150));
     }
     {
         auto node = PixelNode::create();
@@ -200,7 +201,7 @@ void WelcoScene::initButtonsThings()
         node->configSopx("sopx/welco/rush.png.sopx");
         hub->addChild(node);
         node->setOpacity(0);
-        node->setScale(1.1,1.5);
+        node->setScale(1.8);
         node->runAction(Sequence::create(
                                          FadeIn::create(1.5f),
                                          DelayTime::create(0.3),
@@ -215,6 +216,8 @@ void WelcoScene::initButtonsThings()
 
                                          MoveBy::create(move_time, {0,10,0}),
                                          NULL));
+        node->configMixColor(col2vec4(255, 255, 255, 150));
+
     }
 
     {
@@ -232,6 +235,8 @@ void WelcoScene::initButtonsThings()
 
                                          MoveBy::create(move_time, {0,10,0}),
                                          NULL));
+        node->configMixColor(col2vec4(255, 255, 255, 150));
+
     }
 
     {
